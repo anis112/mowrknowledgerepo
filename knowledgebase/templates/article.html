@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<!-- page navigation section -->
+<section class="page_breadcrumb">
+    <div class="container-fluid pl-60 pr-60">
+        <div class="row">
+            <div class="col-sm-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Knowledgebase</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'article' %}">Articles</a></li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-sm-5">
+                <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on March 03, 2020</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- main body section -->
+<section class="doc_categories_guide_area sec_pad">
+    <img class="shap" src="{% static 'img/home_one/dow_bg_two.png' %}" alt="">
+    <div class="container-fluid">
+
+        <div class="section_title text-center">
+            <h2 class="h_title wow fadeInUp">Knowledge Information Based on Different Classification</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.2s">Hierarchical classification system, which is applied to systematize documents and represent them 
+                in databases and information publications.</p>
+        </div>
+
+        <div class="row">
+            {% for article_category in article_categories %}
+            <div class="col-md-3">
+                <div class="categories_guide_item wow fadeInUp" style="padding: 27px; margin-bottom: 20px;">
+                    <div class="d-flex">
+                        <img src="{{ baseUrl }}/static/img/article_logo/{{ article_category.logo_name }}" alt="" style="margin-bottom: 34px; max-width: 50px; margin-right: 15px; height: fit-content;">
+                        <a href="#">
+                            <h4 style="color: #428ca3; font-size: 1.3rem; margin-bottom: 0!important;">{{ article_category.category_name }}</h4>
+                            <span style="font-style: italic; color: #6a737c;">{{ article_category.article_set.all|length }} Topics</span>
+                        </a>
+                    </div>
+                    <ul class="list-unstyled tag_list" style="margin-bottom: 25px; padding-left: 10px;">
+                        {% for article in article_category.article_set.all|slice:":3" %}
+                        <li style="margin-top: 3px;"><a href="{% url 'article_detail' article.id %}"><i class="icon_document_alt" style="margin-right: 10px; text-align: justify;"></i>{{ article.title }}</a></li>
+                        {% endfor %}
+                    </ul>                    
+
+                    <a href="#" class="doc_border_btn" style="display: block; text-align: center; width: 100%; border-radius: 10px; padding: 2px 37px; ">View More<i class="arrow_right"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>               
+
+        <!-- <div class="text-center">
+            <a href="#" class="doc_border_btn all_doc_btn wow fadeInUp">View All Docs<i class="arrow_right"></i></a>
+        </div> -->
+    </div>
+</section>
+
+{% endblock %}

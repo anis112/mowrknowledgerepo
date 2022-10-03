@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- page navigation section -->
+<section class="page_breadcrumb">
+    <div class="container-fluid pl-60 pr-60">
+        <div class="row">
+            <div class="col-sm-7">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Knowledgebase</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'article' %}">Articles</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Article Details</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-sm-5">
+                <a href="#" class="date"><i class="icon_clock_alt"></i>Updated on March 03, 2020</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>{{ article.description }}</p>
+    </div>
+</div>
+
+{% endblock %}
