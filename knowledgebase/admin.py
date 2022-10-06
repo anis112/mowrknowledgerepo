@@ -33,7 +33,6 @@ class DataAccessCategoryAdmin(admin.ModelAdmin):
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     #autocomplete_fields = ['article_category']
-    #list_display = ['title', 'get_article_category_name', 'entry_date']
     list_display = ['id', 'parent_id', 'organization', 'data_category',
                     'title', 'author', 'access_category']
     list_editable = ['parent_id', 'organization', 'data_category']
@@ -54,12 +53,13 @@ class ArticleDetailAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['id', 'parent_id', 'organization',
-                    'data_category', 'title', 'access_category']
-    list_editable = ['parent_id', 'organization',
-                     'data_category', 'title', 'access_category']
+    autocomplete_fields = ['article_category']
+    #list_display = ['title', 'get_article_category_name', 'entry_date']
+    list_display = ['id', 'title', 'parent_id', 'article_category',
+                    'publish_category', 'entry_date', 'updated_date']
+    list_editable = ['parent_id', 'article_category', 'publish_category']
     list_per_page = 50
-    list_filter = ['organization', 'data_category', 'access_category']
+    list_filter = ['article_category', 'entry_date', 'updated_date']
     search_fields = ['title__istartswith']
 
 
