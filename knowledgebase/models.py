@@ -34,7 +34,7 @@ class DataCategory(models.Model):
     category_name = models.CharField(max_length=100)
     parent = models.PositiveSmallIntegerField(null=True)
     #is_organizational_data = models.BooleanField(null=True)
-    organization_id = models.ForeignKey(
+    organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
@@ -60,9 +60,9 @@ class DataAccessCategory(models.Model):
 class Document(models.Model):
     id = models.PositiveBigIntegerField(primary_key=True)
     parent_id = models.PositiveBigIntegerField(null=True)
-    organization_id = models.ForeignKey(
+    organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
-    category_id = models.ForeignKey(
+    data_category = models.ForeignKey(
         DataCategory, on_delete=models.PROTECT, null=True)
     # sub_category_id = models.ForeignKey("SubCategory", on_delete=models.PROTECT, null=True)
     # sub_sub_category_id = models.ForeignKey("SubSubCategory", on_delete=models.PROTECT, null=True)
@@ -73,7 +73,7 @@ class Document(models.Model):
     subject = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     author = models.CharField(max_length=100)
-    access_category_id = models.ForeignKey(
+    access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True)
     publication_date = models.DateTimeField(null=True)
     file_name = models.FileField()
@@ -95,15 +95,15 @@ class Document(models.Model):
 class ArticleDetail(models.Model):
     id = models.PositiveBigIntegerField(primary_key=True)
     parent_id = models.PositiveBigIntegerField(null=True)
-    organization_id = models.ForeignKey(
+    organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
-    category_id = models.ForeignKey(
+    data_category = models.ForeignKey(
         DataCategory, on_delete=models.PROTECT, null=True)
     title = models.CharField(max_length=500)
     subject = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     author = models.CharField(max_length=100)
-    access_category_id = models.ForeignKey(
+    access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True)
     publication_date = models.DateTimeField(null=True)
     file_name = models.FileField()
@@ -126,9 +126,9 @@ class ArticleDetail(models.Model):
 
 class ArticleDocDetail(models.Model):
     id = models.PositiveBigIntegerField(primary_key=True)
-    article_id = models.ForeignKey(
+    article_detail = models.ForeignKey(
         ArticleDetail, on_delete=models.PROTECT, null=True)
-    document_id = models.ForeignKey(
+    document = models.ForeignKey(
         Document, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
