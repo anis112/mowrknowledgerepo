@@ -1,0 +1,302 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    -->
+
+<style>
+
+/* @-moz-document url-prefix() {
+    select {
+        direction:rtl;
+        width: auto;
+    }
+    option{
+        text-align: left;
+    }
+} */
+
+    .categories_guide_item {
+        padding: 0px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .categories_guide_item img {
+        margin-bottom: 0px !important;
+    }
+
+    .tab-pane {
+        margin-top: 75px;
+    }
+
+    .tab-content {
+        padding: 0 20px;
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .com-title {
+        font-size: 0.8rem !important;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .community-box {
+        padding: 20px 15px;
+        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+    }
+
+    .community-content {
+        min-height: 160px;
+    }
+
+    .fact_navigation_info {
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        padding: 40px 30px 28px;
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .org-content {
+        /* background-color: #dde3ee; */
+        /* background-image: linear-gradient(to left bottom, #eeeeee, #ecedee, #eaebee, #e7eaee, #e4e9ee); */
+        /* border: 1px solid #d9ddea; */
+        padding: 10px;
+        margin: 10px 0px;
+    }
+
+    .org-img {
+        width: 90px;
+        margin-bottom: 10px;
+    }
+
+   .list {
+        width: auto !important;
+    }
+
+
+
+    /*=========== Start Slider css (MNH) ============*/
+
+
+
+    .slide_section {
+        position: inherit;
+        width: 100%;
+        height: auto;
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        /* margin-bottom: 100px; */
+        z-index: 100;
+    }
+
+    .slide {
+        position: relative;
+        background: #F8F9FA;
+        height: 500px;
+        flex: 1;
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .slide:last-child {
+        border-right: none;
+    }
+
+    .slide:hover {
+        flex-grow: 6;
+        /* transform: scale(1.05, 1.05); */
+        /* -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 65%; */
+    }
+
+    .inner {
+        height: 500px;
+        width: 100%;
+        display: block;
+        background-repeat: no-repeat;
+        transition: all 1s;
+    }
+
+    /* .slide:nth-child(1)
+{
+    background: url(../static/img/slider-img/S1.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(2)
+{
+    background: url(../static/img/slider-img/S2.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(3)
+{
+    background: url(../static/img/slider-img/S3.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(4)
+{
+    background: url(../static/img/slider-img/S4.jpg);
+    background-position: center center;
+} */
+
+    .slide .content {
+        position: absolute;
+        bottom: 0;
+        margin: 20px;
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0s;
+        transform: translateY(100px);
+        /* width:100%; */
+    }
+
+    .slide:hover .inner {
+        transform: scale(1.2);
+    }
+
+    .slide:hover .content {
+        visibility: visible;
+        opacity: 0.7;
+        transition: 0.5s;
+        transition-delay: 0.2s;
+        transform: translateY(0);
+    }
+
+    /*.slick-track {
+    /* transition-delay: 2s !important; 
+    /* transition: transform 1s !important; 
+} */
+
+    .item {
+        margin: 20px;
+    }
+
+    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
+    /*=========== End Slider css (MNH) ============*/
+
+/*=========== SVG css (MNH) ============*/
+.water-wave {
+  display: block;
+  width: 100%;
+  height: 14rem;
+  max-height: 150vh;
+  margin: 0;
+}
+
+.parallax > use {
+  animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax > use:nth-child(1){animation-delay:-3s;}
+.parallax > use:nth-child(2){animation-delay:-3s; animation-duration:4.25s}
+.parallax > use:nth-child(3){animation-delay:-3s; animation-duration:5.25s}
+.parallax > use:nth-child(4){animation-delay:-5s; animation-duration:3.25s}
+
+@keyframes move-forever{
+  0%{transform: translate(-90px , 0%)}
+  100%{transform: translate(85px , 0%)} 
+}
+
+
+</style>
+
+<div class="row">
+    <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 10px 30px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
+</div>
+<div class="section_title text-center" style="margin-bottom: 20px;">
+    <h5 class="wow fadeInUp">National/International Searching</h5>
+</div>
+
+
+<!-- searchbox area section    -->
+<!-- <div class="row">
+    <div class="col-md-12"> -->
+<section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 50PX;;">
+
+    <div class="container" style="padding: 0;">
+        <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0; padding: 0; max-width: 100%; border: 1px solid #019d19;">
+            <div class="input-group">
+                <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
+                <div class="input-group-append">
+                    <select class="custom-select" id="inlineFormCustomSelect" >
+                        <option selected>All Category</option>
+                        <option value="1">Doc Archive</option>
+                        <option value="2">Doc list</option>
+                        <option value="3">KbDoc</option>                    
+                    </select>
+                </div>
+                <button type="submit"><i class="icon_search"></i></button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- </div>
+</div> -->
+
+<br />
+
+
+<!-- <h1>MoWR Home</h1> -->
+<section class="doc_categories_guide_area sec_pad">
+    <div class="container">
+        <!-- <div class="section_title text-center" style="margin-bottom: 50px; margin-top:50px;">
+            <h2 class="h_title wow fadeInUp">Check out our guide categories</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp">
+                    <div class="card text-dark bg-light mb-3">
+                        <!-- style="max-width: 18rem;" -->                                                
+                        <div class="card-header">
+                            <div class="col-md-4"><img src="{% static 'img/home_one/National.png' %}" alt="" width="50px" /> </div>
+                            <div class="form-check" style="float: right; bottom: 60px;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                        </div>
+                        <div class="card-body" style="min-height: 150px; padding: 1rem;">
+                            <h5 class="card-title">National</h5>
+                            <p class="card-text">List of headings is a hierarchical classification system.</p>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a> -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="card text-dark bg-light mb-3">
+                        <!-- style="max-width: 18rem;" -->
+                        <div class="card-header">
+                            <div class="col-md-4"><img src="{% static 'img/home_one/International.png' %}" alt="" width="50px" /> </div>
+                            <div class="form-check" style="float: right; bottom: 60px;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                        </div>
+                        <div class="card-body" style="min-height: 150px; padding: 1rem;">
+                            <h5 class="card-title">International</h5>
+                            <p class="card-text">Electronic Library, New Publication, Economic & Financial Aspects.</p>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a> -->
+                </div>
+            </div>            
+        </div>
+
+    </div>
+</section>
+
+
+
+{% endblock %}

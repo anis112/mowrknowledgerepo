@@ -1,0 +1,327 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+
+<style>
+    .breadcrumb_area {
+        padding: 100px 0 40px;
+    }
+
+    .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .section_title p {
+        max-width: none;
+    }
+
+    .sec_pad {
+        padding: 15px 0;
+    }
+
+    .section_title {
+        margin-bottom: 15px;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    .categories_guide_item {
+        padding: 0px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .categories_guide_item img {
+        margin-bottom: 0px !important;
+    }
+
+    .tab-pane {
+        margin-top: 75px;
+    }
+
+    .tab-content {
+        padding: 0 20px;
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .com-title {
+        font-size: 0.8rem !important;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .community-box {
+        /* margin-top: 20px; */
+        padding: 20px 15px;
+        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+
+    .community-content {
+        min-height: 160px;
+    }
+
+    .fact_navigation_info {
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        padding: 40px 30px 28px;
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .org-content {
+        /* background-color: #dde3ee; */
+        background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
+        border: 1px solid #d9ddea;
+        padding: 10px;
+        margin: 10px;
+        height: 150px;
+    }
+
+    .org-img {
+        width: 90px; 
+        margin-bottom: 10px;
+    }
+
+    .carousel-caption {
+        left:0px;
+        right: 0px;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    .h_title_r {
+        /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%);
+        color: #fff;
+        font-family: arial;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        display: block;   
+        padding: 7px;         
+        padding-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .h_title_l {
+        /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
+        background-image: linear-gradient(60deg, rgb(1, 151, 60) 0%, rgb(0, 92, 96) 100%);
+        color: #fff;
+        font-family: arial;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        display: block;    
+        padding: 7px;                
+        padding-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .search_left_panal {
+        background: #568a9e;
+        opacity: 0.8;
+    }
+
+</style>
+
+<!-- full body section -->
+<!-- <div class="body_wrapper" style="background-image: url(/static/img/patterns/honey_im_subtle.png) !important;"> -->
+<div class="row" style="margin-top: 20px;">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+
+            <!-- searchbox area section    -->
+            <div class="row">
+                <div class="col-md-12">
+                    <section class="breadcrumb_area" style="background-image: none; padding:0;"> 
+                        
+                        <div class="container" style="padding: 0;">
+                            <form action="#" class="banner_search_form banner_search_form_two" style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);">
+                                <div class="input-group">
+                                    <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
+                                    <div class="input-group-append">
+                                        <select class="custom-select" id="inlineFormCustomSelect">
+                                            <option selected>All Category</option>
+                                            <option value="1">Doc Archive</option>
+                                            <option value="2">Doc list</option>
+                                            <option value="3">KbDoc</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit"><i class="icon_search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- <div class="search_left_panal"> -->
+                        <h5>Selected Organization</h5>
+                        <hr />
+                        <h4 class="wow fadeInUp h_title_l" data-wow-delay="0.2s">Bangladesh Water Development Board</h4>                                
+                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px;">APA  Activities</a>
+                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Hydrology Related</a>
+                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">NIS Action Plan</a>
+                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">GRS Focal Point</a>
+                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Disciplinary Action</a>
+                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Presentation</a>
+                    <!-- </div> -->
+                </div>
+                <div class="col-md-9">
+
+                    <div class="container" style="padding: 0px;">
+                                      
+                        <h5>Search Result</h5>
+
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Hydrology Related</h4>
+                            </div>
+                        </div>
+
+                        <!-- Sliding Cards -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Case study on water logging problems in an urban area of Bangladesh and probable analytical solution. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Salinity problems and crop production in coastal regions of Bangladesh. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Award points, level up, and earn new privileges. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+    
+                        
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">ADP Report</h4>
+                            </div>
+                        </div>
+
+                        <!-- Sliding Cards -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/banner_back/bann1.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Case study on water logging problems in an urban area of Bangladesh and probable analytical solution. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/banner_back/bann2.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Salinity problems and crop production in coastal regions of Bangladesh. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+    
+                        
+    
+    
+                </div>
+    
+
+
+
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            
+        </div>
+</div>
+
+    
+
+<!-- </div> -->
+
+
+{% endblock %}

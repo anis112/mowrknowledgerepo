@@ -9,7 +9,17 @@
     
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">          
+        
+        <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">    
+
+        <!-- Bootstrap SCSS -->
+        <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
+
+        <!-- Tooltip -->
+        <link rel="stylesheet" href="{% static 'assets/tooltipster/css/tooltipster.bundle.css' %}">
+
         <!-- icon css-->
         <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
         <link rel="stylesheet" href="{% static 'assets/niceselectpicker/nice-select.css' %}">
@@ -20,6 +30,15 @@
         <title>Knowledge Base - MoWR</title>
     
         <style>
+
+            .breadcrumb_area .banner_search_form button {
+            background: #019d19;
+            }
+
+            .custom-select ul li:hover, .custom-select ul li.selected {  
+                color: #019d19;  
+            }
+
             .breadcrumb_area { 
                 padding: 130px 0 40px; 
             }
@@ -36,6 +55,11 @@
             .section_title {
                 margin-bottom: 15px;
             }
+
+            .container {
+                max-width: 85% !important;
+            }
+
         </style>
     </head>
     <body data-scroll-animation="true">
@@ -58,9 +82,10 @@
         <div class="body_wrapper">
 
             <!-- navbar with menu section -->
-            <nav class="navbar navbar-expand-lg menu_one" id="sticky">
+            <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%);" >
+                <!--  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
                 <div class="container-fluid">
-                    <a class="navbar-brand sticky_logo" href="index.html">
+                    <a class="navbar-brand sticky_logo" href="/">
                         <!-- customized logo -->
                         <img src="{% static 'img/knowledge_logo_w.png' %}" style="height: 60px; width: 336px;" srcset="{% static 'img/knowledge_logo_w.png' %} 2x" alt="logo">
                         <img src="{% static 'img/knowledge_logo.png' %}" style="height: 60px; width: 336px;" srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
@@ -82,7 +107,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav menu ml-auto">
                             <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                                <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                            </li>
+                            <li class="nav-item dropdown submenu">
+                                <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
                             </li>
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="{% url 'article' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Base</a>
@@ -105,7 +133,23 @@
             </nav>
 
             <!-- searchbox area section -->
-            <section class="breadcrumb_area">
+            <section class="breadcrumb_area d-none">
+                <div class="b_plus one" data-parallax='{"x": 250, "y": 160, "rotateZ":500}'><img src="{% static 'img/home_two/plus.png' %}" alt=""></div>
+                <div class="b_plus two" data-parallax='{"x": 250, "y": 260, "rotateZ":500}'><img src="{% static 'img/home_two/plus_one.png' %}" alt=""></div>
+                <!-- <div class="b_round r_one" data-parallax='{"x": 0, "y": 100, "rotateZ":0}'></div> -->
+                <div class="b_round r_two" data-parallax='{"x": -10, "y": 80, "rotateY":0}'></div>
+                <div class="b_round r_three"></div>
+                <div class="b_round r_four"></div>                
+                <img class="p_absolute star_one" src="{% static 'img/home_two/star.png' %}" style="right: 170px; top: 34%; animation: star 9s both infinite alternate 5s" alt="Star illustration"> <!-- right:10px !important; -->                
+                <img class="p_absolute star_two" src="{% static 'img/home_two/star.png' %}" style="right:10px !important; animation: star2 4s ease-in-out infinite alternate" alt="Star illustration">
+                <img class="p_absolute star_three" src="{% static 'img/home_two/star.png' %}" style="left:1000px !important; top:60px !important; animation: star 7s ease-in-out infinite alternate " alt="Star illustration">
+                <!-- <img class="p_absolute building_img" src="{% static 'img/home_two/wave_one.png' %}" alt=""> -->
+                <img class="p_absolute building_img" src="{% static 'img/home_two/building.png' %}" style="left: 50%; transform: translateX(-50%); bottom: 0; z-index: 0;" alt="">
+                <!-- <img class="p_absolute table_img wow fadeInLeft" src="{% static 'img/home_two/table.svg' %}" alt=""> -->
+                <img class="p_absolute flower wow fadeInUp" data-wow-delay="0.6s" src="{% static 'img/home_two/flower.png' %}" style="bottom: 0; left:20px;" alt="">
+                <img class="p_absolute bl_right" src="{% static 'img/v.svg' %}" style="width: 70px; right: 100px; bottom: -25px;" alt="">
+                <!-- <img class="p_absolute bord wow fadeInRight" data-wow-delay="0.4s" src="{% static 'img/home_two/bord.png' %}" alt=""> -->
+                <!-- <img class="p_absolute girl wow fadeInRight" data-wow-delay="0.8s" src="{% static 'img/home_two/girl.png' %}" alt=""> -->
                 <div class="container">
                     <form action="#" class="banner_search_form banner_search_form_two">
                         <div class="input-group">
@@ -124,111 +168,64 @@
                 </div>
             </section>
 
+            <!-- <br /> -->
+
+            <div class="body_wrapper" style="margin-top: 100px;">
+
             {% block content %}
 
             {% endblock %}
 
+            </div>
             <!-- footer -->
-            <footer class="footer_area f_bg_color">
-                <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
+
+            <hr style="margin-top: 3rem; margin-bottom:0;" />
+
+            <footer class="footer_area f_bg_color" style="font-size: 12px;">
+                <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
                 <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
                 <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">
                 <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">
                 <img class="p_absolute f_email_two" src="{% static 'img/home_two/email-icon_two.png' %}" alt="">
-                <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt="">
-                <div class="footer_top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="f_widget subscribe_widget wow fadeInUp">
-                                    <a href="{% static 'index.html' %}" class="f_logo"><img src="{% static 'img/logo.png' %}" alt=""></a>
-                                    <h4 class="c_head">Subscribe to our newsletter</h4>
-                                    <form action="#" class="footer_subscribe_form">
-                                        <input type="email" placeholder="Email" class="form-control">
-                                        <button type="submit" class="s_btn">Send</button>
-                                    </form>
-                                    <ul class="list-unstyled f_social_icon">
-                                        <li><a href="#"><i class="social_facebook"></i></a></li>
-                                        <li><a href="#"><i class="social_twitter"></i></a></li>
-                                        <li><a href="#"><i class="social_vimeo"></i></a></li>
-                                        <li><a href="#"><i class="social_linkedin"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="f_widget link_widget pl_30 wow fadeInUp" data-wow-delay="0.2s">
-                                    <h3 class="f_title">Company</h3>
-                                    <ul class="list-unstyled link_list">
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="#">Testimonials</a></li>
-                                        <li><a href="#">Affiliates</a></li>
-                                        <li><a href="#">Partners</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                        <li><a href="#">KbDoc for Good</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-2 col-sm-6">
-                                <div class="f_widget link_widget wow fadeInUp" data-wow-delay="0.4s">
-                                    <h3 class="f_title">Support</h3>
-                                    <ul class="list-unstyled link_list">
-                                        <li><a href="index-3.html">Help Desk</a></li>
-                                        <li><a href="#">Knowledge Base</a></li>
-                                        <li><a href="#">Live Chat</a></li>
-                                        <li><a href="#">Integrations</a></li>
-                                        <li><a href="#">Reports</a></li>
-                                        <li><a href="#">iOS & Android</a></li>
-                                        <li><a href="#">Messages</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-sm-6">
-                                <div class="f_widget link_widget pl_70 wow fadeInUp" data-wow-delay="0.6s">
-                                    <h3 class="f_title">Doc Pages</h3>
-                                    <ul class="list-unstyled link_list">
-                                        <li><a href="doclist.html">Doc Topic</a></li>
-                                        <li><a href="#">Free Training</a></li>
-                                        <li><a href="doc-archive.html">Doc Archive</a></li>
-                                        <li><a href="changelog.html">Changelog</a></li>
-                                        <li><a href="Onepage.html">Onepage Docs</a></li>
-                                        <li><a href="#">Conversion Tracking</a></li>
-                                        <li><a href="cheatsheet.html">Cheatseet</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border_bottom"></div>
+                <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt=""> -->
+                
+                <div class="row" style="background: rgb(0, 0, 63); min-height: 50px; padding: 10px;">    <!-- #00026a -->
+                    <div class="col-lg-12 text-center">
+                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="#">Knowledge Base</a> | <a href="#">Research & Publications</a> | <a href="#">Analysis & Reporting</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
                     </div>
                 </div>
-                <div class="footer_bottom text-center">
-                    <div class="container">
-                        <p>© 2020 All Rights Reserved by <a href="index.html">KbDoc</a></p>
-                    </div>
-                </div>
-            </footer>
+                <div class="row" style="background: rgb(0, 53, 41); color:white; height: auto; padding: 10px;"> 
 
-            <!-- <footer class="simple_footer">
-                <img class="leaf_right" src="img/home_one/leaf_footter.png" alt="">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-sm-6">
-                            <p>© 2020 All Rights Reserved by <a href="index.html">KbDoc</a></p>
+                    <div class="col-lg-6">
+                        <div class="f_widget link_widget  text-right pl_30 wow fadeInUp" >
+                            <h6 style="color:white;"><u>Contact Us</u></h6>
+                            <p>Address: Ministry of Water Resources, 5th Floor, Block 6, Bangladesh Shochibaloy, Dhaka</p>                                                  
                         </div>
-                        <div class="col-sm-6 text-right">
-                            <ul class="list-unstyled f_social_icon">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="f_widget subscribe_widget wow fadeInUp" data-wow-delay="0.4s">                                
+                            <ul class="list-unstyled f_social_icon" style="padding-top: 0px;">
                                 <li><a href="#"><i class="social_facebook"></i></a></li>
                                 <li><a href="#"><i class="social_twitter"></i></a></li>
                                 <li><a href="#"><i class="social_vimeo"></i></a></li>
                                 <li><a href="#"><i class="social_linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer> -->
+                            </ul>                           
+                        </div>                        
+                    </div> 
+                    <div class="col-lg-12">
+                        <hr style="margin-top: 0rem; margin-bottom:0.5rem; border-top: 1px solid rgba(0, 0, 63)" /> 
+                    </div>    
+                    <div class="col-lg-12 text-center">
+                        © 2022 All Rights Reserved | Developed by <a href="https://cegisbd.com/" target="_blank">CEGIS</a>
+                    </div>                             
+                </div>                                            
+            </footer>
 
         </div>
 
+
+        <!-- Back to top button -->
+        <a id="back-to-top" title="Back to Top"></a>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -236,6 +233,7 @@
         <script src="{% static 'js/pre-loader.js' %}"> </script>
         <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
         <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/slick/slick.min.js' %}"></script>
         <script src="{% static 'js/parallaxie.js' %}"></script>
         <script src="{% static 'js/TweenMax.min.js' %}"></script>
         <script src="{% static 'js/jquery.wavify.js' %}"></script>
@@ -244,6 +242,7 @@
         <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
         <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
         <script src="{% static 'assets/counterup/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'assets/tooltipster/js/tooltipster.bundle.min.js' %}"></script>
         <script src="{% static 'js/main.js' %}"></script>
     </body>
 </html>

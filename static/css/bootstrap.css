@@ -5906,7 +5906,7 @@ textarea.form-control-lg {
   padding: 0;
   color: #fff;
   text-align: center;
-  background: none;
+  background: 0;
   border: 0;
   opacity: 0.5;
   transition: opacity 0.15s ease;
@@ -5933,6 +5933,7 @@ textarea.form-control-lg {
 .carousel-control-next {
   right: 0;
 }
+
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {

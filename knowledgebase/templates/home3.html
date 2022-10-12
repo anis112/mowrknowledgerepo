@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    {% load static %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">
+
+    <!-- Bootstrap SCSS -->
+    <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
+
+    <!-- Tooltip -->
+    <link rel="stylesheet" href="{% static 'assets/tooltipster/css/tooltipster.bundle.css' %}">
+
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/niceselectpicker/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <title>Knowledge Base - MoWR</title>
+
+
+    <style>
+        .breadcrumb_area {
+            padding: 100px 0 40px;
+        }
+
+        .container-fluid {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .section_title p {
+            max-width: none;
+        }
+
+        .sec_pad {
+            padding: 15px 0;
+        }
+
+        .section_title {
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 100% !important;
+        }
+
+        .categories_guide_item {
+            padding: 0px !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        .categories_guide_item img {
+            margin-bottom: 0px !important;
+        }
+
+        .tab-pane {
+            margin-top: 75px;
+        }
+
+        .tab-content {
+            padding: 0 20px;
+            box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+            border: 1px Solid rgba(130, 148, 151, 0.2)
+        }
+
+        .com-title {
+            font-size: 0.8rem !important;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .community-box {
+            margin-top: 20px;
+            padding: 20px 15px;
+            box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+        }
+
+        .community-content {
+            min-height: 160px;
+        }
+
+        .fact_navigation_info {
+            box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+            padding: 40px 30px 28px;
+            border: 1px Solid rgba(130, 148, 151, 0.2)
+        }
+
+        .org-content {
+            /* background-color: #dde3ee; */
+            background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
+            border: 1px solid #d9ddea;
+            padding: 10px;
+            margin: 10px;
+            height: 150px;
+        }
+
+        .org-img {
+            width: 90px; 
+            margin-bottom: 10px;
+        }
+
+        .carousel-caption {
+            left:0px;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body data-scroll-animation="true">
+
+    <!-- preloader section -->
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="round_spinner">
+                <div class="spinner"></div>
+                <div class="text">
+                    <img src="{% static 'img/govt_seal.png' %}" alt="">
+                    <!-- <h4><span>kb</span>Doc</h4> -->
+                </div>
+            </div>
+            <!-- <h2 class="head">Did You Know?</h2> -->
+            <!-- <p></p> -->
+        </div>
+    </div>
+
+    <!-- full body section -->
+    <div class="body_wrapper" style="background-image: url(/static/img/patterns/honey_im_subtle.png) !important;">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8">
+                
+            
+
+                <!-- navbar with menu section -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="left: auto; right: auto;">
+                            <div class="container-fluid" style="max-width:100%;">
+                                <a class="navbar-brand sticky_logo" href="index.html">
+                                    <!-- customized logo -->
+                                    <img src="{% static 'img/knowledge_logo_w.png' %}" style="height: 60px; width: 336px;" srcset="{% static 'img/knowledge_logo_w.png' %} 2x" alt="logo">
+                                    <img src="{% static 'img/knowledge_logo.png' %}" style="height: 60px; width: 336px;" srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
+                                </a>
+                                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="menu_toggle">
+                                        <span class="hamburger">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </span>
+                                        <span class="hamburger-cross">
+                                            <span></span>
+                                            <span></span>
+                                        </span>
+                                    </span>
+                                </button>
+                
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav menu ml-auto">
+                                        <li class="nav-item dropdown submenu">
+                                            <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                                        </li>
+                                        <li class="nav-item dropdown submenu">
+                                            <a class="nav-link dropdown-toggle" href="{% url 'article' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Base</a>
+                                        </li>
+                                        <li class="nav-item dropdown submenu">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research & Publication</a>
+                                        </li>
+                                        <li class="nav-item dropdown submenu">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analysis & Reporting</a>
+                                        </li>
+                                        <li class="nav-item dropdown submenu">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+                                        </li>
+                                        <li class="nav-item dropdown submenu">
+                                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>                            
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+
+                <!-- searchbox area section    -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <section class="breadcrumb_area" style="background-image: linear-gradient(180deg, rgba(4, 133, 161, 0.6) 0%, rgba(29, 39, 70, 0.6) 100%) !important; background: rgba(9, 19, 50, 0.8);"> 
+                            <!-- style="background-image: url(/static/img/patterns/random_grey_variations.png) !important;" -->
+                            <!-- class="doc_action_area"    background-image: linear-gradient(180deg, rgba(4, 133, 161, 0.6) 0%, rgba(29, 39, 70, 0.6) 100%) -->
+                            <!-- <div class="overlay_bg"></div> -->
+                            <img class="p_absolute bl_left" src="{% static 'img/v.svg' %}" style="width: 70px; left:10%; bottom: -40px;"
+                                alt="">
+                            <img class="p_absolute bl_right" src="{% static 'img/home_one/b_leaf.svg' %}"
+                                style="width: 70px; right: 10%; bottom: -30px;" alt="">
+                            <!-- <div class="b_plus one" data-parallax='{"x": 250, "y": 160, "rotateZ":500}'><img src="{% static 'img/home_two/plus.png' %}" alt=""></div>
+                            <div class="b_plus two" data-parallax='{"x": 250, "y": 260, "rotateZ":500}'><img src="{% static 'img/home_two/plus_one.png' %}" alt=""></div> -->
+                            <!-- <div class="b_round r_one" data-parallax='{"x": 0, "y": 100, "rotateZ":0}'></div> -->
+                            <!-- <div class="b_round r_two" data-parallax='{"x": -10, "y": 80, "rotateY":0}'></div>
+                            <div class="b_round r_three"></div>
+                            <div class="b_round r_four"></div> -->
+                            <!-- <img class="p_absolute star" src="{% static 'img/home_one/banner_bg.png' %}" alt=""> -->
+                            <img class="p_absolute star_one" src="{% static 'img/home_two/star.png' %}"
+                                style="left: 5%; top: 40%; animation: star 9s both infinite alternate 5s" alt="Star illustration">
+                            <img class="p_absolute star_two" src="{% static 'img/home_two/star.png' %}"
+                                style="left: 30%; top: 25%; animation: star2 4s ease-in-out infinite alternate" alt="Star illustration">
+                            <img class="p_absolute star_one" src="{% static 'img/home_two/star.png' %}"
+                                style="right: 170px; top: 34%; animation: star 9s both infinite alternate 5s" alt="Star illustration">
+                            <!-- right:10px !important; -->
+                            <img class="p_absolute star_two" src="{% static 'img/home_two/star.png' %}"
+                                style="right:10px !important; animation: star2 4s ease-in-out infinite alternate"
+                                alt="Star illustration">
+                            <img class="p_absolute star_three" src="{% static 'img/home_two/star.png' %}"
+                                style="left:1000px !important; top:60px !important; animation: star 7s ease-in-out infinite alternate "
+                                alt="Star illustration">
+                            <!-- <img class="p_absolute building_img" src="{% static 'img/home_two/wave_one.png' %}" style="left: 50%; transform: translateX(-50%); bottom: 0; z-index: 0;" alt=""> -->
+                            <!-- <img class="p_absolute building_img" src="{% static 'img/home_two/building.png' %}" style="left: 50%; transform: translateX(-50%); bottom: 0; z-index: 0;" alt=""> -->
+                            <!-- <img class="p_absolute table_img wow fadeInLeft" src="{% static 'img/home_two/table.svg' %}" alt=""> -->
+                            <!-- <img class="p_absolute flower wow fadeInUp" data-wow-delay="0.6s" src="{% static 'img/home_two/flower.png' %}" style="width: 25px; bottom: 0; left:300px;" alt=""> -->
+                            <!-- <img class="p_absolute bl_right" src="{% static 'img/v.svg' %}" style="width: 70px; right: 100px; bottom: -25px;" alt=""> -->
+                            <!-- <img class="p_absolute bord wow fadeInRight" data-wow-delay="0.4s" src="{% static 'img/home_two/bord.png' %}" alt=""> -->
+                            <!-- <img class="p_absolute girl wow fadeInRight" data-wow-delay="0.8s" src="{% static 'img/home_two/girl.png' %}" alt=""> -->
+                            <div class="container">
+                                <form action="#" class="banner_search_form banner_search_form_two">
+                                    <div class="input-group">
+                                        <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
+                                        <div class="input-group-append">
+                                            <select class="custom-select" id="inlineFormCustomSelect">
+                                                <option selected>All Category</option>
+                                                <option value="1">Doc Archive</option>
+                                                <option value="2">Doc list</option>
+                                                <option value="3">KbDoc</option>
+                                            </select>
+                                        </div>
+                                        <button type="submit"><i class="icon_search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- page navigation section -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <section class="page_breadcrumb">
+                            <div class="container-fluid pl-60 pr-60">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item"><a href="http://127.0.0.1:8000/knowledgebase/home3/">Home-3</a></li>
+                                            </ol>
+                                        </nav>
+                                    </div>                   
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+
+                <div class="container" style="padding: 0px;">
+                        <!-- <h1>Image Slider</h1> -->
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                    </div>
+                                    
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="{% static 'img/slider-img/S3.jpg' %}" class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block" style="opacity: 0.6; background: #000; border-radius: 3px;">
+                                                <h5 style="color: #7999ff;">First slide label</h5>
+                                                <p>Some representative placeholder content for the first slide.</p>
+                                            </div>    
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="{% static 'img/slider-img/S2.jpg' %}" class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block" style="opacity: 0.6; background: #000; border-radius: 3px;">
+                                                <h5 style="color: #7999ff;">Second slide label</h5>
+                                                <p>Some representative placeholder content for the second slide.</p>
+                                            </div>    
+                                        </div>                        
+                                        <div class="carousel-item">
+                                            <img src="{% static 'img/slider-img/S4.jpg' %}" class="d-block w-100" alt="...">
+                                            <div class="carousel-caption d-none d-md-block" style="opacity: 0.6; background: #000; border-radius: 3px;">
+                                                <h5 style="color: #7999ff;">Third slide label</h5>
+                                                <p>Some representative placeholder content for the third slide.</p>
+                                            </div>    
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="{% static 'img/slider-img/S1.jpg' %}" class="d-block w-100" alt="...">
+                                            <!-- style="opacity: 0.6; background: #000; border-radius: 3px;" -->
+                                            <div class="carousel-caption d-none d-md-block" style="opacity: 0.6; background: #000; border-radius: 3px;" >  
+                                                <h5 style="color: #7999ff;">Fourth slide label</h5>
+                                                <p>Some representative placeholder content for the fourth slide.</p>
+                                            </div>                
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_right"></i></a>    style="color:#019d19;" -->
+                                        <a href="#" class="doc_border_btn" style="width: 100%; ">Knowledge Base<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="#" class="doc_border_btn" style="width: 100%;">Research & Publications<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="#" class="doc_border_btn" style="width: 100%;">Analysis & Reporting<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="#" class="doc_border_btn" style="width: 100%;">Documentation<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- <section class="slide_section">            
+                            <div class="slide">
+                                <span class="inner" style="background-image:url(/static/img/slider-img/S1.jpg);"></span>
+                                <div class="content">
+                                    <h4 style="color:#6a89e6;">Slide One</h4>
+                                    <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a
+                                        load of old tosh porkies.</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <span class="inner" style="background-image:url(/static/img/slider-img/S2.jpg);"></span>
+                                <div class="content">
+                                    <h4 style="color:#6a89e6;">Slide Two</h4>
+                                    <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a
+                                        load of old tosh porkies.</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <span class="inner" style="background-image:url(/static/img/slider-img/S3.jpg);"></span>
+                                <div class="content">
+                                    <h4 style="color:#6a89e6;">Slide Three</h4>
+                                    <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a
+                                        load of old tosh porkies.</p>
+                                </div>
+                            </div>
+                            <div class="slide">
+                                <span class="inner" style="background-image:url(/static/img/slider-img/S4.jpg);"></span>
+                                <div class="content">
+                                    <h4 style="color:#6a89e6;">Slide Four</h4>
+                                    <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a
+                                        load of old tosh porkies.</p>
+                                </div>
+                            </div>            
+                        </section> -->
+
+                        <!-- List of Organization -->
+                        <div class="row">           
+                            <div class="col-md-12">
+                                <div class="section_title text-center" style="margin-bottom: 10px; margin-top:30px;">
+                                    <h5 class="wow fadeInUp">List of Organization</h5>                                    
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann1.jpg);">
+                                            <a href="#" target="_blank" >
+                                                <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" /> 
+                                                <p style="color:#4F5773;">Bangladesh Water Development Board</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann4.jpg);">
+                                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" /> 
+                                            <p style="color:#4F5773;">River Research Institute (RRI)</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann5.jpg);">
+                                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" /> 
+                                            <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann13.jpg);">
+                                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" /> 
+                                            <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann15.jpg);">
+                                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" /> 
+                                            <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann17.jpg);">
+                                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" />
+                                            <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Institute of Water Modelling</p></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="col-md-12 text-center org-content" style="background-image: url(/static/img/banner_back/bann18.jpg);">
+                                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img" />
+                                            <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Center for Environmental and Geographic Information Services (CEGIS)</p></a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                
+                            </div>                            
+                        </div>
+
+                        <br/>
+
+                        <!-- <h1>MoWR Home</h1> -->
+                        <!-- <section class="doc_categories_guide_area sec_pad">
+                            <div class="container">
+                                <div class="section_title text-center" style="margin-bottom: 50px; margin-top:50px;">
+                                    <h2 class="h_title wow fadeInUp">Check out our guide categories</h2>
+                                    <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                                        absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="categories_guide_item wow fadeInUp">
+                                            <div class="card text-dark bg-light mb-3">                               
+                                                <div class="card-header">
+                                                    <div class="col-md-4"><img src="{% static 'img/home_one/Lamp_idea.png' %}" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Knowledge Base</h5>
+                                                    <p class="card-text">List of headings is a hierarchical classification system.</p>
+                                                </div>
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="categories_guide_item wow fadeInUp" data-wow-delay="0.4s">
+                                            <div class="card text-dark bg-light mb-3">                                
+                                                <div class="card-header">
+                                                    <div class="col-md-4"><img src="{% static 'img/home_two/board1.png' %}" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Research & Publications</h5>
+                                                    <p class="card-text">Electronic Library, New Publication, Economic & Financial
+                                                        Aspects.</p>
+                                                </div>
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="categories_guide_item wow fadeInUp" data-wow-delay="0.8s">
+                                            <div class="card text-dark bg-light mb-3">                                
+                                                <div class="card-header">
+                                                    <div class="col-md-4"><img src="{% static 'img/home_one/Reporting.png' %}" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Analysis & Reporting</h5>
+                                                    <p class="card-text">Summarized Information, Dynamic Visualization of Decision
+                                                        Making
+                                                        Information.</p>
+                                                </div>
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="categories_guide_item wow fadeInUp" data-wow-delay="1.2s">
+                                            <div class="card text-dark bg-light mb-3">                                
+                                                <div class="card-header">
+                                                    <div class="col-md-4"><img src="{% static 'img/home_two/folder1.png' %}" alt="" />
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Documentation</h5>
+                                                    <p class="card-text">
+                                                        Proper Management of Publication & Documents According to Categories.</p>
+                                                </div>
+                                            </div>
+                                            <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section> -->
+
+                        <!-- Live Counting -->
+                        <section class="doc_fun_fact_area" style="padding: 50px 0px; background: #eff0f9; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">     <!-- background: #eff0f9; #dbeaef  #e9f0ff  #95a5b3;  -->
+                            <div class="animated-waves">
+                                <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="animated-wave">
+                                    <title>Wave</title>
+                                    <defs></defs>
+                                    <path id="animated-wave-three" d="" />
+                                </svg>
+                                <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="animated-wave">
+                                    <title>Wave</title>
+                                    <defs></defs>
+                                    <path id="animated-wave-four" d="" />
+                                </svg>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content">
+                                        <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">                            
+                                            <div class="counter" style="color: #000000;">15</div>
+                                            <p style="color: #000000;">Categories</p>
+                                        </div>                        
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
+                                        <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipTopics">
+                                            <div class="counter" style="color: #039541;">40</div>
+                                            <p style="color: #039541;">Topics</p>
+                                        </div>                        
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
+                                        <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipArticles">
+                                            <div class="counter" style="color: #FCC328;">470</div>
+                                            <p style="color: #FCC328;">Articles</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
+                                        <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
+                                            <div class="counter" style="color: #1316d4;">354</div>
+                                            <p style="color: #1316d4;">Publications</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
+                                        <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                                            <div class="counter" style="color: #b800d2;">337</div>
+                                            <p style="color: #b800d2;">Reports</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
+                                        <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReferences">
+                                            <div class="counter" style="color: #df1f11;">412</div>
+                                            <p style="color: #df1f11;">References</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <br />
+
+                        
+                        <!-- Tab Links -->
+                        <section class="doc_faq_area_two sec_pad">
+                            <div class="col-md-12">
+                                <div class="section_title text-center" style="margin-bottom: 10px; margin-top:30px;">
+                                    <h5 class="wow fadeInUp">Important Links</h2>
+                                    <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                                        absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+                                </div>
+                                <div class="row">                            
+                                    <div class="col-md-4 mt-3">
+                                        <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_right"></i></a>    style="color:#019d19;" -->
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px; "><i class="icon_folder-alt"></i><span style="margin-left: 20px;">Agriculture</span><i class="arrow_right"></i></a>
+                                    </div>                                
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_cloud-upload_alt"></i><span style="margin-left: 20px;">Climate Change</span><i class="arrow_right"></i></a>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_key_alt"></i><span style="margin-left: 20px;">Economic and Financial Aspects</span><i class="arrow_right"></i></a>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Hydroecology</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    
+                                    
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_menu-square_alt2"></i><span style="margin-left: 20px;">Land Degradation and Desertification</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Land Reclamation</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Water and Ethics</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Water Governance & Management</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Water Law and Policy</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Water Resources</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                    <div class="col-md-4 mt-3">
+                                        <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;"><i class="icon_lightbulb_alt"></i><span style="margin-left: 20px;">Water Resources Use</span><i class="arrow_right"></i></a>
+                                    </div>   
+                                </div>
+                                
+                            </div>
+                        </section>
+
+
+                        <!-- Sliding Cards -->
+                        <div class="row d-none">
+                            <div class="col-lg-12 col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Case study on water logging problems in an urban area of Bangladesh and probable analytical solution. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+
+                        <div class="row d-none">
+                            <div class="col-lg-12 col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Salinity problems and crop production in coastal regions of Bangladesh. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+
+                        <div class="row d-none">
+                            <div class="col-lg-12 col-md-12">
+                                <a href=""><div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community" width="100%" style="max-width: 200px;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p>
+                                                Award points, level up, and earn new privileges. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                            </p>
+                                        </div>
+                                    </div>                                
+                                </div></a>                            
+                            </div>
+                        </div>
+
+
+
+
+                </div>
+
+            
+
+
+
+
+            <!-- footer -->
+
+                <!-- <hr style="margin-top: 3rem; margin-bottom:0;" /> -->
+
+                <div class="row" style="margin-top: 50px;">
+                    <div class="col-md-12">
+                        <img src="{% static 'img/footer_top_bg_mnh.png' %}" style="width: 100%;" srcset="{% static 'img/footer_top_bg_mnh.png' %} 2x" alt="logo">
+                    </div>
+                </div>
+                
+                <footer class="footer_area f_bg_color breadcrumb_area_three " style="background: #eef2f7; padding: 15px 0px;">
+                    <!-- <img class="p_absolute one" src="{% static 'img/typography/leaf_left.png' %}" alt=""> -->
+
+
+                    <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
+                    <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s"
+                        src="{% static 'img/home_two/f_man.png' %}" alt="">
+                    <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">                    
+                    <img class="p_absolute f_email_two" src="{% static 'img/home_two/email-icon_two.png' %}" alt="">
+                    <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">                    
+                    <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s"
+                        src="{% static 'img/home_two/man.png' %}" alt=""> -->
+
+                    
+
+                    <div class="row">                        
+                        <div class="footer_top">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="f_widget link_widget pl_30 wow fadeInUp" >
+                                            <h5><u>Contact Us</u></h5>
+                                            <p>Address: Ministry of Water Resources, 5th Floor, Block 6, Bangladesh Shochibaloy, Dhaka</p>
+                                            
+                                            <br/>
+                                            
+                                            <h5><u>Feedback</u></h5>
+                                            <p>Designation: Joint Secretary (Admin)</p>
+                                            <p>Chamber - 401, Bangladesh Secretariat</p>
+                                            <p>Phone: 9512221</p>
+                                            <p>Mobile: 01558308469</p>
+                                            <p>Email: admin2@mowr.gov.bd</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="f_widget link_widget pl_30 wow fadeInUp" data-wow-delay="0.4s">
+                                            <div id="nav_menu-1" class="footer_widget col-md-12">
+                                                <div class="widget f_widget widget_nav_menu">
+                                                    <h5><u>Important Links</u></h5>                                                    
+                                                    <div class="menu-main-menu-container">
+                                                        <ul id="menu-main-menu-1" class="menu">
+                                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-5478 current_page_item menu-item-4973"><a href="http://202.53.173.185:8081/mowrknowledgerepo/" class="nav-link">Dashboard </a></li>
+                                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5811"><a href="http://202.53.173.185:8081/mowrknowledgerepo/documentation/" class="nav-link">Knowledge Base </a></li>
+                                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6097"><a href="http://202.53.173.185:8081/mowrknowledgerepo/research-publications/" class="nav-link">Research &amp; Publications </a></li>
+                                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6361"><a href="http://202.53.173.185:8081/mowrknowledgerepo/analysis-reporting/" class="nav-link">Analysis &amp; Reporting </a></li>
+                                                            <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4942"><a href="#" class="nav-link">Help </a>
+                                                            <ul class="sub-menu">
+                                                                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6255"><a href="https://www.google.com" class="nav-link">User Guide </a></li>
+                                                                <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5451"><a href="http://202.53.173.185:8081/mowrknowledgerepo/frequently-asked-questions/" class="nav-link">FAQs </a></li>
+                                                            </ul>
+                                                            </li>
+                                                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-5957"><a href="http://202.53.173.185:8081/mowrknowledgerepo/sign-in/" class="nav-link">Sign in </a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <!-- <div class="border_bottom"></div> -->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <hr style="margin-top: 3rem; margin-bottom:3rem;" /> 
+                        </div>
+
+                        <div class="text-center">
+                            <div class="container">
+                                <p>© 2022 All Rights Reserved | Developed by <a href="https://cegisbd.com/" target="_blank">CEGIS</a>
+                                </p>
+                            </div>
+                        </div>                        
+                    </div>
+                    <!-- <img class="p_absolute four" src="{% static 'img/typography/leaf_right.png' %}" alt=""> -->
+                </footer>
+
+            </div>
+            <div class="col-md-2">
+                
+            </div>
+        </div>
+
+        <!-- Tooltip content -->
+        <div class="tooltip_templates d-none">
+            <div id="tooltipCategories" class="tip_content">
+                <div class="text">
+                    <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tooltip_templates d-none">
+            <div id="tooltipTopics" class="tip_content">
+                <div class="text">
+                    <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tooltip_templates d-none">
+            <div id="tooltipArticles" class="tip_content">
+                <div class="text">
+                    <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tooltip_templates d-none">
+            <div id="tooltipPublications" class="tip_content">
+                <div class="text">
+                    <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tooltip_templates d-none">
+            <div id="tooltipReports" class="tip_content">
+                <div class="text">
+                    <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+                </div>
+            </div>
+        </div>
+        <div class="tooltip_templates d-none">
+            <div id="tooltipReferences" class="tip_content">
+                <div class="text">
+                    <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<!-- </div> -->
+
+    
+
+
+    <!-- Back to top button -->
+    <a id="back-to-top" title="Back to Top"></a>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/pre-loader.js' %}"> </script>
+    <!-- <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script> -->
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script> -->
+
+    <script src="{% static 'assets/slick/slick.min.js' %}"></script>
+    <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/jquery.wavify.js' %}"></script>
+    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/counterup/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/tooltipster/js/tooltipster.bundle.min.js' %}"></script>    
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>
+
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    -->

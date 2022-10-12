@@ -1,0 +1,1665 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    -->
+
+<style>
+    .categories_guide_item {
+        padding: 0px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .categories_guide_item img {
+        margin-bottom: 0px !important;
+    }
+
+    .tab-pane {
+        margin-top: 75px;
+    }
+
+    .tab-content {
+        padding: 0 20px;
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .com-title {
+        font-size: 0.8rem !important;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .community-box {
+        padding: 20px 15px;
+        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+    }
+
+    .community-content {
+        min-height: 160px;
+    }
+
+    .fact_navigation_info {
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        padding: 40px 30px 28px;
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .org-content {
+        /* background-color: #dde3ee; */
+        /* background-image: linear-gradient(to left bottom, #eeeeee, #ecedee, #eaebee, #e7eaee, #e4e9ee); */
+        /* border: 1px solid #d9ddea; */
+        padding: 10px;
+        margin: 10px 0px;
+    }
+
+    .org-img {
+        width: 90px;
+        margin-bottom: 10px;
+    }
+
+    /*=========== Start Slider css (MNH) ============*/
+
+
+
+    .slide_section {
+        position: inherit;
+        width: 100%;
+        height: auto;
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        /* margin-bottom: 100px; */
+        z-index: 100;
+    }
+
+    .slide {
+        position: relative;
+        background: #F8F9FA;
+        height: 500px;
+        flex: 1;
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .slide:last-child {
+        border-right: none;
+    }
+
+    .slide:hover {
+        flex-grow: 6;
+        /* transform: scale(1.05, 1.05); */
+        /* -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 65%; */
+    }
+
+    .inner {
+        height: 500px;
+        width: 100%;
+        display: block;
+        background-repeat: no-repeat;
+        transition: all 1s;
+    }
+
+    /* .slide:nth-child(1)
+{
+    background: url(../static/img/slider-img/S1.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(2)
+{
+    background: url(../static/img/slider-img/S2.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(3)
+{
+    background: url(../static/img/slider-img/S3.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(4)
+{
+    background: url(../static/img/slider-img/S4.jpg);
+    background-position: center center;
+} */
+
+    .slide .content {
+        position: absolute;
+        bottom: 0;
+        margin: 20px;
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0s;
+        transform: translateY(100px);
+        /* width:100%; */
+    }
+
+    .slide:hover .inner {
+        transform: scale(1.2);
+    }
+
+    .slide:hover .content {
+        visibility: visible;
+        opacity: 0.7;
+        transition: 0.5s;
+        transition-delay: 0.2s;
+        transform: translateY(0);
+    }
+
+    /*.slick-track {
+    /* transition-delay: 2s !important; 
+    /* transition: transform 1s !important; 
+} */
+
+    .item {
+        margin: 20px;
+    }
+
+    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
+    /*=========== End Slider css (MNH) ============*/
+
+/*=========== SVG css (MNH) ============*/
+.water-wave {
+  display: block;
+  width: 100%;
+  height: 14rem;
+  max-height: 150vh;
+  margin: 0;
+}
+
+.parallax > use {
+  animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1){animation-delay:-5s;}
+.parallax > use:nth-child(2){animation-delay:-7s; animation-duration:5.25s}
+.parallax > use:nth-child(3){animation-delay:1s; animation-duration:8.25s}
+.parallax > use:nth-child(4){animation-delay:-3s; animation-duration:10.25s}
+
+/* .parallax > use:nth-child(1){animation-delay:-3s;}
+.parallax > use:nth-child(2){animation-delay:-3s; animation-duration:4.25s}
+.parallax > use:nth-child(3){animation-delay:-3s; animation-duration:5.25s}
+.parallax > use:nth-child(4){animation-delay:-5s; animation-duration:3.25s} */
+
+@keyframes move-forever{
+  0%{transform: translate(-90px , 0%)}
+  100%{transform: translate(85px , 0%)} 
+}
+
+
+</style>
+
+
+<!-- Counting -->
+<section class="doc_fun_fact_area" style="padding: 70px 0px; background: #c5e9ff; margin-top: 10px;;">     <!-- #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
+    <div class="animated-waves">
+        <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">                
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="#2595ea35"/>  fill="#2475ed35"
+                <use xlink:href="#gentle-wave" x="50" y="2" fill="#2595ea50"/>  fill="#2578df50"
+                <use xlink:href="#gentle-wave" x="50" y="4" fill="#2595ea65"/>  fill="#2873ea65"
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="#2595ea25"/>  fill="#2873ea25"                 
+            </g>
+        </svg>
+
+        <!-- <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="animated-wave">
+            <title>Wave</title>
+            <defs></defs>
+            <path id="animated-wave-three" d="" fill="rgba(188, 214, 234, 0.5)" />
+        </svg>
+        <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="animated-wave">
+            <title>Wave</title>
+            <defs></defs>
+            <path id="animated-wave-four" d="" fill="rgba(188, 214, 234, 0.5)" />
+        </svg> -->
+    </div>    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">                            
+                    <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">15</div>
+                    <p style="color: #000000; text-shadow: 0px 0px 0px black;">Categories</p>
+                </div>                        
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipTopics">
+                    <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">40</div>
+                    <p style="color: #039541; text-shadow: 0px 0px 0px black;">Topics</p>
+                </div>                        
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipArticles">
+                    <div class="counter" style="color: #FFB300; text-shadow: 0px 0px 1px black;">470</div>
+                    <p style="color: #FFB300; text-shadow: 0px 0px 0px black;">Articles</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
+                    <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">354</div>
+                    <p style="color: #1316d4; text-shadow: 0px 0px 0px black;">Publications</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                    <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">337</div>
+                    <p style="color: #b800d2; text-shadow: 0px 0px 0px black;">Reports</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReferences">
+                    <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">412</div>
+                    <p style="color: #df1f11; text-shadow: 0px 0px 0px black;">References</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- List of Organization -->
+<section class="doc_categories_guide_area sec_pad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section_title text-center" style="margin-bottom: 10px; margin-top: 20px;">
+                    <h5 class="wow fadeInUp">List of Organization</h5>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" style="background-image: url(/static/img/banner_back/bann1.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" target="_blank">
+                                <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" />
+                                <p style="color:#4F5773;">Bangladesh Water Development Board</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.2s" style="background-image: url(/static/img/banner_back/bann19.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" target="_blank"><img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 50px;" />
+                                <p style="color:#4F5773;">River Research Institute (RRI)</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/static/img/banner_back/bann5.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" target="_blank"><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" />
+                                <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.6s" style="background-image: url(/static/img/banner_back/bann13.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" target="_blank"><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" />
+                                <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="background-image: url(/static/img/banner_back/bann15.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" target="_blank"><img src="{% static 'img/article_logo/WARPO.png' %}" alt=""  class="org-img" />
+                                <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1.0s" style="background-image: url(/static/img/banner_back/bann17.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" target="_blank"><img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
+                                    </span>Institute of Water Modelling</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="background-image: url(/static/img/banner_back/bann4.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                           
+                            <a href="{% url 'SearchResult1' %}" target="_blank"><img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
+                                    </span>Center for Environmental and Geographic Information Services (CEGIS)</p>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <section class="doc_action_area parallaxie" data-background="../static/img/bg.jpg" style="background: url(../static/img/home_one/action_bg.jpg) no-repeat scroll;">
+    <div class="overlay_bg"></div>
+    <div class="container"> -->
+<!-- <div class="row">           
+            <div class="col-md-12">
+                <div class="section_title text-center d-none" style="margin-bottom: 20px; margin-top:30px;">
+                    <h5 class="h_title wow fadeInUp">List of Organization</h5>
+                    <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                        absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+                </div>
+                <div class="row" style="background-image:linear-gradient(to left bottom, #f2eef0, #f1edf1, #eeecf3, #e9ecf5, #e2ecf6);">
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" >
+                                <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" /> 
+                                <p style="color:#4F5773;">Bangladesh Water Development Board</p></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" /> 
+                            <p style="color:#4F5773;">River Research Institute (RRI)</p></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" /> 
+                            <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" /> 
+                            <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" /> 
+                            <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" /> 
+                            <p style="color:#4F5773;">Institute of Water Modelling</p></a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content">
+                            <a href="#" target="_blank" ><img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img" />
+                            <p style="color:#4F5773;">Center for Environmental and Geographical Information Services (CEGIS)</p></a>
+                        </div>
+                    </div>
+                </div>
+            </div>                            
+        </div> -->
+<!-- </div>
+</section> -->
+
+
+<!-- <br /> -->
+
+<!-- <h1>MoWR Home</h1> -->
+<section class="doc_categories_guide_area sec_pad">
+    <div class="container">
+        <!-- <div class="section_title text-center" style="margin-bottom: 50px; margin-top:50px;">
+            <h2 class="h_title wow fadeInUp">Check out our guide categories</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+        </div> -->
+        <div class="section_title text-center" style="margin-bottom: 20px;">
+            <h5 class="wow fadeInUp">Type of Documentation</h5>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp">
+                    <div class="card text-dark bg-light mb-3">
+                        <!-- style="max-width: 18rem;" -->
+                        <div class="card-header">
+                            <div class="col-md-4"><img src="{% static 'img/home_one/KB.png' %}" alt="" style="width: 65px;" /> </div>
+                        </div>
+                        <div class="card-body" style="min-height: 150px; padding: 1rem;">
+                            <h5 class="card-title">Knowledge Base</h5>
+                            <p class="card-text">List of headings is a hierarchical classification system.</p>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a> -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="card text-dark bg-light mb-3">
+                        <!-- style="max-width: 18rem;" -->
+                        <div class="card-header">
+                            <div class="col-md-4"><img src="{% static 'img/home_one/RP.png' %}" alt="" style="width: 65px;" /> </div>
+                        </div>
+                        <div class="card-body" style="min-height: 150px; padding: 1rem;">
+                            <h5 class="card-title">Research & Publications</h5>
+                            <p class="card-text">Electronic Library, New Publication, Economic & Financial Aspects.</p>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a> -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="card text-dark bg-light mb-3">
+                        <!-- style="max-width: 18rem;" -->
+                        <div class="card-header">
+                            <div class="col-md-4"><img src="{% static 'img/home_one/AR.png' %}" alt="" style="width: 65px;" /> </div>
+                        </div>
+                        <div class="card-body" style="min-height: 150px; padding: 1rem;">
+                            <h5 class="card-title">Analysis & Reporting</h5>
+                            <p class="card-text">Summarized Information, Dynamic Visualization of Decision Making
+                                Information.</p>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a> -->
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp" data-wow-delay="1.2s">
+                    <div class="card text-dark bg-light mb-3">
+                        <!-- style="max-width: 18rem;" -->
+                        <div class="card-header">
+                            <div class="col-md-4"><img src="{% static 'img/home_one/Documentation.png' %}" alt="" style="width: 65px;" /> </div>
+                        </div>
+                        <div class="card-body" style="min-height: 150px; padding: 1rem;">
+                            <h5 class="card-title">Documentation</h5>
+                            <p class="card-text">
+                                Proper Management of Publication & Documents According to Categories.</p>
+                        </div>
+                    </div>
+                    <!-- <a href="#" class="doc_border_btn">More<i class="arrow_right"></i></a> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Sliding Cards -->
+<section class="doc_feedback_area parallaxie sec_pad d-none">
+    <!-- data-background="img/bg.jpg" style="background: url(img/home_one/feedback_bg.jpg) no-repeat scroll;" -->
+    <div class="overlay_bg" style="background: rgba(214, 220, 238, 0.8);"></div>
+    <div class="container">
+        <div class="doc_feedback_info">
+            <div class="doc_feedback_slider" style="max-width: 60%;">
+                <div class="item">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="community-box wow fadeInUp">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" width="100%">
+
+                                </div>
+                                <div class="community-content">
+                                    <h3 class="com-title">
+                                        CASE STUDY ON WATER LOGGING PROBLEMS IN AN URBAN AREA OF BANGLADESH AND
+                                        PROBABLE ANALYTICAL SOLUTIONS
+                                    </h3>
+                                </div>
+                                <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                            </div>
+                            <!-- /.communinity-box -->
+                        </div>
+                        <!-- /.col-lg-4 col-md-6 -->
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="community-box wow fadeInUp">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community"
+                                        width="100%">
+                                </div>
+                                <div class="community-content">
+                                    <h3 class="com-title">
+                                        Salinity problems and crop production in coastal regions of Bangladesh
+                                    </h3>
+                                </div>
+                                <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                            </div>
+                            <!-- /.communinity-box -->
+                        </div>
+                        <!-- /.col-lg-4 col-md-6 -->
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="community-box wow fadeInUp">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community"
+                                        width="100%">
+                                </div>
+                                <div class="community-content">
+                                    <h3 class="com-title">
+                                        Award points, level up, and earn
+                                        new privileges
+                                    </h3>
+                                </div>
+                                <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                            </div>
+                            <!-- /.communinity-box -->
+                        </div>
+                        <!-- /.col-md-4 -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="community-box wow fadeInUp">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community"
+                                        width="100%">
+                                </div>
+                                <div class="community-content">
+                                    <h3 class="com-title">
+                                        CASE STUDY ON WATER LOGGING PROBLEMS IN AN URBAN AREA OF BANGLADESH AND
+                                        PROBABLE ANALYTICAL SOLUTIONS
+                                    </h3>
+                                </div>
+                                <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                            </div>
+                            <!-- /.communinity-box -->
+                        </div>
+                        <!-- /.col-lg-4 col-md-6 -->
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="community-box wow fadeInUp">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" width="100%">
+                                </div>
+                                <div class="community-content">
+                                    <h3 class="com-title">
+                                        Salinity problems and crop production in coastal regions of Bangladesh
+                                    </h3>
+                                </div>
+                                <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                            </div>
+                            <!-- /.communinity-box -->
+                        </div>
+                        <!-- /.col-lg-4 col-md-6 -->
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="community-box wow fadeInUp">
+                                <div class="icon-container">
+                                    <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community"
+                                        width="100%">
+                                </div>
+                                <div class="community-content">
+                                    <h3 class="com-title">
+                                        Award points, level up, and earn
+                                        new privileges
+                                    </h3>
+                                </div>
+                                <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                            </div>
+                            <!-- /.communinity-box -->
+                        </div>
+                        <!-- /.col-md-4 -->
+                    </div>
+                </div>
+                <!-- <div class="item">
+                    <div class="author_img">
+                        <img src="{% static 'img/home_one/icon/feedback.jpg' %}" alt="">
+                    </div>
+                    <p>
+                        Nulla porttitor accumsan tincidunt. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla quis lorem ut libero malesuada feugiat. Vivamus suscipit tortor eget felis porttitor volutpat. Proin eget tortor risus.
+                    </p>
+                    <h5>Rodney Artichoke</h5>
+                    <h6>UI/UX designer</h6>
+                </div> -->
+            </div>
+            <div class="slider_nav">
+                <div class="prev">
+                    <span class="arrow"></span>
+                </div>
+                <div class="next">
+                    <span class="arrow"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Chart Reports -->
+<!-- <section class="doc_categories_guide_area sec_pad">
+    <div class="container">
+        <div class="section_title text-center" style="margin-top: 50px;">
+            <h2 class="h_title wow fadeInUp">Chart Reports</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp">
+                    <div class="card text-dark bg-light mb-3">                        
+                        <div class="card-body">
+                            <div class="col-md-12 text-center"><img src="{% static 'img/home_one/Chart_Bar.png' %}"
+                                    alt="" width="100%" />
+                            </div>                            
+                        </div>
+                    </div>                   
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp">
+                    <div class="card text-dark bg-light mb-3">                        
+                        <div class="card-body">
+                            <div class="col-md-12 text-center"><img src="{% static 'img/home_one/Chart_Pie.png' %}"
+                                    alt="" width="100%" />
+                            </div>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+                <div class="categories_guide_item wow fadeInUp">
+                    <div class="card text-dark bg-light mb-3">                        
+                        <div class="card-body">
+                            <div class="col-md-12 text-center"><img src="{% static 'img/home_one/Chart_Line.png' %}"
+                                    alt="" width="100%" />
+                            </div>                            
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section> -->
+
+
+<!-- Tab Links -->
+<section class="doc_faq_area_two sec_pad d-none">
+    <div class="container">
+        <div class="section_title text-center">
+            <h2 class="h_title wow fadeInUp">Important Links</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
+                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="fact_navigation_info" style="background-color: #F8F9FA;">
+                    <h4 class="c_head">Quick Navigation</h4>
+                    <ul class="nav nav-tabs fact_navigation" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="online-tab" data-toggle="tab" href="#online" role="tab"
+                                aria-controls="online" aria-selected="true"><i
+                                    class="icon_folder-alt"></i>Agriculture</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="formOne-tab" data-toggle="tab" href="#formOne" role="tab"
+                                aria-controls="formOne" aria-selected="false"><i
+                                    class="icon_cloud-upload_alt"></i>Climate Change</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pricingOne-tab" data-toggle="tab" href="#pricingOne" role="tab"
+                                aria-controls="pricingOne" aria-selected="false"><i class="icon_key_alt"></i>Economic
+                                and Financial Aspects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profileOne-tab" data-toggle="tab" href="#profileOne" role="tab"
+                                aria-controls="profileOne" aria-selected="false"><i
+                                    class="icon_lightbulb_alt"></i>Hydroecology</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="return-tab" data-toggle="tab" href="#return" role="tab"
+                                aria-controls="return" aria-selected="false"><i class="icon_bag_alt"></i>Land
+                                Degradation and Desertification</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="car-tab" data-toggle="tab" href="#car" role="tab"
+                                aria-controls="car" aria-selected="false"><i class="icon_menu-square_alt2"></i>Land
+                                Reclamation</a>
+                        </li>
+
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="car-tab" data-toggle="tab" href="#car1" role="tab"
+                                aria-controls="car" aria-selected="false"><i class="icon_menu-square_alt2"></i>Water and
+                                Ethics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="car-tab" data-toggle="tab" href="#car2" role="tab"
+                                aria-controls="car" aria-selected="false"><i class="icon_menu-square_alt2"></i>Water
+                                Governance & Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="car-tab" data-toggle="tab" href="#car3" role="tab"
+                                aria-controls="car" aria-selected="false"><i class="icon_menu-square_alt2"></i>Water Law
+                                and Policy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="car-tab" data-toggle="tab" href="#car4" role="tab"
+                                aria-controls="car" aria-selected="false"><i class="icon_menu-square_alt2"></i>Water
+                                Resources</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="car-tab" data-toggle="tab" href="#car5" role="tab"
+                                aria-controls="car" aria-selected="false"><i class="icon_menu-square_alt2"></i>Water
+                                Resources Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
+                <div class="tab-content" id="myTabContent" style="background-color: #F8F9FA;">
+                    <div class="tab-pane faq_tab_pane fade show active" id="online" role="tabpanel"
+                        aria-labelledby="online-tab">
+                        <div class="accordion doc_faq_info" id="accordionExample">
+
+                            <!-- ******************** Heading & Lists *********************** -->
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="doc_tag_item wow fadeInUp">
+                                        <div class="doc_tag_title">
+                                            <h5>Agriculture</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <ul class="list-unstyled tag_list">
+                                            <li><a href="#"><i class="icon_document_alt"></i>Setup home page layout</a>
+                                            </li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>BBpress sidebar layout
+                                                    styles</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Knowledgebase page
+                                                    setup</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Creating home page
+                                                    blocks</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do i add FAQ post</a>
+                                            </li>
+                                        </ul>
+                                        <a href="#" class="learn_btn">View All<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="doc_tag_item wow fadeInUp" data-wow-delay="0.4s">
+                                        <div class="doc_tag_title">
+                                            <h5>Land Reclamation</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <ul class="list-unstyled tag_list">
+                                            <li><a href="#"><i class="icon_document_alt"></i>How To Install Manual
+                                                    Theme</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Theme license
+                                                    information</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do i create tree
+                                                    structure menu</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do I login forum
+                                                    section</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do I login forum
+                                                    section</a></li>
+                                        </ul>
+                                        <a href="#" class="learn_btn">View All<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="doc_tag_item wow fadeInUp" data-wow-delay="0.8s">
+                                        <div class="doc_tag_title">
+                                            <h5>Land Degradation and Desertification</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <ul class="list-unstyled tag_list">
+                                            <li><a href="#"><i class="icon_document_alt"></i>Mailbox and User
+                                                    Settings</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Preparing your server for
+                                                    installation</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Managing Docs in Docly</a>
+                                            </li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do i add FAQ post</a>
+                                            </li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Creating home page
+                                                    blocks</a></li>
+                                        </ul>
+                                        <a href="#" class="learn_btn">View All<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="doc_tag_item wow fadeInUp">
+                                        <div class="doc_tag_title">
+                                            <h5>Agriculture</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <ul class="list-unstyled tag_list">
+                                            <li><a href="#"><i class="icon_document_alt"></i>Setup home page layout</a>
+                                            </li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>BBpress sidebar layout
+                                                    styles</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Knowledgebase page
+                                                    setup</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Creating home page
+                                                    blocks</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do i add FAQ post</a>
+                                            </li>
+                                        </ul>
+                                        <a href="#" class="learn_btn">View All<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="doc_tag_item wow fadeInUp" data-wow-delay="0.4s">
+                                        <div class="doc_tag_title">
+                                            <h5>Land Reclamation</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <ul class="list-unstyled tag_list">
+                                            <li><a href="#"><i class="icon_document_alt"></i>How To Install Manual
+                                                    Theme</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Theme license
+                                                    information</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do i create tree
+                                                    structure menu</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do I login forum
+                                                    section</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do I login forum
+                                                    section</a></li>
+                                        </ul>
+                                        <a href="#" class="learn_btn">View All<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="doc_tag_item wow fadeInUp" data-wow-delay="0.8s">
+                                        <div class="doc_tag_title">
+                                            <h5>Land Degradation and Desertification</h5>
+                                            <div class="line"></div>
+                                        </div>
+                                        <ul class="list-unstyled tag_list">
+                                            <li><a href="#"><i class="icon_document_alt"></i>Mailbox and User
+                                                    Settings</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Preparing your server for
+                                                    installation</a></li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Managing Docs in Docly</a>
+                                            </li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>How do i add FAQ post</a>
+                                            </li>
+                                            <li><a href="#"><i class="icon_document_alt"></i>Creating home page
+                                                    blocks</a></li>
+                                        </ul>
+                                        <a href="#" class="learn_btn">View All<i class="arrow_right"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- ******************** Cards on Hover *********************** -->
+                            <!-- <div class="row justify-content-center">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="community-box wow fadeInUp" data-wow-delay="0.4s">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/home_support/flood.jpg' %}" alt="community"
+                                                width="100%">
+
+                                        </div>
+                                        <div class="community-content">
+                                            <h3 class="com-title">
+                                                CASE STUDY ON WATER LOGGING PROBLEMS IN AN URBAN AREA OF BANGLADESH AND
+                                                PROBABLE ANALYTICAL SOLUTIONS
+                                            </h3>
+                                        </div>
+                                        <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                                    </div>                                    
+                                </div>                               
+
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="community-box wow fadeInUp" data-wow-delay="0.8s">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community"
+                                                width="100%">
+                                        </div>
+                                        <div class="community-content">
+                                            <h3 class="com-title">
+                                                Salinity problems and crop production in coastal regions of Bangladesh
+                                            </h3>
+                                        </div>
+                                        <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                                    </div>                                    
+                                </div>                                
+
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="community-box wow fadeInUp" data-wow-delay="1.2s">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community"
+                                                width="100%">
+                                        </div>
+                                        <div class="community-content">
+                                            <h3 class="com-title">
+                                                Award points, level up, and earn
+                                                new privileges
+                                            </h3>
+                                        </div>
+                                        <a href="#" class="details-link">Read More <i class="arrow_right"></i></a>
+                                    </div>                                   
+                                </div>                                
+                            </div> -->
+                            <!-- /.row -->
+
+
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="formOne" role="tabpanel" aria-labelledby="formOne-tab">
+                        <div class="accordion doc_faq_info" id="accordionExampletwo">
+                            <div class="card wow fadeInUp">
+                                <div class="card-header" id="headingfOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsefOne" aria-expanded="true"
+                                            aria-controls="collapsefOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefOne" class="collapse show" aria-labelledby="headingfOne"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingfTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsefTwo" aria-expanded="false"
+                                            aria-controls="collapsefTwo">
+                                            Is maternity covered in health insurance policies?<i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefTwo" class="collapse" aria-labelledby="headingfTwo"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="card-header" id="headingfThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsefThree" aria-expanded="false"
+                                            aria-controls="collapsefThree">
+                                            What are the documents required for claiming? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefThree" class="collapse" aria-labelledby="headingfThree"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="card-header" id="headingfFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsefFour" aria-expanded="false"
+                                            aria-controls="collapsefFour">
+                                            Any useful books on numerical computing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefFour" class="collapse" aria-labelledby="headingfFour"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="card-header" id="headingffive">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseffive" aria-expanded="false"
+                                            aria-controls="collapseffive">
+                                            How do I repair an item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseffive" class="collapse" aria-labelledby="headingffive"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="card-header" id="headingfsix">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsefsix" aria-expanded="false"
+                                            aria-controls="collapsefsix">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefsix" class="collapse" aria-labelledby="headingfsix"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="card-header" id="headingfseven">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsefseven" aria-expanded="false"
+                                            aria-controls="collapsefseven">
+                                            Is there a warranty on my item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefseven" class="collapse" aria-labelledby="headingfseven"
+                                    data-parent="#accordionExampletwo">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="pricingOne" role="tabpanel"
+                        aria-labelledby="pricingOne-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplethree">
+                            <div class="card wow fadeInUp">
+                                <div class="card-header" id="headingpTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsepTwo" aria-expanded="false"
+                                            aria-controls="collapsepTwo">
+                                            Is maternity covered in health insurance policies?<i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepTwo" class="collapse" aria-labelledby="headingpTwo"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingpOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsepOne" aria-expanded="true"
+                                            aria-controls="collapsepOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepOne" class="collapse show" aria-labelledby="headingpOne"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="card-header" id="headingpThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsepThree" aria-expanded="false"
+                                            aria-controls="collapsepThree">
+                                            What are the documents required for claiming? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepThree" class="collapse" aria-labelledby="headingpThree"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="card-header" id="headingpFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsepFour" aria-expanded="false"
+                                            aria-controls="collapsepFour">
+                                            Any useful books on numerical computing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepFour" class="collapse" aria-labelledby="headingpFour"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="card-header" id="headingpfive">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsepfive" aria-expanded="false"
+                                            aria-controls="collapsepfive">
+                                            How do I repair an item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepfive" class="collapse" aria-labelledby="headingpfive"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="card-header" id="headingpsix">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsepsix" aria-expanded="false"
+                                            aria-controls="collapsepsix">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepsix" class="collapse" aria-labelledby="headingpsix"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="card-header" id="headingpseven">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsepseven" aria-expanded="false"
+                                            aria-controls="collapsepseven">
+                                            Is there a warranty on my item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsepseven" class="collapse" aria-labelledby="headingpseven"
+                                    data-parent="#accordionExamplethree">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="profileOne" role="tabpanel"
+                        aria-labelledby="profileOne-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplefour">
+                            <div class="card wow fadeInUp">
+                                <div class="card-header" id="headingprTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseprTwo" aria-expanded="false"
+                                            aria-controls="collapseprTwo">
+                                            Is maternity covered in health insurance policies?<i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprTwo" class="collapse" aria-labelledby="headingprTwo"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingprOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapseprOne" aria-expanded="true"
+                                            aria-controls="collapseprOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprOne" class="collapse show" aria-labelledby="headingprOne"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="card-header" id="headingprThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseprThree" aria-expanded="false"
+                                            aria-controls="collapseprThree">
+                                            What are the documents required for claiming? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprThree" class="collapse" aria-labelledby="headingprThree"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.3s">
+                                <div class="card-header" id="headingprFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseprFour" aria-expanded="false"
+                                            aria-controls="collapseprFour">
+                                            Any useful books on numerical computing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprFour" class="collapse" aria-labelledby="headingprFour"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="card-header" id="headingprfive">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseprfive" aria-expanded="false"
+                                            aria-controls="collapseprfive">
+                                            How do I repair an item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprfive" class="collapse" aria-labelledby="headingprfive"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.5s">
+                                <div class="card-header" id="headingprsix">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseprsix" aria-expanded="false"
+                                            aria-controls="collapseprsix">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprsix" class="collapse" aria-labelledby="headingprsix"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.6s">
+                                <div class="card-header" id="headingprseven">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapseprseven" aria-expanded="false"
+                                            aria-controls="collapseprseven">
+                                            Is there a warranty on my item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseprseven" class="collapse" aria-labelledby="headingprseven"
+                                    data-parent="#accordionExamplefour">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="return" role="tabpanel" aria-labelledby="return-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplefive">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingreOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsereOne" aria-expanded="true"
+                                            aria-controls="collapsereOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsereOne" class="collapse show" aria-labelledby="headingreOne"
+                                    data-parent="#accordionExamplefive">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp">
+                                <div class="card-header" id="headingreTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsereTwo" aria-expanded="false"
+                                            aria-controls="collapsereTwo">
+                                            Is maternity covered in health insurance policies?<i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsereTwo" class="collapse" aria-labelledby="headingreTwo"
+                                    data-parent="#accordionExamplefive">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="card-header" id="headingreThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsereThree" aria-expanded="false"
+                                            aria-controls="collapsereThree">
+                                            What are the documents required for claiming? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsereThree" class="collapse" aria-labelledby="headingreThree"
+                                    data-parent="#accordionExamplefive">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="car" role="tabpanel" aria-labelledby="car-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplesix">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingcarOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarOne" aria-expanded="true"
+                                            aria-controls="collapsecarOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsecarOne" class="collapse show" aria-labelledby="headingcarOne"
+                                    data-parent="#accordionExamplesix">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp">
+                                <div class="card-header" id="headingcarTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarTwo" aria-expanded="false"
+                                            aria-controls="collapsecarTwo">
+                                            Is maternity covered in health insurance policies?<i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsecarTwo" class="collapse" aria-labelledby="headingcarTwo"
+                                    data-parent="#accordionExamplesix">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="card-header" id="headingcarThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarThree" aria-expanded="false"
+                                            aria-controls="collapsecarThree">
+                                            What are the documents required for claiming? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsecarThree" class="collapse" aria-labelledby="headingcarThree"
+                                    data-parent="#accordionExamplesix">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="car1" role="tabpanel" aria-labelledby="car-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplesix">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingcarOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarOne" aria-expanded="true"
+                                            aria-controls="collapsecarOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane faq_tab_pane fade" id="car2" role="tabpanel" aria-labelledby="car-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplesix">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingcarOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarOne" aria-expanded="true"
+                                            aria-controls="collapsecarOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane tab-pane-local faq_tab_pane fade" id="car3" role="tabpanel"
+                        aria-labelledby="car-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplesix">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingcarOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarOne" aria-expanded="true"
+                                            aria-controls="collapsecarOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane tab-pane-local faq_tab_pane fade" id="car4" role="tabpanel"
+                        aria-labelledby="car-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplesix">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingcarOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarOne" aria-expanded="true"
+                                            aria-controls="collapsecarOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane tab-pane-local faq_tab_pane fade" id="car5" role="tabpanel"
+                        aria-labelledby="car-tab">
+                        <div class="accordion doc_faq_info" id="accordionExamplesix">
+                            <div class="card wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="card-header" id="headingcarOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                            data-target="#collapsecarOne" aria-expanded="true"
+                                            aria-controls="collapsecarOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Tooltip content -->
+<div class="tooltip_templates d-none">
+    <div id="tooltipCategories" class="tip_content">
+        <div class="text">
+            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
+    <div id="tooltipTopics" class="tip_content">
+        <div class="text">
+            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
+    <div id="tooltipArticles" class="tip_content">
+        <div class="text">
+            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
+    <div id="tooltipPublications" class="tip_content">
+        <div class="text">
+            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
+    <div id="tooltipReports" class="tip_content">
+        <div class="text">
+            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
+    <div id="tooltipReferences" class="tip_content">
+        <div class="text">
+            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

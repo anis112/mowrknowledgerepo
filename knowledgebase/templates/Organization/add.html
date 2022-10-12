@@ -1,0 +1,107 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<div class="row m-5">
+    <div class="col-md-12">
+        <h4>Add New Organization</h4>
+
+        <div class="alert alert-success success-msg" style="display:none"></div>
+        <div class="alert alert-danger error-msg" style="display:none">
+            <ul></ul>
+        </div>
+
+        <form action="" method="post">
+            <!-- Security token -->
+            {% csrf_token %}
+        
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label for="organization_name">Organization Name</label>
+                        {{ form.organization_name }}
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="short_name">Short Name</label>
+                        {{ form.short_name }}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="mailing_address">Mailing Address</label>
+                        {{ form.mailing_address }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="web_address">Web Url</label>
+                        {{ form.web_address }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Organization Chief</label>
+                        {{ form.organization_chief }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Chief Designation</label>
+                        {{ form.chief_designation }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Focal Person</label>
+                        {{ form.focal_person }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Focal Person Designation</label>
+                        {{ form.fp_designation }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Email</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Phone No</label>
+                        {{ form.phone_no }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Mobile No</label>
+                        {{ form.mobile_no }}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Logo</label>
+                        {{ form.logo }}
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                </div>
+                                   
+            </div>              
+               
+        </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

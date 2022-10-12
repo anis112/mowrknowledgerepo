@@ -1,0 +1,394 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<!-- Bootstrap CSS -->
+<!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    -->
+
+<style>
+    .categories_guide_item {
+        padding: 0px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .categories_guide_item img {
+        margin-bottom: 0px !important;
+    }
+
+    .tab-pane {
+        margin-top: 75px;
+    }
+
+    .tab-content {
+        padding: 0 20px;
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .com-title {
+        font-size: 0.8rem !important;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .community-box {
+        padding: 20px 15px;
+        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+    }
+
+    .community-content {
+        min-height: 160px;
+    }
+
+    .fact_navigation_info {
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        padding: 40px 30px 28px;
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .org-content {
+        /* background-color: #dde3ee; */
+        /* background-image: linear-gradient(to left bottom, #eeeeee, #ecedee, #eaebee, #e7eaee, #e4e9ee); */
+        /* border: 1px solid #d9ddea; */
+        padding: 10px;
+        margin: 10px 0px;
+    }
+
+    .org-img {
+        width: 90px;
+        margin-bottom: 10px;
+    }
+
+    /*=========== Start Slider css (MNH) ============*/
+
+
+
+    .slide_section {
+        position: inherit;
+        width: 100%;
+        height: auto;
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        /* margin-bottom: 100px; */
+        z-index: 100;
+    }
+
+    .slide {
+        position: relative;
+        background: #F8F9FA;
+        height: 500px;
+        flex: 1;
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .slide:last-child {
+        border-right: none;
+    }
+
+    .slide:hover {
+        flex-grow: 6;
+        /* transform: scale(1.05, 1.05); */
+        /* -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 65%; */
+    }
+
+    .inner {
+        height: 500px;
+        width: 100%;
+        display: block;
+        background-repeat: no-repeat;
+        transition: all 1s;
+    }
+
+    /* .slide:nth-child(1)
+{
+    background: url(../static/img/slider-img/S1.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(2)
+{
+    background: url(../static/img/slider-img/S2.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(3)
+{
+    background: url(../static/img/slider-img/S3.jpg);
+    background-position: center center;
+}
+
+.slide:nth-child(4)
+{
+    background: url(../static/img/slider-img/S4.jpg);
+    background-position: center center;
+} */
+
+    .slide .content {
+        position: absolute;
+        bottom: 0;
+        margin: 20px;
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0s;
+        transform: translateY(100px);
+        /* width:100%; */
+    }
+
+    .slide:hover .inner {
+        transform: scale(1.2);
+    }
+
+    .slide:hover .content {
+        visibility: visible;
+        opacity: 0.7;
+        transition: 0.5s;
+        transition-delay: 0.2s;
+        transform: translateY(0);
+    }
+
+    /*.slick-track {
+    /* transition-delay: 2s !important; 
+    /* transition: transform 1s !important; 
+} */
+
+    .item {
+        margin: 20px;
+    }
+
+    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
+    /*=========== End Slider css (MNH) ============*/
+
+/*=========== SVG css (MNH) ============*/
+.water-wave {
+  display: block;
+  width: 100%;
+  height: 14rem;
+  max-height: 150vh;
+  margin: 0;
+}
+
+.parallax > use {
+  animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.parallax > use:nth-child(1){animation-delay:-3s;}
+.parallax > use:nth-child(2){animation-delay:-3s; animation-duration:4.25s}
+.parallax > use:nth-child(3){animation-delay:-3s; animation-duration:5.25s}
+.parallax > use:nth-child(4){animation-delay:-5s; animation-duration:3.25s}
+
+@keyframes move-forever{
+  0%{transform: translate(-90px , 0%)}
+  100%{transform: translate(85px , 0%)} 
+}
+
+
+</style>
+
+
+<!-- <section class="doc_fun_fact_area" style="padding: 70px 0px; background: #c5e9ff; margin-top: 10px;;"> 
+    <div class="animated-waves">
+        <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">                
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="#2595ea35"/>  fill="#2475ed35"
+                <use xlink:href="#gentle-wave" x="50" y="2" fill="#2595ea50"/>  fill="#2578df50"
+                <use xlink:href="#gentle-wave" x="50" y="4" fill="#2595ea65"/>  fill="#2873ea65"
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="#2595ea25"/>  fill="#2873ea25"                 
+            </g>
+        </svg>
+
+        <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="animated-wave">
+            <title>Wave</title>
+            <defs></defs>
+            <path id="animated-wave-three" d="" fill="rgba(188, 214, 234, 0.5)" />
+        </svg>
+        <svg width="100%" height="100%" version="1.1" xmlns="http://www.w3.org/2000/svg" class="animated-wave">
+            <title>Wave</title>
+            <defs></defs>
+            <path id="animated-wave-four" d="" fill="rgba(188, 214, 234, 0.5)" />
+        </svg>
+    </div>    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">                            
+                    <div class="counter" style="color: #000000;">15</div>
+                    <p style="color: #000000;">Categories</p>
+                </div>                        
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipTopics">
+                    <div class="counter" style="color: #039541;">40</div>
+                    <p style="color: #039541;">Topics</p>
+                </div>                        
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipArticles">
+                    <div class="counter" style="color: #FCC328;">470</div>
+                    <p style="color: #FCC328;">Articles</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
+                    <div class="counter" style="color: #1316d4;">354</div>
+                    <p style="color: #1316d4;">Publications</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                    <div class="counter" style="color: #b800d2;">337</div>
+                    <p style="color: #b800d2;">Reports</p>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
+                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReferences">
+                    <div class="counter" style="color: #df1f11;">412</div>
+                    <p style="color: #df1f11;">References</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<div class="row">
+    <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 10px 30px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
+</div>
+<div class="section_title text-center" style="margin-bottom: 20px;">    
+    <h5 class="wow fadeInUp">Organizationwise Searching</h5>
+</div>
+
+<!-- searchbox area section    -->
+<!-- <div class="row">
+    <div class="col-md-12"> -->
+<section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 50PX;">
+
+    <div class="container" style="padding: 0;">
+        <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0; padding: 0; max-width: 100%; border: 1px solid #019d19;">
+             <!-- style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);" -->
+            <div class="input-group">
+                <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
+                <div class="input-group-append">
+                    <select class="custom-select" id="inlineFormCustomSelect">
+                        <option selected>All Category</option>
+                        <option value="1">Doc Archive</option>
+                        <option value="2">Doc list</option>
+                        <option value="3">KbDoc</option>
+                    </select>
+                </div>
+                <button type="submit"><i class="icon_search" onclick="" ></i></button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- </div>
+</div> -->
+
+<br />
+
+<!-- List of Organization -->
+<section class="doc_categories_guide_area sec_pad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- <div class="section_title text-center" style="margin-bottom: 10px;">
+                    <h5 class="wow fadeInUp">List of Organization</h5>
+                </div> -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp"
+                            style="background-image: url(/static/img/banner_back/bann1.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <!-- <label class="form-check-label" for="flexCheckDefault">
+                                  Default checkbox
+                                </label> -->
+                            </div>
+                            <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" />
+                                <p style="color:#4F5773;">Bangladesh Water Development Board</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.2s" style="background-image: url(/static/img/banner_back/bann19.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                            <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 50px;" />
+                                <p style="color:#4F5773;">River Research Institute (RRI)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/static/img/banner_back/bann5.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.6s" style="background-image: url(/static/img/banner_back/bann13.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="background-image: url(/static/img/banner_back/bann15.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                            <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1s" style="background-image: url(/static/img/banner_back/bann17.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                            <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
+                                    </span>Institute of Water Modelling</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="background-image: url(/static/img/banner_back/bann4.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right;">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                            </div>
+                            <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img" />
+                                <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
+                                    </span>Center for Environmental and Geographic Information Services (CEGIS)</p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

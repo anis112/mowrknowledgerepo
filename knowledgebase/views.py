@@ -1,12 +1,41 @@
 from django.shortcuts import render
 from django.db.models import OuterRef, Subquery
 from .models import Article, ArticleCategory, ArticlePublishCategory
+from .forms import OrganizationForm
 
 # Create your views here.
 
 
 def home(request):
     return render(request, 'home.html')
+
+
+def home2(request):
+    return render(request, 'home2.html')
+
+
+def home3(request):
+    return render(request, 'home3.html')
+
+
+def dashboard(request):
+    return render(request, 'dashboard.html')
+
+
+def orgsearch(request):
+    return render(request, 'orgsearch.html')
+
+
+def docsearch(request):
+    return render(request, 'docsearch.html')
+
+
+def national_international(request):
+    return render(request, 'national-international-search.html')
+
+
+def SearchResult1(request):
+    return render(request, 'SearchResult1.html')
 
 
 def article(request):
@@ -31,3 +60,10 @@ def article_detail(request, pk):
     context = {'article': article}
 
     return render(request, 'article-detail.html', context)
+
+
+def addOrganization(request):
+    form = OrganizationForm()
+    context = {'form': form}
+
+    return render(request, 'Organization/add.html', context)
