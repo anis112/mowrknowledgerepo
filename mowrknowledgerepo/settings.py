@@ -15,8 +15,8 @@ import cx_Oracle
 import os
 
 cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
-#cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
-#cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_21_6")
+# cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
+# cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_21_6")
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-08pb8@xtn@ctpm6%*wu+p9w1lyy_l&vg%4f$(a0mytc1f%-dhw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
