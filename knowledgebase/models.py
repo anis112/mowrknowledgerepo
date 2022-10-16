@@ -10,16 +10,17 @@ class Organization(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     organization_name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=50)
-    mailing_address = models.CharField(max_length=200)
-    web_address = models.URLField(max_length=50)
-    organization_chief = models.CharField(max_length=100)
-    chief_designation = models.CharField(max_length=50)
-    focal_person = models.CharField(max_length=50)
-    fp_designation = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    phone_no = models.CharField(max_length=20)
-    mobile_no = models.CharField(max_length=14)
-    logo = models.ImageField(upload_to='mowrknowledgerepo/static/img')
+    mailing_address = models.CharField(max_length=200, blank=True)
+    web_address = models.URLField(max_length=50, blank=True)
+    organization_chief = models.CharField(max_length=100, blank=True)
+    chief_designation = models.CharField(max_length=50, blank=True)
+    focal_person = models.CharField(max_length=50, blank=True)
+    fp_designation = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(max_length=100, blank=True)
+    phone_no = models.CharField(max_length=20, blank=True)
+    mobile_no = models.CharField(max_length=14, blank=True)
+    logo = models.ImageField(
+        upload_to='mowrknowledgerepo/static/img', blank=True)
 
     def __str__(self) -> str:
         return self.organization_name

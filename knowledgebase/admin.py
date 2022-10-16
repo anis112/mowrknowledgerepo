@@ -8,8 +8,7 @@ from .models import Article, ArticleCategory, ArticleDetail, ArticlePublishCateg
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ['id', 'organization_name', 'short_name',
                     'chief_designation', 'focal_person', 'email', 'phone_no']
-    list_editable = ['organization_name', 'short_name',
-                     'chief_designation', 'focal_person']
+    list_editable = ['organization_name', 'short_name']
     list_per_page = 50
     list_filter = ['organization_name']
     search_fields = ['organization_name__istartswith']

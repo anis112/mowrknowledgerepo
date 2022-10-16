@@ -51,6 +51,54 @@
                 max-width: 85% !important;
             }
 
+            .icon_facebook a {
+                /* background: #fff !important;  */
+                border:2px solid #1877f2 !important;  
+                color: #1877f2 !important; 
+            }
+
+            .icon_facebook a:hover {
+                background: #1877f2 !important;    
+                border-color: #1877f2 !important; 
+                color: #fff !important;
+            }
+
+            .icon_twiter a {
+                /* background: #fff !important;  */
+                border:2px solid #55acee !important;  
+                color: #55acee !important; 
+            }
+
+            .icon_twiter a:hover {
+                background: #55acee !important;    
+                border-color: #55acee !important; 
+                color: #fff !important;
+            }
+            
+            .icon_linkedin a {
+                /* background: #fff !important;  */
+                border:2px solid #0A66C2 !important;  
+                color: #0A66C2 !important; 
+            }
+
+            .icon_linkedin a:hover {
+                background: #0A66C2 !important;    
+                border-color: #0A66C2 !important; 
+                color: #fff !important;
+            }
+            
+            .icon_youtube a {
+                /* background: #fff !important;  */
+                border:2px solid #AC0000 !important;  
+                color: #AC0000 !important; 
+            }
+
+            .icon_youtube a:hover {
+                background: #AC0000 !important;    
+                border-color: #AC0000 !important; 
+                color: #fff !important;
+            }
+
         </style>
     </head>
     <body data-scroll-animation="true">
@@ -73,8 +121,8 @@
         <div class="body_wrapper">
 
             <!-- navbar with menu section -->
-            <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%);">
-                <!-- linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
+            <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%); ">
+                <!-- linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%); linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
                 <div class="container-fluid">
                     <a class="navbar-brand sticky_logo" href="/">
                         <!-- customized logo -->
@@ -154,45 +202,70 @@
 
             <!-- <hr style="margin-top: 3rem; margin-bottom:0;" /> -->
 
-            <footer class="footer_area f_bg_color" style="font-size: 12px;">
-                <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
-                <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
-                <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">
-                <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">
-                <img class="p_absolute f_email_two" src="{% static 'img/home_two/email-icon_two.png' %}" alt="">
-                <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt=""> -->
+            <footer class="footer_area f_bg_color" style="font-size: 12px; border-top: 1px solid rgba(0,0,0,.1)">
 
-
-                <div class="row" style="background: rgb(0, 0, 63); min-height: 50px; padding: 10px;">    <!-- #00026a -->
-                    <div class="col-lg-12 text-center">
-                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="#">Knowledge Base</a> | <a href="#">Research & Publications</a> | <a href="#">Analysis & Reporting</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                <section class="doc_fun_fact_area" style=" background: #eff4ff; padding: 0px;">    <!-- #E4EEF0 -->
+                    <div class="animated-waves">
+                        <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%;">
+                            <title>Wave</title>
+                            <defs></defs>
+                            <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
+                        </svg>
+                        <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%;">
+                            <title>Wave</title>
+                            <defs></defs>
+                            <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
+                        </svg>
                     </div>
-                </div>
-                <div class="row" style="background: rgb(0, 53, 41); color:white; height: auto; padding: 10px;"> 
+                    <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
+                    <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
+                    <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">
+                    <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">
+                    <img class="p_absolute f_email_two" src="{% static 'img/home_two/email-icon_two.png' %}" alt="">
+                    <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt=""> -->
 
-                    <div class="col-lg-6">
-                        <div class="f_widget link_widget  text-right pl_30 wow fadeInUp" >
-                            <h6 style="color:white;"><u>Contact Us</u></h6>
-                            <p>Address: Ministry of Water Resources, 5th Floor, Block 6, Bangladesh Shochibaloy, Dhaka</p>                                                  
+
+                    <div class="row" style="min-height: 50px; padding: 10px;">    <!--  background: #E4EEF0;   #00026a -->
+                        <div class="col-lg-12 text-center">
+                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="#">Knowledge Base</a> | <a href="#">Research & Publications</a> | <a href="#">Analysis & Reporting</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="f_widget subscribe_widget wow fadeInUp" data-wow-delay="0.4s">                                
-                            <ul class="list-unstyled f_social_icon" style="padding-top: 0px;">
-                                <li><a href="#"><i class="social_facebook"></i></a></li>
-                                <li><a href="#"><i class="social_twitter"></i></a></li>
-                                <li><a href="#"><i class="social_vimeo"></i></a></li>
-                                <li><a href="#"><i class="social_linkedin"></i></a></li>
-                            </ul>                           
-                        </div>                        
-                    </div> 
-                    <div class="col-lg-12">
-                        <hr style="margin-top: 0rem; margin-bottom:0.5rem; border-top: 1px solid rgba(0, 0, 63)" /> 
-                    </div>    
-                    <div class="col-lg-12 text-center">
-                        © 2022 All Rights Reserved | Developed by <a href="https://cegisbd.com/" target="_blank">CEGIS</a>
-                    </div>                             
-                </div>
+                    
+                    <div class="row" style="height: auto; padding: 10px;">   <!--  color:white;   background: #E4EEF0;   #00026a -->
+
+                        <div class="col-lg-12">
+                            <div class="f_widget link_widget text-center wow fadeInUp" >
+                                <h6><u>Contact Us</u></h6>  <!--  style="color:white;" -->
+                                <p>Address: Ministry of Water Resources, 5th Floor, Block 6, Bangladesh Shochibaloy, Dhaka</p>    
+                                <div class="f_widget subscribe_widget wow fadeInUp" style="padding: 0px;">                                
+                                    <ul class="list-unstyled f_social_icon" style="padding-top: 0px;">
+                                        <li class="icon_facebook"><a href="#"><i class="social_facebook"></i></a></li>
+                                        <li class="icon_twiter"><a href="#"><i class="social_twitter"></i></a></li>
+                                        <li class="icon_linkedin"><a href="#"><i class="social_linkedin"></i></a></li>
+                                        <li class="icon_youtube"><a href="#"><i class="social_youtube"></i></a></li>
+                                    </ul>                           
+                                </div>                                                 
+                            </div>
+                        </div>
+                        <!-- <div class="col-lg-6">
+                            <div class="f_widget subscribe_widget wow fadeInUp" data-wow-delay="0.4s">                                
+                                <ul class="list-unstyled f_social_icon" style="padding-top: 0px;">
+                                    <li><a href="#"><i class="social_facebook"></i></a></li>
+                                    <li><a href="#"><i class="social_twitter"></i></a></li>
+                                    <li><a href="#"><i class="social_vimeo"></i></a></li>
+                                    <li><a href="#"><i class="social_linkedin"></i></a></li>
+                                </ul>                           
+                            </div>                        
+                        </div>  -->
+                        <!-- <div class="col-lg-12">
+                            <hr style="margin-top: 0rem; margin-bottom:0.5rem; border-top: 1px solid rgba(0, 0, 63)" /> 
+                        </div>     -->
+                        <div class="col-lg-12 text-center">
+                            © 2022 All Rights Reserved | Developed by <a href="https://cegisbd.com/" target="_blank">CEGIS</a>
+                        </div>                             
+                    </div>
+
+                </section>
             </footer>
 
         </div>

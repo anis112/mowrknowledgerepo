@@ -1,13 +1,19 @@
 from django.shortcuts import render
 from django.db.models import OuterRef, Subquery
-from .models import Article, ArticleCategory, ArticlePublishCategory
+from .models import Article, ArticleCategory, ArticlePublishCategory, Organization, DataCategory
 from .forms import OrganizationForm
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'home.html')
+    count_organization = Organization.objects.count()
+    #count_categories = DataCategory.objects.filter(parent__isnull=True).count()
+    count_categories = DataCategory.objects.count()
+
+    context = {'organization': count_organization,
+               'categories': count_categories}
+    return render(request, 'home.html', context)
 
 
 def home2(request):
