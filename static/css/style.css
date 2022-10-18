@@ -47,14 +47,14 @@ html {
 a {
   text-decoration: none;
   transition: all 0.3s ease-in-out;
-  color: #019d19;
+  color: #10b3d6;   /* #019d19; */
 }
 
 a:hover,
 a:focus {
   text-decoration: none;
   outline: none;
-  color: #03ae1d;   /* #10b3d6; */
+  color: #0183b6;   /*  #03ae1d #10b3d6; */
 }
 
 body {
@@ -440,11 +440,11 @@ p kbd {
 }
 
 .doc_border_btn {
-  border: 2px solid #019d19;
-  /*   2px solid #79ccde; */
+  border: 2px solid #79ccde;
+  /*   2px solid #79ccde;  2px solid #019d19; */
   border-radius: 4px;
-  color: #019d19;
-  /* #10b3d6; */
+  color: #10b3d6;
+  /* #10b3d6; #019d19 */
   font-size: 14px;
   font-weight: 500;
   background: #f8fdfe;
@@ -464,7 +464,7 @@ p kbd {
 }
 
 .doc_border_btn i {
-  margin-left: 6px;
+  margin-left: 20px;   /*   6px;  */
   font-size: 16px;
   vertical-align: middle;
   display: inline-block;
@@ -473,8 +473,8 @@ p kbd {
 
 .doc_border_btn:hover {
   box-shadow: 0 10px 20px 0 rgba(12, 118, 142, 0.2);
-  background: #019d19;    /*  #10b3d6; */
-  border-color: #019d19;   /*  #10b3d6; */
+  background: #10b3d6;    /*  #10b3d6; #019d19 */
+  border-color: #10b3d6;   /*  #10b3d6; #019d19 */
   color: #fff;
 }
 

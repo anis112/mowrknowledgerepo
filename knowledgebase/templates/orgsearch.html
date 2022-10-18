@@ -60,6 +60,7 @@
     .org-img {
         width: 90px;
         margin-bottom: 10px;
+        margin-right: 10px;
     }
 
     /*=========== Start Slider css (MNH) ============*/
@@ -272,36 +273,9 @@
     <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 10px 30px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
 </div>
 <div class="section_title text-center" style="margin-bottom: 20px;">    
-    <h5 class="wow fadeInUp">Organizationwise Searching</h5>
+    <h5 class="wow fadeInUp">Search by Organization</h5>
 </div>
 
-<!-- searchbox area section    -->
-<!-- <div class="row">
-    <div class="col-md-12"> -->
-<section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 50PX;">
-
-    <div class="container" style="padding: 0;">
-        <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0; padding: 0; max-width: 100%; border: 1px solid #019d19;">
-             <!-- style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);" -->
-            <div class="input-group">
-                <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
-                <div class="input-group-append">
-                    <select class="custom-select" id="inlineFormCustomSelect">
-                        <option selected>All Category</option>
-                        <option value="1">Doc Archive</option>
-                        <option value="2">Doc list</option>
-                        <option value="3">KbDoc</option>
-                    </select>
-                </div>
-                <button type="submit"><i class="icon_search" onclick="" ></i></button>
-            </div>
-        </form>
-    </div>
-</section>
-<!-- </div>
-</div> -->
-
-<br />
 
 <!-- List of Organization -->
 <section class="doc_categories_guide_area sec_pad">
@@ -313,72 +287,76 @@
                 </div> -->
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp"
-                            style="background-image: url(/static/img/banner_back/bann1.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" style="background-image: url(/static/img/banner_back/bann1.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;"> 
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                 <!-- <label class="form-check-label" for="flexCheckDefault">
                                   Default checkbox
                                 </label> -->
                             </div>
                             <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" />
-                                <p style="color:#4F5773;">Bangladesh Water Development Board</p>
+                            <span style="color:#4F5773;">BWDB</span>
+                            <!-- <p style="color:#4F5773;">Bangladesh Water Development Board</p> -->
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.2s" style="background-image: url(/static/img/banner_back/bann19.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" data-wow-delay="0.2s" style="background-image: url(/static/img/banner_back/bann19.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
                             </div>
                             <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 50px;" />
-                                <p style="color:#4F5773;">River Research Institute (RRI)</p>
+                            <span style="color:#4F5773;">RRI</span>
+                            <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/static/img/banner_back/bann5.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" data-wow-delay="0.4s" style="background-image: url(/static/img/banner_back/bann5.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
                             </div>
                             <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" />
-                                <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p>
+                            <span style="color:#4F5773;">JRC</span>
+                            <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.6s" style="background-image: url(/static/img/banner_back/bann13.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" data-wow-delay="0.6s" style="background-image: url(/static/img/banner_back/bann13.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
                             </div>
                             <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" />
-                                <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p>
+                            <span style="color:#4F5773;">DBHWD</span>
+                            <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="background-image: url(/static/img/banner_back/bann15.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" data-wow-delay="0.8s" style="background-image: url(/static/img/banner_back/bann15.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
                             </div>
                             <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" />
-                                <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p>
+                            <span style="color:#4F5773;">WARPO</span>
+                            <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1s" style="background-image: url(/static/img/banner_back/bann17.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" data-wow-delay="1s" style="background-image: url(/static/img/banner_back/bann17.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
                             </div>
                             <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" />
-                                <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
-                                    </span>Institute of Water Modelling</p>
+                            <span style="color:#4F5773;">IWM (Trusty Organization)</span>
+                            <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Institute of Water Modelling</p> -->
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="background-image: url(/static/img/banner_back/bann4.jpg); min-height: 150px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="form-check" style="float: right;">
+                        <div class="col-md-12 text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" data-wow-delay="1.2s" style="background-image: url(/static/img/banner_back/bann4.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
+                            <div class="form-check" style="float: right; bottom: 12px; right: -13px;">
                                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
                             </div>
                             <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img" />
-                                <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
-                                    </span>Center for Environmental and Geographic Information Services (CEGIS)</p>
+                            <span style="color:#4F5773;">CEGIS (Trusty Organization)</span>
+                            <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->
                         </div>
                     </div>
 
@@ -389,6 +367,34 @@
         </div>
     </div>
 </section>
+
+<!-- <br> -->
+
+<!-- searchbox area section    -->
+<!-- <div class="row">
+    <div class="col-md-12"> -->
+        <section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 25PX;">
+
+            <div class="container" style="padding: 0;">
+                <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0px 10px; padding: 0; max-width: 100%; border: 1px solid #009abb;">   <!--  #019d19; -->
+                     <!-- style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);" -->
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder='Search...'>
+                        <div class="input-group-append">
+                            <select class="custom-select" id="inlineFormCustomSelect">
+                                <option selected>All Category</option>
+                                <option value="1">Doc Archive</option>
+                                <option value="2">Doc list</option>
+                                <option value="3">KbDoc</option>
+                            </select>
+                        </div>
+                        <button type="submit"><i class="icon_search" onclick="" ></i></button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!-- </div>
+        </div> -->
 
 
 {% endblock %}

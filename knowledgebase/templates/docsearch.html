@@ -77,6 +77,9 @@
         width: auto !important;
     }
 
+    .doc_border_btn i {
+        margin-left: 20px;
+    }
 
 
     /*=========== Start Slider css (MNH) ============*/
@@ -215,18 +218,84 @@
     <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 10px 30px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
 </div>
 <div class="section_title text-center" style="margin-bottom: 20px;">
-    <h5 class="wow fadeInUp">Documentation Searching</h5>
+    <h5 class="wow fadeInUp">Search by Document Type</h5>
 </div>
+
+
+
+<!-- Categorywise search -->
+<section class="doc_faq_area_two sec_pad">
+    <div class="container">
+        
+        <!-- <div class="section_title text-center" style="margin-bottom: 10px; margin-top:30px;">
+            <h5 class="wow fadeInUp">Important Links</h2>            
+        </div> -->
+        <div class="row">                            
+            <div class="col-md-4 mt-3">
+                <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_right"></i></a>    style="color:#019d19;"  ="icon_cloud-upload_alt"  -->
+                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px; ">
+                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Knowledge Base</span><i class="arrow_right"></i>
+                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                    </div>
+                </div>
+            </div>                                
+            <div class="col-md-4 mt-3">
+                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Research & Publications</span><i class="arrow_right"></i>
+                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Analysis & Reporting</span><i class="arrow_right"></i>
+                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Documentation</span><i class="arrow_right"></i>
+                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                    </div>
+                </div>
+            </div>               
+            <div class="col-md-4 mt-3">
+                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Publication</span><i class="arrow_right"></i>
+                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                    </div>
+                </div>
+            </div>   
+            <div class="col-md-4 mt-3">
+                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Plan</span><i class="arrow_right"></i>
+                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
+                    </div>
+                </div>
+            </div>               
+        </div>
+            
+        
+    </div>
+</section>
+
 
 <!-- searchbox area section    -->
 <!-- <div class="row">
     <div class="col-md-12"> -->
-<section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 50PX;;">
+<section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 25PX;;">
 
     <div class="container" style="padding: 0;">
-        <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0; padding: 0; max-width: 100%; border: 1px solid #019d19;">
+        <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0px 10px; padding: 0; max-width: 100%; border: 1px solid #009abb;">   <!--  #019d19; -->
             <div class="input-group">
-                <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
+                <input type="search" class="form-control" placeholder='Search...'>
                 <div class="input-group-append">
                     <select class="custom-select" id="inlineFormCustomSelect" >
                         <option value="-1"selected>All Organization</option>
@@ -251,7 +320,7 @@
 
 
 <!-- <h1>MoWR Home</h1> -->
-<section class="doc_categories_guide_area sec_pad">
+<section class="doc_categories_guide_area sec_pad d-none">
     <div class="container">
         <!-- <div class="section_title text-center" style="margin-bottom: 50px; margin-top:50px;">
             <h2 class="h_title wow fadeInUp">Check out our guide categories</h2>

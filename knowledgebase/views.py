@@ -1,16 +1,40 @@
-from django.contrib.auth import authenticate, login as auth_login, logout as logout_view
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as logout_view
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.db.models import OuterRef, Subquery
 from django.shortcuts import redirect, render
 
 from .forms import OrganizationForm
-from .models import Article, ArticleCategory, ArticlePublishCategory
+from .models import (Article, ArticleCategory, ArticlePublishCategory,
+                     DataCategory, Document, Organization)
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'home.html')
+    count_organization = Organization.objects.count()
+    count_categories = DataCategory.objects.filter(parent__isnull=True).count()
+
+    pub_cat_ids = [5, 14]
+    count_publication = Document.objects.filter(
+        data_category__id__in=pub_cat_ids).count()
+    count_reports = Document.objects.filter(
+        Q(data_category__id=10) | Q(data_category__parent=10)).count()
+
+    law_act_policy_cat_ids = [1, 7, 9, 11, 19]
+    count_law_act_policy = Document.objects.filter(
+        data_category__id__in=law_act_policy_cat_ids).count()
+
+    plan_cat_ids = [33, 51]
+    count_plan = Document.objects.filter(
+        data_category__id__in=plan_cat_ids).count()
+
+    context = {'organization': count_organization,
+               'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan}
+
+    return render(request, 'home.html', context)
 
 
 def home2(request):
@@ -23,7 +47,27 @@ def home3(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    count_organization = Organization.objects.count()
+    count_categories = DataCategory.objects.filter(parent__isnull=True).count()
+
+    pub_cat_ids = [5, 14]
+    count_publication = Document.objects.filter(
+        data_category__id__in=pub_cat_ids).count()
+    count_reports = Document.objects.filter(
+        Q(data_category__id=10) | Q(data_category__parent=10)).count()
+
+    law_act_policy_cat_ids = [1, 7, 9, 11, 19]
+    count_law_act_policy = Document.objects.filter(
+        data_category__id__in=law_act_policy_cat_ids).count()
+
+    plan_cat_ids = [33, 51]
+    count_plan = Document.objects.filter(
+        data_category__id__in=plan_cat_ids).count()
+
+    context = {'organization': count_organization,
+               'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan}
+
+    return render(request, 'dashboard.html', context)
 
 def login(request):
     if request.method == 'POST':

@@ -9,18 +9,22 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import mimetypes
-from pathlib import Path
-import cx_Oracle
 import os
+import mimetypes
+import cx_Oracle
+from pathlib import Path
 
 cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
-#cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
-#cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_21_6")
+# cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
+# cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_21_6")
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Template files Directory
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +36,7 @@ SECRET_KEY = 'django-insecure-08pb8@xtn@ctpm6%*wu+p9w1lyy_l&vg%4f$(a0mytc1f%-dhw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,7 +81,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'  # template location
+            BASE_DIR / 'templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -96,19 +100,8 @@ WSGI_APPLICATION = 'mowrknowledgerepo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.oracle',
-#         'NAME': 'orcl',
-#         'USER': 'c##mowrlocal2',
-#         'PASSWORD': 'mowrlocal2',
-#         'HOST': 'localhost',
-#         'PORT': '1521',
-#     }
-# }
-
 # live_db
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
