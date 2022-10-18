@@ -9,10 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
 import mimetypes
-import cx_Oracle
+import os
 from pathlib import Path
+
+import cx_Oracle
 
 cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
@@ -149,8 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-LOGIN_RIDERECT_URL='/knowledgebase/dashboard'
-LOGOUT_RIDERECT_URL='/knowledgebase/signinpage'
+
 
 
 STATICFILES_DIRS = [
