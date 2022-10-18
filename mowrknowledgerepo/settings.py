@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'knowledgebase',
-    "debug_toolbar",
+    "debug_toolbar", #debug_toolbar
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware", #debug_toolbar
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,11 +61,11 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = [
     # ...
-    "127.0.0.1",
+    "127.0.0.1",        #debug_toolbar
     # ...
 ]
 
-mimetypes.add_type("application/javascript", ".js", True)
+mimetypes.add_type("application/javascript", ".js", True)  # for debug toolbar
 
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
@@ -77,7 +77,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates'
+            BASE_DIR / 'templates'  # template location
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -156,6 +156,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+LOGIN_RIDERECT_URL='/knowledgebase/dashboard'
+LOGOUT_RIDERECT_URL='/knowledgebase/signinpage'
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
