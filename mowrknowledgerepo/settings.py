@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import mimetypes
-from pathlib import Path
-import cx_Oracle
 import os
+from pathlib import Path
+
+import cx_Oracle
 
 cx_Oracle.init_oracle_client(lib_dir=r"C:\Oracle\instantclient_19_15")
 #cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
@@ -22,6 +23,10 @@ cx_Oracle.init_oracle_client(lib_dir=r"C:\Oracle\instantclient_19_15")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Template files Directory
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -46,11 +51,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'knowledgebase',
-    "debug_toolbar",
+    "debug_toolbar", #debug_toolbar
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware", #debug_toolbar
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,11 +67,11 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = [
     # ...
-    "127.0.0.1",
+    "127.0.0.1",        #debug_toolbar
     # ...
 ]
 
-mimetypes.add_type("application/javascript", ".js", True)
+mimetypes.add_type("application/javascript", ".js", True)  # for debug toolbar
 
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
@@ -97,19 +102,8 @@ WSGI_APPLICATION = 'mowrknowledgerepo.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.oracle',
-#         'NAME': 'orcl',
-#         'USER': 'c##mowrlocal2',
-#         'PASSWORD': 'mowrlocal2',
-#         'HOST': 'localhost',
-#         'PORT': '1521',
-#     }
-# }
-
 # live_db
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
@@ -157,6 +151,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
