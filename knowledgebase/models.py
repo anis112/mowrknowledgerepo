@@ -5,7 +5,6 @@ from django.core.validators import MinValueValidator
 
 # new tables
 
-
 class Organization(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     organization_name = models.CharField(max_length=100)
@@ -125,7 +124,6 @@ class ArticleDetail(models.Model):
         db_table = 'tbl_article_details'
         ordering = ['id']
 
-
 class ArticleDocDetail(models.Model):
     id = models.PositiveBigIntegerField(primary_key=True)
     article_detail = models.ForeignKey(
@@ -139,7 +137,6 @@ class ArticleDocDetail(models.Model):
     class Meta:
         db_table = 'tbl_article_doc_details'
         ordering = ['id']
-
 
 # database tables
 

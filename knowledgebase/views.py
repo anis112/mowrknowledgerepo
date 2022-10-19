@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.db.models import OuterRef, Subquery, Q
+from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
 from .forms import OrganizationForm
@@ -72,7 +72,6 @@ def dashboard(request):
 def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request=request,data=request.POST)
-        valuenext= request.POST.get('next')
         if form.is_valid():
             uname=form.cleaned_data['username']
             upassword=form.cleaned_data['password']           
@@ -106,8 +105,6 @@ def signup(request):
         'form': form
     })
 
-     
-
 def orgsearch(request):
     return render(request, 'orgsearch.html')
 
@@ -139,7 +136,6 @@ def article(request):
                'atr_pub_cat': query_set}
 
     return render(request, 'article.html', context)
-
 
 def article_detail(request, pk):
     article = Article.objects.get(id=pk)
