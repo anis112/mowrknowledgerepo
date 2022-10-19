@@ -25,7 +25,13 @@ def home3(request):
 
 
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    count_organization = Organization.objects.count()
+    #count_categories = DataCategory.objects.filter(parent__isnull=True).count()
+    count_categories = DataCategory.objects.count()
+
+    context = {'organization': count_organization,
+               'categories': count_categories}
+    return render(request, 'dashboard.html', context)
 
 
 def orgsearch(request):

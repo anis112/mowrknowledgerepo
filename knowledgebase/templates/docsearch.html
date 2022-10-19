@@ -77,151 +77,87 @@
         width: auto !important;
     }
 
+    .doc_border_btn {
+        font-size: 12px;        
+    }
+
     .doc_border_btn i {
-        margin-left: 20px;
+        margin-left: 5px;        
     }
 
+    /* Custom Checkbox */
+    .custom-control-label::before, 
+    .custom-control-label::after {
+    /* top: .8rem; */
+    width: 1.50rem;
+    height: 1.50rem;
+    border: 1px solid #3cbdd9;
+    border-radius: 0.25rem !important;
+    }
 
-    /*=========== Start Slider css (MNH) ============*/
-
-
-
-    .slide_section {
-        position: inherit;
+    .carousel-caption {
+        left:0px;
+        right: 0px;
+        bottom: 0px;
         width: 100%;
-        height: auto;
-        display: flex;
-        border: 1px solid rgba(0, 0, 0, 0.16);
-        /* margin-bottom: 100px; */
-        z-index: 100;
     }
 
-    .slide {
-        position: relative;
-        background: #F8F9FA;
-        height: 500px;
-        flex: 1;
-        border-right: 1px solid rgba(0, 0, 0, 0.16);
-        overflow: hidden;
-        transition: 0.3s ease-in-out;
-    }
-
-    .slide:last-child {
-        border-right: none;
-    }
-
-    .slide:hover {
-        flex-grow: 6;
-        /* transform: scale(1.05, 1.05); */
-        /* -ms-flex-negative: 0;
-    flex-shrink: 0;
-    width: 65%; */
-    }
-
-    .inner {
-        height: 500px;
-        width: 100%;
-        display: block;
-        background-repeat: no-repeat;
-        transition: all 1s;
-    }
-
-    /* .slide:nth-child(1)
-{
-    background: url(../static/img/slider-img/S1.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(2)
-{
-    background: url(../static/img/slider-img/S2.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(3)
-{
-    background: url(../static/img/slider-img/S3.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(4)
-{
-    background: url(../static/img/slider-img/S4.jpg);
-    background-position: center center;
-} */
-
-    .slide .content {
-        position: absolute;
-        bottom: 0;
-        margin: 20px;
-        padding: 10px;
-        background: #000;
+    .h_title_r {
+        /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%); /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
         color: #fff;
-        visibility: hidden;
-        opacity: 0;
-        transition: 0s;
-        transform: translateY(100px);
-        /* width:100%; */
+        font-family: arial;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        display: block;   
+        padding: 7px;         
+        padding-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
     }
 
-    .slide:hover .inner {
-        transform: scale(1.2);
+    .h_title_l {
+        /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%); /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
+        color: #fff;
+        font-family: arial;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        display: block;    
+        padding: 7px;                
+        padding-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
     }
 
-    .slide:hover .content {
-        visibility: visible;
-        opacity: 0.7;
-        transition: 0.5s;
-        transition-delay: 0.2s;
-        transform: translateY(0);
+    .search_left_panal {
+        background: #568a9e;
+        opacity: 0.8;
     }
-
-    /*.slick-track {
-    /* transition-delay: 2s !important; 
-    /* transition: transform 1s !important; 
-} */
-
-    .item {
-        margin: 20px;
-    }
-
-    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
-    /*=========== End Slider css (MNH) ============*/
-
-/*=========== SVG css (MNH) ============*/
-.water-wave {
-  display: block;
-  width: 100%;
-  height: 14rem;
-  max-height: 150vh;
-  margin: 0;
-}
-
-.parallax > use {
-  animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-
-.parallax > use:nth-child(1){animation-delay:-3s;}
-.parallax > use:nth-child(2){animation-delay:-3s; animation-duration:4.25s}
-.parallax > use:nth-child(3){animation-delay:-3s; animation-duration:5.25s}
-.parallax > use:nth-child(4){animation-delay:-5s; animation-duration:3.25s}
-
-@keyframes move-forever{
-  0%{transform: translate(-90px , 0%)}
-  100%{transform: translate(85px , 0%)} 
-}
-
 
 </style>
 
-<div class="row">
+<!-- <div class="row">
     <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 10px 30px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
 </div>
 <div class="section_title text-center" style="margin-bottom: 20px;">
     <h5 class="wow fadeInUp">Search by Document Type</h5>
+</div> -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row" >
+            <div class="col-md-1">
+                <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 5px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
+            </div>
+            <div class="col-md-11 text-center">
+                <h5 class="wow fadeInUp" style="margin: 25px 0px 0px 0px;">Search by Document Type</h5>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 
 <!-- Categorywise search -->
 <section class="doc_faq_area_two sec_pad">
@@ -231,53 +167,59 @@
             <h5 class="wow fadeInUp">Important Links</h2>            
         </div> -->
         <div class="row">                            
-            <div class="col-md-4 mt-3">
+            <div class="col-md-2 mt-3">
                 <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_right"></i></a>    style="color:#019d19;"  ="icon_cloud-upload_alt"  -->
-                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px; ">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Knowledge Base</span><i class="arrow_right"></i>
-                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
-                    </div>
+                <div href="#" class="doc_border_btn wow fadeInUp" style="width: 100%; padding: 10px 2px; ">
+                    <i class="fa-regular fa-lightbulb-exclamation-on fa-fw"></i><label style="margin: 10px 0px 0px 10px;">Knowledge Base</label><i class="arrow_right"></i>
+                    <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -3px;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
+                        <label class="custom-control-label" for="customCheck1"></label>
+                    </div>  
                 </div>
             </div>                                
-            <div class="col-md-4 mt-3">
-                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Research & Publications</span><i class="arrow_right"></i>
-                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
-                    </div>
+            <div class="col-md-2 mt-3">
+                <div href="#" class="doc_border_btn wow fadeInUp" data-wow-delay="0.4s" style="width: 100%; padding: 10px 2px;">
+                    <i class="fa-solid fa-book-open-reader fa-fw"></i><label style="margin: 10px 0px 0px 10px;">Research & Publications</label><i class="arrow_right"></i>
+                    <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -3px;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck2" name="example2">
+                        <label class="custom-control-label" for="customCheck2"></label>
+                    </div>  
                 </div>
             </div>
-            <div class="col-md-4 mt-3">
-                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Analysis & Reporting</span><i class="arrow_right"></i>
-                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
-                    </div>
+            <div class="col-md-2 mt-3">
+                <div href="#" class="doc_border_btn wow fadeInUp" data-wow-delay="0.8s" style="width: 100%; padding: 10px 2px;">
+                    <i class="fa-regular fa-chart-pie-simple fa-fw"></i><label style="margin: 10px 0px 0px 10px;">Analysis & Reporting</label><i class="arrow_right"></i>
+                    <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -3px;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck3" name="example3">
+                        <label class="custom-control-label" for="customCheck3"></label>
+                    </div>  
                 </div>
             </div>
-            <div class="col-md-4 mt-3">
-                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Documentation</span><i class="arrow_right"></i>
-                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
-                    </div>
+            <div class="col-md-2 mt-3">
+                <div href="#" class="doc_border_btn wow fadeInUp" data-wow-delay="1.2s" style="width: 100%; padding: 10px 2px;">
+                    <i class="fa-duotone fa-books fa-fw"></i><label style="margin: 10px 0px 0px 10px;">Documentation</label><i class="arrow_right"></i>
+                    <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -3px;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck4" name="example4">
+                        <label class="custom-control-label" for="customCheck4"></label>
+                    </div>  
                 </div>
             </div>               
-            <div class="col-md-4 mt-3">
-                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Publication</span><i class="arrow_right"></i>
-                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
-                    </div>
+            <div class="col-md-2 mt-3">
+                <div href="#" class="doc_border_btn wow fadeInUp" data-wow-delay="1.6s" style="width: 100%; padding: 10px 2px;">
+                    <i class="fa-duotone fa-typewriter fa-fw"></i><label style="margin: 10px 0px 0px 10px;">Publication</label><i class="arrow_right"></i>
+                    <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -3px;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck5" name="example5">
+                        <label class="custom-control-label" for="customCheck5"></label>
+                    </div>  
                 </div>
             </div>   
-            <div class="col-md-4 mt-3">
-                <div href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Plan</span><i class="arrow_right"></i>
-                    <div class="form-check" style="float: right; bottom: 22px; right: -8px;">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">                                
-                    </div>
+            <div class="col-md-2 mt-3">
+                <div href="#" class="doc_border_btn wow fadeInUp" data-wow-delay="2s" style="width: 100%; padding: 10px 2px;">
+                    <i class="fa-solid fa-thought-bubble fa-fw"></i><label style="margin: 10px 0px 0px 10px;">Plan</label><i class="arrow_right"></i>
+                    <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -3px;">
+                        <input type="checkbox" class="custom-control-input" id="customCheck6" name="example6">
+                        <label class="custom-control-label" for="customCheck6"></label>
+                    </div>  
                 </div>
             </div>               
         </div>
@@ -293,11 +235,12 @@
 <section class="breadcrumb_area" style="background-image: none; padding:0; margin-top: 25PX;;">
 
     <div class="container" style="padding: 0;">
-        <form action="{% url 'SearchResult1' %}" class="banner_search_form banner_search_form_two" style="margin: 0px 10px; padding: 0; max-width: 100%; border: 1px solid #009abb;">   <!--  #019d19; -->
+        <form action="#" class="banner_search_form banner_search_form_two" style="margin: 0px 10px; padding: 0; max-width: 100%; border: 1px solid #009abb;">   <!--  #019d19; -->  <!-- action="{% url 'SearchResult1' %}" -->
             <div class="input-group">
                 <input type="search" class="form-control" placeholder='Search...'>
+                
                 <div class="input-group-append">
-                    <select class="custom-select" id="inlineFormCustomSelect" >
+                    <select class="custom-select dropleft" id="inlineFormCustomSelect" >
                         <option value="-1"selected>All Organization</option>
                         <option value="1">Bangladesh Water Development Board</option>
                         <option value="2">River Research Institute (RRI)</option>
@@ -308,7 +251,7 @@
                         <option value="7">Center for Environmental and Geographic Information Services (CEGIS)</option>                        
                     </select>
                 </div>
-                <button type="submit"><i class="icon_search"></i></button>
+                <button id="submit" type="submit"><i class="icon_search"></i></button>
             </div>
         </form>
     </div>
@@ -316,8 +259,192 @@
 <!-- </div>
 </div> -->
 
-<br />
 
+<div class="container" style="margin-top: 50px;">
+    <div class="row" id="DivSearch" style="display: none;">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- <div class="search_left_panal"> -->
+                    <h5>Selected Organization</h5>
+                    <hr />
+                    <h4 class="wow fadeInUp h_title_l" data-wow-delay="0.2s">Bangladesh Water Development Board</h4>
+                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px;">APA Activities</a>
+                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Hydrology Related</a>
+                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">NIS Action Plan</a>
+                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">GRS Focal Point</a>
+                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Disciplinary Action</a>
+                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Presentation</a>
+                    <!-- </div> -->
+                </div>
+                <div class="col-md-9">
+
+                    <div style="padding: 0px 0px 0px 10px;">
+                        <h5>Search Result</h5>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Hydrology Related</h4>
+                            </div>
+                        </div>
+                        <!-- Sliding Cards -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="">
+                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="icon-container">
+                                                    <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community"
+                                                        width="100%" style="max-width: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    Case study on water logging problems in an urban area of Bangladesh and probable
+                                                    analytical solution. Some dodgy chav bevvy amongst argy-bargy spiffing
+                                                    absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy
+                                                    chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea
+                                                    a load of old tosh porkies.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="">
+                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="icon-container">
+                                                    <img src="{% static 'img/home_support/flood.jpg' %}" alt="community"
+                                                        width="100%" style="max-width: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    Salinity problems and crop production in coastal regions of Bangladesh. Some
+                                                    dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup
+                                                    of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy
+                                                    spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="">
+                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="icon-container">
+                                                    <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community"
+                                                        width="100%" style="max-width: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    Award points, level up, and earn new privileges. Some dodgy chav bevvy amongst
+                                                    argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh
+                                                    porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered
+                                                    nancy boy cup of tea a load of old tosh porkies.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">ADP Report</h4>
+                            </div>
+                        </div>
+
+                        <!-- Sliding Cards -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="">
+                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="icon-container">
+                                                    <img src="{% static 'img/banner_back/bann1.jpg' %}" alt="community" width="100%"
+                                                        style="max-width: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    Case study on water logging problems in an urban area of Bangladesh and probable
+                                                    analytical solution. Some dodgy chav bevvy amongst argy-bargy spiffing
+                                                    absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy
+                                                    chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea
+                                                    a load of old tosh porkies.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="">
+                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="icon-container">
+                                                    <img src="{% static 'img/banner_back/bann2.jpg' %}" alt="community" width="100%"
+                                                        style="max-width: 200px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <p>
+                                                    Salinity problems and crop production in coastal regions of Bangladesh. Some
+                                                    dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup
+                                                    of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy
+                                                    spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
 
 <!-- <h1>MoWR Home</h1> -->
 <section class="doc_categories_guide_area sec_pad d-none">
@@ -411,102 +538,17 @@
 </section>
 
 
+<script>
+    const targetDiv = document.getElementById("DivSearch");
+    const btn = document.getElementById("submit");
 
-<!-- Chart Reports -->
-<!-- <section class="doc_categories_guide_area sec_pad">
-    <div class="container">
-        <div class="section_title text-center" style="margin-top: 50px;">
-            <h2 class="h_title wow fadeInUp">Chart Reports</h2>
-            <p class="wow fadeInUp" data-wow-delay="0.2s">Some dodgy chav bevvy amongst argy-bargy spiffing
-                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>
-        </div>
-
-        <div class="row">
-
-            <div class="col-lg-4 col-sm-6">
-                <div class="categories_guide_item wow fadeInUp">
-                    <div class="card text-dark bg-light mb-3">                        
-                        <div class="card-body">
-                            <div class="col-md-12 text-center"><img src="{% static 'img/home_one/Chart_Bar.png' %}"
-                                    alt="" width="100%" />
-                            </div>                            
-                        </div>
-                    </div>                   
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <div class="categories_guide_item wow fadeInUp">
-                    <div class="card text-dark bg-light mb-3">                        
-                        <div class="card-body">
-                            <div class="col-md-12 text-center"><img src="{% static 'img/home_one/Chart_Pie.png' %}"
-                                    alt="" width="100%" />
-                            </div>                            
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <div class="categories_guide_item wow fadeInUp">
-                    <div class="card text-dark bg-light mb-3">                        
-                        <div class="card-body">
-                            <div class="col-md-12 text-center"><img src="{% static 'img/home_one/Chart_Line.png' %}"
-                                    alt="" width="100%" />
-                            </div>                            
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section> -->
-
-
-<!-- Tooltip content -->
-<div class="tooltip_templates d-none">
-    <div id="tooltipCategories" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipTopics" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipArticles" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipPublications" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipReports" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipReferences" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-
+    btn.onclick = function () {
+        if (targetDiv.style.display !== "none") {
+            targetDiv.style.display = "none";
+        } else {
+            targetDiv.style.display = "block";
+        }
+    };
+</script>
 
 {% endblock %}
