@@ -48,8 +48,9 @@ def home3(request):
 
 def dashboard(request):
     count_organization = Organization.objects.count()
-    count_categories = DataCategory.objects.filter(parent__isnull=True).count()
 
+    count_categories = DataCategory.objects.filter(parent__isnull=True).count()
+   
     pub_cat_ids = [5, 14]
     count_publication = Document.objects.filter(
         data_category__id__in=pub_cat_ids).count()
@@ -68,6 +69,9 @@ def dashboard(request):
                'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan}
 
     return render(request, 'dashboard.html', context)
+
+
+
 
 def login(request):
     if request.method == 'POST':

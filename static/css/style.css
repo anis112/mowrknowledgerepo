@@ -447,7 +447,7 @@ p kbd {
   /* #10b3d6; #019d19 */
   font-size: 14px;
   font-weight: 500;
-  background: #f8fdfe;
+  background: #f3fcff;    /* #f8fdfe; */
   display: inline-block;
   padding: 6px 34px;
   transition: all 0.3s linear, color 0.2s;
@@ -3961,7 +3961,7 @@ p kbd {
 }
 
 #preloader .spinner {
-  animation: spinner 3s infinite linear;
+  animation: spinner 2s infinite linear;
   border-radius: 50%;
   border: 3px solid #f1f6f8;
   border-left-color: #019d19;

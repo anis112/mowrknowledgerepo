@@ -9,11 +9,11 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import mimetypes
 import os
+import mimetypes
 from pathlib import Path
-
 import cx_Oracle
+
 
 cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
@@ -50,11 +50,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'knowledgebase',
-    "debug_toolbar", #debug_toolbar
+    "debug_toolbar",  # debug_toolbar
 ]
 
 MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware", #debug_toolbar
+    "debug_toolbar.middleware.DebugToolbarMiddleware",  # debug_toolbar
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,7 +66,7 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = [
     # ...
-    "127.0.0.1",        #debug_toolbar
+    "127.0.0.1",  # debug_toolbar
     # ...
 ]
 
@@ -81,9 +81,7 @@ ROOT_URLCONF = 'mowrknowledgerepo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'templates'
-        ],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -151,11 +149,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+STATICFILES_DIRS = [STATIC_DIR]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

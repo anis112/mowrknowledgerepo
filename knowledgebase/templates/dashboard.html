@@ -55,126 +55,34 @@
         /* border: 1px solid #d9ddea; */
         padding: 10px;
         margin: 10px 0px;
+        min-height: 110px !important;
+        border-radius: 4px;
+    }
+    
+    .org-content:hover{
+        box-shadow: #04859b 0px 1px 6px 0px !important;        
     }
 
     .org-img {
-        width: 90px;
+        width: 75px;
         margin-bottom: 10px;
         margin-right: 10px;
     }
-
-    /*=========== Start Slider css (MNH) ============*/
-
-
-
-    .slide_section {
-        position: inherit;
-        width: 100%;
-        height: auto;
-        display: flex;
-        border: 1px solid rgba(0, 0, 0, 0.16);
-        /* margin-bottom: 100px; */
-        z-index: 100;
+    
+    .doc_border_btn {
+        font-size: 12px;        
     }
 
-    .slide {
-        position: relative;
-        background: #F8F9FA;
-        height: 500px;
-        flex: 1;
-        border-right: 1px solid rgba(0, 0, 0, 0.16);
-        overflow: hidden;
-        transition: 0.3s ease-in-out;
+    .doc_border_btn i {
+        margin-left: 0px;        
     }
-
-    .slide:last-child {
-        border-right: none;
-    }
-
-    .slide:hover {
-        flex-grow: 6;
-        /* transform: scale(1.05, 1.05); */
-        /* -ms-flex-negative: 0;
-    flex-shrink: 0;
-    width: 65%; */
-    }
-
-    .inner {
-        height: 500px;
-        width: 100%;
-        display: block;
-        background-repeat: no-repeat;
-        transition: all 1s;
-    }
-
-    /* .slide:nth-child(1)
-{
-    background: url(../static/img/slider-img/S1.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(2)
-{
-    background: url(../static/img/slider-img/S2.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(3)
-{
-    background: url(../static/img/slider-img/S3.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(4)
-{
-    background: url(../static/img/slider-img/S4.jpg);
-    background-position: center center;
-} */
-
-    .slide .content {
-        position: absolute;
-        bottom: 0;
-        margin: 20px;
-        padding: 10px;
-        background: #000;
-        color: #fff;
-        visibility: hidden;
-        opacity: 0;
-        transition: 0s;
-        transform: translateY(100px);
-        /* width:100%; */
-    }
-
-    .slide:hover .inner {
-        transform: scale(1.2);
-    }
-
-    .slide:hover .content {
-        visibility: visible;
-        opacity: 0.7;
-        transition: 0.5s;
-        transition-delay: 0.2s;
-        transform: translateY(0);
-    }
-
-    /*.slick-track {
-    /* transition-delay: 2s !important; 
-    /* transition: transform 1s !important; 
-} */
-
-    .item {
-        margin: 20px;
-    }
-
-    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
-    /*=========== End Slider css (MNH) ============*/
-
+    
 /*=========== SVG css (MNH) ============*/
 .water-wave {
   display: block;
   width: 100%;
-  height: 14rem;
-  max-height: 150vh;
+  height: 10rem;
+  max-height: 80vh;
   margin: 0;
 }
 
@@ -201,17 +109,17 @@
 
 
 <!-- Counting -->
-<section class="doc_fun_fact_area" style="padding: 70px 0px; background: #c5e9ff; margin-top: 10px;;">     <!-- #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
+<section class="doc_fun_fact_area" style="padding: 25px 0px; background: #cfe5f9; margin-top: 2px;">     <!-- #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
     <div class="animated-waves">
         <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
             <defs>
                 <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
             </defs>
             <g class="parallax">                
-                <use xlink:href="#gentle-wave" x="50" y="0" fill="#2595ea35"/>  fill="#2475ed35"
-                <use xlink:href="#gentle-wave" x="50" y="2" fill="#2595ea50"/>  fill="#2578df50"
-                <use xlink:href="#gentle-wave" x="50" y="4" fill="#2595ea65"/>  fill="#2873ea65"
-                <use xlink:href="#gentle-wave" x="50" y="6" fill="#2595ea25"/>  fill="#2873ea25"                 
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="#8bb6dd85"/>  <!-- #2595ea35 fill="#2475ed35" -->
+                <use xlink:href="#gentle-wave" x="50" y="2" fill="#2595ea25"/>  <!-- #2595ea50 fill="#2578df50" -->
+                <use xlink:href="#gentle-wave" x="50" y="4" fill="#a3c5e275"/>  <!-- #2595ea65 fill="#2873ea65" -->
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="#9cbcd865"/>  <!-- #2595ea25 fill="#2873ea25"  -->                
             </g>
         </svg>
 
@@ -225,20 +133,21 @@
             <defs></defs>
             <path id="animated-wave-four" d="" fill="rgba(188, 214, 234, 0.5)" />
         </svg> -->
+
     </div>    
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
                 <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">                            
-                    <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>
+                    <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>                    
                     <p style="color: #000000; text-shadow: 0px 0px 0px black;">Organization</p>
                 </div>                        
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
                 <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipTopics">
-                    <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">{{categories}}</div>
+                    <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">{{categories}}</div>                    
                     <p style="color: #039541; text-shadow: 0px 0px 0px black;">Categories</p>
                 </div>                        
             </div>
@@ -281,78 +190,97 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section_title text-center" style="margin-bottom: 10px; margin-top: 20px;">
-                    <h5 class="wow fadeInUp">List of Organization</h5>
+                    <h5 class="wow fadeInUp">No. of Provided Documents (1345)</h5>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" style="background-image: url(/static/img/banner_back/bann1.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                <div class="row">                    
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" style="font-weight: bold; background-image: url(/static/img/banner_back/bann1.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
-                                <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" />
-                                <span style="color:#4F5773;">BWDB</span>
+                                <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
+                                <label style="color:#4F5773; font-size: 13px;">BWDB</label>                                
+                                <div class="text-center">
+                                    <label style="color:#4F5773;">(550)</label>
+                                </div>
                                 <!-- <p style="color:#4F5773;">Bangladesh Water Development Board</p> -->
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.2s" style="background-image: url(/static/img/banner_back/bann19.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann19.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
-                                <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 50px;" />
-                                <span style="color:#4F5773;">RRI</span>
+                                <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 40px;" />
+                                <label style="color:#4F5773; font-size: 13px;">RRI</label>                                
+                                <div class="text-center">
+                                    <label style="color:#4F5773;">(170)</label>
+                                </div>
                                 <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="background-image: url(/static/img/banner_back/bann5.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank"><img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" />
-                                <span style="color:#4F5773;">JRC</span>
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann5.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
+                                <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;" />
+                                <label style="color:#4F5773; font-size: 13px;">JRC</label>                                
+                                <div class="text-center">
+                                    <label style="color:#4F5773;">(80)</label>
+                                </div>
                                 <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.6s" style="background-image: url(/static/img/banner_back/bann13.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann13.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
-                                <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" />
-                                <span style="color:#4F5773;">DBHWD</span>
+                                <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;"  />
+                                <label style="color:#4F5773; font-size: 13px;">DBHWD</label>                                
+                                <div class="text-center">
+                                    <label style="color:#4F5773;">(75)</label>
+                                </div>
                                 <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="background-image: url(/static/img/banner_back/bann15.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="1.6s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann15.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
-                                <img src="{% static 'img/article_logo/WARPO.png' %}" alt=""  class="org-img" />
-                                <span style="color:#4F5773;">WARPO</span>
+                                <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
+                                <label style="color:#4F5773; font-size: 13px;">WARPO</label>                                
+                                <div class="text-center">
+                                    <label style="color:#4F5773;">(250)</label>
+                                </div>
                                 <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1.0s" style="background-image: url(/static/img/banner_back/bann17.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="2.0s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann18.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
-                                <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" />
-                                <span style="color:#4F5773;">IWM (Trusty Organization)</span>
+                                <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" style="width: 65px;"  />
+                                <label style="color:#4F5773; font-size: 13px;">IWM</label>  
+                                <div class="text-center">                         
+                                    <label style="color:#4F5773;">(70)</label>
+                                </div>     
                                 <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
                                     </span>Institute of Water Modelling</p> -->
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="col-md-12 text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="background-image: url(/static/img/banner_back/bann4.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                           
+                    <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="2.4s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann4.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                           
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
-                                <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img" />
-                                <span style="color:#4F5773;">CEGIS (Trusty Organization)</span>
+                                <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"  style="margin-top: 10px;" />
+                                <label style="color:#4F5773; font-size: 13px;">CEGIS</label>                                
+                                <div class="text-center">
+                                    <label style="color:#4F5773;">(150)</label>
+                                </div>
                                 <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
                                     </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->
                             </a>
                         </div>
-                    </div>
-
-
+                    </div>                    
                 </div>
-
             </div>
         </div>
     </div>
@@ -427,38 +355,38 @@
     <div class="container">
         
         <div class="section_title text-center" style="margin-bottom: 20px;">
-            <h5 class="wow fadeInUp">Type of Documentation</h5>
+            <h5 class="wow fadeInUp">Type of Documents</h5>
         </div>
         <div class="row">                            
-            <div class="col-md-4 mt-3">
-                <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_right"></i></a>    style="color:#019d19;"  ="icon_cloud-upload_alt"  -->
+            <div class="col-md-2 mt-3 wow fadeInUp ">
+                <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_carrot-2right"></i></a>    style="color:#019d19;"  ="icon_cloud-upload_alt"  -->
                 <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px; ">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Knowledge Base</span><i class="arrow_right"></i>                    
+                    <i class="fa-regular fa-lightbulb-exclamation-on fa-fw"></i><span style="margin-left: 10px;">Knowledge Base</span><i class="arrow_right"></i>                    
                 </a>
             </div>                                
-            <div class="col-md-4 mt-3">
+            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="0.4s">
                 <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Research & Publications</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-book-open-reader fa-fw"></i><span style="margin-left: 10px;">Research & Publications</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md-4 mt-3">
+            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="0.8s">
                 <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Analysis & Reporting</span><i class="arrow_right"></i>                    
+                    <i class="fa-regular fa-chart-pie-simple fa-fw"></i><span style="margin-left: 10px;">Analysis & Reporting</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md-4 mt-3">
+            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="1.2s">
                 <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Documentation</span><i class="arrow_right"></i>                    
+                    <i class="fa-duotone fa-books fa-fw"></i><span style="margin-left: 10px;">Documentation</span><i class="arrow_right"></i>                    
                 </a>
             </div>               
-            <div class="col-md-4 mt-3">
+            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="1.6s">
                 <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Publication</span><i class="arrow_right"></i>                    
+                    <i class="fa-duotone fa-typewriter fa-fw"></i><span style="margin-left: 10px;">Publication</span><i class="arrow_right"></i>                    
                 </a>
             </div>   
-            <div class="col-md-4 mt-3">
+            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="2s">
                 <a href="#" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="arrow_carrot-2right"></i><span style="margin-left: 20px;">Plan</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-thought-bubble fa-fw"></i><span style="margin-left: 10px;">Plan</span><i class="arrow_right"></i>                    
                 </a>
             </div>               
         </div>
