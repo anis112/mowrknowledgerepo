@@ -72,43 +72,6 @@ def dashboard(request):
 
 
 
-
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request=request,data=request.POST)
-        if form.is_valid():
-            uname=form.cleaned_data['username']
-            upassword=form.cleaned_data['password']           
-            user = authenticate(username=uname, password=upassword)
-            if user.is_active:
-                if user.is_superuser or user.is_staff:
-                    auth_login(request,user)
-                    return redirect('/knowledgebase/dashboard/')  # or your url name
-                else:
-                    auth_login(request,user)
-                    return redirect('/')
-
-    else:
-        form=AuthenticationForm()
-        return render(request, 'login.html',{'form':form})    
-
-def logout(request):
-    logout_view(request)
-    return redirect('login')
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {
-        'form': form
-    })
-
 def orgsearch(request):
     return render(request, 'orgsearch.html')
 

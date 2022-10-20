@@ -1,7 +1,10 @@
 from django.contrib import admin
+
 from .models import Article, ArticleCategory, ArticleDetail, ArticlePublishCategory, DataAccessCategory, DataCategory, Document, Organization
 
 # Register your models here.
+
+
 
 
 @admin.register(Organization)

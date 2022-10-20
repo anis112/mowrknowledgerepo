@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'knowledgebase',
+    'accounts',
     "debug_toolbar",  # debug_toolbar
 ]
 
