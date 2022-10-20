@@ -1,8 +1,12 @@
+from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import CustomUserForm
 from django.shortcuts import redirect, render
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 # Create your views here.
 
@@ -33,12 +37,13 @@ def logout(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            auth_login(request,form)
+            return redirect('/knowledgebase/dashboard/')             
     else:
-        form = UserCreationForm()
+        form = CustomUserForm()
     return render(request, 'signup.html', {
         'form': form
     })
