@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'accounts',
     "debug_toolbar",  # debug_toolbar
 ]
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",  # debug_toolbar

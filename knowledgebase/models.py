@@ -6,7 +6,7 @@ from django.core.validators import MinValueValidator
 # new tables
 
 class Organization(models.Model):
-    id = models.PositiveSmallIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     organization_name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=50)
     mailing_address = models.CharField(max_length=200, blank=True)
@@ -58,7 +58,7 @@ class DataAccessCategory(models.Model):
 
 
 class Document(models.Model):
-    id = models.PositiveBigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     parent_id = models.PositiveBigIntegerField(null=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
@@ -94,7 +94,7 @@ class Document(models.Model):
 
 
 class ArticleDetail(models.Model):
-    id = models.PositiveBigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     parent_id = models.PositiveBigIntegerField(null=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
@@ -125,7 +125,7 @@ class ArticleDetail(models.Model):
         ordering = ['id']
 
 class ArticleDocDetail(models.Model):
-    id = models.PositiveBigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     article_detail = models.ForeignKey(
         ArticleDetail, on_delete=models.PROTECT, null=True)
     document = models.ForeignKey(
@@ -166,7 +166,7 @@ class ArticlePublishCategory(models.Model):
 
 
 class Article(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     parent_id = models.SmallIntegerField(
