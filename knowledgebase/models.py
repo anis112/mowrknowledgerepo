@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator
 
 # new tables
 
+
 class Organization(models.Model):
     id = models.AutoField(primary_key=True)
     organization_name = models.CharField(max_length=100)
@@ -19,7 +20,7 @@ class Organization(models.Model):
     phone_no = models.CharField(max_length=20, blank=True)
     mobile_no = models.CharField(max_length=14, blank=True)
     logo = models.ImageField(
-        upload_to='mowrknowledgerepo/static/img', blank=True)
+        upload_to='static/logo', blank=True)
 
     def __str__(self) -> str:
         return self.organization_name
@@ -124,6 +125,7 @@ class ArticleDetail(models.Model):
         db_table = 'tbl_article_details'
         ordering = ['id']
 
+
 class ArticleDocDetail(models.Model):
     id = models.AutoField(primary_key=True)
     article_detail = models.ForeignKey(
@@ -139,6 +141,7 @@ class ArticleDocDetail(models.Model):
         ordering = ['id']
 
 # database tables
+
 
 class ArticleCategory(models.Model):
     id = models.SmallIntegerField(primary_key=True)
