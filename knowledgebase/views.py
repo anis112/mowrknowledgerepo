@@ -37,14 +37,16 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-def home2(request):
-    
+def home2(request):    
     return render(request, 'home2.html')
 
 
 def home3(request):
     return render(request, 'home3.html')
 
+
+def test(request):    
+    return render(request, 'test.html')
 
 def dashboard(request):
     count_organization = Organization.objects.count()
