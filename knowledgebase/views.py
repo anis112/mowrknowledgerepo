@@ -6,7 +6,7 @@ from django.contrib.auth import logout as logout_view
 from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
-from .forms import OrganizationForm
+from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticlePublishCategory,
                      DataCategory, Document, Organization)
 
@@ -120,4 +120,28 @@ def addOrganization(request):
             return redirect('/')
 
     context = {'form': form}
-    return render(request, 'Organization/add.html', context)
+    return render(request, 'organization/add.html', context)
+
+
+def addDocument(request):
+    form = DocumentForm()
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'document/add.html', context)
+
+
+def addArticleDetail(request):
+    form = ArticleDetailForm()
+    if request.method == 'POST':
+        form = ArticleDetailForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'articledetail/add.html', context)

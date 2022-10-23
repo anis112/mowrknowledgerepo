@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<div class="row m-5">
+    <div class="col-md-12">
+        <h4>Add New Document</h4>
+
+        <form enctype="multipart/form-data" action="" method="post">
+            <!-- Security token -->
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Document Title</label>
+                        {{ form.title }}
+                    </div>
+                </div>                
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        {{ form.subject }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Description</label>
+                        {{ form.description }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Author</label>
+                        {{ form.author }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Data Category</label>
+                        {{ form.data_category }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Access Category</label>
+                        {{ form.access_category }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Publication Date</label>
+                        {{ form.publication_date }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Search Keywords</label>
+                        {{ form.keywords }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label>Thumbnail</label>
+                        {{ form.thumbnail }}
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>File</label>
+                        {{ form.file_name }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <input type="submit" class="btn btn-primary" value="Save">
+                </div>                
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
