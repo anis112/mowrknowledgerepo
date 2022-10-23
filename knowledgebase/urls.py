@@ -14,6 +14,7 @@ urlpatterns = [
     path('SearchResult1/', views.SearchResult1, name="SearchResult1"),
     path('home2/', views.home2, name="home2"),
     path('home3/', views.home3, name="home3"),
+    path('test/', views.test, name="test"),
 
     path('article/', views.article, name="article"),
     path('article/<int:pk>/', views.article_detail, name="article_detail"),

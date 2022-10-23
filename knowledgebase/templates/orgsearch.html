@@ -7,6 +7,19 @@
 <!-- Bootstrap CSS -->
 <!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    -->
 
+
+<!-- <Script>
+    $(".checkbox-menu").on("change", "input[type='checkbox']", function() {
+    $(this).closest("li").toggleClass("active", this.checked);
+    });
+
+    $(document).on('click', '.allow-focus', function (e) {
+    e.stopPropagation();
+    });
+</Script> -->
+
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"> -->
+
 <style>
     .categories_guide_item {
         padding: 0px !important;
@@ -272,11 +285,76 @@
         margin-bottom: 0px;
     }
 
+    .typography_list .unorderlist li::before {
+        background: #10B3BC;
+    }
+
     .typography_list ul li a, .typography_list ol li a {  
         font-size: 14px;
         color: #10b3d6; 
     }
+
+
+    /* Search DropdownList Styles Starts */
+
+    /* .checkbox-menu li label {
+        display: block;
+        padding: 3px 10px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+        margin:0;
+        transition: background-color .4s ease;
+    }
+    .checkbox-menu li input {
+        margin: 0px 5px;
+        top: 2px;
+        position: relative;
+    }
+
+    .checkbox-menu li.active label {
+        background-color: #cbcbff;
+        font-weight:bold;
+    }
+
+    .checkbox-menu li label:hover,
+    .checkbox-menu li label:focus {
+        background-color: #f5f5f5;
+    }
+
+    .checkbox-menu li.active label:hover,
+    .checkbox-menu li.active label:focus {
+        background-color: #b8b8ff;
+    } */
+    /* Search DropdownList Styles Endss */
+
 </style>
+
+<!-- jQuery -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<!-- Bootstrap CSS -->
+<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+<!-- Bootstrap JS -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+<!-- Bootstrap Multiselect CSS -->
+<!-- <link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}"> -->
+<!-- Bootstrap Multiselect JS -->
+<!-- <script src="{% static 'css/bootstrap-multiselect.js' %}"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+
+
+<!-- <script>
+    require(['bootstrap-multiselect'], function(purchase){
+    $('#example-getting-started').multiselect();
+    });
+</script> -->
 
 
 
@@ -396,8 +474,7 @@
                                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
                             </div>                             -->
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
+                            <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -11px;">
                                 <input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
                                 <label class="custom-control-label" for="customCheck1"></label>
                             </div>
@@ -515,9 +592,19 @@
             <!-- style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);" -->
             <div class="input-group">
                 <input type="search" class="form-control" placeholder='Search...'>
-                <div class="input-group-append">
+                <div class="input-group-append">      
+                    
+                    <!-- <select id="mySelect" multiple="multiple">
+                        <option value="1">Knowledge Base</option>
+                        <option value="2">Research & Publications</option>
+                        <option value="3">Analysis & Reporting</option>
+                        <option value="4">Documentation</option>
+                        <option value="5">Publication</option>
+                        <option value="6">Plan</option>
+                    </select> -->
+
                     <select class="custom-select" id="inlineFormCustomSelect" multiple="multiple">
-                        <option selected>All Category</option>
+                        <option value="99" selected>All Category</option>
                         <option value="1">Knowledge Base</option>
                         <option value="2">Research & Publications</option>
                         <option value="3">Analysis & Reporting</option>
@@ -710,6 +797,17 @@
     </div>
 </div>
 
+<div class="">
+<select id="example-getting-started" multiple="multiple">
+    <option value="cheese">Cheese</option>
+    <option value="tomatoes">Tomatoes</option>
+    <option value="Mozzarella">Mozzarella</option>
+    <option value="Mushrooms">Mushrooms</option>
+    <option value="Pepperoni">Pepperoni</option>
+    <option value="Onions">Onions</option>
+</select>
+</div>
+
 <script>
     const targetDiv = document.getElementById("DivSearch");
     const btn = document.getElementById("submit");
@@ -722,5 +820,23 @@
         }
     };
 </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+            $('#xample-getting-started').multiselect({
+            includeSelectAllOption: true,
+            });
+        });
+
+    // $(document).ready(function() {
+    //     $('#example-getting-started').multiselect({
+    //         includeSelectAllOption: true,
+    //         allSelectedText: 'No option left ...'
+    //     });
+    // });
+</script>
+
+
 
 {% endblock %}
