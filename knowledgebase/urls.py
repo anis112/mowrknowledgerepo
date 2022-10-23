@@ -1,5 +1,6 @@
 from django.urls import path
 
+
 from . import views
 
 # URLConf
@@ -18,8 +19,4 @@ urlpatterns = [
     path('article/<int:pk>/', views.article_detail, name="article_detail"),
 
     path('organization/add', views.addOrganization, name="add_organization"),
-
-    path('login/', views.login, name="login"),     
-    path('logout/', views.logout, name="logout"),    
-    path('signup/', views.signup, name="signup"),
 ]

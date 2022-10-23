@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator
 
 
 class Organization(models.Model):
-    id = models.PositiveSmallIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     organization_name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=50)
     mailing_address = models.CharField(max_length=200, blank=True)
@@ -20,7 +20,7 @@ class Organization(models.Model):
     phone_no = models.CharField(max_length=20, blank=True)
     mobile_no = models.CharField(max_length=14, blank=True)
     logo = models.ImageField(
-        upload_to='mowrknowledgerepo/static/img', blank=True)
+        upload_to='static/logo', blank=True)
 
     def __str__(self) -> str:
         return self.organization_name
@@ -59,7 +59,7 @@ class DataAccessCategory(models.Model):
 
 
 class Document(models.Model):
-    id = models.PositiveBigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     parent_id = models.PositiveBigIntegerField(null=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
@@ -95,7 +95,7 @@ class Document(models.Model):
 
 
 class ArticleDetail(models.Model):
-    id = models.PositiveBigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     parent_id = models.PositiveBigIntegerField(null=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
@@ -127,7 +127,7 @@ class ArticleDetail(models.Model):
 
 
 class ArticleDocDetail(models.Model):
-    id = models.PositiveBigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     article_detail = models.ForeignKey(
         ArticleDetail, on_delete=models.PROTECT, null=True)
     document = models.ForeignKey(
@@ -140,8 +140,8 @@ class ArticleDocDetail(models.Model):
         db_table = 'tbl_article_doc_details'
         ordering = ['id']
 
-
 # database tables
+
 
 class ArticleCategory(models.Model):
     id = models.SmallIntegerField(primary_key=True)
@@ -169,7 +169,7 @@ class ArticlePublishCategory(models.Model):
 
 
 class Article(models.Model):
-    id = models.BigIntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     parent_id = models.SmallIntegerField(

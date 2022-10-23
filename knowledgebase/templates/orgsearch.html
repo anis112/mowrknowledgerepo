@@ -36,7 +36,7 @@
 
     .community-box {
         padding: 20px 15px;
-        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+        box-shadow: 1px 1px 3px 2px rgba(2, 47, 57, 0.14);
     }
 
     .community-content {
@@ -266,6 +266,15 @@
         height: 1.50rem;
         border: 1px solid #3cbdd9;
         border-radius: 0.25rem !important;
+    }
+    
+    .typography_list h5, .dropcap_content h5 {
+        margin-bottom: 0px;
+    }
+
+    .typography_list ul li a, .typography_list ol li a {  
+        font-size: 14px;
+        color: #10b3d6; 
     }
 </style>
 
@@ -509,9 +518,12 @@
                 <div class="input-group-append">
                     <select class="custom-select" id="inlineFormCustomSelect" multiple="multiple">
                         <option selected>All Category</option>
-                        <option value="1">Doc Archive</option>
-                        <option value="2">Doc list</option>
-                        <option value="3">KbDoc</option>
+                        <option value="1">Knowledge Base</option>
+                        <option value="2">Research & Publications</option>
+                        <option value="3">Analysis & Reporting</option>
+                        <option value="4">Documentation</option>
+                        <option value="5">Publication</option>
+                        <option value="6">Plan</option>
                     </select>
                 </div>
                 <button id="submit" type="submit"><i class="icon_search"></i></button>
@@ -526,17 +538,23 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-3">
-                    <!-- <div class="search_left_panal"> -->
-                    <h5>Selected Organization</h5>
-                    <hr />
-                    <h4 class="wow fadeInUp h_title_l" data-wow-delay="0.2s">Bangladesh Water Development Board</h4>
-                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px;">APA Activities</a>
-                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Hydrology Related</a>
-                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">NIS Action Plan</a>
-                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">GRS Focal Point</a>
-                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Disciplinary Action</a>
-                    <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Presentation</a>
-                    <!-- </div> -->
+                    <div class="row">
+                        <div class="col-md-12 typography_list">
+                            <h5>Selected Organization</h5>
+                            <hr />
+                            <h4 class="wow fadeInUp h_title_l" data-wow-delay="0.2s">Bangladesh Water Development Board</h4>
+
+                            <ul class="list-unstyled unorderlist">                        
+                                <li><a href="#">Knowledge Base</a></li>
+                                <li><a href="#">Analysis & Reporting</a></li>      
+                                <li><a href="#">Publication</a></li>                                             
+                            </ul>
+
+                            <!-- <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px;">Knowledge Base</a>
+                            <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Analysis & Reporting</a>
+                            <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Publication</a>                     -->
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9">
 
@@ -545,7 +563,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Hydrology Related</h4>
+                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Knowledge Base</h4>
                             </div>
                         </div>
                         <!-- Sliding Cards -->
@@ -629,7 +647,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">ADP Report</h4>
+                                <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Analysis & Reporting</h4>
                             </div>
                         </div>
 
@@ -691,20 +709,6 @@
         </div>
     </div>
 </div>
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 <script>
     const targetDiv = document.getElementById("DivSearch");
