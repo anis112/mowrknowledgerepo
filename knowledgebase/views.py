@@ -2,8 +2,8 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.db.models import OuterRef, Subquery, Q
+#from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
 from .forms import OrganizationForm
@@ -37,7 +37,12 @@ def home(request):
     return render(request, 'home.html', context)
 
 
+<<<<<<< HEAD
 def home2(request):    
+=======
+def home2(request):
+
+>>>>>>> 10df9e3d236791e4c6080b09db7fe837d1f76c55
     return render(request, 'home2.html')
 
 
@@ -52,7 +57,7 @@ def dashboard(request):
     count_organization = Organization.objects.count()
 
     count_categories = DataCategory.objects.filter(parent__isnull=True).count()
-   
+
     pub_cat_ids = [5, 14]
     count_publication = Document.objects.filter(
         data_category__id__in=pub_cat_ids).count()
@@ -72,47 +77,6 @@ def dashboard(request):
 
     return render(request, 'dashboard.html', context)
 
-
-
-
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request=request,data=request.POST)
-        valuenext= request.POST.get('next')
-        if form.is_valid():
-            uname=form.cleaned_data['username']
-            upassword=form.cleaned_data['password']           
-            user = authenticate(username=uname, password=upassword)
-            if user.is_active:
-                if user.is_superuser or user.is_staff:
-                    auth_login(request,user)
-                    return redirect('/knowledgebase/dashboard/')  # or your url name
-                else:
-                    auth_login(request,user)
-                    return redirect('/')
-
-    else:
-        form=AuthenticationForm()
-        return render(request, 'login.html',{'form':form})    
-
-def logout(request):
-    logout_view(request)
-    return redirect('login')
-
-
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
-    else:
-        form = UserCreationForm()
-    return render(request, 'signup.html', {
-        'form': form
-    })
-
-     
 
 def orgsearch(request):
     return render(request, 'orgsearch.html')
@@ -156,6 +120,11 @@ def article_detail(request, pk):
 
 def addOrganization(request):
     form = OrganizationForm()
-    context = {'form': form}
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
 
+    context = {'form': form}
     return render(request, 'Organization/add.html', context)
