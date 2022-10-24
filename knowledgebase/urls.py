@@ -23,4 +23,5 @@ urlpatterns = [
     path('organization/add', views.addOrganization, name="add_organization"),
     path('document/add', views.addDocument, name="add_document"),
     path('article/add', views.addArticleDetail, name="add_article"),
+    path('document/view', views.viewDocument, name="view_document"),
 ]

@@ -148,3 +148,10 @@ def addArticleDetail(request):
 
     context = {'form': form}
     return render(request, 'articledetail/add.html', context)
+
+
+def viewDocument(request):
+    documents = Document.objects.all()
+    context = {'documents': documents}
+
+    return render(request, 'document/view.html', context)
