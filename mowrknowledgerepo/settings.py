@@ -15,6 +15,7 @@ from pathlib import Path
 import cx_Oracle
 
 
+
 cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_21_6")
@@ -51,9 +52,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'knowledgebase',
     'accounts',
+    'crispy_forms',
     "debug_toolbar",  # debug_toolbar
 ]
 AUTH_USER_MODEL = 'accounts.CustomUser'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",  # debug_toolbar

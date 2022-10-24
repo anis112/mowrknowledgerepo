@@ -223,7 +223,9 @@
                                 {% if user.is_authenticated %}    
                                 Hi {{ user.username }}!  
                                 <a class="nav-link dropdown-toggle" href="{% url 'accounts/logout' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>                                                            
-                                                
+                                  
+                                
+                                <a class="item" href="{% url 'accounts/user_profile' user.username %}" >View profile </a>
                                                            
                                 {% else %}
                                 <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>                                                            
