@@ -2,11 +2,11 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+#from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
-from .forms import OrganizationForm
+from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticlePublishCategory,
                      DataCategory, Document, Organization)
 
@@ -38,7 +38,6 @@ def home(request):
 
 
 def home2(request):
-    
     return render(request, 'home2.html')
 
 
@@ -46,11 +45,15 @@ def home3(request):
     return render(request, 'home3.html')
 
 
+def test(request):
+    return render(request, 'test.html')
+
+
 def dashboard(request):
     count_organization = Organization.objects.count()
 
     count_categories = DataCategory.objects.filter(parent__isnull=True).count()
-   
+
     pub_cat_ids = [5, 14]
     count_publication = Document.objects.filter(
         data_category__id__in=pub_cat_ids).count()
@@ -69,7 +72,6 @@ def dashboard(request):
                'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan}
 
     return render(request, 'dashboard.html', context)
-
 
 
 def orgsearch(request):
@@ -104,6 +106,7 @@ def article(request):
 
     return render(request, 'article.html', context)
 
+
 def article_detail(request, pk):
     article = Article.objects.get(id=pk)
     context = {'article': article}
@@ -113,6 +116,35 @@ def article_detail(request, pk):
 
 def addOrganization(request):
     form = OrganizationForm()
-    context = {'form': form}
+    if request.method == 'POST':
+        form = OrganizationForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
 
-    return render(request, 'Organization/add.html', context)
+    context = {'form': form}
+    return render(request, 'organization/add.html', context)
+
+
+def addDocument(request):
+    form = DocumentForm()
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'document/add.html', context)
+
+
+def addArticleDetail(request):
+    form = ArticleDetailForm()
+    if request.method == 'POST':
+        form = ArticleDetailForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'articledetail/add.html', context)
