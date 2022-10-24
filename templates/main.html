@@ -218,16 +218,22 @@
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
                             </li>
+
                             <li class="nav-item dropdown submenu">
-                                {% if user.is_authenticated %}    
-                                Hi {{ user.username }}!  
-                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/logout' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>                                                            
-                                                
-                                                           
+                                {% if user.is_authenticated %}  
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Hi {{ user.username }}!
+                                </a>
+                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a href={% url 'accounts/user_profile' user.username %} class="nav-link">View profile</a></li>
+                                    <li class="nav-item"><a href={% url 'accounts/logout' %} class="nav-link">Logout</a></li>
+                                </ul>
                                 {% else %}
-                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>                                                            
+                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
                                 {% endif %}
                             </li>
+                           
                         </ul>
                     </div>
                 </div>
