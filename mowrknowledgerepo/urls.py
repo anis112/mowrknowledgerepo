@@ -25,5 +25,5 @@ urlpatterns = [
     path('knowledgebase/', include('knowledgebase.urls')),
     path('accounts/', include('accounts.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
-    path('', include('django.contrib.auth.urls')),
+    #path('', include('django.contrib.auth.urls')),
 ]
