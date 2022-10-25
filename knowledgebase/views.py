@@ -6,7 +6,7 @@ from django.contrib.auth import logout as logout_view
 from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
-from .forms import OrganizationForm
+from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticlePublishCategory,
                      DataCategory, Document, Organization)
 
@@ -38,16 +38,16 @@ def home(request):
 
 
 
-def home2(request):    
+def home2(request):
     return render(request, 'home2.html')
-
 
 def home3(request):
     return render(request, 'home3.html')
 
 
-def test(request):    
+def test(request):
     return render(request, 'test.html')
+
 
 def dashboard(request):
     count_organization = Organization.objects.count()
@@ -123,4 +123,42 @@ def addOrganization(request):
             return redirect('/')
 
     context = {'form': form}
-    return render(request, 'Organization/add.html', context)
+    return render(request, 'organization/add.html', context)
+
+
+def viewOrganization(request):
+    organizations = Organization.objects.all()
+    context = {'organizations': organizations}
+
+    return render(request, 'organization/view.html', context)
+
+
+def addDocument(request):
+    form = DocumentForm()
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'document/add.html', context)
+
+
+def addArticleDetail(request):
+    form = ArticleDetailForm()
+    if request.method == 'POST':
+        form = ArticleDetailForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form': form}
+    return render(request, 'articledetail/add.html', context)
+
+
+def viewDocument(request):
+    documents = Document.objects.all()
+    context = {'documents': documents}
+
+    return render(request, 'document/view.html', context)

@@ -2,9 +2,7 @@
 {% load static %}
 {% static "" as baseUrl %}
 {% block content %}
-
-
-
+{% load crispy_forms_tags %}
 
         <section class="signup_area">
             <div class="row ml-0 mr-0">
@@ -17,6 +15,9 @@
                     <div class="round"></div>
                 </div>
                 <div class="sign_right signup_right">
+
+                    
+
                     <div class="sign_inner signup_inner">
                         <div class="text-center">
                             <h3>Sign in to Knowledge Repository</h3>
@@ -27,12 +28,20 @@
                         <div class="divider">
                             <span class="or-text">or</span>
                         </div>
-                        <!-- <form action="/admin/login/?next=/admin/" method="post">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                        {% comment %} <form action="/admin/login/?next=/admin/" method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
                             
                             <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>>-->
+                        </form> {% endcomment %}
+
                        <form method="post" class="row login_form">
                         {% csrf_token %}
                             <div class="col-lg-12 form-group">
@@ -57,5 +66,4 @@
             </div>
         </section>
    
-
 {% endblock %}

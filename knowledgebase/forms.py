@@ -1,6 +1,7 @@
+from dataclasses import fields
 from django import forms
 
-from .models import Organization
+from .models import ArticleDetail, Organization, Document
 
 
 class OrganizationForm(forms.ModelForm):
@@ -87,9 +88,9 @@ class OrganizationForm(forms.ModelForm):
         ))
     logo = forms.FileField(
         widget=forms.FileInput(
-            attrs={
-                "class": "form-control"
-            }
+            # attrs={
+            #     "class": "form-control"
+            # }
         ))
 
     class Meta:
@@ -109,3 +110,134 @@ class OrganizationForm(forms.ModelForm):
             'mobile_no',
             'logo'
         ]
+
+
+class DocumentForm(forms.ModelForm):
+    title = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Title",
+                "class": "form-control",
+            }
+        ))
+    subject = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Subject",
+                "class": "form-control",
+            }
+        ))
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": "Description",
+                "class": "form-control",
+                "rows": 3
+            }
+        ))
+    author = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control",
+            }
+        ))
+    # data_category = forms.ChoiceField(
+    #     widget=forms.Select(
+    #         attrs={
+    #             "class": "form-control",
+    #         }
+    #     ))
+    # access_category = forms.ChoiceField(
+    #     widget=forms.Select(
+    #         attrs={
+    #             "class": "form-control",
+    #         }
+    #     ))
+    publication_date = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Date",
+                "class": "form-control",
+            }
+        ))
+    keywords = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Multiple Keywords can be Seperated by Comma",
+                "class": "form-control",
+            }
+        ))
+
+    class Meta:
+        model = Document
+        fields = '__all__'
+
+
+class ArticleDetailForm(forms.ModelForm):
+    title = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Title",
+                "class": "form-control",
+            }
+        ))
+    subject = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Subject",
+                "class": "form-control",
+            }
+        ))
+    description = forms.CharField(
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": "Description",
+                "class": "form-control",
+                "rows": 3
+            }
+        ))
+    author = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control",
+            }
+        ))
+    # data_category = forms.ChoiceField(
+    #     widget=forms.Select(
+    #         attrs={
+    #             "class": "form-control",
+    #         }
+    #     ))
+    # access_category = forms.ChoiceField(
+    #     widget=forms.Select(
+    #         attrs={
+    #             "class": "form-control",
+    #         }
+    #     ))
+    publication_date = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Date",
+                "class": "form-control",
+            }
+        ))
+    source = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Source",
+                "class": "form-control",
+            }
+        ))
+    keywords = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Multiple Keywords can be Seperated by Comma",
+                "class": "form-control",
+            }
+        ))
+
+    class Meta:
+        model = ArticleDetail
+        fields = '__all__'

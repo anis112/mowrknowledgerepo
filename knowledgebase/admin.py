@@ -7,8 +7,6 @@ from .models import (Article, ArticleCategory, ArticleDetail,
 # Register your models here.
 
 
-
-
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ['id', 'organization_name', 'short_name',
@@ -39,7 +37,7 @@ class DocumentAdmin(admin.ModelAdmin):
     #autocomplete_fields = ['article_category']
     list_display = ['id', 'parent_id', 'organization', 'data_category',
                     'title', 'author', 'access_category']
-    list_editable = ['parent_id', 'organization', 'data_category']
+    list_editable = ['data_category', 'access_category']
     list_per_page = 50
     list_filter = ['organization', 'data_category', 'access_category']
     search_fields = ['title__istartswith']

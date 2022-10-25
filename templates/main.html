@@ -13,7 +13,8 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    
-                
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/sharp-solid.css">
@@ -33,7 +34,7 @@
         <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
         <link rel="stylesheet" href="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">        
     
         <style>
 
@@ -257,16 +258,25 @@
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
                             </li>
+
                             <li class="nav-item dropdown submenu">
-                                {% if user.is_authenticated %}    
-                                Hi {{ user.username }}!  
-                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/logout' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>                                                            
-                                                
-                                                           
+                                {% if user.is_authenticated  %}  
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Hi {{ user.username }}!
+                                </a>
+                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a href={% url 'accounts/user_profile' user.username %} class="nav-link">View profile</a></li>
+                                    <li class="nav-item"><a href={% url 'accounts/logout' %} class="nav-link">Logout</a></li>                                 
+                                    <li class="nav-item"><a href={% url 'accounts/user_list' user.organization_id %} class="nav-link">User List</a></li>
+
+                                </ul>
                                 {% else %}
-                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>                                                            
+                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
                                 {% endif %}
                             </li>
+
+                           
                         </ul>
                     </div>
                 </div>
@@ -424,6 +434,10 @@
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
         <script src="{% static 'js/pre-loader.js' %}"> </script>
         <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
         <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -437,6 +451,29 @@
         <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
         <script src="{% static 'assets/counterup/jquery.waypoints.min.js' %}"></script>
         <script src="{% static 'assets/tooltipster/js/tooltipster.bundle.min.js' %}"></script>
+
         <script src="{% static 'js/main.js' %}"></script>
+
+        <script>
+            $('#tblDocument').DataTable({
+                // paging: true,
+                // pageLength: 10,
+                // lengthChange: true,
+                // autoWidth: true,
+                // searching: true,
+                // bInfo: true,
+                // bSort: true
+            })
+
+            $('#tblOrganization').DataTable({
+                // paging: true,
+                // pageLength: 10,
+                // lengthChange: true,
+                // autoWidth: true,
+                // searching: true,
+                // bInfo: true,
+                // bSort: true
+            })
+        </script>
     </body>
 </html>

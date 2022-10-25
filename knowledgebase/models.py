@@ -60,7 +60,7 @@ class DataAccessCategory(models.Model):
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
-    parent_id = models.PositiveBigIntegerField(null=True)
+    parent_id = models.PositiveBigIntegerField(null=True, blank=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
     data_category = models.ForeignKey(
@@ -71,20 +71,21 @@ class Document(models.Model):
     # org_sub_category_id = models.ForeignKey("OrgSubCategory", on_delete=models.PROTECT, null=True)
     # org_sub_sub_category_id = models.ForeignKey("OrgSubSubCategory", on_delete=models.PROTECT, null=True)
     title = models.CharField(max_length=500)
-    subject = models.CharField(max_length=500)
+    subject = models.CharField(max_length=500, blank=True)
     description = models.TextField(null=True, blank=True)
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=100, blank=True)
     access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True)
-    publication_date = models.DateTimeField(null=True)
-    file_name = models.FileField(max_length=500)
+    publication_date = models.CharField(max_length=50, null=True, blank=True)
+    file_name = models.FileField(
+        upload_to='static/document', max_length=500, null=True, blank=True)
     thumbnail = models.ImageField(
-        upload_to='mowrknowledgerepo/static/img', null=True)
-    keywords = models.CharField(max_length=1000)
-    entry_date = models.DateTimeField(auto_now_add=True, null=True)
-    entry_by = models.CharField(max_length=100)
-    modified_date = models.DateTimeField(auto_now=True, null=True)
-    modified_by = models.CharField(max_length=100)
+        upload_to='static/img', null=True, blank=True)
+    keywords = models.CharField(max_length=1000, null=True, blank=True)
+    entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    entry_by = models.CharField(max_length=100, null=True, blank=True)
+    modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
+    modified_by = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
@@ -96,27 +97,29 @@ class Document(models.Model):
 
 class ArticleDetail(models.Model):
     id = models.AutoField(primary_key=True)
-    parent_id = models.PositiveBigIntegerField(null=True)
+    parent_id = models.PositiveBigIntegerField(null=True, blank=True)
     organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, null=True)
+        Organization, on_delete=models.PROTECT, null=True, blank=True)
     data_category = models.ForeignKey(
-        DataCategory, on_delete=models.PROTECT, null=True)
+        DataCategory, on_delete=models.PROTECT, null=True, blank=True)
     title = models.CharField(max_length=500)
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    author = models.CharField(max_length=100)
+    author = models.CharField(max_length=100, null=True, blank=True)
     access_category = models.ForeignKey(
-        DataAccessCategory, on_delete=models.PROTECT, null=True)
-    publication_date = models.DateTimeField(null=True)
-    file_name = models.FileField()
-    thumbnail = models.ImageField(upload_to='mowrknowledgerepo/static/img')
-    is_published = models.BooleanField(null=True)
-    source = models.CharField(max_length=500)
-    keywords = models.CharField(max_length=500)
-    entry_date = models.DateTimeField(auto_now_add=True)
-    entry_by = models.CharField(max_length=100)
-    modified_date = models.DateTimeField(auto_now=True, null=True)
-    modified_by = models.CharField(max_length=100)
+        DataAccessCategory, on_delete=models.PROTECT, null=True, blank=True)
+    publication_date = models.CharField(max_length=50, null=True, blank=True)
+    file_name = models.FileField(
+        upload_to='static/article', null=True, blank=True)
+    thumbnail = models.ImageField(
+        upload_to='static/img', null=True, blank=True)
+    is_published = models.BooleanField(null=True, blank=True)
+    source = models.CharField(max_length=500, null=True, blank=True)
+    keywords = models.CharField(max_length=1000, null=True, blank=True)
+    entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    entry_by = models.CharField(max_length=100, null=True, blank=True)
+    modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
+    modified_by = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
