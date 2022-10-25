@@ -43,7 +43,23 @@
                             <tr>
                                 <th>Is Active ?</th>
                                 <td>{{user.is_active}}</td>                              
-                            </tr>                           
+                            </tr>    
+                             
+                            <tr>
+                                <th>User Groups</th>
+                                <td>
+                                    {% for stuff in user.groups.all %}
+                                    {% comment %} {{user.groups.all.0.name}} {% endcomment %}
+                                    
+                                    {% if user.groups.all.count > 1 %}
+                                        {{stuff.name}} |
+                                    {% else %}
+                                        {{stuff.name}}
+                                    {% endif %}
+
+                                    {% endfor %}
+                                </td>                              
+                            </tr>                       
                         </tbody>
                     </table>
                 </div>
