@@ -126,6 +126,13 @@ def addOrganization(request):
     return render(request, 'organization/add.html', context)
 
 
+def viewOrganization(request):
+    organizations = Organization.objects.all()
+    context = {'organizations': organizations}
+
+    return render(request, 'organization/view.html', context)
+
+
 def addDocument(request):
     form = DocumentForm()
     if request.method == 'POST':
