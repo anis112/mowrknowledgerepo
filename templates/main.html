@@ -177,6 +177,20 @@
             <!-- navbar with menu section -->
             <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%);" >
                 <!--  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%);  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
+                <div class="animated-waves">
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
+                    </svg>
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
+                    </svg>
+                </div>
+                
+                
                 <div class="container-fluid">
                     <a class="navbar-brand sticky_logo" href="/">
                         <!-- customized logo -->
@@ -205,7 +219,7 @@
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
                             </li>
-                            <li class="nav-item dropdown submenu">
+                            <!-- <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="{% url 'article' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Base</a>
                             </li>
                             <li class="nav-item dropdown submenu">
@@ -213,6 +227,32 @@
                             </li>
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analysis & Reporting</a>
+                            </li> -->
+
+                            {% if user.is_authenticated %}  
+                            <li class="nav-item dropdown submenu">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Data Management <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
+                                   data-toggle="dropdown"></i>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a href="#" class="nav-link">Upload Document</a> </li>
+                                    <li class="nav-item"><a href="#" class="nav-link">Data Entry</a></li>
+                                    <!-- <li class="nav-item"><a href="#" class="nav-link">Others</a> </li> -->
+                                </ul>
+                            </li>
+                            {% endif %}
+
+                            <li class="nav-item dropdown submenu">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Search <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
+                                   data-toggle="dropdown"></i>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a href="{% url 'orgsearch' %}" class="nav-link">Search by Organization</a> </li>
+                                    <li class="nav-item"><a href="{% url 'docsearch' %}" class="nav-link">Search by Document Type</a></li>
+                                    <li class="nav-item"><a href="{% url 'national_international' %}" class="nav-link">Search Other Document(s)</a> </li>
+                                </ul>
                             </li>
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
@@ -270,7 +310,7 @@
 
             <!-- <br /> -->
 
-            <div class="body_wrapper" style="margin-top: 100px; min-height: 800px;">
+            <div class="body_wrapper" style="margin-top: 100px; min-height: 820px;">
 
             {% block content %}
 
@@ -295,22 +335,6 @@
                             <defs></defs>
                             <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
                         </svg>
-
-                        
-
-                        <!-- <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" style="height:100%; width:100%;">                    
-                            <defs>
-                                <path id="animated-wave-four" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                            </defs>
-                            <g class="parallax">                
-                                <use xlink:href="#animated-wave-four" x="50" y="0" fill="#2595ea35"/>  fill="#2475ed35"
-                                <use xlink:href="#animated-wave-four" x="50" y="2" fill="#2595ea50"/>  fill="#2578df50"
-                                <use xlink:href="#animated-wave-four" x="50" y="4" fill="#2595ea65"/>  fill="#2873ea65"
-                                <use xlink:href="#animated-wave-four" x="50" y="6" fill="#2595ea25"/>  fill="#2873ea25"                 
-                            </g>
-                        </svg> -->
-
-
                     </div>
                     <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
                     <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
@@ -322,7 +346,7 @@
 
                     <div class="row" style="min-height: 50px; padding: 10px; border-bottom: 1px solid #004262; background: rgba(0,0,0,0.1); ">    <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
                         <div class="col-lg-12 text-center">
-                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="#">Knowledge Base</a> | <a href="#">Research & Publications</a> | <a href="#">Analysis & Reporting</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="{% url 'orgsearch' %}">Search by Organization</a> | <a href="{% url 'docsearch' %}">Search by Document Type</a> | <a href="{% url 'national_international' %}">Other Document(s) Search</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
                         </div>
                     </div>
                     
@@ -336,7 +360,7 @@
                                 <label style="color:#dfdfdf;">© 2022 <a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a> | All Rights Reserved.</label>
                                 <!-- <br>    -->
                             </div>
-                            <div class="col-md-4 text-center pt-3 pb-3">
+                            <div class="col-md-4 text-center pt-3 pb-3 pt-md-1 pb-md-0">
                                 <!-- <label>Organizations</label>
                                 <br> -->
                                 <div class="logo_round"><img src="/static/img/article_logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;"><br><label>BWDB</label></div>
