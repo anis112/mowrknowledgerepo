@@ -126,6 +126,13 @@ def addOrganization(request):
     return render(request, 'organization/add.html', context)
 
 
+def viewOrganization(request):
+    organizations = Organization.objects.all()
+    context = {'organizations': organizations}
+
+    return render(request, 'organization/view.html', context)
+
+
 def addDocument(request):
     form = DocumentForm()
     if request.method == 'POST':
@@ -148,3 +155,10 @@ def addArticleDetail(request):
 
     context = {'form': form}
     return render(request, 'articledetail/add.html', context)
+
+
+def viewDocument(request):
+    documents = Document.objects.all()
+    context = {'documents': documents}
+
+    return render(request, 'document/view.html', context)
