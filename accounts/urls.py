@@ -11,8 +11,8 @@ urlpatterns = [
     path('user_list/<organization_id>', views.user_list,name="accounts/user_list"),
     path('edit_user/<id>', views.edit_user,name="accounts/edit_user"), 
 ]
-from django.contrib import admin
+# from django.contrib import admin
 
-admin.site.site_header = 'knowledgebase'                    # default: "Django Administration"
-admin.site.index_title = 'knowledgebase'                 # default: "Site administration"
-admin.site.site_title = 'knowledgebasem Adminsitration' # default: "Django site admin"
+# admin.site.site_header = 'knowledgebase'                    # default: "Django Administration"
+# admin.site.index_title = 'knowledgebase'                 # default: "Site administration"
+# admin.site.site_title = 'knowledgebasem Adminsitration' # default: "Django site admin"
