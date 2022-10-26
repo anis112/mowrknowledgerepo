@@ -139,6 +139,18 @@
             <!-- navbar with menu section -->
             <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%); ">
                 <!-- linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%); linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
+                <div class="animated-waves">
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
+                    </svg>
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
+                    </svg>                    
+                </div>
                 <div class="container-fluid">
                     <a class="navbar-brand sticky_logo" href="/">
                         <!-- customized logo -->
@@ -243,7 +255,7 @@
 
                     <div class="row" style="min-height: 50px; padding: 10px; border-bottom: 1px solid #004262; background: rgba(0,0,0,0.1); ">    <!-- background: rgba(0,0,0,0.05); background: #E4EEF0;   #00026a -->
                         <div class="col-lg-12 text-center">
-                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="#">Knowledge Base</a> | <a href="#">Research & Publications</a> | <a href="#">Analysis & Reporting</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="{% url 'orgsearch' %}">Search by Organization</a> | <a href="{% url 'docsearch' %}">Search by Document Type</a> | <a href="{% url 'national_international' %}">Other Document(s) Search</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
                         </div>
                     </div>
                     
@@ -257,7 +269,7 @@
                                 <label style="color:#dfdfdf;">© 2022 <a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a> | All Rights Reserved.</label>
                                 <!-- <br>    -->
                             </div>
-                            <div class="col-lg-4 text-center pt-3 pb-3">
+                            <div class="col-lg-4 text-center pt-3 pb-3 pt-md-1 pb-md-0">
                                 <!-- <label>Organizations</label>
                                 <br> -->
                                 <div class="logo_round"><img src="/static/img/article_logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;"><br><label>BWDB</label></div>
