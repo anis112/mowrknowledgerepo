@@ -78,7 +78,9 @@ def user_profile(request, username):
     return render(request, 'user_profile.html', {"user":user})
 
 def user_list(request,organization_id=None,hash=None):
-    # if not organization_id:
+    if organization_id==None:
+        messages.add_message(request, constants.WARNING, 'You are not a organizational admin user.') 
+        return render(request, 'user_list.html')
     #     return HttpResponse(request, 'user_list.html')
     # if hash:
     #     chash = sha1("secret_word%s"%organization_id).hexdigest()

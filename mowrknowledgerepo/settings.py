@@ -32,13 +32,14 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
+    'knowledgebase',
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'knowledgebase',
     'accounts',
     'crispy_forms',
     "debug_toolbar",  # debug_toolbar

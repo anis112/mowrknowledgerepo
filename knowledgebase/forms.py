@@ -113,6 +113,7 @@ class OrganizationForm(forms.ModelForm):
 
 
 class DocumentForm(forms.ModelForm):
+
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -142,18 +143,24 @@ class DocumentForm(forms.ModelForm):
                 "class": "form-control",
             }
         ))
-    # data_category = forms.ChoiceField(
-    #     widget=forms.Select(
-    #         attrs={
-    #             "class": "form-control",
-    #         }
-    #     ))
+    
+    data_category = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+                "name":"data_category",
+                "id":"id_data_category"
+            }
+        ))
+    
     # access_category = forms.ChoiceField(
     #     widget=forms.Select(
     #         attrs={
     #             "class": "form-control",
     #         }
     #     ))
+    
+    
     publication_date = forms.CharField(
         widget=forms.TextInput(
             attrs={
