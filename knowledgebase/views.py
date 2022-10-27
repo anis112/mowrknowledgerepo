@@ -9,6 +9,7 @@ from django.shortcuts import redirect, render
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticlePublishCategory,
                      DataCategory, Document, Organization)
+from accounts.models import CustomUser
 
 # Create your views here.
 
@@ -37,9 +38,9 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-
 def home2(request):
     return render(request, 'home2.html')
+
 
 def home3(request):
     return render(request, 'home3.html')
@@ -140,6 +141,9 @@ def addDocument(request):
         if form.is_valid():
             form.save()
             return redirect('/')
+
+    if request.user.is_authenticated:
+        user = CustomUser.objects.get(pk=request.user.id)
 
     context = {'form': form}
     return render(request, 'document/add.html', context)

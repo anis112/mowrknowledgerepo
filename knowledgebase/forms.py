@@ -1,7 +1,7 @@
 from dataclasses import fields
 from django import forms
 
-from .models import ArticleDetail, Organization, Document
+from .models import ArticleDetail, DataAccessCategory, DataCategory, Organization, Document
 
 
 class OrganizationForm(forms.ModelForm):
@@ -113,6 +113,10 @@ class OrganizationForm(forms.ModelForm):
 
 
 class DocumentForm(forms.ModelForm):
+    data_category_list = DataCategory.objects.values_list(
+        "id", "category_name")
+    access_category_list = DataAccessCategory.objects.values_list(
+        "id", "category_name")
 
     title = forms.CharField(
         widget=forms.TextInput(
@@ -143,24 +147,21 @@ class DocumentForm(forms.ModelForm):
                 "class": "form-control",
             }
         ))
-    
+
     data_category = forms.ChoiceField(
         widget=forms.Select(
             attrs={
-                "class": "form-control",
-                "name":"data_category",
-                "id":"id_data_category"
+                "class": "form-control"
             }
-        ))
-    
-    # access_category = forms.ChoiceField(
-    #     widget=forms.Select(
-    #         attrs={
-    #             "class": "form-control",
-    #         }
-    #     ))
-    
-    
+        ), choices=data_category_list)
+
+    access_category = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+            }
+        ), choices=access_category_list)
+
     publication_date = forms.CharField(
         widget=forms.TextInput(
             attrs={
