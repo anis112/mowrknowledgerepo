@@ -543,7 +543,6 @@ p kbd {
   font-size: 24px;
   font-weight: 600;
   background: -webkit-linear-gradient(-90deg, #20273a, #4e5c7a);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
