@@ -262,13 +262,14 @@
                             <li class="nav-item dropdown submenu">
                                 {% if user.is_authenticated  %}  
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Hi {{ user.username }}!
+                                    Hi {{ user.username }}! <i class="fa-sharp fa-solid fa-caret-down"></i>
                                 </a>
                                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a href={% url 'accounts/user_profile' user.username %} class="nav-link">View profile</a></li>
                                     <li class="nav-item"><a href={% url 'accounts/logout' %} class="nav-link">Logout</a></li>                                 
                                     <li class="nav-item"><a href={% url 'accounts/user_list' user.organization_id %} class="nav-link">User List</a></li>
+                                    <li class="nav-item"><a href='/admin/' class="nav-link">Manage Data</a></li>
 
                                 </ul>
                                 {% else %}

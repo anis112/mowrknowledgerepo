@@ -26,5 +26,13 @@ brand-link navbar-success:hover{
 color: #ffffff !important;
 }
 [class*=sidebar-dark-] {
-    background-color: #0c84f4;
+    background-color: #193757;
+}
+/* .float-right .d-none .d-sm-inline b{
+    color: white!important;
+
+} */
+b{
+    color: white!important;
+    display: none;
 }

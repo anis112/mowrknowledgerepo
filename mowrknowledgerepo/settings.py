@@ -158,13 +158,13 @@ JAZZMIN_SETTINGS = {
     "site_title": "knowledgebase",
     "site_header": "knowledgebase",
     "site_brand": "knowledgebase",
-    "site_icon": "images/favicon.png",
+    "site_icon": "img/favicon.ico",
     # Add your own branding here
-    "site_logo": None,
-    "welcome_sign": "Welcome to the your_site_name",
+    "site_logo": "logo/bd_logo.png",
+    "welcome_sign": "Welcome to the knowledgebase respository",
     # Copyright on the footer
-    "copyright": '<label style="color:#dfdfdf;"><a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a> | </label>',
-    "user_avatar": None,
+    "copyright": '<label style="color:#dfdfdf;"> | <a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a></label>',
+    "user_avatar": "img/knowledge_logo_w.png",
     ############
     # Top Menu #
     ############
@@ -205,7 +205,7 @@ JAZZMIN_SETTINGS = {
     # Relative paths to custom CSS/JS scripts (must be present in static files)
     # Uncomment this line once you create the bootstrap-dark.css file
     # "custom_css": "css/bootstrap-dark.css",
-    "custom_js": None,
+    "custom_js": "js/jazzmin-admin-panel.js",
     # Whether to show the UI customizer on the sidebar
     "show_ui_builder": False,
     ###############
@@ -217,7 +217,7 @@ JAZZMIN_SETTINGS = {
         "auth.user": "collapsible",
         "auth.group": "vertical_tabs",
     },
-    # "custom_css": "css/bootstrap-dark.css",
+    "custom_css": "css/jazzmin-admin-panel.css",
 }
 # JAZZMIN_UI_TWEAKS = {
 #     "navbar_small_text": False,
