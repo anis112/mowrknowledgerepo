@@ -10,8 +10,9 @@ from django.contrib.messages import constants
 
 from accounts.models import CustomUser
 
-from .forms import CustomUserForm
-from django.contrib.auth.decorators import login_required
+from .forms import CustomUserForm, ChangeCustomUserForm
+from django.contrib.auth.decorators import login_required,permission_required
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 
@@ -26,18 +27,21 @@ def login(request):
             upassword=form.cleaned_data['password']           
             user = authenticate(username=uname, password=upassword)
             if user.is_active:
-                if user.is_superuser or user.is_staff:
+                if user.is_superuser:
                     auth_login(request,user)
                     return redirect('/admin')  # or your url name
                 elif user.is_staff:
-                    return redirect('/')  # or your url name
+                    auth_login(request,user)
+                    return redirect('/knowledgebase/dashboard')  # or your url name
                 else:
                     auth_login(request,user)
                     return redirect('/knowledgebase/dashboard/')
             else:
-                messages.add_message(request, constants.SUCCESS, 'Invalid username or password ')  
-                form=AuthenticationForm()
-                return render(request, 'login.html',{'form':form})     
+                raise ValidationError("This account is inactive.",code='inactive',)
+            
+                # messages.add_message(request, constants.SUCCESS, 'Invalid username or password ')  
+                # form=AuthenticationForm()
+                # return render(request, 'login.html',{'form':form})     
     
         else:  
             messages.add_message(request, constants.SUCCESS, 'Invalid username or password ') 
@@ -45,8 +49,11 @@ def login(request):
             return render(request, 'login.html',{'form':form})     
 
     else:
-        form=AuthenticationForm()
-        return render(request, 'login.html',{'form':form})    
+        if request.user.is_authenticated:
+            return redirect('/accounts/profile/'+request.user.username)
+        else:
+            form=AuthenticationForm()
+            return render(request, 'login.html',{'form':form})    
 
 def logout(request):
     logout_view(request)
@@ -65,6 +72,52 @@ def signup(request):
         'form': form
         })
 @login_required
+# @permission_required('polls.add_choice', raise_exception=True)
 def user_profile(request, username):
     user = CustomUser.objects.get(username=username)
     return render(request, 'user_profile.html', {"user":user})
+
+def user_list(request,organization_id=None,hash=None):
+    if request.user.is_superuser:
+        return redirect('/admin/accounts/customuser/') 
+    elif organization_id==None:
+        messages.add_message(request, constants.WARNING, 'You are not a organizational admin user.') 
+        return render(request, 'user_list.html')
+    #     return HttpResponse(request, 'user_list.html')
+    # if hash:
+    #     chash = sha1("secret_word%s"%organization_id).hexdigest()
+    #     if not chash==hash:
+    #         if request.user.is_organization_admin==True:
+    #             user_list = CustomUser.objects.filter(organization_id=organization_id)
+    #             return HttpResponse(request, 'user_list.html', {"user_list":user_list})
+    #         else:    
+    #             messages.add_message(request, constants.WARNING, 'You are not a organizational admin user.') 
+    #             return render(request, 'user_list.html')
+        
+    if request.user.is_organization_admin==True:
+        user_list = CustomUser.objects.filter(organization_id=organization_id)
+        return render(request, 'user_list.html', {"user_list":user_list})
+    
+        
+    
+    else:    
+        messages.add_message(request, constants.WARNING, 'You are not a organizational admin user.') 
+        return render(request, 'user_list.html')
+
+def edit_user(request,id):
+    if request.method == 'POST':
+        user = CustomUser.objects.get(id=id)
+        form = ChangeCustomUserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('/knowledgebase/dashboard/')   
+    else:    
+        
+        user = CustomUser.objects.get(id=id)
+        form = ChangeCustomUserForm(instance=user)
+        return render(request, 'edit_user.html', {"form":form})
+
+
+# def manage_data(request):
+#     return redirect('/admin/') 
+    

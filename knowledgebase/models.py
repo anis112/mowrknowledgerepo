@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+#from accounts.models import CustomUser
 
 # Create your models here.
 
@@ -76,7 +77,7 @@ class Document(models.Model):
     author = models.CharField(max_length=100, blank=True)
     access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True)
-    publication_date = models.DateTimeField(null=True, blank=True)
+    publication_date = models.CharField(max_length=50, null=True, blank=True)
     file_name = models.FileField(
         upload_to='static/document', max_length=500, null=True, blank=True)
     thumbnail = models.ImageField(
@@ -84,6 +85,7 @@ class Document(models.Model):
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     entry_by = models.CharField(max_length=100, null=True, blank=True)
+    #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True)
 
@@ -108,7 +110,7 @@ class ArticleDetail(models.Model):
     author = models.CharField(max_length=100, null=True, blank=True)
     access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True, blank=True)
-    publication_date = models.DateTimeField(null=True, blank=True)
+    publication_date = models.CharField(max_length=50, null=True, blank=True)
     file_name = models.FileField(
         upload_to='static/article', null=True, blank=True)
     thumbnail = models.ImageField(
@@ -117,6 +119,7 @@ class ArticleDetail(models.Model):
     source = models.CharField(max_length=500, null=True, blank=True)
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     entry_by = models.CharField(max_length=100, null=True, blank=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True)
@@ -182,7 +185,7 @@ class Article(models.Model):
         ArticleCategory, on_delete=models.PROTECT, null=True)
     publish_category = models.ForeignKey(
         ArticlePublishCategory, on_delete=models.PROTECT)
-
+    #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
 

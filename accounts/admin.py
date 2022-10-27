@@ -54,5 +54,13 @@ class CustomUserAdmin(UserAdmin):
             'fields': ('is_organization_admin', 'organization')
         })
     )
-
+class DomainPrincipalAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user:
+            qs = qs.filter(organization_id = request.organization_id)
+        return qs
+    
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
