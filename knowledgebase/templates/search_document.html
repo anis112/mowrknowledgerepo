@@ -4,8 +4,6 @@
 
 {% block content %}
 
-
-
 {% comment %} {%
     org_infos = [
         {
@@ -21,6 +19,10 @@
  {% endcomment %}
 
 <style>
+
+    html {
+        scroll-behavior: smooth;
+    }
 
     .container {
         max-width: 100% !important;
@@ -257,132 +259,6 @@
 </div>
 
 
-{% comment %} <!-- List of Organization -->
-<section class="doc_categories_guide_area sec_pad">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- <div class="section_title text-center" style="margin-bottom: 10px;">
-                    <h5 class="wow fadeInUp">List of Organization</h5>
-                </div> -->
-                <div class="row">
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" for="customCheck" data-bs-toggle="tooltip"
-                            data-bs-html="true" title="Bangladesh Water Development Board"
-                            style="background-image: url(/static/img/banner_back/bann1.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <!-- <div class="form-check" style="float: right; bottom: 12px; right: -13px;"> 
-                                <input class="form-check-input" type="checkbox" role="switch" value="" id="flexCheckDefault">                                
-                            </div>  -->
-                            <!-- <div class="custom-control form-control-lg custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
-                            </div>                             -->
-                            <div class="custom-control custom-checkbox mb-3" style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="example1">
-                                <label class="custom-control-label" for="customCheck1"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" />
-                            <span style="color:#4F5773;">BWDB</span>
-                            <!-- <p style="color:#4F5773;">Bangladesh Water Development Board</p> -->
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                            title="River Research Institute (RRI)" data-wow-delay="0.4s"
-                            style="background-image: url(/static/img/banner_back/bann19.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="example2">
-                                <label class="custom-control-label" for="customCheck2"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img"
-                                style="width: 50px;" />
-                            <span style="color:#4F5773;">RRI</span>
-                            <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                            title="Joint Rivers Commission, Bangladesh" data-wow-delay="0.8s"
-                            style="background-image: url(/static/img/banner_back/bann5.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="example3">
-                                <label class="custom-control-label" for="customCheck3"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" />
-                            <span style="color:#4F5773;">JRC</span>
-                            <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                            title="Department of Bangladesh Haor and Wetlands Development" data-wow-delay="1.2s"
-                            style="background-image: url(/static/img/banner_back/bann13.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="example4">
-                                <label class="custom-control-label" for="customCheck4"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="" class="org-img" />
-                            <span style="color:#4F5773;">DBHWD</span>
-                            <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                            title="Water Resources Planning Organization (WARPO)" data-wow-delay="1.6s"
-                            style="background-image: url(/static/img/banner_back/bann15.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="example5">
-                                <label class="custom-control-label" for="customCheck5"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" />
-                            <span style="color:#4F5773;">WARPO</span>
-                            <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                            title="Institute of Water Modelling" data-wow-delay="2s"
-                            style="background-image: url(/static/img/banner_back/bann18.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck6" name="example6">
-                                <label class="custom-control-label" for="customCheck6"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" />
-                            <span style="color:#4F5773;">IWM</span>
-                            <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Institute of Water Modelling</p> -->
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                            title="Center for Environmental and Geographic Information Services (CEGIS)"
-                            data-wow-delay="2.4s"
-                            style="background-image: url(/static/img/banner_back/bann4.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">
-                            <div class="custom-control custom-checkbox mb-3"
-                                style="float: right; bottom: 15px; right: -11px;">
-                                <input type="checkbox" class="custom-control-input" id="customCheck7" name="example7">
-                                <label class="custom-control-label" for="customCheck7"></label>
-                            </div>
-                            <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"
-                                style="margin-top: 10px;" />
-                            <span style="color:#4F5773;">CEGIS</span>
-                            <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
- {% endcomment %}
-
 
 <div class="row mt-3">
         
@@ -397,112 +273,28 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="row">
+                                                
+                                            {% for org_info in org_infos %}
+
                                             <div class="col-md text-center">
-                                                <label for="src_orgs_1">
+                                                <label for="src_org_{{org_info.short_name}}">
                                                     <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true"
-                                                        style="background-image: url(/static/img/banner_back/bann1.jpg);" title="Bangladesh Water Development Board(BWDB)">                                                    
+                                                        style="background-image: url(/static/img/org_img/bg/{{org_info.short_name}}.jpg);" title="{{org_info.name}} ({{org_info.short_name}})">                                                    
                                                         
-                                                        <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Bangladesh Water Development Board(BWDB)" class="org-img" />
+                                                        <img src="{% static 'img/org_img/logo/{{org_info.short_name}}.png' %}" alt="{{org_info.name}} ({{org_info.short_name}})" class="org-img" />
                                                         <br />
                                                         <label style="color:#4F5773;">
-                                                            BWDB
-                                                            <input type="checkbox" class="control-input" id="src_orgs_1" name="src_orgs" value="1" >
+                                                            {{org_info.short_name}}
+                                                            <input type="checkbox" class="control-input" id="src_orgs_{{org_info.short_name}}" name="src_orgs" 
+                                                                    value="{{org_info.id}}" {% if org_info.id in src_orgs %} checked {% else %} '' {% endif %} />
+                                                            {% comment %} <input type="checkbox" class="control-input" id="src_orgs_{{org_info.short_name}}" name="src_orgs" 
+                                                                    value="{{org_info.id}}" {% if org_info.id in org_ids %} checked {% else %} '' {% endif %} /> {% endcomment %}
                                                         </label>
                                                     </div>
                                                 </label>
                                             </div>
 
-                                            <div class="col-md text-center">
-                                                <label for="src_orgs_2">
-                                                    <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true" data-wow-delay="0.20s"
-                                                        style="background-image: url(/static/img/banner_back/bann19.jpg);" title="River Research Institute (RRI)">
-                                                        
-                                                        <img src="{% static 'img/article_logo/rri.png' %}" alt="River Research Institute (RRI)" class="org-img" style="width: 72px;" />
-                                                        <br />
-                                                        <label style="color:#4F5773;">
-                                                            RRI
-                                                            <input type="checkbox" class="control-input" id="src_orgs_2" name="src_orgs" value="2">
-                                                        </label>
-                                                            
-                                                    </div>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md text-center">
-                                                <label for="src_orgs_3">
-                                                    <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true" data-wow-delay="0.25s"
-                                                        style="background-image: url(/static/img/banner_back/bann5.jpg);" title="Joint Rivers Commission, Bangladesh(JRC)">
-                                                        
-                                                        <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="Joint Rivers Commission, Bangladesh(JRC)" class="org-img" />
-                                                        <br />
-                                                        <label style="color:#4F5773;">
-                                                            JRC
-                                                            <input type="checkbox" class="control-input" id="src_orgs_3" name="src_orgs" value="3">
-                                                        </label>
-                                                    </div>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md text-center">
-                                                <label for="src_orgs_4">
-                                                    <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true" data-wow-delay="0.50s"
-                                                        style="background-image: url(/static/img/banner_back/bann13.jpg);" title="Department of Bangladesh Haor and Wetlands Development(DBHWD)">
-                                                        
-                                                        <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="Department of Bangladesh Haor and Wetlands Development(DBHWD)" class="org-img" />
-                                                        <br />
-                                                        <label style="color:#4F5773;">
-                                                            DBHWD
-                                                            <input type="checkbox" class="control-input" id="src_orgs_4" name="src_orgs" value="4">
-                                                        </label>
-                                                    </div>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md text-center">
-                                                <label for="src_orgs_5">
-                                                    <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true" data-wow-delay="0.75s"
-                                                        style="background-image: url(/static/img/banner_back/bann15.jpg);" title="Water Resources Planning Organization(WARPO)">
-                                                        
-                                                        <img src="{% static 'img/article_logo/WARPO.png' %}" alt="Water Resources Planning Organization(WARPO)" class="org-img" style="margin-top:15px; margin-bottom:17px;" />
-                                                        <br />
-                                                        <label style="color:#4F5773;">
-                                                            WARPO
-                                                            <input type="checkbox" class="control-input" id="src_orgs_5" name="src_orgs" value="5">
-                                                        </label>
-                                                    </div>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md text-center">
-                                                <label for="src_orgs_6">
-                                                    <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true" data-wow-delay="1.0s"
-                                                        style="background-image: url(/static/img/banner_back/bann18.jpg);" title="Institute of Water Modelling(IWM)">
-
-                                                        <img src="{% static 'img/article_logo/iwm.png' %}" alt="Institute of Water Modelling(IWM)" class="org-img" style="margin-top:5px; margin-bottom:20px;" />
-                                                        <br />
-                                                        <label style="color:#4F5773;">
-                                                            IWM
-                                                            <input type="checkbox" class="control-input" id="src_orgs_6" name="src_orgs" value="6">
-                                                        </label>
-                                                    </div>
-                                                </label>
-                                            </div>
-
-                                            <div class="col-md text-center">
-                                                <label for="src_orgs_7">
-                                                    <div class="text-center org-content wow fadeInUp" data-bs-toggle="tooltip" data-bs-html="true" data-wow-delay="1.25s"
-                                                        style="background-image: url(/static/img/banner_back/bann4.jpg);" title="Center for Environmental and Geographic Information Services(CEGIS)">
-                                                        
-                                                        <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="Center for Environmental and Geographic Information Services(CEGIS)" class="org-img" style="margin-top:20px; margin-bottom:30px;" />
-                                                        <br />
-                                                        <label style="color:#4F5773;">
-                                                            CEGIS
-                                                            <input type="checkbox" class="control-input" id="src_orgs_7" name="src_orgs" value="7">
-                                                        </label>
-                                                    </div>
-                                                </label>
-                                            </div>
-
+                                            {% endfor %}
 
                                         </div>
 
@@ -518,6 +310,7 @@
                                     <div class="input-group">
                                         <input type="search" id="search_term" name="search_term" class="form-control" placeholder='Search ("/" to focus)' value='{{ search_term }}' />
                                         <div class="input-group-append">
+                                            {% comment %} <select class="custom-select" id="src_doc_cats" name="src_doc_cats" items="doc_cats" multiple="multiple"> {% endcomment %}
                                             <select class="custom-select" id="src_doc_cats" name="src_doc_cats" multiple="multiple">
                                                 <option value="" selected>All Categories</option>
                                                 <option value="1">Knowledge Base</option>
@@ -541,6 +334,87 @@
 
             <br />
 
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark align-items-start flex-sm-column flex-row">
+                <a class="navbar-brand" href="#"><i class="fa fa-bullseye fa-fw"></i> Brand</a>
+                <a href class="navbar-toggler" data-toggle="collapse" data-target=".sidebar">
+                    <span class="navbar-toggler-icon"></span>
+                </a>
+                <div class="collapse navbar-collapse sidebar">
+                    <ul class="flex-column navbar-nav w-100 justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link pl-0" href="#"><i class="fa fa-heart-o fa-fw"></i> <span class="">Link</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-0 dropdown-toggle text-nowrap" href="#m1" data-parent="#navbar1" data-toggle="collapse" data-target="#m1" aria-expanded="false">
+                                <i class="fa fa-address-card-o fa-fw"></i> <span class=""> Link</span>
+                            </a>
+                            <div class="collapse" id="m1">
+                                <ul class="flex-column nav">
+                                    <a class="nav-link px-0 text-truncate" href="#">Sub</a>
+                                    <a class="nav-link px-0 text-truncate" href="#">Sub longer</a>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-0" href="#"><i class="fa fa-book fa-fw"></i> <span class="">Link</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link pl-0" href="#"><i class="fa fa-heart fa-fw"></i> <span class="">Link</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="col-sm-2 col-md-2 col-lg-1 col-xl-1">
+                <nav class="navbar navbar-light navbar-expand-sm px-0 flex-row flex-nowrap">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarWEX" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="navbarWEX">
+                        <div class="nav flex-sm-column flex-row">
+                            <a class="nav-item nav-link active" href="#">Home</a>
+                            <a href="#" class="nav-item nav-link">Link</a>
+                            <a href="#" class="nav-item nav-link">Link</a>
+                            <a href="#" class="nav-item nav-link">Link</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <nav id="navbar-example3" class="navbar navbar-light bg-light">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <nav class="nav nav-pills flex-column">
+                  <a class="nav-link" href="#item-1">Item 1</a>
+                  <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+                    <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+                  </nav>
+                  <a class="nav-link" href="#item-2">Item 2</a>
+                  <a class="nav-link" href="#item-3">Item 3</a>
+                  <nav class="nav nav-pills flex-column">
+                    <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
+                    <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
+                  </nav>
+                </nav>
+              </nav>
+              
+              <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+                <h4 id="item-1">Item 1</h4>
+                <p>...</p>
+                <h5 id="item-1-1">Item 1-1</h5>
+                <p>...</p>
+                <h5 id="item-1-2">Item 1-2</h5>
+                <p>...</p>
+                <h4 id="item-2">Item 2</h4>
+                <p>...</p>
+                <h4 id="item-3">Item 3</h4>
+                <p>...</p>
+                <h5 id="item-3-1">Item 3-1</h5>
+                <p>...</p>
+                <h5 id="item-3-2">Item 3-2</h5>
+                <p>...</p>
+              </div>
+              
             <div class="row">
                 
                 <div class="col-md-3">
@@ -562,10 +436,6 @@
 
                         {% comment %} <h4 class="wow fadeInUp org-name-title" data-wow-delay="0.2s">Bangladesh Water Development Board</h4>                                
                         <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px;">APA Activities</a>
-                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Hydrology Related</a>
-                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">NIS Action Plan</a>
-                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">GRS Focal Point</a>
-                        <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Disciplinary Action</a>
                         <a href="#" class="" style="width: 100%; padding: 0px 1px; display: block; font-size: 13px; ">Presentation</a> {% endcomment %}
                    </div>
                 </div>
@@ -576,21 +446,7 @@
                         <h5>Search Result (<strong style="color:#15c; font-size:105%;">{{doc_count}}</strong>)</h5>
                         <hr />
 
-                            {% comment %} <div class="row">
-                                {{ doc }}
-                            </div> {% endcomment %}
-
-                        {% comment %} {% set docTypePre = '' %} {% endcomment %}
                         {% for doc in documents %}
-                            {% comment %} {% set docType = doc.organization.organization_name + '(' + doc.data_category.category_name + ')' %}
-                            {% if docType != docTypePre %}
-                                {% docTypePre = docType %}
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h4 class="wow fadeInUp data-cat-title" data-wow-delay="0.2s">{{docType}})</h4>
-                                    </div>
-                                </div>
-                            {% endif %} {% endcomment %}
 
                             {% ifchanged doc.data_category.category_name %}
                                 <div class="row">
@@ -603,24 +459,24 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <a href="">
-                                        <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                        <div class="community-box wow fadeInUp">
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <div class="icon-container">
-                                                        <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" width="100%" style="max-width: 250px;" />
-                                                        {% comment %} <img src="{% static doc.thumbnail %}" alt="community" width="100%" style="max-width: 250px;" /> {% endcomment %}
+                                                        <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" />
+                                                        {% comment %} <img src="{% static doc.thumbnail %}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-10">
                                                     <table class="table table-striped table-hover w-100 border">
                                                         <tr>
                                                             <td class="font-weight-bold" style="width: 100px;">Title:</td>
-                                                            <td>{{doc.title}}</td>
+                                                            <td>{{doc.title|truncatewords:"200"}}</td>
                                                         </tr>
 
                                                         <tr>
                                                             <td class="font-weight-bold">Subject:</td>
-                                                            {% comment %} <td>{{ doc.subject }}</td> {% endcomment %}
+                                                            {% comment %} <td>{{ doc.subject|truncatewords:"100" }}</td> {% endcomment %}
                                                             <td>{{doc.organization.organization_name}} ({{doc.data_category.category_name}})</td>
                                                         </tr>
 
@@ -658,9 +514,27 @@
         </div>
 </div>
 
-    
 
-<!-- </div> -->
+
+<script>
+
+    $(function() {
+        $("body").scrollspy({target: ".navbar", offset: 50});
+
+        $("#nav ul li a[href^='#']").on("click", function(event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+                var hash = this.hash;
+
+                $('html, body').animate({scrollTop: $(hash).offset().top}, 800, function() {
+                    window.location.hash = hash;
+                });
+            }
+        });
+    });
+
+</script>
+
 
 
 {% endblock %}

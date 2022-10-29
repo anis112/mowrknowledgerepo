@@ -162,10 +162,6 @@ def addArticleDetail(request):
     return render(request, 'articledetail/add.html', context)
 
 
-
-
-
-
 # -------ahi------------
 
     """ keywords = ['funny', 'old', 'black_humor']
@@ -241,7 +237,6 @@ def search_document(request, search_term='', org_ids=None, data_category_ids=Non
     # for c in cat_list:
     #     print(c)
 
-        
     doc_count = len(documents)
 
     if len(documents) < 1:
@@ -253,9 +248,16 @@ def search_document(request, search_term='', org_ids=None, data_category_ids=Non
     # for d in documents:
     #     print(d)
 
+    org_infos = Organization.objects.all()
+
+    doc_cats = DataCategory.objects.all()
+
     context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
-               'search_term': search_term, 'org_ids': org_ids, 'category_ids': data_category_ids, }
-    #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
+               'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+               'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    # context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+    #            'search_term': search_term, 'org_ids': org_ids, 'category_ids': data_category_ids, }
+    # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
 
     return render(request, 'search_document.html', context)
-    
