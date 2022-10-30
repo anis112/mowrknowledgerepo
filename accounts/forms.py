@@ -23,7 +23,6 @@ class CustomUserForm(UserCreationForm):
     #         }
     #     ))
 
-    
 
     class Meta:
         model = CustomUser

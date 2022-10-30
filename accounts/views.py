@@ -78,7 +78,11 @@ def user_profile(request, username):
     return render(request, 'user_profile.html', {"user":user})
 
 def user_list(request,organization_id=None,hash=None):
-    # if not organization_id:
+    if request.user.is_superuser:
+        return redirect('/admin/accounts/customuser/') 
+    elif organization_id==None:
+        messages.add_message(request, constants.WARNING, 'You are not a organizational admin user.') 
+        return render(request, 'user_list.html')
     #     return HttpResponse(request, 'user_list.html')
     # if hash:
     #     chash = sha1("secret_word%s"%organization_id).hexdigest()
@@ -93,6 +97,9 @@ def user_list(request,organization_id=None,hash=None):
     if request.user.is_organization_admin==True:
         user_list = CustomUser.objects.filter(organization_id=organization_id)
         return render(request, 'user_list.html', {"user_list":user_list})
+    
+        
+    
     else:    
         messages.add_message(request, constants.WARNING, 'You are not a organizational admin user.') 
         return render(request, 'user_list.html')
@@ -111,3 +118,6 @@ def edit_user(request,id):
         return render(request, 'edit_user.html', {"form":form})
 
 
+# def manage_data(request):
+#     return redirect('/admin/') 
+    
