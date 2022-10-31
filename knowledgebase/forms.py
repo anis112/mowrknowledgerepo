@@ -113,11 +113,19 @@ class OrganizationForm(forms.ModelForm):
 
 
 class DocumentForm(forms.ModelForm):
+    organization_list = Organization.objects.values_list(
+        "id", "organization_name")
     data_category_list = DataCategory.objects.values_list(
         "id", "category_name")
     access_category_list = DataAccessCategory.objects.values_list(
         "id", "category_name")
 
+    organization = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control"
+            }
+        ), choices=organization_list)
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -183,6 +191,19 @@ class DocumentForm(forms.ModelForm):
 
 
 class ArticleDetailForm(forms.ModelForm):
+    organization_list = Organization.objects.values_list(
+        "id", "organization_name")
+    data_category_list = DataCategory.objects.values_list(
+        "id", "category_name")
+    access_category_list = DataAccessCategory.objects.values_list(
+        "id", "category_name")
+
+    organization = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control"
+            }
+        ), choices=organization_list)
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -212,18 +233,20 @@ class ArticleDetailForm(forms.ModelForm):
                 "class": "form-control",
             }
         ))
-    # data_category = forms.ChoiceField(
-    #     widget=forms.Select(
-    #         attrs={
-    #             "class": "form-control",
-    #         }
-    #     ))
-    # access_category = forms.ChoiceField(
-    #     widget=forms.Select(
-    #         attrs={
-    #             "class": "form-control",
-    #         }
-    #     ))
+    data_category = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control"
+            }
+        ), choices=data_category_list)
+
+    access_category = forms.ChoiceField(
+        widget=forms.Select(
+            attrs={
+                "class": "form-control",
+            }
+        ), choices=access_category_list)
+
     publication_date = forms.CharField(
         widget=forms.TextInput(
             attrs={
