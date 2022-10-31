@@ -33,21 +33,6 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
             return CustomUser.objects.values_list('organization_id','organization__organization_name').distinct()
         elif request.user.is_organization_admin:
             return CustomUser.objects.values_list('organization_id','organization__organization_name').filter(organization_id=request.user.organization_id).distinct()
-    # def queryset(self, request, queryset):
-    #     """
-    #     Returns the filtered queryset based on the value
-    #     provided in the query string and retrievable via
-    #     `self.value()`.
-    #     """
-    #     # Compare the requested value (either '80s' or '90s')
-    #     # to decide how to filter the queryset.
-    #     if self.value() == '80s':
-    #         return queryset.filter(
-    #             birthday__gte=date(1980, 1, 1),
-    #             birthday__lte=date(1989, 12, 31),
-    #         )
-    #     if request.user.is_organization_admin:           
-    #         return queryset.filter(organization_id=date(1990, 1, 1),birthday__lte=date(1999, 12, 31),)
                
     def choices(self, cl):  # Overwrite this method to prevent the default "All"
             from django.utils.encoding import force_str
@@ -61,6 +46,14 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
                 }
 
     def queryset(self, request, queryset):  # Run the queryset based on your lookup values
+        
+    #     Returns the filtered queryset based on the value
+    #     provided in the query string and retrievable via
+    #     `self.value()`.
+    #     """
+    #     # Compare the requested value (either '80s' or '90s')
+    #     # to organization how to filter the queryset.
+    
         if request.user.is_superuser:
             if self.value() is not None:
                 return queryset.filter(organization_id=self.value())
@@ -77,6 +70,13 @@ class CustomUserAdmin(UserAdmin):
         'is_organization_admin', 'organization'
         )
     list_filter= (OrganizationWiseFilter,'is_organization_admin',)
+    
+    def get_readonly_fields(self, request, obj=None, **kwargs):     
+        if request.user.is_superuser==False:           
+            return ("is_organization_admin","organization","is_superuser","is_staff","groups","user_permissions")
+        return ("", )
+    
+    #readonly_fields = ('is_organization_admin', )
 
     fieldsets = (
         (None, {
