@@ -9,6 +9,7 @@ from django.core.validators import MinValueValidator
 
 class Organization(models.Model):
     id = models.AutoField(primary_key=True)
+    sorting_order = models.SmallIntegerField(null=True, blank=True)
     organization_name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=50)
     mailing_address = models.CharField(max_length=200, blank=True)
@@ -31,10 +32,24 @@ class Organization(models.Model):
         ordering = ['id']
 
 
+class DataCommonCategory(models.Model):
+    id = models.PositiveSmallIntegerField(primary_key=True)
+    category_name = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.category_name
+
+    class Meta:
+        db_table = 'lkp_data_common_categories'
+        ordering = ['id']
+
+
 class DataCategory(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     category_name = models.CharField(max_length=100)
     parent = models.PositiveSmallIntegerField(null=True)
+    data_common_category = models.ForeignKey(
+        DataCommonCategory, on_delete=models.PROTECT, null=True)
     #is_organizational_data = models.BooleanField(null=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
@@ -66,11 +81,13 @@ class Document(models.Model):
         Organization, on_delete=models.PROTECT, null=True)
     data_category = models.ForeignKey(
         DataCategory, on_delete=models.PROTECT, null=True)
+
     # sub_category_id = models.ForeignKey("SubCategory", on_delete=models.PROTECT, null=True)
     # sub_sub_category_id = models.ForeignKey("SubSubCategory", on_delete=models.PROTECT, null=True)
     # org_category_id = models.ForeignKey("OrgCategory", on_delete=models.PROTECT, null=True)
     # org_sub_category_id = models.ForeignKey("OrgSubCategory", on_delete=models.PROTECT, null=True)
     # org_sub_sub_category_id = models.ForeignKey("OrgSubSubCategory", on_delete=models.PROTECT, null=True)
+
     title = models.CharField(max_length=500)
     subject = models.CharField(max_length=500, blank=True)
     description = models.TextField(null=True, blank=True)
