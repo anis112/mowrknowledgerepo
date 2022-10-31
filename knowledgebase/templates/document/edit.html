@@ -6,25 +6,25 @@
 
 <div class="row m-5">
     <div class="col-md-12">
-        <h4>Add New Document</h4>
+        <h4>Edit Document</h4>
 
-        <form enctype="multipart/form-data" action="" method="post">
+        <form enctype="multipart/form-data" action="/update/{{document.id}}" method="post">
             <!-- Security token -->
             {% csrf_token %}
             
-            <div class="form-row">
+            <!-- <div class="form-row">
                 <div class="col">
                     <div class="form-group">
                         <label>Organization</label>
                         {{ form.organization }}
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
                         <label>Document Title</label>
-                        {{ form.title }}
+                        <input type="text" class="form-control" value="{{ document.title }}" />
                     </div>
                 </div>                
             </div>
@@ -32,7 +32,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Subject</label>
-                        {{ form.subject }}
+                        <input type="text" class="form-control" value="{{ document.subject }}" />
                     </div>
                 </div>
             </div>
@@ -40,7 +40,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Description</label>
-                        {{ form.description }}
+                        <!-- <input type="text" class="form-control" value="{{ document.description }}" /> -->
+                        <textarea name="description" cols="40" rows="3" class="form-control" required="" id="id_description" value="{{ document.description }}"></textarea>
                     </div>
                 </div>
             </div>
@@ -48,25 +49,25 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Author</label>
-                        {{ form.author }}
+                        <input type="text" class="form-control" value="{{ document.author }}" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Data Category</label>
-                        {{ form.data_category }}
+                        <input type="text" class="form-control" value="{{ document.data_category }}" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Access Category</label>
-                        {{ form.access_category }}
+                        <input type="text" class="form-control" value="{{ document.access_category }}" />
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>Publication Date</label>
-                        {{ form.publication_date }}
+                        <input type="text" class="form-control" value="{{ document.publication_date }}" />
                     </div>
                 </div>
             </div>
@@ -74,7 +75,7 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Search Keywords</label>
-                        {{ form.keywords }}
+                        <input type="text" class="form-control" value="{{ document.keywords }}" />
                     </div>
                 </div>
             </div>
@@ -82,20 +83,22 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Thumbnail</label>
-                        {{ form.thumbnail }}
+                        <input type="file" name="thumbnail" accept="image/*" id="id_thumbnail">
+                        <!-- {{ form.thumbnail }} -->
                     </div>
                 </div>
                 <div class="col">
                     <div class="form-group">
                         <label>File</label>
-                        {{ form.file_name }}
+                        <input type="file" name="file_name" id="id_file_name">
+                        <!-- {{ form.file_name }} -->
                     </div>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="col">
-                    <input type="submit" class="btn btn-primary" value="Save">
+                    <input type="submit" class="btn btn-primary" value="Update">
                 </div>                
             </div>
         </form>
