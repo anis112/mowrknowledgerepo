@@ -1,4 +1,5 @@
 
+from distutils.log import debug
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
@@ -9,6 +10,7 @@ from django.shortcuts import redirect, render
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticlePublishCategory,
                      DataCategory, Document, Organization)
+from accounts.models import CustomUser
 
 # Create your views here.
 
@@ -37,9 +39,9 @@ def home(request):
     return render(request, 'home.html', context)
 
 
-
 def home2(request):
     return render(request, 'home2.html')
+
 
 def home3(request):
     return render(request, 'home3.html')
@@ -141,6 +143,9 @@ def addDocument(request):
             form.save()
             return redirect('/')
 
+    if request.user.is_authenticated:
+        user = CustomUser.objects.get(pk=request.user.id)
+
     context = {'form': form}
     return render(request, 'document/add.html', context)
 
@@ -157,8 +162,102 @@ def addArticleDetail(request):
     return render(request, 'articledetail/add.html', context)
 
 
-def viewDocument(request):
-    documents = Document.objects.all()
-    context = {'documents': documents}
+# -------ahi------------
 
-    return render(request, 'document/view.html', context)
+    """ keywords = ['funny', 'old', 'black_humor']
+    qs = [Q(title__icontains=keyword) | Q(author__icontains=keyword)
+          | Q(tags__icontains=keyword) for keyword in keywords]
+
+    query = qs.pop()  # get the first element
+
+    for q in qs:
+        query |= q
+    filtered_user_meme = Meme.objects.filter(query, user=current_user)
+    publish_date__lte = timezone.now() """
+
+    #req_query = request.GET | request.POST
+    #    req_query = request.POST
+    # if req_query is not None & req_query.get("search_term") is not None:
+
+
+def search_document(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
+
+    if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+        if req_query and req_query.get("search_term"):
+            search_term = req_query.get("search_term", None)
+            org_ids = req_query.get("src_orgs", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+
+    if not isinstance(search_term, str):
+        search_term = search_term[0]
+
+    documents = Document.objects.all()
+
+    user_organization_id = None  # request.user.organization_id
+
+    if user_organization_id:
+        cond_user = Q(organization_id=user_organization_id)
+
+        documents = documents.filter(cond_user)
+
+        # cond = Q(title__icontains=search_term) | Q(subject__icontains=search_term) | Q(
+        #    description__icontains=search_term) | Q(keywords__icontains=search_term)
+    if search_term is not None and search_term != '':
+        cond = Q(title__icontains=search_term) | Q(
+            subject__icontains=search_term) | Q(keywords__icontains=search_term)
+
+        documents = documents.filter(cond)
+
+    if org_ids and org_ids[0]:
+        cond_org = Q(organization_id__in=org_ids)
+
+        documents = documents.filter(cond_org)
+
+    if data_category_ids and data_category_ids[0] != '':
+        cond_cat = Q(data_category_id__in=data_category_ids)
+
+        documents = documents.filter(cond_cat)
+
+    if access_category_ids and access_category_ids[0] != '':
+        cond_accat = Q(access_category_id__in=access_category_ids)
+
+        documents = documents.filter(cond_accat)
+
+    # org_list = documents.values_list(
+    #     'organization__id', 'organization__organization_name').distinct()
+
+    # cat_list = documents.values_list(
+    #     'data_category__id', 'data_category__category_name').distinct()
+
+    # for o in org_list:
+    #     print(o)
+
+    # for c in cat_list:
+    #     print(c)
+
+    doc_count = len(documents)
+
+    if len(documents) < 1:
+        documents = Document.objects.none()
+
+    #doc_count = documents.order_by('organization_id', 'data_category_id')
+
+    # print(len(documents))
+    # for d in documents:
+    #     print(d)
+
+    org_infos = Organization.objects.all()
+
+    doc_cats = DataCategory.objects.all()
+
+    context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+               'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+               'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    # context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+    #            'search_term': search_term, 'org_ids': org_ids, 'category_ids': data_category_ids, }
+    # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
+
+    return render(request, 'search_document.html', context)

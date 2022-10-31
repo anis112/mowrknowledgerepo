@@ -1,9 +1,8 @@
 from django.urls import path
 
-
 from . import views
 
-# URLConf
+
 urlpatterns = [
     path('', views.home, name="home"),
 
@@ -25,4 +24,9 @@ urlpatterns = [
     path('document/add', views.addDocument, name="add_document"),
     path('article/add', views.addArticleDetail, name="add_article"),
     path('document/view', views.viewDocument, name="view_document"),
+
+    
+    path('search/', views.search_document, name="search"),
+    path('search/<search_term>', views.search_document, name="search"),
+    #path('search/<string:search_term>', views.search_document, name="search"),
 ]
