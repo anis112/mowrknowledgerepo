@@ -46,8 +46,16 @@
                 }
             } */
 
+            .menu > .nav-item.submenu.mega_menu .dropdown-menu li > div {
+                min-height: 0px;
+            }
+
+            .menu > .nav-item.submenu.mega_menu .dropdown-menu {
+                min-height: 0px;
+            }
+
             .breadcrumb_area .banner_search_form button {
-            background: #10b3d6;        /* #019d19; */
+                background: #10b3d6;        /* #019d19; */
             }
 
             .custom-select ul li:hover, .custom-select ul li.selected {  
@@ -231,17 +239,65 @@
                             </li> -->
 
                             {% if user.is_authenticated %}  
-                            <li class="nav-item dropdown submenu">
+                            <!-- <li class="nav-item dropdown submenu">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">Data Management <i class="fa-sharp fa-solid fa-caret-down"></i></a>
                                 <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
                                    data-toggle="dropdown"></i>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a href="#" class="nav-link">Upload Document</a> </li>
-                                    <li class="nav-item"><a href="#" class="nav-link">Data Entry</a></li>
-                                    <!-- <li class="nav-item"><a href="#" class="nav-link">Others</a> </li> -->
+                                    <li class="nav-item"><a href="#" class="nav-link">Data Entry</a></li>                                    
+                                </ul>
+                            </li> -->
+
+
+
+                            <li class="nav-item dropdown submenu mega_menu tab-demo">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Data Management <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                                <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
+                                   data-toggle="dropdown"></i>
+                                <ul class="dropdown-menu">                                    
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-lg-5 tabHeader">
+                                                <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                                    aria-orientation="vertical">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="v-pills-doc-tab" data-toggle="pill"
+                                                           href="#" role="tab" aria-controls="v-pills-doc"
+                                                           aria-selected="true">Data Entry</a>
+                                                    </li>      
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="pill" href="#" role="tab" >Others</a>
+                                                    </li>                                                                                                 
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-7">
+                                                <div class="tab-content tabContent" id="v-pills-tabContent" style="box-shadow: none; border: none;">
+                                                    <div class="tab-pane fade" id="v-pills-doc" role="tabpanel" aria-labelledby="v-pills-doc-tab" style="margin-top: 0px;">
+                                                        <div class="d-flex">
+                                                            <ul class="list-unstyled tab_list">
+                                                                <li>
+                                                                    <a href="#">Upload Document</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">Add Categorye</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="#">Add Sub Category</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>                                                        
+                                                    </div>                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </li>
+
+
                             {% endif %}
 
                             <li class="nav-item dropdown submenu">
