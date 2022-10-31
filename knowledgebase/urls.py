@@ -23,7 +23,7 @@ urlpatterns = [
     path('organization/view', views.viewOrganization, name="view_organization"),
     path('document/add', views.addDocument, name="add_document"),
     path('article/add', views.addArticleDetail, name="add_article"),
-    path('document/view', views.viewDocument, name="view_document"),
+    # path('document/view', views.viewDocument, name="view_document"),
 
     
     path('search/', views.search_document, name="search"),
