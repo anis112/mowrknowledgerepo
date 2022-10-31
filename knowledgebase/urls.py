@@ -26,6 +26,8 @@ urlpatterns = [
     path('document/edit/<int:id>', views.editDocument, name="edit_document"),
     path('document/update/<int:id>', views.updateDocument, name="update_document"),
     path('document/view', views.viewDocument, name="view_document"),
+    path('article/add', views.addArticleDetail, name="add_article"),
+    # path('document/view', views.viewDocument, name="view_document"),
 
     path('article/add', views.addArticleDetail, name="add_article"),
     path('article/view', views.viewArticleDetail, name="view_article"),

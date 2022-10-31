@@ -171,7 +171,8 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links": [
         # Url that gets reversed (Permissions can be added)
-        {"name": "Main Dashboard", "url": "Dashboard", "permissions": ["auth.view_user"]},
+        {"name": "Main Dashboard", "url": "Dashboard"},
+        #{"name": "Main Dashboard", "url": "Dashboard", "permissions": ["auth.view_user"]},
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
     ],
