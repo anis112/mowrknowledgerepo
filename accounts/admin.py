@@ -30,9 +30,9 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
         #     ('90s', ('in the nineties')),
         # )
         if request.user.is_superuser:
-            return CustomUser.objects.values_list('organization_id','organization__organization_name').distinct()
+            return CustomUser.objects.values_list('organization_id','organization__organization_name').order_by('organization_id').distinct()
         elif request.user.is_organization_admin:
-            return CustomUser.objects.values_list('organization_id','organization__organization_name').filter(organization_id=request.user.organization_id).distinct()
+            return CustomUser.objects.values_list('organization_id','organization__organization_name').filter(organization_id=request.user.organization_id).order_by('organization_id').distinct()
                
     def choices(self, cl):  # Overwrite this method to prevent the default "All"
             from django.utils.encoding import force_str
@@ -73,8 +73,15 @@ class CustomUserAdmin(UserAdmin):
     
     def get_readonly_fields(self, request, obj=None, **kwargs):     
         if request.user.is_superuser==False:           
-            return ("is_organization_admin","organization","is_superuser","is_staff","groups","user_permissions")
+            return ("is_organization_admin","is_superuser","is_staff","groups","user_permissions")
         return ("", )
+    
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):     
+        if db_field.name == "organization": #courier is the foreignkey name
+            if request.user.is_organization_admin:
+                kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)        
+    
     
     #readonly_fields = ('is_organization_admin', )
 
