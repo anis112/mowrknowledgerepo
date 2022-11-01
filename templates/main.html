@@ -279,13 +279,13 @@
                                                         <div class="d-flex">
                                                             <ul class="list-unstyled tab_list">
                                                                 <li>
-                                                                    <a href="#">Upload Document</a>
+                                                                    <a href="/organization/view">Organization</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#">Add Categorye</a>
+                                                                    <a href="/document/view">Document</a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#">Add Sub Category</a>
+                                                                    <a href="/article/view">Article</a>
                                                                 </li>
                                                             </ul>
                                                         </div>                                                        
@@ -512,25 +512,12 @@
         <script src="{% static 'js/main.js' %}"></script>
 
         <script>
-            $('#tblDocument').DataTable({
-                // paging: true,
-                // pageLength: 10,
-                // lengthChange: true,
-                // autoWidth: true,
-                // searching: true,
-                // bInfo: true,
-                // bSort: true
-            })
+            var dt = $('#tblDocument').DataTable({
+                pageLength: 25,
+            });
+            dt.column(0).visible(false);
 
-            $('#tblOrganization').DataTable({
-                // paging: true,
-                // pageLength: 10,
-                // lengthChange: true,
-                // autoWidth: true,
-                // searching: true,
-                // bInfo: true,
-                // bSort: true
-            })
+            // $('#tblOrganization').DataTable();
 
             $('#tblArticle').DataTable({
                 // paging: true,

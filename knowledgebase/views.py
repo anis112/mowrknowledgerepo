@@ -12,6 +12,8 @@ from .models import (Article, ArticleCategory, ArticleDetail, ArticlePublishCate
                      DataCategory, Document, Organization)
 from accounts.models import CustomUser
 
+import traceback
+
 # Create your views here.
 
 
@@ -129,7 +131,7 @@ def addOrganization(request):
 
 
 def viewOrganization(request):
-    organizations = Organization.objects.all()
+    organizations = Organization.objects.all().order_by('sorting_order')
     context = {'organizations': organizations}
 
     return render(request, 'organization/view.html', context)
@@ -138,13 +140,19 @@ def viewOrganization(request):
 def addDocument(request):
     if request.user.is_authenticated:
         user = CustomUser.objects.get(pk=request.user.id)
+    #org_id = DocumentForm['organization'].value()
+    #data_cat_id = DocumentForm['data_category'].value()
 
     form = DocumentForm()
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+        try:
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        except Exception as e:
+            message = traceback.format_exc()
+            # print(message)
 
     context = {'form': form}
     return render(request, 'document/add.html', context)

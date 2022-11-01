@@ -126,6 +126,7 @@ class DocumentForm(forms.ModelForm):
                 "class": "form-control"
             }
         ), choices=organization_list)
+
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={
