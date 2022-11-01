@@ -51,8 +51,7 @@ class DataCategory(models.Model):
     data_common_category = models.ForeignKey(
         DataCommonCategory, on_delete=models.PROTECT, null=True)
     #is_organizational_data = models.BooleanField(null=True)
-    organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, null=True)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
         return self.category_name
@@ -76,11 +75,18 @@ class DataAccessCategory(models.Model):
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
+    #id = models.PositiveSmallIntegerField(primary_key=True)
+    
     parent_id = models.PositiveBigIntegerField(null=True, blank=True)
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
+    
+    
+    
     data_category = models.ForeignKey(
         DataCategory, on_delete=models.PROTECT, null=True)
+    
+    
 
     # sub_category_id = models.ForeignKey("SubCategory", on_delete=models.PROTECT, null=True)
     # sub_sub_category_id = models.ForeignKey("SubSubCategory", on_delete=models.PROTECT, null=True)
