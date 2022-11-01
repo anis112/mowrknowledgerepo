@@ -8,7 +8,7 @@ from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
-from .models import (Article, ArticleCategory, ArticlePublishCategory,
+from .models import (Article, ArticleCategory, ArticleDetail, ArticlePublishCategory,
                      DataCategory, Document, Organization)
 from accounts.models import CustomUser
 
@@ -136,6 +136,9 @@ def viewOrganization(request):
 
 
 def addDocument(request):
+    if request.user.is_authenticated:
+        user = CustomUser.objects.get(pk=request.user.id)
+
     form = DocumentForm()
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -143,11 +146,32 @@ def addDocument(request):
             form.save()
             return redirect('/')
 
-    if request.user.is_authenticated:
-        user = CustomUser.objects.get(pk=request.user.id)
-
     context = {'form': form}
     return render(request, 'document/add.html', context)
+
+
+def editDocument(request, id):
+    document = Document.objects.get(id=id)
+
+    context = {'document': document}
+    return render(request, 'document/edit.html', context)
+
+
+def updateDocument(request, id):
+    document = Document.objects.get(id=id)
+    form = DocumentForm(request.POST, instance=document)
+    if form.is_valid():
+        form.save()
+        return redirect("/document/view")
+
+    return render(request, 'document/edit.html', document)
+
+
+def viewDocument(request):
+    documents = Document.objects.all().order_by('id')
+    context = {'documents': documents}
+
+    return render(request, 'document/view.html', context)
 
 
 def addArticleDetail(request):
@@ -161,6 +185,12 @@ def addArticleDetail(request):
     context = {'form': form}
     return render(request, 'articledetail/add.html', context)
 
+
+def viewArticleDetail(request):
+    article = ArticleDetail.objects.all()
+    context = {'articles': article}
+
+    return render(request, 'articledetail/view.html', context)
 
 # -------ahi------------
 

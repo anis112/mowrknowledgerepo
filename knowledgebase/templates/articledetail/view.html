@@ -1,0 +1,48 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<div class="row m-5">
+    <div class="col-md-12">
+        <h4>Article List</h4>
+        <a class="btn btn-primary btn-sm mb-3" style="color: white" href="/article/add">Add New Article</a>
+
+        <table id="tblArticle" class="table table-striped table-bordered table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Organization</th>  
+                    <th>Title</th>  
+                    <th>Subject</th>  
+                    <th>Description</th>  
+                    <th>Author</th>  
+                    <th>Access Category</th>  
+                    <th></th>
+                </tr>  
+            </thead>
+            <tbody>
+                {% for article in articles %}
+        
+                <tr>
+                    <td>{{article.organization}}</td>
+                    <td>{{article.title}}</td>
+                    <td>{{article.subject}}</td>
+                    <td>{{article.description}}</td>
+                    <td>{{article.author}}</td>
+                    <td>{{article.access_category}}</td>
+                    <td>  
+                        <a href="/article/edit/{{ document.id }}" class="btn btn-outline-info btn-sm">Edit</a>  
+                        <a href="/article/delete/{{ document.id }}" class="btn btn-outline-danger btn-sm">Delete</a>  
+                    </td>
+                </tr>
+        
+                {% endfor %} 
+        
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
