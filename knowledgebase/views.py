@@ -157,6 +157,20 @@ def addDocument(request):
     context = {'form': form}
     return render(request, 'document/add.html', context)
 
+# def addDocument(request):
+#     if request.user.is_authenticated:
+#         user = CustomUser.objects.get(pk=request.user.id)
+
+#     form = DocumentForm()
+#     if request.method == 'POST':
+#         form = DocumentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
+
+#     context = {'form': form}
+#     return render(request, 'document/add.html', context)
+
 
 def editDocument(request, id):
     document = Document.objects.get(id=id)

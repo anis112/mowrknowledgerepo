@@ -8,7 +8,8 @@ from knowledgebase.models import Organization
 class CustomUser(AbstractUser):
     is_organization_admin = models.BooleanField(default=False)
     organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, null=True, blank=True)    
+        Organization, on_delete=models.PROTECT, null=True, blank=True)   
+     
     # def encoded_id(self):
     #     import base64
     #     return base64.b64encode(str(self.id))
