@@ -67,13 +67,13 @@ class CustomUserAdmin(UserAdmin):
     
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'is_staff',
-        'is_organization_admin', 'organization'
+        'is_organization_admin','is_superuser','organization'
         )
     list_filter= (OrganizationWiseFilter,'is_organization_admin',)
     
     def get_readonly_fields(self, request, obj=None, **kwargs):     
         if request.user.is_superuser==False:           
-            return ("is_organization_admin","is_superuser","is_staff","groups","user_permissions")
+            return ("is_organization_admin","is_superuser","is_staff","user_permissions")
         return ("", )
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):     

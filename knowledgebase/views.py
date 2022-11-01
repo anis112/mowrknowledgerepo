@@ -135,43 +135,43 @@ def viewOrganization(request):
     return render(request, 'organization/view.html', context)
 
 
-def addDocument(request):
-    if request.user.is_authenticated:
-        user = CustomUser.objects.get(pk=request.user.id)
+# def addDocument(request):
+#     if request.user.is_authenticated:
+#         user = CustomUser.objects.get(pk=request.user.id)
 
-    form = DocumentForm()
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+#     form = DocumentForm()
+#     if request.method == 'POST':
+#         form = DocumentForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('/')
 
-    context = {'form': form}
-    return render(request, 'document/add.html', context)
-
-
-def editDocument(request, id):
-    document = Document.objects.get(id=id)
-
-    context = {'document': document}
-    return render(request, 'document/edit.html', context)
+#     context = {'form': form}
+#     return render(request, 'document/add.html', context)
 
 
-def updateDocument(request, id):
-    document = Document.objects.get(id=id)
-    form = DocumentForm(request.POST, instance=document)
-    if form.is_valid():
-        form.save()
-        return redirect("/document/view")
+# def editDocument(request, id):
+#     document = Document.objects.get(id=id)
 
-    return render(request, 'document/edit.html', document)
+#     context = {'document': document}
+#     return render(request, 'document/edit.html', context)
 
 
-def viewDocument(request):
-    documents = Document.objects.all().order_by('id')
-    context = {'documents': documents}
+# def updateDocument(request, id):
+#     document = Document.objects.get(id=id)
+#     form = DocumentForm(request.POST, instance=document)
+#     if form.is_valid():
+#         form.save()
+#         return redirect("/document/view")
 
-    return render(request, 'document/view.html', context)
+#     return render(request, 'document/edit.html', document)
+
+
+# def viewDocument(request):
+#     documents = Document.objects.all().order_by('id')
+#     context = {'documents': documents}
+
+#     return render(request, 'document/view.html', context)
 
 
 def addArticleDetail(request):
