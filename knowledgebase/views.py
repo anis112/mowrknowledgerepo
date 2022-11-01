@@ -91,6 +91,8 @@ def national_international(request):
 def SearchResult1(request):
     return render(request, 'SearchResult1.html')
 
+def doc_details(request):
+    return render(request, 'doc-details.html')
 
 def article(request):
     #article_obj = Article.objects.get(pk=1)
