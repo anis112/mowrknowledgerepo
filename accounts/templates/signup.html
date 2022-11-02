@@ -23,6 +23,7 @@
         position: relative;
         background: url(https://images.unsplash.com/photo-1507208773393-40d9fc670acf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1268&q=80) no-repeat center;
         box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
+        color:#ccc;
     }
 
     .login-snip {
@@ -189,7 +190,7 @@
     }
 
     a {
-        color: inherit;
+        {% comment %} color: inherit; {% endcomment %}
         text-decoration: none
     }
 
@@ -223,14 +224,14 @@
                 <div class="card">
                     <div class="login-box">
                         <div class="login-snip">
-                            <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1"
-                                class="tab">Login</label>
-                            <input id="tab-2" type="radio" name="tab" class="sign-up"checked><label for="tab-2"
-                                class="tab">Sign
-                                Up</label>
+                            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1"
+                                class="tab">Sign Up</label>
+                            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2"
+                                class="tab">
+                                </label>
                             <div class="login-space">
                               
-                                <div class="sign-up-form">
+                                <div class="login">
                                     <form method="post">
                                         {% csrf_token %}
                                         {{ form|crispy }}
@@ -262,7 +263,7 @@
                                     </div> {% endcomment %}
                                     <div class="hr"></div>
                                     <div class="foot">
-                                        <p>Already Member?<a href="{% url 'accounts/login' %}">Sign in</a></p>
+                                        <p>Already Member?<a href="{% url 'accounts/login' %}"> Sign in</a></p>
                                     </div>
                                 </div>
                             </div>

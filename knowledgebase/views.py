@@ -14,8 +14,6 @@ from accounts.models import CustomUser
 
 import traceback
 
-# Create your views here.
-
 
 def home(request):
     count_organization = Organization.objects.count()
@@ -223,11 +221,6 @@ def addArticleDetail(request):
     return render(request, 'articledetail/add.html', context)
 
 
-def viewArticleDetail(request):
-    article = ArticleDetail.objects.all()
-    context = {'articles': article}
-
-    return render(request, 'articledetail/view.html', context)
 
 # -------ahi------------
 
@@ -247,7 +240,7 @@ def viewArticleDetail(request):
     # if req_query is not None & req_query.get("search_term") is not None:
 
 
-def search_document(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_document(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -278,16 +271,24 @@ def search_document(request, search_term='', org_ids=None, data_category_ids=Non
         documents = documents.filter(cond)
 
     if org_ids and org_ids[0]:
+        org_ids = [int(id) for id in org_ids]
+
         cond_org = Q(organization_id__in=org_ids)
 
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
+        
+        data_category_ids = [int(id) for id in data_category_ids]
+
         cond_cat = Q(data_category_id__in=data_category_ids)
 
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
+        
+        access_category_ids = [int(id) for id in access_category_ids]
+
         cond_accat = Q(access_category_id__in=access_category_ids)
 
         documents = documents.filter(cond_accat)
@@ -315,9 +316,9 @@ def search_document(request, search_term='', org_ids=None, data_category_ids=Non
     # for d in documents:
     #     print(d)
 
-    org_infos = Organization.objects.all()
+    org_infos = Organization.objects.all().order_by('id')
 
-    doc_cats = DataCategory.objects.all()
+    doc_cats = DataCategory.objects.all().order_by('id')
 
     context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
                'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
@@ -328,3 +329,4 @@ def search_document(request, search_term='', org_ids=None, data_category_ids=Non
     # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
 
     return render(request, 'search_document.html', context)
+
