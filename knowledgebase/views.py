@@ -8,9 +8,11 @@ from django.db.models import OuterRef, Q, Subquery
 from django.shortcuts import redirect, render
 
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
-from .models import (Article, ArticleCategory, ArticlePublishCategory,
+from .models import (Article, ArticleCategory, ArticleDetail, ArticlePublishCategory,
                      DataCategory, Document, Organization)
 from accounts.models import CustomUser
+
+import traceback
 
 # Create your views here.
 
@@ -91,6 +93,8 @@ def national_international(request):
 def SearchResult1(request):
     return render(request, 'SearchResult1.html')
 
+def doc_details(request):
+    return render(request, 'doc-details.html')
 
 def article(request):
     #article_obj = Article.objects.get(pk=1)
@@ -129,13 +133,36 @@ def addOrganization(request):
 
 
 def viewOrganization(request):
-    organizations = Organization.objects.all()
+    organizations = Organization.objects.all().order_by('sorting_order')
     context = {'organizations': organizations}
 
     return render(request, 'organization/view.html', context)
 
 
 def addDocument(request):
+    if request.user.is_authenticated:
+        user = CustomUser.objects.get(pk=request.user.id)
+    #org_id = DocumentForm['organization'].value()
+    #data_cat_id = DocumentForm['data_category'].value()
+
+    form = DocumentForm()
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        try:
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        except Exception as e:
+            message = traceback.format_exc()
+            # print(message)
+
+    context = {'form': form}
+    return render(request, 'document/add.html', context)
+
+# def addDocument(request):
+#     if request.user.is_authenticated:
+#         user = CustomUser.objects.get(pk=request.user.id)
+
     form = DocumentForm()
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
@@ -143,11 +170,32 @@ def addDocument(request):
             form.save()
             return redirect('/')
 
-    if request.user.is_authenticated:
-        user = CustomUser.objects.get(pk=request.user.id)
-
     context = {'form': form}
     return render(request, 'document/add.html', context)
+
+
+def editDocument(request, id):
+    document = Document.objects.get(id=id)
+
+    context = {'document': document}
+    return render(request, 'document/edit.html', context)
+
+
+def updateDocument(request, id):
+    document = Document.objects.get(id=id)
+    form = DocumentForm(request.POST, instance=document)
+    if form.is_valid():
+        form.save()
+        return redirect("/document/view")
+
+    return render(request, 'document/edit.html', document)
+
+
+def viewDocument(request):
+    documents = Document.objects.all().order_by('id')
+    context = {'documents': documents}
+
+    return render(request, 'document/view.html', context)
 
 
 def addArticleDetail(request):
@@ -160,11 +208,6 @@ def addArticleDetail(request):
 
     context = {'form': form}
     return render(request, 'articledetail/add.html', context)
-
-
-
-def viewDocument(request):
-    return render(request)
 
 
 # -------ahi------------

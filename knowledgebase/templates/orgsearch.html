@@ -4,22 +4,6 @@
 
 {% block content %}
 
-<!-- Bootstrap CSS -->
-<!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    -->
-
-
-<!-- <Script>
-    $(".checkbox-menu").on("change", "input[type='checkbox']", function() {
-    $(this).closest("li").toggleClass("active", this.checked);
-    });
-
-    $(document).on('click', '.allow-focus', function (e) {
-    e.stopPropagation();
-    });
-</Script> -->
-
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"> -->
-
 <style>
     .categories_guide_item {
         padding: 0px !important;
@@ -77,7 +61,7 @@
     }
     
     .org-content:hover{
-        box-shadow: #04859b 0px 1px 6px 0px !important;        
+        box-shadow: #6ea5ae 1px 2px 7px 0px !important;     /* #04859b 0px 1px 6px 0px !important; */      
     }
 
     .org-img {
@@ -172,30 +156,6 @@
         transition: all 1s;
     }
 
-    /* .slide:nth-child(1)
-{
-    background: url(../static/img/slider-img/S1.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(2)
-{
-    background: url(../static/img/slider-img/S2.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(3)
-{
-    background: url(../static/img/slider-img/S3.jpg);
-    background-position: center center;
-}
-
-.slide:nth-child(4)
-{
-    background: url(../static/img/slider-img/S4.jpg);
-    background-position: center center;
-} */
-
     .slide .content {
         position: absolute;
         bottom: 0;
@@ -275,6 +235,7 @@
             transform: translate(85px, 0%)
         }
     }
+     /*=========== Ends SVG css (MNH) ============*/
 
     .custom-control-label::before,
     .custom-control-label::after {
@@ -282,7 +243,7 @@
         width: 1.50rem;
         height: 1.50rem;
         border: 1px solid #3cbdd9;
-        border-radius: 0.25rem !important;
+        border-radius: 0.15rem !important;
     }
     
     .typography_list h5, .dropcap_content h5 {
@@ -298,69 +259,11 @@
         color: #10b3d6; 
     }
 
-
-    /* Search DropdownList Styles Starts */
-
-    /* .checkbox-menu li label {
-        display: block;
-        padding: 3px 10px;
-        clear: both;
-        font-weight: normal;
-        line-height: 1.42857143;
-        color: #333;
-        white-space: nowrap;
-        margin:0;
-        transition: background-color .4s ease;
+    .btn_small {
+        padding: 0 5px !important;
     }
-    .checkbox-menu li input {
-        margin: 0px 5px;
-        top: 2px;
-        position: relative;
-    }
-
-    .checkbox-menu li.active label {
-        background-color: #cbcbff;
-        font-weight:bold;
-    }
-
-    .checkbox-menu li label:hover,
-    .checkbox-menu li label:focus {
-        background-color: #f5f5f5;
-    }
-
-    .checkbox-menu li.active label:hover,
-    .checkbox-menu li.active label:focus {
-        background-color: #b8b8ff;
-    } */
-    /* Search DropdownList Styles Endss */
-
+    
 </style>
-
-<!-- jQuery -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
-<!-- Bootstrap CSS -->
-<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
-<!-- Bootstrap JS -->
-<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-<!-- Bootstrap Multiselect CSS -->
-<!-- <link rel="stylesheet" href="{% static 'css/bootstrap-multiselect.css' %}"> -->
-<!-- Bootstrap Multiselect JS -->
-<!-- <script src="{% static 'css/bootstrap-multiselect.js' %}"></script> -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script> -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-
-
-<!-- <script>
-    require(['bootstrap-multiselect'], function(purchase){
-    $('#example-getting-started').multiselect();
-    });
-</script> -->
-
-
 
 <!-- <section class="doc_fun_fact_area" style="padding: 70px 0px; background: #c5e9ff; margin-top: 10px;;"> 
     <div class="animated-waves">
@@ -435,12 +338,6 @@
     </div>
 </section> -->
 
-<!-- <div class="row">
-    <a href="{% url 'home' %}" class="doc_border_btn" style="opacity: 0.8; margin: 10px 30px; padding: 6px 15px;"><i class="arrow_left" style="margin-right: 10px; margin-left: 0px;"></i>Back</a>
-</div>
-<div class="section_title text-center" style="margin-bottom: 20px;">    
-    <h5 class="wow fadeInUp">Search by Organization</h5>
-</div> -->
 
 <div class="row">
     <div class="col-md-12">
@@ -648,7 +545,6 @@
                     </div>
                 </div>
                 <div class="col-md-9">
-
                     <div style="padding: 0px 0px 0px 10px;">
                         <h5>Search Result</h5>
                         <hr />
@@ -660,67 +556,66 @@
                         <!-- Sliding Cards -->
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="#" title="Click here to view">
+                                <!-- <a href="#" title="Click here to view"> -->
                                     <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="icon-container">
-                                                    <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" style="max-width: 150px;">
+                                                    <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
                                                 </div>
                                             </div>
                                             <div class="col-md-10">
                                                 <h6 class="h6 bold">Case study on water logging problems in an urban area of Bangladesh and probable analytical solution.</h6>
-                                                <p style="margin-bottom: 0px;">
-                                                    Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. <span style="color:darkviolet">View document</span>
+                                                <p style="margin-bottom: 5px;">
+                                                    Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies... 
                                                 </p>
+                                                <a href="{% url 'doc-details' %}" target="_blank" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                <!-- </a> -->
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
-                                <a href="#" title="Click here to view">
-                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="icon-container">
-                                                    <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" style="max-width: 150px;">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h6 class="h6 bold">Salinity problems and crop production in coastal regions of Bangladesh.</h6>
-                                                <p style="margin-bottom: 0px;">
-                                                    Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. <span style="color:darkviolet">View document...</span>
-                                                </p>
+                            <div class="col-md-12">                                
+                                <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
                                             </div>
                                         </div>
+                                        <div class="col-md-10">
+                                            <h6 class="h6 bold">Salinity problems and crop production in coastal regions of Bangladesh.</h6>
+                                            <p style="margin-bottom: 5px;">
+                                                Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                            </p>
+                                            <a href="#" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>                                
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
-                                <a href="#" title="Click here to view">
-                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="icon-container">
-                                                    <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community" style="max-width: 150px;">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h6 class="h6 bold">Award points, level up, and earn new privileges.</h6>
-                                                <p style="margin-bottom: 0px;">
-                                                    Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. <span style="color:darkviolet">View document...</span>
-                                                </p>
+                            <div class="col-md-12">                                
+                                <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
                                             </div>
                                         </div>
+                                        <div class="col-md-10">
+                                            <h6 class="h6 bold">Award points, level up, and earn new privileges.</h6>
+                                            <p style="margin-bottom: 5px;">
+                                                Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                            </p>
+                                            <a href="#" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>                                
                             </div>
                         </div>
 
@@ -734,46 +629,44 @@
 
                         <!-- Sliding Cards -->
                         <div class="row">
-                            <div class="col-md-12">
-                                <a href="#" title="Click here to view">
-                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="icon-container">
-                                                    <img src="{% static 'img/banner_back/bann1.jpg' %}" alt="community" style="max-width: 150px;">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h6 class="h6 bold">Case study on water logging problems in an urban area of Bangladesh and probable analytical solution.</h6>
-                                                <p style="margin-bottom: 0px;">
-                                                    Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. <span style="color:darkviolet">View document...</span>
-                                                </p>
+                            <div class="col-md-12">                                
+                                <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/No_Image_Found1.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
                                             </div>
                                         </div>
+                                        <div class="col-md-10">
+                                            <h6 class="h6 bold">Case study on water logging problems in an urban area of Bangladesh and probable analytical solution.</h6>
+                                            <p style="margin-bottom: 5px;">
+                                                Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                            </p>
+                                            <a href="#" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>                                
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
-                                <a href="#" title="Click here to view">
-                                    <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="icon-container">
-                                                    <img src="{% static 'img/banner_back/bann2.jpg' %}" alt="community" style="max-width: 150px;">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h6 class="h6 bold">Salinity problems and crop production in coastal regions of Bangladesh.</h6>
-                                                <p style="margin-bottom: 0px;">
-                                                    Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. <span style="color:darkviolet">View document...</span>
-                                                </p>
+                            <div class="col-md-12">                                
+                                <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/No_Image_Found1.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
                                             </div>
                                         </div>
+                                        <div class="col-md-10">
+                                            <h6 class="h6 bold">Salinity problems and crop production in coastal regions of Bangladesh.</h6>
+                                            <p style="margin-bottom: 5px;">
+                                                Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                            </p>
+                                            <a href="#" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>                                
                             </div>
                         </div>
 
@@ -784,16 +677,6 @@
     </div>
 </div>
 
-<!-- <div class="">
-<select id="example-getting-started" multiple="multiple">
-    <option value="cheese">Cheese</option>
-    <option value="tomatoes">Tomatoes</option>
-    <option value="Mozzarella">Mozzarella</option>
-    <option value="Mushrooms">Mushrooms</option>
-    <option value="Pepperoni">Pepperoni</option>
-    <option value="Onions">Onions</option>
-</select>
-</div> -->
 
 <script>
     const targetDiv = document.getElementById("DivSearch");

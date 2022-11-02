@@ -41,11 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'accounts',
+    'django_admin_logs',
     'crispy_forms',
     "debug_toolbar",  # debug_toolbar
 ]
 AUTH_USER_MODEL = 'accounts.CustomUser'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+DJANGO_ADMIN_LOGS_DELETABLE = True
+DJANGO_ADMIN_LOGS_ENABLED = True
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -171,7 +175,8 @@ JAZZMIN_SETTINGS = {
     # Links to put along the top menu
     "topmenu_links": [
         # Url that gets reversed (Permissions can be added)
-        {"name": "Main Dashboard", "url": "Dashboard", "permissions": ["auth.view_user"]},
+        {"name": "Main Dashboard", "url": "Dashboard"},
+        #{"name": "Main Dashboard", "url": "Dashboard", "permissions": ["auth.view_user"]},
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
     ],
