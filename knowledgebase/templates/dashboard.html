@@ -190,7 +190,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="section_title text-center" style="margin-bottom: 10px; margin-top: 20px;">
-                    <h5 class="wow fadeInUp">No. of Documents (<label style="color: #40f;"><div class="counter">1345</div></label>)</h5>
+                    <h5 class="wow fadeInUp">No. of Documents (<label style="color: #40f;"><div class="counter">{{total_docs}}</div></label>)</h5> <!--1345-->
                 </div>
 
                 <div class="row">                    
@@ -200,7 +200,7 @@
                                 <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
                                 <label style="color:#4F5773; font-size: 13px;">BWDB</label>                                
                                 <div class="text-center" style="color: #40f;">                                    
-                                    (<label><div class="counter">550</div></label>)                                    
+                                    (<label><div class="counter">{{bwdb_docs}}</div></label>)    <!--550-->                                
                                 </div>                               
                             </a>
                         </div>
@@ -211,7 +211,7 @@
                                 <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 40px;" />
                                 <label style="color:#4F5773; font-size: 13px;">RRI</label>                                
                                 <div class="text-center" style="color: #40f;">
-                                    (<label><div class="counter">170</div></label>)                                     
+                                    (<label><div class="counter">{{rri_docs}}</div></label>)   <!--170-->                                  
                                 </div>
                                 <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
                             </a>
@@ -223,7 +223,7 @@
                                 <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;" />
                                 <label style="color:#4F5773; font-size: 13px;">JRC</label>                                
                                 <div class="text-center" style="color: #40f;">
-                                    (<label><div class="counter">80</div></label>) 
+                                    (<label><div class="counter">{{jrc_docs}}</div></label>)    <!--80-->
                                 </div>
                                 <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
                             </a>
@@ -235,7 +235,7 @@
                                 <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;"  />
                                 <label style="color:#4F5773; font-size: 13px;">DBHWD</label>                                
                                 <div class="text-center" style="color: #40f;">
-                                    (<label><div class="counter">75</div></label>) 
+                                    (<label><div class="counter">{{dbhwd_docs}}</div></label>)    <!--75-->
                                 </div>
                                 <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
                             </a>
@@ -247,7 +247,7 @@
                                 <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
                                 <label style="color:#4F5773; font-size: 13px;">WARPO</label>                                
                                 <div class="text-center" style="color: #40f;">
-                                    (<label><div class="counter">250</div></label>) 
+                                    (<label><div class="counter">{{warpo_docs}}</div></label>)      <!--250-->
                                 </div>
                                 <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
                             </a>
@@ -259,7 +259,7 @@
                                 <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" style="width: 65px;"  />
                                 <label style="color:#4F5773; font-size: 13px;">IWM</label>  
                                 <div class="text-center" style="color: #40f;">                         
-                                    (<label><div class="counter">70</div></label>) 
+                                    (<label><div class="counter">{{iwm_docs}}</div></label>)      <!--70-->
                                 </div>     
                                 <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
                                     </span>Institute of Water Modelling</p> -->
@@ -272,7 +272,7 @@
                                 <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"  style="margin-top: 10px;" />
                                 <label style="color:#4F5773; font-size: 13px;">CEGIS</label>                                
                                 <div class="text-center" style="color: #40f;">
-                                    (<label><div class="counter">150</div></label>) 
+                                    (<label><div class="counter">{{cegis_docs}}</div></label>)        <!--150-->
                                 </div>
                                 <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
                                     </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->
