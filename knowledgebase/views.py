@@ -14,8 +14,6 @@ from accounts.models import CustomUser
 
 import traceback
 
-# Create your views here.
-
 
 def home(request):
     count_organization = Organization.objects.count()
@@ -210,6 +208,7 @@ def addArticleDetail(request):
     return render(request, 'articledetail/add.html', context)
 
 
+
 # -------ahi------------
 
     """ keywords = ['funny', 'old', 'black_humor']
@@ -317,3 +316,4 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
     # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
 
     return render(request, 'search_document.html', context)
+
