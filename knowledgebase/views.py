@@ -208,6 +208,12 @@ def addArticleDetail(request):
     return render(request, 'articledetail/add.html', context)
 
 
+def viewArticleDetail(request):
+    article = ArticleDetail.objects.all()
+    context = {'articles': article}
+
+    return render(request, 'articledetail/view.html', context)
+
 
 # -------ahi------------
 
