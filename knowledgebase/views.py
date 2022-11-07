@@ -249,9 +249,10 @@ def viewArticleDetail(request):
 def search_document(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
-        req_query = request.GET | request.POST
+        req_query = request.GET or request.POST
 
         if req_query and req_query.get("search_term"):
+            
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
