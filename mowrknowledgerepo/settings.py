@@ -109,7 +109,7 @@ DATABASES = {
         'NAME': 'MOWKBDB',
         'USER': 'MOWKBAdmin',
         'PASSWORD': 'MoWKb#DbAdmin$22',
-        'HOST': '130.180.3.146',
+        'HOST': '202.53.173.185',
         'PORT': '1521',
     }
 }
