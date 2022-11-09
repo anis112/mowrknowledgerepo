@@ -1,0 +1,462 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+{% block content %}
+
+<style>
+    .categories_guide_item {
+        padding: 0px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .categories_guide_item img {
+        margin-bottom: 0px !important;
+    }
+
+    .tab-pane {
+        margin-top: 75px;
+    }
+
+    .tab-content {
+        padding: 0 20px;
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .com-title {
+        font-size: 0.8rem !important;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .community-box {
+        padding: 10px 10px;  /* 20px 15px; */
+        box-shadow: 1px 1px 3px 2px rgba(2, 47, 57, 0.14);
+    }
+
+    .icon-container {
+        margin-bottom: 0px !important;
+    }
+
+    .community-content {
+        min-height: 160px;
+    }
+
+    .fact_navigation_info {
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        padding: 40px 30px 28px;
+        border: 1px Solid rgba(130, 148, 151, 0.2)
+    }
+
+    .org-content {
+        /* background-color: #dde3ee; */
+        /* background-image: linear-gradient(to left bottom, #eeeeee, #ecedee, #eaebee, #e7eaee, #e4e9ee); */
+        /* border: 1px solid #d9ddea; */
+        padding: 10px;
+        margin: 10px 0px;
+        border-radius: 3px;
+        min-height: 95px !important;
+    }
+    
+    .org-content:hover{
+        box-shadow: #04859b 0px 1px 6px 0px !important;        
+    }
+
+    .org-img {
+        width: 75px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+    }
+
+    .carousel-caption {
+        left:0px;
+        right: 0px;
+        bottom: 0px;
+        width: 100%;
+    }
+
+    .h_title_r {
+        /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%); /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
+        color: #fff;
+        font-family: arial;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        display: block;   
+        padding: 7px;         
+        padding-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .h_title_l {
+        /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%); /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
+        color: #fff;
+        font-family: arial;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: left;
+        display: block;    
+        padding: 7px;                
+        padding-left: 15px;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .search_left_panal {
+        background: #568a9e;
+        opacity: 0.8;
+    }
+
+    /*=========== Start Slider css (MNH) ============*/
+
+
+
+    .slide_section {
+        position: inherit;
+        width: 100%;
+        height: auto;
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        /* margin-bottom: 100px; */
+        z-index: 100;
+    }
+
+    .slide {
+        position: relative;
+        background: #F8F9FA;
+        height: 500px;
+        flex: 1;
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        transition: 0.3s ease-in-out;
+    }
+
+    .slide:last-child {
+        border-right: none;
+    }
+
+    .slide:hover {
+        flex-grow: 6;
+        /* transform: scale(1.05, 1.05); */
+        /* -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 65%; */
+    }
+
+    .inner {
+        height: 500px;
+        width: 100%;
+        display: block;
+        background-repeat: no-repeat;
+        transition: all 1s;
+    }
+
+    .slide .content {
+        position: absolute;
+        bottom: 0;
+        margin: 20px;
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0s;
+        transform: translateY(100px);
+        /* width:100%; */
+    }
+
+    .slide:hover .inner {
+        transform: scale(1.2);
+    }
+
+    .slide:hover .content {
+        visibility: visible;
+        opacity: 0.7;
+        transition: 0.5s;
+        transition-delay: 0.2s;
+        transform: translateY(0);
+    }
+
+    /*.slick-track {
+    /* transition-delay: 2s !important; 
+    /* transition: transform 1s !important; 
+} */
+
+    .item {
+        margin: 20px;
+    }
+
+    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
+    /*=========== End Slider css (MNH) ============*/
+
+    /*=========== SVG css (MNH) ============*/
+    .water-wave {
+        display: block;
+        width: 100%;
+        height: 14rem;
+        max-height: 150vh;
+        margin: 0;
+    }
+
+    .parallax>use {
+        animation: move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
+
+    .parallax>use:nth-child(1) {
+        animation-delay: -3s;
+    }
+
+    .parallax>use:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 4.25s
+    }
+
+    .parallax>use:nth-child(3) {
+        animation-delay: -3s;
+        animation-duration: 5.25s
+    }
+
+    .parallax>use:nth-child(4) {
+        animation-delay: -5s;
+        animation-duration: 3.25s
+    }
+
+    @keyframes move-forever {
+        0% {
+            transform: translate(-90px, 0%)
+        }
+
+        100% {
+            transform: translate(85px, 0%)
+        }
+    }
+     /*=========== Ends SVG css (MNH) ============*/
+
+    .custom-control-label::before,
+    .custom-control-label::after {
+        /* top: .8rem; */
+        width: 1.50rem;
+        height: 1.50rem;
+        border: 1px solid #3cbdd9;
+        border-radius: 0.15rem !important;
+    }
+    
+    .typography_list h5, .dropcap_content h5 {
+        margin-bottom: 0px;
+    }
+
+    .typography_list .unorderlist li::before {
+        background: #10B3BC;
+    }
+
+    .typography_list ul li a, .typography_list ol li a {  
+        font-size: 14px;
+        color: #10b3d6; 
+    }
+
+    .btn_small {
+        padding: 0 5px !important;
+    }
+    
+
+     /*=========== Starts Document Reading Style (MNH) ============*/
+    .doc_details {
+        margin-bottom: 5px; text-align: justify; 
+    }
+
+    @media (min-width: 768px) { 
+        .doc_details {
+            column-count: 2; column-gap: 30px; column-rule: 1px solid #79ccde;
+        }
+    }
+    /*=========== Ends Document Reading Style (MNH) ============*/
+
+</style>
+
+
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" style="max-width: 100%; border: 1px solid #ddd;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="pl-1">                        
+                        <h2 style="text-align: justify; font-weight: 400; font-family: Georgia,Times New Roman,serif;">Case study on water logging problems in an urban area of Bangladesh and probable analytical solution.</h2>                         
+                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0; margin-bottom: 0;">Organization: Bangladesh Water Development Board</p> 
+                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0;">Document Type: ADP Report</p> 
+                        <!-- <br /> -->
+                        <p class="doc_details">
+                            Water logging is one of the most common problems in Bangladesh. Increased urban develop ment’s not providing sufficient drainage system to reduce water logging problems. This causes naturally large infrastructural problems for an area. Water logging creates adverse social, physical, economic and environmental impacts. Disruption of traffic movement and normal life; damage of structures and infrastructure; loss of income potentials are the effects of water logging on the life of the study area. Inadequate drainage sections, conventional drainage system with low capacity and gravity, natural siltation, absence of inlets and outlets, indefinite drainage outlets, lack of proper maintenance of existing drainage system, and over and above disposal of solid waste into the drains and drainage paths are accounted for the prime causes of blockage in drainage system (WARPO, 2005). This study will give a clear idea of the current drainage system of the ward no 12 and will also be helpful for identifying the responsible factors of urban drainage congestion. Besides this study will attempt to find out proper mitigation measure for the existing problem. Upper level decision-makers as well as development partners will be able to use the findings of this report for future policy recommendations. The highlight features of the urban area of Pabna Municipality are water logging and the existing drainage system; many of the drainage line are connected with “Ichamoti River”. The water logging brings some negative impact on the physical environment. The overall condition of our study area is becoming poor in rainy season. If the water logging increases more and more in our study area, the area will face a serious problem in a very near future.
+                        </p>
+                        <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                        <!-- <a href="#" class="doc_border_btn btn_small" ><i class="fa-light fa-file-pdf fa-fw" style="margin-left: 0px; font-size: 21px;"></i><span style="margin-left: 10px;">Download</span></a>                                              -->
+                    </div>
+                   
+                    <br />
+
+                    <div class="pl-1">        
+                        <h5 style="font-weight: 400;">Relevant & Important Links</h5>
+                        <p class="mb-1">                    
+                            <a href="#" target="_blank">UNECE- Second Assessment of transboundary rivers, lakes and groundwaters (2011)</a>
+                            <img src="{% static 'img/pdf.gif' %}">
+                        </p>
+                        <p class="mb-1">                    
+                            <a href="#" target="_blank">UNECE- First Assessment of Transboundary Rivers, Lakes and Groundwaters in the UNECE region (2007)</a>
+                            <img src="{% static 'img/pdf.gif' %}">
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div style="padding: 0px 0px 0px 10px;">
+                    <h5 style="font-weight: 400;">Related Documents</h5>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">ADP Report</h4>
+                        </div>
+                    </div>
+                    <!-- Sliding Cards -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <a href="#" title="Click here to view"> -->
+                                <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h6 class="h6 bold">Case study on water logging problems in an urban area of Bangladesh and probable analytical solution.</h6>
+                                            <p style="margin-bottom: 5px;">
+                                                Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies... 
+                                            </p>
+                                            <a href="{% url 'doc-details' %}" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- </a> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">                                
+                            <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/home_support/flood.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h6 class="h6 bold">Salinity problems and crop production in coastal regions of Bangladesh.</h6>
+                                        <p style="margin-bottom: 5px;">
+                                            Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                        </p>
+                                        <a href="{% url 'doc-details' %}" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">                                
+                            <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/home_support/water-logging.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h6 class="h6 bold">Award points, level up, and earn new privileges.</h6>
+                                        <p style="margin-bottom: 5px;">
+                                            Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                        </p>
+                                        <a href="{% url 'doc-details' %}" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Analysis & Reporting</h4>
+                        </div>
+                    </div>
+
+                    <!-- Sliding Cards -->
+                    <div class="row">
+                        <div class="col-md-12">                                
+                            <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/No_Image_Found1.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h6 class="h6 bold">Case study on water logging problems in an urban area of Bangladesh and probable analytical solution.</h6>
+                                        <p style="margin-bottom: 5px;">
+                                            Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                        </p>
+                                        <a href="{% url 'doc-details' %}" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">                                
+                            <div class="community-box wow fadeInUp" style="text-align: left; color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/No_Image_Found1.jpg' %}" alt="community" style="max-width: 150px; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h6 class="h6 bold">Salinity problems and crop production in coastal regions of Bangladesh.</h6>
+                                        <p style="margin-bottom: 5px;">
+                                            Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                        </p>
+                                        <a href="{% url 'doc-details' %}" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a>
+                                    </div>
+                                </div>
+                            </div>                                
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

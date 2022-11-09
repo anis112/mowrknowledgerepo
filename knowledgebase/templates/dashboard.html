@@ -60,7 +60,7 @@
     }
     
     .org-content:hover{
-        box-shadow: #04859b 0px 1px 6px 0px !important;        
+        box-shadow: #6ea5ae 1px 2px 7px 0px !important;     /* #04859b 0px 1px 6px 0px !important; */        
     }
 
     .org-img {
@@ -184,13 +184,13 @@
 </section>
 
 
-<!-- List of Organization -->
+<!-- List of Organization & No. of Documents -->
 <section class="doc_categories_guide_area sec_pad">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="section_title text-center" style="margin-bottom: 10px; margin-top: 20px;">
-                    <h5 class="wow fadeInUp">No. of Provided Documents (1345)</h5>
+                    <h5 class="wow fadeInUp">No. of Documents (<label style="color: #40f;"><div class="counter">{{total_docs}}</div></label>)</h5> <!--1345-->
                 </div>
 
                 <div class="row">                    
@@ -199,10 +199,9 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
                                 <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
                                 <label style="color:#4F5773; font-size: 13px;">BWDB</label>                                
-                                <div class="text-center">
-                                    <label style="color:#4F5773;">(550)</label>
-                                </div>
-                                <!-- <p style="color:#4F5773;">Bangladesh Water Development Board</p> -->
+                                <div class="text-center" style="color: #40f;">                                    
+                                    (<label><div class="counter">{{bwdb_docs}}</div></label>)    <!--550-->                                
+                                </div>                               
                             </a>
                         </div>
                     </div>
@@ -211,8 +210,8 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
                                 <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 40px;" />
                                 <label style="color:#4F5773; font-size: 13px;">RRI</label>                                
-                                <div class="text-center">
-                                    <label style="color:#4F5773;">(170)</label>
+                                <div class="text-center" style="color: #40f;">
+                                    (<label><div class="counter">{{rri_docs}}</div></label>)   <!--170-->                                  
                                 </div>
                                 <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
                             </a>
@@ -223,8 +222,8 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
                                 <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;" />
                                 <label style="color:#4F5773; font-size: 13px;">JRC</label>                                
-                                <div class="text-center">
-                                    <label style="color:#4F5773;">(80)</label>
+                                <div class="text-center" style="color: #40f;">
+                                    (<label><div class="counter">{{jrc_docs}}</div></label>)    <!--80-->
                                 </div>
                                 <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
                             </a>
@@ -235,8 +234,8 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
                                 <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;"  />
                                 <label style="color:#4F5773; font-size: 13px;">DBHWD</label>                                
-                                <div class="text-center">
-                                    <label style="color:#4F5773;">(75)</label>
+                                <div class="text-center" style="color: #40f;">
+                                    (<label><div class="counter">{{dbhwd_docs}}</div></label>)    <!--75-->
                                 </div>
                                 <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
                             </a>
@@ -247,8 +246,8 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
                                 <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
                                 <label style="color:#4F5773; font-size: 13px;">WARPO</label>                                
-                                <div class="text-center">
-                                    <label style="color:#4F5773;">(250)</label>
+                                <div class="text-center" style="color: #40f;">
+                                    (<label><div class="counter">{{warpo_docs}}</div></label>)      <!--250-->
                                 </div>
                                 <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
                             </a>
@@ -259,8 +258,8 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
                                 <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" style="width: 65px;"  />
                                 <label style="color:#4F5773; font-size: 13px;">IWM</label>  
-                                <div class="text-center">                         
-                                    <label style="color:#4F5773;">(70)</label>
+                                <div class="text-center" style="color: #40f;">                         
+                                    (<label><div class="counter">{{iwm_docs}}</div></label>)      <!--70-->
                                 </div>     
                                 <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
                                     </span>Institute of Water Modelling</p> -->
@@ -272,8 +271,8 @@
                             <a href="{% url 'SearchResult1' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
                                 <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"  style="margin-top: 10px;" />
                                 <label style="color:#4F5773; font-size: 13px;">CEGIS</label>                                
-                                <div class="text-center">
-                                    <label style="color:#4F5773;">(150)</label>
+                                <div class="text-center" style="color: #40f;">
+                                    (<label><div class="counter">{{cegis_docs}}</div></label>)        <!--150-->
                                 </div>
                                 <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
                                     </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->

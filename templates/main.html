@@ -1,5 +1,7 @@
 <!doctype html>
-{% load static %} 
+
+{% load static %}
+
 <html lang="en">
     <head>
         <!-- Required meta tags -->
@@ -11,11 +13,11 @@
     
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
 
-        
-   
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">    
-        
+        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-select.css' %}">    
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+
         <!-- Fontawesome -->
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/sharp-solid.css">
@@ -24,7 +26,7 @@
         <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">    
 
         <!-- Bootstrap SCSS -->
-        <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
+        {% comment %} <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}"> {% endcomment %}
 
         <!-- Tooltip -->
         <link rel="stylesheet" href="{% static 'assets/tooltipster/css/tooltipster.bundle.css' %}">
@@ -35,17 +37,9 @@
         <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
         <link rel="stylesheet" href="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">        
     
         <style>
-
-            /* @media (max-width: 750px){
-                .navbar-brand a img {
-                    height: 45px !important;
-                    width:250px !important;
-                    padding-left: 8px;
-                }
-            } */
 
             .breadcrumb_area .banner_search_form button {
             background: #10b3d6;        /* #019d19; */
@@ -141,23 +135,28 @@
             }
 
             .parallax > use {
-            animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+                animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
             }
 
-            .parallax > use:nth-child(1){animation-delay:-5s;}
-            .parallax > use:nth-child(2){animation-delay:-7s; animation-duration:5.25s}
-            .parallax > use:nth-child(3){animation-delay:1s; animation-duration:8.25s}
-            .parallax > use:nth-child(4){animation-delay:-3s; animation-duration:10.25s}
+            .parallax > use:nth-child(1) {animation-delay:-5s;}
+            .parallax > use:nth-child(2) {animation-delay:-7s; animation-duration:5.25s}
+            .parallax > use:nth-child(3) {animation-delay:1s; animation-duration:8.25s}
+            .parallax > use:nth-child(4) {animation-delay:-3s; animation-duration:10.25s}
 
-            @keyframes move-forever{
-            0%{transform: translate(-90px , 0%)}
-            100%{transform: translate(85px , 0%)} 
+            @keyframes move-forever {
+                0% {transform: translate(-90px , 0%)}
+                100% {transform: translate(85px , 0%)} 
             }
-
 
         </style>
+
+        {% block style_content %}
+
+        {% endblock %}
+
     </head>
-    <body data-scroll-animation="true">
+
+    <body class="d-flex flex-column min-vh-100" data-scroll-animation="true">
         <!-- preloader section -->
         <div id="preloader">
             <div id="ctn-preloader" class="ctn-preloader">
@@ -173,227 +172,224 @@
             </div>
         </div>
 
-        <!-- full body section -->
-        <div class="body_wrapper">
-
-            <!-- navbar with menu section -->
-            <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%);" >
-                <!--  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%);  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
-                <div class="container-fluid">
-                    <a class="navbar-brand sticky_logo" href="/">
-                        <!-- customized logo -->
-                        <img src="{% static 'img/knowledge_logo_w.png' %}" style="min-height: 40px; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;" srcset="{% static 'img/knowledge_logo_w.png' %} 2x" alt="logo">
-                        <img src="{% static 'img/knowledge_logo.png' %}" style="min-height: 40; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;" srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="menu_toggle">
-                            <span class="hamburger">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span class="hamburger-cross">
-                                <span></span>
-                                <span></span>
-                            </span>
+        
+        <!-- navbar with menu section -->
+        <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%);" >
+            <!--  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%);  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
+            <div class="animated-waves">
+                <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                    <title>Wave</title>
+                    <defs></defs>
+                    <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
+                </svg>
+                <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                    <title>Wave</title>
+                    <defs></defs>
+                    <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
+                </svg>
+            </div>
+            
+            
+            <div class="container-fluid">
+                <a class="navbar-brand sticky_logo" href="/">
+                    <!-- customized logo -->
+                    <img src="{% static 'img/knowledge_logo_w.png' %}" style="min-height: 40px; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;" srcset="{% static 'img/knowledge_logo_w.png' %} 2x" alt="logo">
+                    <img src="{% static 'img/knowledge_logo.png' %}" style="min-height: 40; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;" srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="menu_toggle">
+                        <span class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav menu ml-auto">
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{% url 'article' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Base</a>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research & Publication</a>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analysis & Reporting</a>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
-                            </li>
-                            <li class="nav-item dropdown submenu">
-                                {% if user.is_authenticated %}    
-                                Hi {{ user.username }}!  
-                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/logout' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Logout</a>                                                            
-                                                
-                                                           
-                                {% else %}
-                                <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>                                                            
-                                {% endif %}
-                            </li>
-                        </ul>
-                    </div>
+                        <span class="hamburger-cross">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav menu ml-auto">
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                        </li>
+                        <!-- <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="{% url 'article' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Base</a>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research & Publication</a>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analysis & Reporting</a>
+                        </li> -->
+
+                        {% if user.is_authenticated %}  
+                        <!-- <li class="nav-item dropdown submenu">
+                            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Data Management <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
+                                data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="#" class="nav-link">Upload Document</a> </li>
+                                <li class="nav-item"><a href="#" class="nav-link">Data Entry</a></li>                                    
+                            </ul>
+                        </li> -->
+
+
+
+                        <li class="nav-item dropdown submenu mega_menu tab-demo">
+                            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Data Management <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
+                                data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">                                    
+                                <li>
+                                    <div class="row">
+                                        <div class="col-lg-5 tabHeader">
+                                            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                                aria-orientation="vertical">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="v-pills-doc-tab" data-toggle="pill"
+                                                        href="#" role="tab" aria-controls="v-pills-doc"
+                                                        aria-selected="true">Data Entry</a>
+                                                </li>      
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#" role="tab" >Others</a>
+                                                </li>                                                                                                 
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="tab-content tabContent" id="v-pills-tabContent" style="box-shadow: none; border: none;">
+                                                <div class="tab-pane fade" id="v-pills-doc" role="tabpanel" aria-labelledby="v-pills-doc-tab" style="margin-top: 0px;">
+                                                    <div class="d-flex">
+                                                        <ul class="list-unstyled tab_list">
+                                                            <li>
+                                                                <a href="/organization/view">Organization</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/document/view">Document</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/article/view">Article</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>                                                        
+                                                </div>                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        {% endif %}
+
+                        <li class="nav-item dropdown submenu">
+                            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Search <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
+                                data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="{% url 'search' %}" class="nav-link">Search by Organization</a> </li>
+                                {% comment %} <li class="nav-item"><a href="{% url 'orgsearch' %}" class="nav-link">Search by Organization</a> </li> {% endcomment %}
+                                <li class="nav-item"><a href="{% url 'docsearch' %}" class="nav-link">Search by Document Type</a></li>
+                                <li class="nav-item"><a href="{% url 'national_international' %}" class="nav-link">Search Other Document(s)</a> </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+                        </li>
+
+                        <li class="nav-item dropdown submenu">
+                            {% if user.is_authenticated  %}  
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hi {{ user.username }}! <i class="fa-sharp fa-solid fa-caret-down"></i>
+                            </a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false" data-toggle="dropdown"></i>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href={% url 'accounts/user_profile' user.username %} class="nav-link">View profile</a></li>
+                                <li class="nav-item"><a href={% url 'accounts/logout' %} class="nav-link">Logout</a></li>                                 
+                                {% comment %} <li class="nav-item"><a href={% url 'accounts/user_list' user.organization_id %} class="nav-link">User List</a></li> {% endcomment %}
+                                <li class="nav-item"><a href='/admin/accounts/customuser/' class="nav-link">User List</a></li>
+                                <li class="nav-item"><a href='/admin/' class="nav-link">Manage Data</a></li>
+
+                            </ul>
+                            {% else %}
+                            <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
+                            {% endif %}
+                        </li>
+
+                        
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- searchbox area section -->
-            <section class="breadcrumb_area d-none">
-                <div class="b_plus one" data-parallax='{"x": 250, "y": 160, "rotateZ":500}'><img src="{% static 'img/home_two/plus.png' %}" alt=""></div>
-                <div class="b_plus two" data-parallax='{"x": 250, "y": 260, "rotateZ":500}'><img src="{% static 'img/home_two/plus_one.png' %}" alt=""></div>
-                <!-- <div class="b_round r_one" data-parallax='{"x": 0, "y": 100, "rotateZ":0}'></div> -->
-                <div class="b_round r_two" data-parallax='{"x": -10, "y": 80, "rotateY":0}'></div>
-                <div class="b_round r_three"></div>
-                <div class="b_round r_four"></div>                
-                <img class="p_absolute star_one" src="{% static 'img/home_two/star.png' %}" style="right: 170px; top: 34%; animation: star 9s both infinite alternate 5s" alt="Star illustration"> <!-- right:10px !important; -->                
-                <img class="p_absolute star_two" src="{% static 'img/home_two/star.png' %}" style="right:10px !important; animation: star2 4s ease-in-out infinite alternate" alt="Star illustration">
-                <img class="p_absolute star_three" src="{% static 'img/home_two/star.png' %}" style="left:1000px !important; top:60px !important; animation: star 7s ease-in-out infinite alternate " alt="Star illustration">
-                <!-- <img class="p_absolute building_img" src="{% static 'img/home_two/wave_one.png' %}" alt=""> -->
-                <img class="p_absolute building_img" src="{% static 'img/home_two/building.png' %}" style="left: 50%; transform: translateX(-50%); bottom: 0; z-index: 0;" alt="">
-                <!-- <img class="p_absolute table_img wow fadeInLeft" src="{% static 'img/home_two/table.svg' %}" alt=""> -->
-                <img class="p_absolute flower wow fadeInUp" data-wow-delay="0.6s" src="{% static 'img/home_two/flower.png' %}" style="bottom: 0; left:20px;" alt="">
-                <img class="p_absolute bl_right" src="{% static 'img/v.svg' %}" style="width: 70px; right: 100px; bottom: -25px;" alt="">
-                <!-- <img class="p_absolute bord wow fadeInRight" data-wow-delay="0.4s" src="{% static 'img/home_two/bord.png' %}" alt=""> -->
-                <!-- <img class="p_absolute girl wow fadeInRight" data-wow-delay="0.8s" src="{% static 'img/home_two/girl.png' %}" alt=""> -->
-                <div class="container">
-                    <form action="#" class="banner_search_form banner_search_form_two">
-                        <div class="input-group">
-                            <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
-                            <div class="input-group-append">
-                                <select class="custom-select" id="inlineFormCustomSelect">
-                                    <option selected>All Category</option>
-                                    <option value="1">Doc Archive</option>
-                                    <option value="2">Doc list</option>
-                                    <option value="3">KbDoc</option>
-                                </select>
-                            </div>
-                            <button type="submit"><i class="icon_search"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-
-            <!-- <br /> -->
-
-            <div class="body_wrapper" style="margin-top: 100px; min-height: 800px;">
+        <div class="main-content" >
 
             {% block content %}
 
             {% endblock %}
 
-            </div>
-            <!-- footer -->
-
-            <!-- <hr style="margin-top: 3rem; margin-bottom:0;" /> -->
-
-            <footer class="footer_area f_bg_color" style="margin-top: 0px; font-size: 12px; border-top: 1px solid rgba(0,0,0,.1)">
-
-                <section class="doc_fun_fact_area" style="background-image: linear-gradient(180deg, rgba(29, 39, 70) 0%, rgba(0, 47, 70, 0.8) 100%); padding: 0px;">    <!--  linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 47, 70, 0.8) 100%); background: #eff4ff; #E4EEF0 -->
-                    <div class="animated-waves">
-                        <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
-                            <title>Wave</title>
-                            <defs></defs>
-                            <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
-                        </svg>
-                        <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
-                            <title>Wave</title>
-                            <defs></defs>
-                            <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
-                        </svg>
-
-                        
-
-                        <!-- <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none" style="height:100%; width:100%;">                    
-                            <defs>
-                                <path id="animated-wave-four" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                            </defs>
-                            <g class="parallax">                
-                                <use xlink:href="#animated-wave-four" x="50" y="0" fill="#2595ea35"/>  fill="#2475ed35"
-                                <use xlink:href="#animated-wave-four" x="50" y="2" fill="#2595ea50"/>  fill="#2578df50"
-                                <use xlink:href="#animated-wave-four" x="50" y="4" fill="#2595ea65"/>  fill="#2873ea65"
-                                <use xlink:href="#animated-wave-four" x="50" y="6" fill="#2595ea25"/>  fill="#2873ea25"                 
-                            </g>
-                        </svg> -->
-
-
-                    </div>
-                    <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
-                    <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
-                    <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">
-                    <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">
-                    <img class="p_absolute f_email_two" src="{% static 'img/home_two/email-icon_two.png' %}" alt="">
-                    <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt=""> -->
-
-
-                    <div class="row" style="min-height: 50px; padding: 10px; border-bottom: 1px solid #004262; background: rgba(0,0,0,0.1); ">    <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
-                        <div class="col-lg-12 text-center">
-                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="#">Knowledge Base</a> | <a href="#">Research & Publications</a> | <a href="#">Analysis & Reporting</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
-                        </div>
-                    </div>
-                    
-                    <div class="container">
-                        <div class="row" style="color:#dfdfdf; height: auto; padding: 10px;">   <!--  color:white;   background: #E4EEF0;   #00026a -->
-                            <div class="col-md-4 text-center text-md-left pt-2 pb-2">
-                                <!-- <label>Ministry of Water Resources</label>
-                                <br>                                 -->
-                                <img src="/static/img/article_logo/BD_GOV.png" alt="MOWR" title="MOWR" style="width: 50px;">
-                                <!-- <br> -->
-                                <label style="color:#dfdfdf;">© 2022 <a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a> | All Rights Reserved.</label>
-                                <!-- <br>    -->
-                            </div>
-                            <div class="col-md-4 text-center pt-3 pb-3">
-                                <!-- <label>Organizations</label>
-                                <br> -->
-                                <div class="logo_round"><img src="/static/img/article_logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;"><br><label>BWDB</label></div>
-                                <div class="logo_round"><img src="/static/img/article_logo/rri.png" alt="RRI" title="RRI" style="width: 40px;"><br><label>RRI</label></div>
-                                <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="JRC" title="JRC" style="width: 50px;"><br><label>JRC</label></div>
-                                <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="DBHWD" title="DBHWD" style="width: 50px;"><br><label>DBHWD</label></div>
-                                <div class="logo_rect"><img src="/static/img/article_logo/WARPO.png" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;"><br><label>WARPO</label></div>
-                                <div class="logo_rect"><img src="/static/img/article_logo/iwm.png" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;"><br><label>IWM</label></div>
-                                <div class="logo_rect"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;"><br><label>CEGIS</label></div>
-                                <!-- <img src="/static/img/article_logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;">
-                                <img src="/static/img/article_logo/rri.png" alt="RRI" title="RRI" style="width: 40px;">
-                                <img src="/static/img/article_logo/BD_GOV.png" alt="JRC" title="JRC" style="width: 50px;">
-                                <img src="/static/img/article_logo/BD_GOV.png" alt="DBHWD" title="DBHWD" style="width: 50px;">
-                                <img src="/static/img/article_logo/WARPO.png" alt="WARPO" title="WARPO" style="width: 70px;">
-                                <img src="/static/img/article_logo/iwm.png" alt="IWM" title="IWM" style="width: 50px;">
-                                <img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" title="CEGIS" style="width: 70px;"> -->
-                                <!-- <br>    -->
-                            </div>
-                            <div class="col-md-4 text-center text-md-right pt-2 pb-2">
-                                <label>Developed by <a href="https://cegisbd.com/" target="_blank"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" style="width: 70px; margin-left: 5px;"></a></label>                               
-                                
-                                <!-- <div class="f_widget link_widget text-center wow fadeInUp" >                                    
-                                    <span style="color:#dfdfdf;"><b>Contact Us:</b>  Ministry of Water Resources, 5th Floor, Block 6, Bangladesh Shochibaloy, Dhaka.</span>
-                                    <div class="f_widget subscribe_widget wow fadeInUp" style="padding: 0px;">                                
-                                        <ul class="list-unstyled f_social_icon" style="padding-top: 0px;">
-                                            <li class="icon_facebook"><a href="#"><i class="social_facebook"></i></a></li>
-                                            <li class="icon_twiter"><a href="#"><i class="social_twitter"></i></a></li>
-                                            <li class="icon_linkedin"><a href="#"><i class="social_linkedin"></i></a></li>
-                                            <li class="icon_youtube"><a href="#"><i class="social_youtube"></i></a></li>
-                                        </ul>                           
-                                    </div>                                                 
-                                </div> -->
-                                <!-- <br>    -->
-                            </div>
-                            <!-- <div class="col-lg-6">
-                                <div class="f_widget subscribe_widget wow fadeInUp" data-wow-delay="0.4s">                                
-                                    <ul class="list-unstyled f_social_icon" style="padding-top: 0px;">
-                                        <li><a href="#"><i class="social_facebook"></i></a></li>
-                                        <li><a href="#"><i class="social_twitter"></i></a></li>
-                                        <li><a href="#"><i class="social_vimeo"></i></a></li>
-                                        <li><a href="#"><i class="social_linkedin"></i></a></li>
-                                    </ul>                           
-                                </div>                        
-                            </div>  -->
-                            <!-- <div class="col-lg-12">
-                                <hr style="margin-top: 0rem; margin-bottom:0.5rem; border-top: 1px solid rgba(0, 0, 63)" /> 
-                            </div>     -->                                                    
-                        </div>
-                        <!-- <br>    -->
-                    </div>
-                            
-                </section>
-            </footer>
-
         </div>
+
+        <!-- footer -->
+        <footer class="footer_area f_bg_color mt-auto" style="font-size: 12px; border-top: 1px solid rgba(0, 0, 0, 0.15)">
+
+            <section class="doc_fun_fact_area" style="background-image: linear-gradient(180deg, rgba(29, 39, 70) 0%, rgba(0, 47, 70, 0.8) 100%); padding: 0px;">    <!--  linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 47, 70, 0.8) 100%); background: #eff4ff; #E4EEF0 -->
+                <div class="animated-waves">
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
+                    </svg>
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
+                    </svg>
+                </div>
+                
+                
+                <div class="row" style="padding: 10px; border-bottom: 1px solid #004262; background: rgba(0, 0, 0, 0.025);">    <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
+                    <div class="col-lg-12 text-center">
+                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="{% url 'orgsearch' %}">Search by Organization</a> | <a href="{% url 'docsearch' %}">Search by Document Type</a> | <a href="{% url 'national_international' %}">Other Document(s) Search</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                    </div>
+                </div>
+                    
+                <div class="container">
+                    <div class="row p-2 h-auto" style="color:#dfdfdf;">
+                        <div class="col-md-3 text-center text-md-left pt-2 pb-2">
+                            <img src="/static/img/article_logo/BD_GOV.png" alt="MOWR" title="MOWR" style="width: 50px;">                               
+                                <label style="color:#dfdfdf;">© 2022 <a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a> | All Rights Reserved.</label> 
+                        </div>
+                        <div class="col-md-6 text-center pt-3 pb-3 pt-md-1 pb-md-0">
+                            <div class="row">
+                                <div style="margin-left: auto; margin-right:auto;">   
+                                    <div class="logo_round"><img src="/static/img/article_logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;"><br><label>BWDB</label></div>
+                                    <div class="logo_round"><img src="/static/img/article_logo/rri.png" alt="RRI" title="RRI" style="width: 40px;"><br><label>RRI</label></div>
+                                    <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="JRC" title="JRC" style="width: 50px;"><br><label>JRC</label></div>
+                                    <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="DBHWD" title="DBHWD" style="width: 50px;"><br><label>DBHWD</label></div>
+                                    <div class="logo_rect"><img src="/static/img/article_logo/WARPO.png" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;"><br><label>WARPO</label></div>
+                                    <div class="logo_rect"><img src="/static/img/article_logo/iwm.png" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;"><br><label>IWM</label></div>
+                                    <div class="logo_rect"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;"><br><label>CEGIS</label></div>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-3 text-center text-md-right pt-2 pb-2">
+                            <label>Developed by <a href="https://cegisbd.com/" target="_blank"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" style="width: 70px; margin-left: 5px;"></a></label>                                                                                              
+                        </div>
+                    </div>
+                </div>
+                        
+            </section>
+        </footer>
 
 
         <!-- Back to top button -->
@@ -401,10 +397,19 @@
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+        <!-- <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> -->
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
         <script src="{% static 'js/pre-loader.js' %}"> </script>
         <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
         <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'assets/bootstrap/js/bootstrap-select.js' %}"></script>
         <script src="{% static 'assets/slick/slick.min.js' %}"></script>
         <script src="{% static 'js/parallaxie.js' %}"></script>
         <script src="{% static 'js/TweenMax.min.js' %}"></script>
@@ -415,6 +420,38 @@
         <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
         <script src="{% static 'assets/counterup/jquery.waypoints.min.js' %}"></script>
         <script src="{% static 'assets/tooltipster/js/tooltipster.bundle.min.js' %}"></script>
+
         <script src="{% static 'js/main.js' %}"></script>
+
+        <script>
+            $('#tblDocument').DataTable({
+                // paging: true,
+                // pageLength: 10,
+                // lengthChange: true,
+                // autoWidth: true,
+                // searching: true,
+                // bInfo: true,
+                // bSort: true
+            })
+
+            $('#tblOrganization').DataTable({
+                // paging: true,
+                // pageLength: 10,
+                // lengthChange: true,
+                // autoWidth: true,
+                // searching: true,
+                // bInfo: true,
+                // bSort: true
+            })
+        </script>
+
+        
+        {% block script_content %}
+
+        {% endblock %}
+
+
+
+
     </body>
 </html>
