@@ -70,7 +70,6 @@ def dashboard(request):
     count_plan = Document.objects.filter(
         data_category__id__in=plan_cat_ids).count()
 
-
     count_docs = Document.objects.count()
     count_bwdb = Document.objects.filter(organization__id=4).count()
     count_rri = Document.objects.filter(organization__id=2).count()
@@ -80,11 +79,10 @@ def dashboard(request):
     count_iwm = Document.objects.filter(organization__id=6).count()
     count_cegis = Document.objects.filter(organization__id=7).count()
 
-
     context = {'organization': count_organization,
-               'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan, 
+               'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan,
                'total_docs': count_docs, 'bwdb_docs': count_bwdb, 'rri_docs': count_rri, 'jrc_docs': count_jrc, 'dbhwd_docs': count_dbhwd, 'warpo_docs': count_warpo,
-               'iwm_docs': count_iwm, 'bwdb_cegis': count_cegis }
+               'iwm_docs': count_iwm, 'bwdb_cegis': count_cegis}
 
     return render(request, 'dashboard.html', context)
 
@@ -104,8 +102,10 @@ def national_international(request):
 def SearchResult1(request):
     return render(request, 'SearchResult1.html')
 
+
 def doc_details(request):
     return render(request, 'doc-details.html')
+
 
 def article(request):
     #article_obj = Article.objects.get(pk=1)
@@ -246,13 +246,20 @@ def viewArticleDetail(request):
     # if req_query is not None & req_query.get("search_term") is not None:
 
 
+def document_detail(request, id):
+    document = Document.objects.get(id=id)
+    context = {'document': document}
+
+    return render(request, 'doc-details.html', context)
+
+
 def search_document(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET or request.POST
 
         if req_query and req_query.get("search_term"):
-            
+
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
@@ -285,7 +292,7 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
-        
+
         data_category_ids = [int(id) for id in data_category_ids]
 
         cond_cat = Q(data_category_id__in=data_category_ids)
@@ -293,7 +300,7 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
-        
+
         access_category_ids = [int(id) for id in access_category_ids]
 
         cond_accat = Q(access_category_id__in=access_category_ids)
@@ -336,4 +343,3 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
     # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
 
     return render(request, 'search_document.html', context)
-

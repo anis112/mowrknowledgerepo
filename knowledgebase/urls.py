@@ -9,7 +9,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name="dashboard"),
     path('orgsearch/', views.orgsearch, name="orgsearch"),
     path('docsearch/', views.docsearch, name="docsearch"),
-    path('national_international/', views.national_international, name="national_international"),
+    path('national_international/', views.national_international,
+         name="national_international"),
     path('SearchResult1/', views.SearchResult1, name="SearchResult1"),
     path('doc-details/', views.doc_details, name="doc-details"),
     path('home2/', views.home2, name="home2"),
@@ -26,7 +27,7 @@ urlpatterns = [
     path('document/edit/<int:id>', views.editDocument, name="edit_document"),
     path('document/update/<int:id>', views.updateDocument, name="update_document"),
     path('document/view', views.viewDocument, name="view_document"),
-    
+
     # path('document/view', views.viewDocument, name="view_document"),
 
     path('article/add', views.addArticleDetail, name="add_article"),
@@ -35,4 +36,6 @@ urlpatterns = [
     path('search/', views.search_document, name="search"),
     path('search/<search_term>', views.search_document, name="search"),
     #path('search/<string:search_term>', views.search_document, name="search"),
+    path('search/doc-details/<int:id>',
+         views.document_detail, name="document_detail"),
 ]
