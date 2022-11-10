@@ -4,7 +4,6 @@ from pathlib import Path
 import cx_Oracle
 
 
-
 cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\DjangoOraInstantClient")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_19_16")
 # cx_Oracle.init_oracle_client(lib_dir=r"C:\OracleBase\product\19.3.0\instantclient_21_6")
@@ -41,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'accounts',
-    'django_admin_logs',
+    # 'django_admin_logs',
     'crispy_forms',
     "debug_toolbar",  # debug_toolbar
 ]
@@ -155,7 +154,6 @@ STATICFILES_DIRS = [STATIC_DIR]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 
 JAZZMIN_SETTINGS = {
