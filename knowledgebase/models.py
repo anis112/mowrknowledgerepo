@@ -78,8 +78,8 @@ class Document(models.Model):
     #id = models.PositiveSmallIntegerField(primary_key=True)
     
     parent_id = models.PositiveBigIntegerField(null=True, blank=True)
-    organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, null=True)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
+    
     
     
     
