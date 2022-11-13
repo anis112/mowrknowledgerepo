@@ -113,6 +113,7 @@ class OrganizationForm(forms.ModelForm):
 
 
 class DocumentForm(forms.ModelForm):
+    
     organization_list = Organization.objects.values_list(
         "id", "organization_name")
     data_category_list = DataCategory.objects.values_list(
