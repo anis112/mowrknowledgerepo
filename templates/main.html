@@ -134,6 +134,7 @@
                 font-size: 10px;
             }
 
+            /* SVG Styles */
             .parallax > use {
                 animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
             }
@@ -148,6 +149,9 @@
                 100% {transform: translate(85px , 0%)} 
             }
 
+            /* SVG Style */
+
+
         </style>
 
         {% block style_content %}
@@ -158,9 +162,9 @@
 
     <body class="d-flex flex-column min-vh-100" data-scroll-animation="true">
         <!-- preloader section -->
-        <div id="preloader">
+        <div id="preloader" style="background-image: url(/static/img/patterns/subtle_grunge.png) !important;">           <!--  subtle_grunge.png fancy_deboss.png -->
             <div id="ctn-preloader" class="ctn-preloader">
-                <div class="round_spinner">                    
+                <div class="round_spinner" style="border-color: rgb(123, 181, 181) !important;">                    
                     <div class="text">
                         <img src="{% static 'img/loadings/108_T.gif' %}" width="100%" alt="">
                         <h6>loading...</h6>
