@@ -4,6 +4,9 @@ from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataAccessCategory, DataCategory,
                      Document, Organization)
 
+
+from .forms import DocumentForm
+
 # Register your models here.
 
 
@@ -30,9 +33,6 @@ class DataAccessCategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'category_name']
     list_editable = ['category_name']
     list_per_page = 50
-
-
-
 
 
 
@@ -91,6 +91,7 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
         #return queryset.all()
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
+    #form=DocumentForm
     #autocomplete_fields = ['article_category']
     list_display = ['id', 'parent_id', 'organization', 'data_category',
                     'title', 'author', 'access_category']
@@ -105,6 +106,7 @@ class DocumentAdmin(admin.ModelAdmin):
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
         return super().formfield_for_foreignkey(db_field, request, **kwargs)     
 
+# admin.site.register(Document)
 
 @admin.register(ArticleDetail)
 class ArticleDetailAdmin(admin.ModelAdmin):
