@@ -62,156 +62,233 @@
         margin-bottom: 10px;
     }
 
-/*=========== Start Slider css (MNH) ============*/
+    /*=========== Start Slider css (MNH) ============*/
 
 
 
-.slide_section{
-  position: inherit ;
-  width: 100%;
-  height: auto;
-  display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  /* margin-bottom: 100px; */
-  z-index: 100;
- }
+    .slide_section{
+    position: inherit ;
+    width: 100%;
+    height: auto;
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    /* margin-bottom: 100px; */
+    z-index: 100;
+    }
 
- .slide{
-    position: relative;
-    background: #F8F9FA;
-    height: 650px;
-    flex: 0.9;
-    border-right: 1px solid rgba(0, 0, 0, 0.16);
-    overflow: hidden;
-    transition: 0.5s ease-in-out;         /* Transition/Animation Speed */
-}
+    .slide{
+        position: relative;
+        background: #F8F9FA;
+        height: 650px;
+        flex: 0.9;
+        border-right: 1px solid rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        transition: 0.5s ease-in-out;         /* Transition/Animation Speed */
+    }
 
-.slide:last-child
-{
-    border-right: none;
-}
+    .slide:last-child
+    {
+        border-right: none;
+    }
 
-.slide:hover
-{
-    flex-grow: 6;      /* Widely Open Width */
-    /* transform: scale(1.05, 1.05); */
-    /* -ms-flex-negative: 0;
-    flex-shrink: 0;
-    width: 65%; */    
-}
+    .slide:hover
+    {
+        flex-grow: 6;      /* Widely Open Width */
+        /* transform: scale(1.05, 1.05); */
+        /* -ms-flex-negative: 0;
+        flex-shrink: 0;
+        width: 65%; */    
+    }
 
-.inner {
-    height: 650px; 
-    width: 100%;     
+    .inner {
+        height: 650px; 
+        width: 100%;     
+        display: block;
+        background-repeat: no-repeat;
+        transition: all 1s;
+        background-size: auto 100%;
+    }
+
+    /* .slide:nth-child(1)
+    {
+        background: url(../static/img/slider-img/S1.jpg);
+        background-position: center center;
+    }
+
+    .slide:nth-child(2)
+    {
+        background: url(../static/img/slider-img/S2.jpg);
+        background-position: center center;
+    }
+
+    .slide:nth-child(3)
+    {
+        background: url(../static/img/slider-img/S3.jpg);
+        background-position: center center;
+    }
+
+    .slide:nth-child(4)
+    {
+        background: url(../static/img/slider-img/S4.jpg);
+        background-position: center center;
+    } */
+
+    .slide a
+    {
+        position: absolute;
+        bottom: 233px;   /*  150px  */
+        /* margin: 20px; */
+        padding: 10px;
+        /* background: #000;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0s;
+        transform: translateY(100px); */
+        /* width:100%; */
+    }
+
+    .slide .content
+    {
+        position: absolute;
+        bottom:0;
+        /* margin: 20px; */
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0s;
+        transform: translateY(100px);
+        width:100%;
+    }
+
+    .slide:hover .inner {
+        transform: scale(1.3);      /* Zoom Level */
+        /* transition-delay: 0.1s;*/      /* Zoom Delay*/
+    }
+
+    .slide:hover .content{
+        visibility: visible;
+        opacity: 0.7;
+        transition: 0.5s;
+        transition-delay: 0.2s;
+        transform: translateY(0px);    
+    } 
+
+    /*.slick-track {
+        /* transition-delay: 2s !important; 
+        /* transition: transform 1s !important; 
+    } */
+
+    .item {
+        margin: 20px;
+    }
+
+    /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
+    /*=========== End Slider css (MNH) ============*/
+
+
+    /*=========== SVG css (MNH) ============*/
+    .water-wave {
     display: block;
-    background-repeat: no-repeat;
-    transition: all 1s;
-    background-size: auto 100%;
-  }
+    width: 100%;
+    height: 9rem;
+    max-height: 100vh;
+    margin: 0;
+    }
 
-/* .slide:nth-child(1)
-{
-    background: url(../static/img/slider-img/S1.jpg);
-    background-position: center center;
-}
+    .parallax > use {
+    animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+    }
 
-.slide:nth-child(2)
-{
-    background: url(../static/img/slider-img/S2.jpg);
-    background-position: center center;
-}
+    .parallax > use:nth-child(1){animation-delay:-5s;}
+    .parallax > use:nth-child(2){animation-delay:-7s; animation-duration:5.25s}
+    .parallax > use:nth-child(3){animation-delay:1s; animation-duration:8.25s}
+    .parallax > use:nth-child(4){animation-delay:-3s; animation-duration:10.25s}
 
-.slide:nth-child(3)
-{
-    background: url(../static/img/slider-img/S3.jpg);
-    background-position: center center;
-}
+    @keyframes move-forever{
+    0%{transform: translate(-90px , 0%)}
+    100%{transform: translate(85px , 0%)} 
+    }
 
-.slide:nth-child(4)
-{
-    background: url(../static/img/slider-img/S4.jpg);
-    background-position: center center;
-} */
+    /*=========== SVG css (MNH) ============*/
 
-.slide a
-{
-    position: absolute;
-    bottom: 233px;   /*  150px  */
-    /* margin: 20px; */
-    padding: 10px;
-    /* background: #000;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0s;
-    transform: translateY(100px); */
-    /* width:100%; */
-}
+    /* Starts Responsive Image Slider Image */
 
-.slide .content
-{
-    position: absolute;
-    bottom:0;
-    /* margin: 20px; */
-    padding: 10px;
-    background: #000;
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0s;
-    transform: translateY(100px);
-    width:100%;
-}
+    @media (min-width: 1200px) {
+        .slide, .inner {
+            height:650px;
+        }
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom:100px;
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
 
-.slide:hover .inner {
-    transform: scale(1.3);      /* Zoom Level */
-    /* transition-delay: 0.1s;*/      /* Zoom Delay*/
-  }
-
-.slide:hover .content{
-    visibility: visible;
-    opacity: 0.7;
-    transition: 0.5s;
-    transition-delay: 0.2s;
-    transform: translateY(0px);    
-} 
-
-/*.slick-track {
-    /* transition-delay: 2s !important; 
-    /* transition: transform 1s !important; 
-} */
-
-.item {
-    margin: 20px;
-}
-
-/* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
-/*=========== End Slider css (MNH) ============*/
+    @media (max-width: 1199.98px) {
+        .slide, .inner {
+            height:450px;
+        }
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom:130px;
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
 
 
-/*=========== SVG css (MNH) ============*/
-.water-wave {
-  display: block;
-  width: 100%;
-  height: 9rem;
-  max-height: 100vh;
-  margin: 0;
-}
+    @media (max-width: 776px) {
+        .slide, .inner {
+            height:300px;
+        }
+        .content {
+            display:none;
+        }
+        .slide a {
+            bottom:0;
+            font-size: 0.7rem;
+            padding:10px 5px;
+        }
+    }
 
-.parallax > use {
-  animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
 
-.parallax > use:nth-child(1){animation-delay:-5s;}
-.parallax > use:nth-child(2){animation-delay:-7s; animation-duration:5.25s}
-.parallax > use:nth-child(3){animation-delay:1s; animation-duration:8.25s}
-.parallax > use:nth-child(4){animation-delay:-3s; animation-duration:10.25s}
+    @media (max-width: 567px) {
+        .slide, .inner {
+            height:200px;
+        }
+        .content {
+            display:none;
+        }
+        .slide a {
+            bottom:0;
+            padding:0;
+            font-size: 0.6rem;
+        }
+    }
 
-@keyframes move-forever{
-  0%{transform: translate(-90px , 0%)}
-  100%{transform: translate(85px , 0%)} 
-}
 
+    @media (max-width: 300px) {
+        .slide, .inner {
+            height:110px;
+        }
+        .content {
+            display:none;
+        }
+        .slide a {
+            bottom:0;
+            padding:0;
+            font-size: 0.5rem;
+        }
+    }
+    /* Ends Responsive Image Slider Image */
 
 
 </style>
@@ -239,7 +316,7 @@
 <section class="slide_section"> <!-- style="position: inherit; width: 100%; height: auto; display: flex; border:2px solid #000; z-index: 100;"  -->
     <div class="slide" >
         <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide1.jpg);"></span> <!-- <img src="{% static 'img/slider-img/MWR_Slide1.jpg' %}" style="width:100%;"> -->        
-        <a href="{% url 'search' %}" class="doc_border_btn" style="opacity: 0.9; margin-left: -2px; padding: 10px 5px; font-size: 13px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Organization<i class="arrow_right"></i></a>
+        <a href="{% url 'search' %}" class="doc_border_btn" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Organization<i class="arrow_right"></i></a>
         <div class="content">            
             <h4 style="color:#04aadd;">Search by Organization</h4>  <!-- #25a800 -->
             <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>            
@@ -247,7 +324,7 @@
     </div>
     <div class="slide">
         <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide2.jpg);"></span>
-        <a href="{% url 'docsearch' %}" class="doc_border_btn" style="opacity: 0.9; margin-left: -2px; padding: 10px 5px; font-size: 13px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Document Type<i class="arrow_right"></i></a>
+        <a href="{% url 'docsearch' %}" class="doc_border_btn" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Document Type<i class="arrow_right"></i></a>
         <div class="content">
             <h4 style="color:#04aadd;">Search by Document Type</h4>
             <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>            
@@ -255,7 +332,7 @@
     </div>
     <div class="slide">
         <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide3.jpg);"></span>
-        <a href="{% url 'national_international' %}" class="doc_border_btn" style="opacity: 0.9; margin-left: -2px; padding: 10px 5px; font-size: 13px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Other Document(s) Search<i class="arrow_right"></i></a>
+        <a href="{% url 'national_international' %}" class="doc_border_btn" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Other Document(s) Search<i class="arrow_right"></i></a>
         <div class="content">
             <h4 style="color:#04aadd;">Other Document(s) Search</h4>
             <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>            

@@ -1,257 +1,289 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        {% load static %}
+
+<head>
     
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">          
-        
-        <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">    
+    {% load static %}
 
-        <!-- Bootstrap SCSS -->
-        <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Tooltip -->
-        <link rel="stylesheet" href="{% static 'assets/tooltipster/css/tooltipster.bundle.css' %}">
+    <title>MoWR::Knowledge Base</title>
 
-        <!-- icon css-->
-        <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/niceselectpicker/nice-select.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
-        <link rel="stylesheet" href="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-        <title>Knowledge Base - MoWR</title>
-    
-        <style>
-            .breadcrumb_area { 
-                padding: 130px 0 40px; 
-            }
-            .container-fluid {
-                padding-left: 60px;
-                padding-right: 60px;
-            }
-            .section_title p {
-                max-width: none;
-            }
-            .sec_pad {
-                padding: 15px 0;
-            }
-            .section_title {
-                margin-bottom: 15px;
-            }
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
 
-            .container {
-                max-width: 85% !important;
-            }
+    <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">
 
-            .icon_facebook a {
-                /* background: #fff !important;  */
-                border:2px solid #1877f2 !important;  
-                color: #1877f2 !important; 
-            }
+    <!-- Bootstrap SCSS -->
+    <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
 
-            .icon_facebook a:hover {
-                background: #1877f2 !important;    
-                border-color: #1877f2 !important; 
-                color: #fff !important;
-            }
+    <!-- Tooltip -->
+    <link rel="stylesheet" href="{% static 'assets/tooltipster/css/tooltipster.bundle.css' %}">
 
-            .icon_twiter a {
-                /* background: #fff !important;  */
-                border:2px solid #55acee !important;  
-                color: #55acee !important; 
-            }
+    <!-- icon css-->
+    <link rel="stylesheet" href="{% static 'assets/elagent-icon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/niceselectpicker/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/animation/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <title>Knowledge Base - MoWR</title>
 
-            .icon_twiter a:hover {
-                background: #55acee !important;    
-                border-color: #55acee !important; 
-                color: #fff !important;
-            }
-            
-            .icon_linkedin a {
-                /* background: #fff !important;  */
-                border:2px solid #0A66C2 !important;  
-                color: #0A66C2 !important; 
-            }
+    <style>
+        .breadcrumb_area {
+            padding: 130px 0 40px;
+        }
 
-            .icon_linkedin a:hover {
-                background: #0A66C2 !important;    
-                border-color: #0A66C2 !important; 
-                color: #fff !important;
-            }
-            
-            .icon_youtube a {
-                /* background: #fff !important;  */
-                border:2px solid #AC0000 !important;  
-                color: #AC0000 !important; 
-            }
+        .container-fluid {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
 
-            .icon_youtube a:hover {
-                background: #AC0000 !important;    
-                border-color: #AC0000 !important; 
-                color: #fff !important;
-            }
-            
-            .logo_round {
-                min-height: 45px;
-                min-width: 60px;
-                padding: 0px 3px;
-                float: left;
-                font-size: 10px;
-            }
+        .section_title p {
+            max-width: none;
+        }
 
-            .logo_rect {
-                min-height: 45px;
-                min-width: 80px;
-                padding: 0px 3px;
-                float: left;
-                font-size: 10px;
-            }
+        .sec_pad {
+            padding: 15px 0;
+        }
 
-        </style>
-    </head>
-    <body data-scroll-animation="true">
-        <!-- preloader section -->
-        <div id="preloader">
-            <div id="ctn-preloader" class="ctn-preloader">
-                <div class="round_spinner">                    
-                    <div class="text">
-                        <img src="{% static 'img/loadings/108_T.gif' %}" width="100%" alt="">
-                        <h6>loading...</h6>
-                    </div>
+        .section_title {
+            margin-bottom: 15px;
+        }
+
+        .container {
+            max-width: 85% !important;
+        }
+
+        .icon_facebook a {
+            /* background: #fff !important;  */
+            border: 2px solid #1877f2 !important;
+            color: #1877f2 !important;
+        }
+
+        .icon_facebook a:hover {
+            background: #1877f2 !important;
+            border-color: #1877f2 !important;
+            color: #fff !important;
+        }
+
+        .icon_twiter a {
+            /* background: #fff !important;  */
+            border: 2px solid #55acee !important;
+            color: #55acee !important;
+        }
+
+        .icon_twiter a:hover {
+            background: #55acee !important;
+            border-color: #55acee !important;
+            color: #fff !important;
+        }
+
+        .icon_linkedin a {
+            /* background: #fff !important;  */
+            border: 2px solid #0A66C2 !important;
+            color: #0A66C2 !important;
+        }
+
+        .icon_linkedin a:hover {
+            background: #0A66C2 !important;
+            border-color: #0A66C2 !important;
+            color: #fff !important;
+        }
+
+        .icon_youtube a {
+            /* background: #fff !important;  */
+            border: 2px solid #AC0000 !important;
+            color: #AC0000 !important;
+        }
+
+        .icon_youtube a:hover {
+            background: #AC0000 !important;
+            border-color: #AC0000 !important;
+            color: #fff !important;
+        }
+
+        .logo_round {
+            min-height: 45px;
+            min-width: 60px;
+            padding: 0px 3px;
+            float: left;
+            font-size: 10px;
+        }
+
+        .logo_rect {
+            min-height: 45px;
+            min-width: 80px;
+            padding: 0px 3px;
+            float: left;
+            font-size: 10px;
+        }
+    </style>
+
+
+    {% block style_content %}
+
+    {% endblock %}
+
+</head>
+
+<body data-scroll-animation="true">
+    <!-- preloader section -->
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">            
+            <div class="round_spinner">                    
+                <div class="text">
+                    <img src="{% static 'img/loadings/108_T.gif' %}" width="100%" alt="">
+                    <h6>loading...</h6>
                 </div>
-                <!-- <div class="round_spinner">
-                    <div class="spinner"></div>
-                    <div class="text">
-                        <img src="{% static 'img/govt_seal.png' %}" alt="">
-                        <h4><span>kb</span>Doc</h4>
-                    </div>
-                </div> -->
-                <!-- <h2 class="head">Did You Know?</h2> -->
-                <!-- <p></p> -->
             </div>
         </div>
+    </div>
 
-        <!-- full body section -->
-        <div class="body_wrapper">
+    <!-- full body section -->
+    <div class="body_wrapper">
 
-            <!-- navbar with menu section -->
-            <nav class="navbar navbar-expand-lg menu_one" id="sticky" style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%); ">
-                <!-- linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%); linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
-                <div class="animated-waves">
-                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
-                        <title>Wave</title>
-                        <defs></defs>
-                        <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
-                    </svg>
-                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
-                        <title>Wave</title>
-                        <defs></defs>
-                        <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
-                    </svg>                    
-                </div>
-                <div class="container-fluid">
-                    <a class="navbar-brand sticky_logo" href="/">
-                        <!-- customized logo -->
-                        <img src="{% static 'img/knowledge_logo_w.png' %}" style="min-height: 40px; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;" srcset="{% static 'img/knowledge_logo_w.png' %} 2x" alt="logo">
-                        <img src="{% static 'img/knowledge_logo.png' %}" style="min-height: 40px; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;" srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
-                    </a>
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="menu_toggle">
-                            <span class="hamburger">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                            <span class="hamburger-cross">
-                                <span></span>
-                                <span></span>
-                            </span>
+        <!-- navbar with menu section -->
+        <nav class="navbar navbar-expand-lg menu_one" id="sticky"
+            style="background-image: linear-gradient(60deg, rgb(0, 145, 179) 0%, rgb(29, 39, 70) 70%); ">
+            <!-- linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(0, 72, 115) 90%); linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%)  linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(29, 39, 70) 90%) linear-gradient(60deg, rgb(6, 74, 59) 0%, rgb(2, 0, 63) 90%);  style="background-image: linear-gradient(60deg, #10b3d6 0%, #1d2746 100%);" -->
+            <div class="animated-waves">
+                <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    style="height:100%; width:100%; opacity:0.2;">
+                    <title>Wave</title>
+                    <defs></defs>
+                    <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important" />
+                </svg>
+                <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    style="height:100%; width:100%; opacity:0.2;">
+                    <title>Wave</title>
+                    <defs></defs>
+                    <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important" />
+                </svg>
+            </div>
+            <div class="container-fluid">
+                <a class="navbar-brand sticky_logo" href="/">
+                    <!-- customized logo -->
+                    <img src="{% static 'img/knowledge_logo_w.png' %}"
+                        style="min-height: 40px; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;"
+                        srcset="{% static 'img/knowledge_logo_w.png' %} 2x" alt="logo">
+                    <img src="{% static 'img/knowledge_logo.png' %}"
+                        style="min-height: 40px; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;"
+                        srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="menu_toggle">
+                        <span class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </span>
-                    </button>
-    
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav menu ml-auto">                            
-                            <li class="nav-item dropdown submenu">
-                                <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
-                            </li>                            
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                        <span class="hamburger-cross">
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </span>
+                </button>
 
-            <!-- searchbox area section -->
-            <section class="breadcrumb_area d-none">
-                <div class="b_plus one" data-parallax='{"x": 250, "y": 160, "rotateZ":500}'><img src="{% static 'img/home_two/plus.png' %}" alt=""></div>
-                <div class="b_plus two" data-parallax='{"x": 250, "y": 260, "rotateZ":500}'><img src="{% static 'img/home_two/plus_one.png' %}" alt=""></div>
-                <!-- <div class="b_round r_one" data-parallax='{"x": 0, "y": 100, "rotateZ":0}'></div> -->
-                <div class="b_round r_two" data-parallax='{"x": -10, "y": 80, "rotateY":0}'></div>
-                <div class="b_round r_three"></div>
-                <div class="b_round r_four"></div>                
-                <img class="p_absolute star_one" src="{% static 'img/home_two/star.png' %}" style="right: 170px; top: 34%; animation: star 9s both infinite alternate 5s" alt="Star illustration"> <!-- right:10px !important; -->                
-                <img class="p_absolute star_two" src="{% static 'img/home_two/star.png' %}" style="right:10px !important; animation: star2 4s ease-in-out infinite alternate" alt="Star illustration">
-                <img class="p_absolute star_three" src="{% static 'img/home_two/star.png' %}" style="left:1000px !important; top:60px !important; animation: star 7s ease-in-out infinite alternate " alt="Star illustration">
-                <!-- <img class="p_absolute building_img" src="{% static 'img/home_two/wave_one.png' %}" alt=""> -->
-                <img class="p_absolute building_img" src="{% static 'img/home_two/building.png' %}" style="left: 50%; transform: translateX(-50%); bottom: 0; z-index: 0;" alt="">
-                <!-- <img class="p_absolute table_img wow fadeInLeft" src="{% static 'img/home_two/table.svg' %}" alt=""> -->
-                <img class="p_absolute flower wow fadeInUp" data-wow-delay="0.6s" src="{% static 'img/home_two/flower.png' %}" style="bottom: 0; left:20px;" alt="">
-                <img class="p_absolute bl_right" src="{% static 'img/v.svg' %}" style="width: 70px; right: 100px; bottom: -25px;" alt="">
-                <!-- <img class="p_absolute bord wow fadeInRight" data-wow-delay="0.4s" src="{% static 'img/home_two/bord.png' %}" alt=""> -->
-                <!-- <img class="p_absolute girl wow fadeInRight" data-wow-delay="0.8s" src="{% static 'img/home_two/girl.png' %}" alt=""> -->
-                <div class="container">
-                    <form action="#" class="banner_search_form banner_search_form_two">
-                        <div class="input-group">
-                            <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
-                            <div class="input-group-append">
-                                <select class="custom-select" id="inlineFormCustomSelect">
-                                    <option selected>All Category</option>
-                                    <option value="1">Doc Archive</option>
-                                    <option value="2">Doc list</option>
-                                    <option value="3">KbDoc</option>
-                                </select>
-                            </div>
-                            <button type="submit"><i class="icon_search"></i></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav menu ml-auto">
+                        <li class="nav-item dropdown submenu">
+                            <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- searchbox area section -->
+        <section class="breadcrumb_area d-none">
+            <div class="b_plus one" data-parallax='{"x": 250, "y": 160, "rotateZ":500}'><img
+                    src="{% static 'img/home_two/plus.png' %}" alt=""></div>
+            <div class="b_plus two" data-parallax='{"x": 250, "y": 260, "rotateZ":500}'><img
+                    src="{% static 'img/home_two/plus_one.png' %}" alt=""></div>
+            <!-- <div class="b_round r_one" data-parallax='{"x": 0, "y": 100, "rotateZ":0}'></div> -->
+            <div class="b_round r_two" data-parallax='{"x": -10, "y": 80, "rotateY":0}'></div>
+            <div class="b_round r_three"></div>
+            <div class="b_round r_four"></div>
+            <img class="p_absolute star_one" src="{% static 'img/home_two/star.png' %}"
+                style="right: 170px; top: 34%; animation: star 9s both infinite alternate 5s" alt="Star illustration">
+            <!-- right:10px !important; -->
+            <img class="p_absolute star_two" src="{% static 'img/home_two/star.png' %}"
+                style="right:10px !important; animation: star2 4s ease-in-out infinite alternate"
+                alt="Star illustration">
+            <img class="p_absolute star_three" src="{% static 'img/home_two/star.png' %}"
+                style="left:1000px !important; top:60px !important; animation: star 7s ease-in-out infinite alternate "
+                alt="Star illustration">
+            <!-- <img class="p_absolute building_img" src="{% static 'img/home_two/wave_one.png' %}" alt=""> -->
+            <img class="p_absolute building_img" src="{% static 'img/home_two/building.png' %}"
+                style="left: 50%; transform: translateX(-50%); bottom: 0; z-index: 0;" alt="">
+            <!-- <img class="p_absolute table_img wow fadeInLeft" src="{% static 'img/home_two/table.svg' %}" alt=""> -->
+            <img class="p_absolute flower wow fadeInUp" data-wow-delay="0.6s"
+                src="{% static 'img/home_two/flower.png' %}" style="bottom: 0; left:20px;" alt="">
+            <img class="p_absolute bl_right" src="{% static 'img/v.svg' %}"
+                style="width: 70px; right: 100px; bottom: -25px;" alt="">
+            <!-- <img class="p_absolute bord wow fadeInRight" data-wow-delay="0.4s" src="{% static 'img/home_two/bord.png' %}" alt=""> -->
+            <!-- <img class="p_absolute girl wow fadeInRight" data-wow-delay="0.8s" src="{% static 'img/home_two/girl.png' %}" alt=""> -->
+            <div class="container">
+                <form action="#" class="banner_search_form banner_search_form_two">
+                    <div class="input-group">
+                        <input type="search" class="form-control" placeholder='Search ("/" to focus)'>
+                        <div class="input-group-append">
+                            <select class="custom-select" id="inlineFormCustomSelect">
+                                <option selected>All Category</option>
+                                <option value="1">Doc Archive</option>
+                                <option value="2">Doc list</option>
+                                <option value="3">KbDoc</option>
+                            </select>
                         </div>
-                    </form>
-                </div>
-            </section>
+                        <button type="submit"><i class="icon_search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </section>
 
-            <!-- <br /> -->
+        <!-- <br /> -->
 
-            <div class="body_wrapper" style="margin-top: 100px;">
+        <div class="body_wrapper" style="margin-top: 100px;">
 
             {% block content %}
 
             {% endblock %}
 
-            </div>
-            <!-- footer -->
+        </div>
+        <!-- footer -->
 
-            <!-- <hr style="margin-top: 3rem; margin-bottom:0;" /> -->
+        <!-- <hr style="margin-top: 3rem; margin-bottom:0;" /> -->
 
-            <footer class="footer_area f_bg_color" style="margin-top: 0px; font-size: 12px; border-top: 1px solid rgba(0,0,0,.1)">
+        <footer class="footer_area f_bg_color"
+            style="margin-top: 0px; font-size: 12px; border-top: 1px solid rgba(0,0,0,.1)">
 
-                <section class="doc_fun_fact_area" style="background-image: linear-gradient(180deg, rgba(29, 39, 70) 0%, rgba(0, 47, 70, 0.8) 100%); padding: 0px;">    <!-- background: #f0f6ff; #eff4ff #E4EEF0 -->
-                    <div class="animated-waves">
-                        <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
-                            <title>Wave</title>
-                            <defs></defs>
-                            <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important"/>
-                        </svg>
-                        <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%; opacity:0.2;">
-                            <title>Wave</title>
-                            <defs></defs>
-                            <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important"/>
-                        </svg>
-                    </div>
-                    <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
+            <section class="doc_fun_fact_area"
+                style="background-image: linear-gradient(180deg, rgba(29, 39, 70) 0%, rgba(0, 47, 70, 0.8) 100%); padding: 0px;">
+                <!-- background: #f0f6ff; #eff4ff #E4EEF0 -->
+                <div class="animated-waves">
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-three" d="" fill="rgba(0, 140, 234, 0.14) !important" />
+                    </svg>
+                    <svg class="animated-wave" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        style="height:100%; width:100%; opacity:0.2;">
+                        <title>Wave</title>
+                        <defs></defs>
+                        <path id="animated-wave-four" d="" fill="rgba(0, 130, 234, 0.14) !important" />
+                    </svg>
+                </div>
+                <!-- <img class="p_absolute leaf" src="{% static 'img/v.svg' %}" alt="">
                     <img class="p_absolute f_man wow fadeInRight" data-wow-delay="0.6s" src="{% static 'img/home_two/f_man.png' %}" alt="">
                     <img class="p_absolute f_cloud" src="{% static 'img/home_two/cloud.png' %}" alt="">
                     <img class="p_absolute f_email" src="{% static 'img/home_two/email-icon.png' %}" alt="">
@@ -259,61 +291,94 @@
                     <img class="p_absolute f_man_two wow fadeInLeft" data-wow-delay="0.3s" src="{% static 'img/home_two/man.png' %}" alt=""> -->
 
 
-                    <div class="row" style="padding: 10px; border-bottom: 1px solid #004262; background: rgba(0,0,0,0.1); ">    <!-- background: rgba(0,0,0,0.05); background: #E4EEF0;   #00026a -->
-                        <div class="col-lg-12 text-center">
-                            <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a href="{% url 'orgsearch' %}">Search by Organization</a> | <a href="{% url 'docsearch' %}">Search by Document Type</a> | <a href="{% url 'national_international' %}">Other Document(s) Search</a> | <a href="#">Contact Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                <div class="row"
+                    style="min-height: 50px; padding: 10px; border-bottom: 1px solid #004262; background: rgba(0,0,0,0.1); ">
+                    <!-- background: rgba(0,0,0,0.05); background: #E4EEF0;   #00026a -->
+                    <div class="col-lg-12 text-center">
+                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a
+                            href="{% url 'orgsearch' %}">Search by Organization</a> | <a
+                            href="{% url 'docsearch' %}">Search by Document Type</a> | <a
+                            href="{% url 'national_international' %}">Other Document(s) Search</a> | <a href="#">Contact
+                            Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row" style="color:#dfdfdf; height: auto; padding: 10px;">
+                        <!--  color:white;   background: #E4EEF0;   #00026a -->
+                        <div class="col-lg-3 text-center text-md-left pt-2 pb-2">
+                            <img src="/static/img/article_logo/BD_GOV.png" alt="MOWR" title="MOWR" style="width: 50px;">
+                            <label style="color:#dfdfdf;">© 2022 <a href="http://www.mowr.gov.bd/"
+                                    target="_blank">MOWR</a> | All Rights Reserved.</label>
                         </div>
-                    </div>                     
-                    <div class="container">
-                        <div class="row" style="color:#dfdfdf; height: auto; padding: 10px;">   <!--  color:white;   background: #E4EEF0;   #00026a -->
-                            <div class="col-lg-3 text-center text-md-left pt-2 pb-2">                                  
-                                <img src="/static/img/article_logo/BD_GOV.png" alt="MOWR" title="MOWR" style="width: 50px;">                               
-                                <label style="color:#dfdfdf;">© 2022 <a href="http://www.mowr.gov.bd/" target="_blank">MOWR</a> | All Rights Reserved.</label>                              
-                            </div>
-                            <div class="col-lg-6 text-center pt-3 pb-3 pt-md-1 pb-md-0">      
-                                <div class="row">
-                                    <div style="margin-left: auto; margin-right:auto;">                            
-                                        <div class="logo_round"><img src="/static/img/article_logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;"><br><label>BWDB</label></div>
-                                        <div class="logo_round"><img src="/static/img/article_logo/rri.png" alt="RRI" title="RRI" style="width: 40px;"><br><label>RRI</label></div>
-                                        <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="JRC" title="JRC" style="width: 50px;"><br><label>JRC</label></div>
-                                        <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="DBHWD" title="DBHWD" style="width: 50px;"><br><label>DBHWD</label></div>
-                                        <div class="logo_rect"><img src="/static/img/article_logo/WARPO.png" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;"><br><label>WARPO</label></div>
-                                        <div class="logo_rect"><img src="/static/img/article_logo/iwm.png" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;"><br><label>IWM</label></div>
-                                        <div class="logo_rect"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;"><br><label>CEGIS</label></div>                                
+                        <div class="col-lg-6 text-center pt-3 pb-3 pt-md-1 pb-md-0">
+                            <div class="row">
+                                <div style="margin-left: auto; margin-right:auto;">
+                                    <div class="logo_round"><img src="/static/img/article_logo/BWDB.png" alt="BWDB"
+                                            title="BWDB" style="width: 50px;"><br><label>BWDB</label></div>
+                                    <div class="logo_round"><img src="/static/img/article_logo/rri.png" alt="RRI"
+                                            title="RRI" style="width: 40px;"><br><label>RRI</label></div>
+                                    <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="JRC"
+                                            title="JRC" style="width: 50px;"><br><label>JRC</label></div>
+                                    <div class="logo_round"><img src="/static/img/article_logo/BD_GOV.png" alt="DBHWD"
+                                            title="DBHWD" style="width: 50px;"><br><label>DBHWD</label></div>
+                                    <div class="logo_rect"><img src="/static/img/article_logo/WARPO.png" alt="WARPO"
+                                            title="WARPO"
+                                            style="width: 70px; padding: 1px 0px;"><br><label>WARPO</label></div>
+                                    <div class="logo_rect"><img src="/static/img/article_logo/iwm.png" alt="IWM"
+                                            title="IWM" style="width: 50px; padding: 5px 0px;"><br><label>IWM</label>
                                     </div>
+                                    <div class="logo_rect"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS"
+                                            title="CEGIS"
+                                            style="width: 70px; padding: 9px 0px;"><br><label>CEGIS</label></div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 text-center text-md-right pt-2 pb-2">
-                                <label>Developed by <a href="https://cegisbd.com/" target="_blank"><img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" style="width: 70px; margin-left: 5px;"></a></label>                                                                                              
-                            </div>                                                                          
-                        </div>                        
+                        </div>
+                        <div class="col-lg-3 text-center text-md-right pt-2 pb-2">
+                            <label>Developed by <a href="https://cegisbd.com/" target="_blank"><img
+                                        src="/static/img/article_logo/CEGIS.png" alt="CEGIS"
+                                        style="width: 70px; margin-left: 5px;"></a></label>
+                        </div>
                     </div>
+                </div>
 
-                </section>
-            </footer>
+            </section>
+        </footer>
 
-        </div>
+    </div>
 
 
-        <!-- Back to top button -->
-        <a id="back-to-top" title="Back to Top"></a>
+    <!-- Back to top button -->
+    <a id="back-to-top" title="Back to Top"></a>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-        <script src="{% static 'js/pre-loader.js' %}"> </script>
-        <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
-        <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'assets/slick/slick.min.js' %}"></script>
-        <script src="{% static 'js/parallaxie.js' %}"></script>
-        <script src="{% static 'js/TweenMax.min.js' %}"></script>
-        <script src="{% static 'js/jquery.wavify.js' %}"></script>
-        <script src="{% static 'assets/wow/wow.min.js' %}"></script>
-        <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
-        <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-        <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
-        <script src="{% static 'assets/counterup/jquery.waypoints.min.js' %}"></script>
-        <script src="{% static 'assets/tooltipster/js/tooltipster.bundle.min.js' %}"></script>
-        <script src="{% static 'js/main.js' %}"></script>
-    </body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->    
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+    <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'assets/bootstrap-data-tables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/bootstrap-data-tables/js/dataTables.bootstrap4.min.js' %}"></script>
+
+    <script src="{% static 'js/pre-loader.js' %}"> </script>
+    <script src="{% static 'assets/slick/slick.min.js' %}"></script>
+    <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'js/TweenMax.min.js' %}"></script>
+    <script src="{% static 'js/jquery.wavify.js' %}"></script>
+    <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/counterup/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'assets/tooltipster/js/tooltipster.bundle.min.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block script_content %}
+
+    {% endblock %}
+
+</body>
+
 </html>
