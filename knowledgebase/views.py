@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 
 from distutils.log import debug
 from django.contrib.auth import authenticate
@@ -9,9 +10,8 @@ from django.shortcuts import redirect, render
 
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticleDetail, ArticlePublishCategory,
-                     DataCategory, Document, Organization)
+                     DataCommonCategory, DataCategory, Document, Organization)
 from accounts.models import CustomUser
-from django.http import JsonResponse
 
 import traceback
 
@@ -229,6 +229,16 @@ def viewArticleDetail(request):
     return render(request, 'articledetail/view.html', context)
 
 
+
+def document_detail(request, id):
+    document = Document.objects.get(id=id)
+    context = {'document': document}
+
+    return render(request, 'doc-details.html', context)
+
+
+
+
 # -------ahi------------
 
     """ keywords = ['funny', 'old', 'black_humor']
@@ -247,20 +257,14 @@ def viewArticleDetail(request):
     # if req_query is not None & req_query.get("search_term") is not None:
 
 
-def document_detail(request, id):
-    document = Document.objects.get(id=id)
-    context = {'document': document}
-
-    return render(request, 'doc-details.html', context)
-
 
 def search_document(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
-        req_query = request.GET or request.POST
+        req_query = request.GET | request.POST
 
         if req_query and req_query.get("search_term"):
-
+            
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
@@ -293,15 +297,17 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
-
+        
         data_category_ids = [int(id) for id in data_category_ids]
 
-        cond_cat = Q(data_category_id__in=data_category_ids)
+        #cond_cat = Q(data_category_id__in=data_category_ids)
+
+        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
 
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
-
+        
         access_category_ids = [int(id) for id in access_category_ids]
 
         cond_accat = Q(access_category_id__in=access_category_ids)
@@ -333,7 +339,8 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
 
     org_infos = Organization.objects.all().order_by('id')
 
-    doc_cats = DataCategory.objects.all().order_by('id')
+    #doc_cats = DataCategory.objects.all().order_by('id')
+    doc_cats = DataCommonCategory.objects.all().order_by('id')
 
     context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
                'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
@@ -345,22 +352,293 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
 
     return render(request, 'search_document.html', context)
 
+
+def search_doc_by_org(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+
+    if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+        if req_query and req_query.get("search_term"):
+            
+            search_term = req_query.get("search_term", None)
+            org_ids = req_query.get("src_orgs", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+
+    if not isinstance(search_term, str):
+        search_term = search_term[0]
+
+    documents = Document.objects.all()
+
+    user_organization_id = None  # request.user.organization_id
+
+    if user_organization_id:
+        cond_user = Q(organization_id=user_organization_id)
+
+        documents = documents.filter(cond_user)
+
+        # cond = Q(title__icontains=search_term) | Q(subject__icontains=search_term) | Q(
+        #    description__icontains=search_term) | Q(keywords__icontains=search_term)
+    if search_term is not None and search_term != '':
+        cond = Q(title__icontains=search_term) | Q(
+            subject__icontains=search_term) | Q(keywords__icontains=search_term)
+
+        documents = documents.filter(cond)
+
+    if org_ids and org_ids[0]:
+        org_ids = [int(id) for id in org_ids]
+
+        cond_org = Q(organization_id__in=org_ids)
+
+        documents = documents.filter(cond_org)
+
+    if data_category_ids and data_category_ids[0] != '':
+        
+        data_category_ids = [int(id) for id in data_category_ids]
+
+        #cond_cat = Q(data_category_id__in=data_category_ids)
+
+        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+
+        documents = documents.filter(cond_cat)
+
+    if access_category_ids and access_category_ids[0] != '':
+        
+        access_category_ids = [int(id) for id in access_category_ids]
+
+        cond_accat = Q(access_category_id__in=access_category_ids)
+
+        documents = documents.filter(cond_accat)
+
+    # org_list = documents.values_list(
+    #     'organization__id', 'organization__organization_name').distinct()
+
+    # cat_list = documents.values_list(
+    #     'data_category__id', 'data_category__category_name').distinct()
+
+    # for o in org_list:
+    #     print(o)
+
+    # for c in cat_list:
+    #     print(c)
+
+    doc_count = len(documents)
+
+    if len(documents) < 1:
+        documents = Document.objects.none()
+
+    #doc_count = documents.order_by('organization_id', 'data_category_id')
+
+    # print(len(documents))
+    # for d in documents:
+    #     print(d)
+
+    org_infos = Organization.objects.all().order_by('id')
+
+    #doc_cats = DataCategory.objects.all().order_by('id')
+    doc_cats = DataCommonCategory.objects.all().order_by('id')
+
+    context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+               'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+               'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    # context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+    #            'search_term': search_term, 'org_ids': org_ids, 'category_ids': data_category_ids, }
+    # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
+
+    return render(request, 'search_doc_by_org.html', context)
+
+
+def search_doc_by_cat(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+
+    if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+        if req_query and req_query.get("search_term"):
+            
+            search_term = req_query.get("search_term", None)
+            org_ids = req_query.get("src_orgs", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+
+    if not isinstance(search_term, str):
+        search_term = search_term[0]
+
+    documents = Document.objects.all()
+
+    user_organization_id = None  # request.user.organization_id
+
+    if user_organization_id:
+        cond_user = Q(organization_id=user_organization_id)
+
+        documents = documents.filter(cond_user)
+
+        # cond = Q(title__icontains=search_term) | Q(subject__icontains=search_term) | Q(
+        #    description__icontains=search_term) | Q(keywords__icontains=search_term)
+    if search_term is not None and search_term != '':
+        cond = Q(title__icontains=search_term) | Q(
+            subject__icontains=search_term) | Q(keywords__icontains=search_term)
+
+        documents = documents.filter(cond)
+
+    if org_ids and org_ids[0]:
+        org_ids = [int(id) for id in org_ids]
+
+        cond_org = Q(organization_id__in=org_ids)
+
+        documents = documents.filter(cond_org)
+
+    if data_category_ids and data_category_ids[0] != '':
+        
+        data_category_ids = [int(id) for id in data_category_ids]
+
+        #cond_cat = Q(data_category_id__in=data_category_ids)
+
+        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+
+        documents = documents.filter(cond_cat)
+
+    if access_category_ids and access_category_ids[0] != '':
+        
+        access_category_ids = [int(id) for id in access_category_ids]
+
+        cond_accat = Q(access_category_id__in=access_category_ids)
+
+        documents = documents.filter(cond_accat)
+
+    # org_list = documents.values_list(
+    #     'organization__id', 'organization__organization_name').distinct()
+
+    # cat_list = documents.values_list(
+    #     'data_category__id', 'data_category__category_name').distinct()
+
+    # for o in org_list:
+    #     print(o)
+
+    # for c in cat_list:
+    #     print(c)
+
+    doc_count = len(documents)
+
+    if len(documents) < 1:
+        documents = Document.objects.none()
+
+    #doc_count = documents.order_by('organization_id', 'data_category_id')
+
+    # print(len(documents))
+    # for d in documents:
+    #     print(d)
+
+    org_infos = Organization.objects.all().order_by('id')
+
+    #doc_cats = DataCategory.objects.all().order_by('id')
+    doc_cats = DataCommonCategory.objects.all().order_by('id')
+
+    context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+               'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+               'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    # context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+    #            'search_term': search_term, 'org_ids': org_ids, 'category_ids': data_category_ids, }
+    # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
+
+    return render(request, 'search_doc_by_cat.html', context)
+
+
+def search_doc_by_nat(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+
+    if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+        if req_query and req_query.get("search_term"):
+            
+            search_term = req_query.get("search_term", None)
+            org_ids = req_query.get("src_orgs", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+
+    if not isinstance(search_term, str):
+        search_term = search_term[0]
+
+    documents = Document.objects.all()
+
+    user_organization_id = None  # request.user.organization_id
+
+    if user_organization_id:
+        cond_user = Q(organization_id=user_organization_id)
+
+        documents = documents.filter(cond_user)
+
+        # cond = Q(title__icontains=search_term) | Q(subject__icontains=search_term) | Q(
+        #    description__icontains=search_term) | Q(keywords__icontains=search_term)
+    if search_term is not None and search_term != '':
+        cond = Q(title__icontains=search_term) | Q(
+            subject__icontains=search_term) | Q(keywords__icontains=search_term)
+
+        documents = documents.filter(cond)
+
+    if org_ids and org_ids[0]:
+        org_ids = [int(id) for id in org_ids]
+
+        cond_org = Q(organization_id__in=org_ids)
+
+        documents = documents.filter(cond_org)
+
+    if data_category_ids and data_category_ids[0] != '':
+        
+        data_category_ids = [int(id) for id in data_category_ids]
+
+        #cond_cat = Q(data_category_id__in=data_category_ids)
+
+        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+
+        documents = documents.filter(cond_cat)
+
+    if access_category_ids and access_category_ids[0] != '':
+        
+        access_category_ids = [int(id) for id in access_category_ids]
+
+        cond_accat = Q(access_category_id__in=access_category_ids)
+
+        documents = documents.filter(cond_accat)
+
+    # org_list = documents.values_list(
+    #     'organization__id', 'organization__organization_name').distinct()
+
+    # cat_list = documents.values_list(
+    #     'data_category__id', 'data_category__category_name').distinct()
+
+    # for o in org_list:
+    #     print(o)
+
+    # for c in cat_list:
+    #     print(c)
+
+    doc_count = len(documents)
+
+    if len(documents) < 1:
+        documents = Document.objects.none()
+
+    #doc_count = documents.order_by('organization_id', 'data_category_id')
+
+    # print(len(documents))
+    # for d in documents:
+    #     print(d)
+
+    org_infos = Organization.objects.all().order_by('id')
+
+    #doc_cats = DataCategory.objects.all().order_by('id')
+    doc_cats = DataCommonCategory.objects.all().order_by('id')
+
+    context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+               'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+               'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    # context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+    #            'search_term': search_term, 'org_ids': org_ids, 'category_ids': data_category_ids, }
+    # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
+
+    return render(request, 'search_doc_by_nat.html', context)
+
 def document_list(request):
     # if request.method == "POST":
     organization_id =1 #request.POST.get('id_organization')
     other_instances=Document.objects.filter(organization_id=organization_id).values('id','title')
     return JsonResponse({'data1':list(other_instances)})
-    
-    # return HttpResponse(data, content_type="application/json")
-    # return JsonResponse({
-    #     "status_code" : 200,
-    #     "instances" : other_instances
-    # })
-        # return JsonResponse(list(topics.values('id', 'title')), safe = False)
-        # subject_id = request.POST['subject_id']
-        # try:           
-        #     topics = Document.objects.all()
-        # except Exception:
-        #     data['error_message'] = 'error'
-        #     return JsonResponse(data)
-        
