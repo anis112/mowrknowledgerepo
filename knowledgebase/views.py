@@ -11,6 +11,7 @@ from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticleDetail, ArticlePublishCategory,
                      DataCategory, Document, Organization)
 from accounts.models import CustomUser
+from django.http import JsonResponse
 
 import traceback
 
@@ -343,3 +344,23 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
     # #    'category_ids': data_category_ids, 'org_list': org_list, 'cat_list': cat_list}
 
     return render(request, 'search_document.html', context)
+
+def document_list(request):
+    # if request.method == "POST":
+    organization_id =1 #request.POST.get('id_organization')
+    other_instances=Document.objects.filter(organization_id=organization_id).values('id','title')
+    return JsonResponse({'data':list(other_instances)})
+    
+    # return HttpResponse(data, content_type="application/json")
+    # return JsonResponse({
+    #     "status_code" : 200,
+    #     "instances" : other_instances
+    # })
+        # return JsonResponse(list(topics.values('id', 'title')), safe = False)
+        # subject_id = request.POST['subject_id']
+        # try:           
+        #     topics = Document.objects.all()
+        # except Exception:
+        #     data['error_message'] = 'error'
+        #     return JsonResponse(data)
+        

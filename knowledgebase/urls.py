@@ -2,7 +2,6 @@ from django.urls import path
 
 from . import views
 
-
 urlpatterns = [
     path('', views.home, name="home"),
 
@@ -36,6 +35,7 @@ urlpatterns = [
     path('search/', views.search_document, name="search"),
     path('search/<search_term>', views.search_document, name="search"),
     #path('search/<string:search_term>', views.search_document, name="search"),
-    path('search/doc-details/<int:id>',
-         views.document_detail, name="document_detail"),
+    path('search/doc-details/<int:id>',views.document_detail, name="document_detail"),
+    path('document/document_list',views.document_list, name="document_list")
+    
 ]

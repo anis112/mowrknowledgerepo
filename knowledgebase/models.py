@@ -77,8 +77,7 @@ class DataAccessCategory(models.Model):
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
     #id = models.PositiveSmallIntegerField(primary_key=True)
-
-    parent_id = models.PositiveBigIntegerField(null=True, blank=True)
+   
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
 
@@ -108,7 +107,10 @@ class Document(models.Model):
     #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True)
+    
     is_parent_available = models.BooleanField(null=True, blank=True)
+    parent_id = models.PositiveBigIntegerField(null=True, blank=True)
+
 
     def __str__(self) -> str:
         return self.title
