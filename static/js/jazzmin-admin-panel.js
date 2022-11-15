@@ -3,42 +3,33 @@ jQuery(document).ready(function ($) {
 
     $("#id_is_parent_available").change(function () {
 
+
         if ($("#id_is_parent_available").val() === 'true') {
-            // alert($("#id_organization").val());
-            fetch("http://127.0.0.1:8000/document/document_list")
-                .then(response => response.json())
-                .then(data => {
-                    
-                    data[0].forEach(element => {
-                        console.log("a");
-                        
-                    });
-                    // do something with users data
-            }
-            
-            );
-            // $.ajax({                       // initialize an AJAX request
-            //     type: "POST",
-            //     url: 'knowledgebase/document/document_list',
-            //     data: {
-            //         'id_organization': $("#id_organization").val(),       // add the country id to the POST parameters                 
-            //     },
-            //     dataType: 'json',
-            //     success: function (data) {  
-            //          // `data` is from `get_topics_ajax` view function
-            //          alert("OK");
-            //         console.log(data);
+            var base_url = window.location.origin;
+            var org_id=($("#id_organization").val());
+            fetch(base_url+"/document/document_list/"+org_id, {
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+                },
+            })
+            .then(response => {
+                return response.json() //Convert response to JSON
+            })
+            .then(data => {
+                //Perform actions with the response data from the view
+            var form_parent_id=$('#id_parent_id');   
+            var option="" ;   
+            data.data.forEach(d => {
+                //console.log(d.id);
+                option+='<option value="'+d.id+'">'+d.title+'</option>'
 
-            //         let html_data = '<option value="">---------</option>';
-            //         data.forEach(function (data) {
-            //             html_data += `<option value="${data.id}">${data.title}</option>`
-            //         });
-            //         $("#question-topic").html(html_data); // replace the contents of the topic input with the data that came from the server
+                
+            });  
+            //console.log('<select name="parent_id" required="" id="id_parent_id" data-select2-id="select2-data-id_access_category" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">'+option+'</select>'); 
+            $('#id_parent_id').append('<select name="parent_id" required="" id="id_parent_id" data-select2-id="select2-data-id_parent_id" tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">'+option+'</select>');               
+            })
 
-            //     }
-            // });
-            //id: id_parent_id
-            //name : parent_id
             $('.field-parent_id').show();
 
         } else if ($("#id_is_parent_available").val() === 'false') {

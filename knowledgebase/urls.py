@@ -33,7 +33,7 @@ urlpatterns = [
     #path('article/view', views.viewArticleDetail, name="view_article"),
     path('search/doc-details/<int:id>',views.document_detail, name="document_detail"),
 
-    path('document/document_list',views.document_list, name="document_list"),
+    path('document/document_list/<int:organization_id>',views.document_list, name="document_list"),
          
        
     #ahi
