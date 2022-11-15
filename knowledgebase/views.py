@@ -349,7 +349,7 @@ def document_list(request):
     # if request.method == "POST":
     organization_id =1 #request.POST.get('id_organization')
     other_instances=Document.objects.filter(organization_id=organization_id).values('id','title')
-    return JsonResponse({'data':list(other_instances)})
+    return JsonResponse({'data1':list(other_instances)})
     
     # return HttpResponse(data, content_type="application/json")
     # return JsonResponse({
