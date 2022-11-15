@@ -1763,7 +1763,7 @@ p kbd {
   color: #848996;
 }
 
-.banner_search_form button {
+.banner_search_form button[type="submit"] {
   padding: 5px 25px;
   font-size: 20px;
   background: #10b3d6;
@@ -2362,7 +2362,7 @@ p kbd {
   height: 65px;
 }
 
-.breadcrumb_area .banner_search_form button {
+.breadcrumb_area .banner_search_form button[type="submit"] {
   background: #10b3d6;
 }
 
@@ -2378,7 +2378,7 @@ p kbd {
   left: 0;
   top: 15px;
   bottom: 15px;
-  background: #e2e7e9;
+  background: #e5e7ea;
   z-index: 1;
 }
 

@@ -93,7 +93,7 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
 class DocumentAdmin(admin.ModelAdmin):
     #form=DocumentForm
     #autocomplete_fields = ['article_category']
-    list_display = ['id', 'parent_id', 'organization', 'data_category',
+    list_display = ['id','is_parent_available', 'parent_id', 'organization', 'data_category',
                     'title', 'author', 'access_category']
     list_editable = ['data_category', 'access_category']
     list_per_page = 50

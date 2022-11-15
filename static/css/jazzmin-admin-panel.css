@@ -8,6 +8,9 @@
     margin: auto !important;
 }
 
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0 0 0)!important;
+}
 brand-link navbar-success:hover{
     background-color: #00bc8c !important;
 }

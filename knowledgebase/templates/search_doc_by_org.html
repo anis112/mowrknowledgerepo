@@ -1,0 +1,680 @@
+{% extends 'main.html' %}
+{% load static %}
+{% static "" as baseUrl %}
+
+
+{% block style_content %}
+
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-multiselect.min.css' %}" />
+
+<style>
+    
+    .multiselect-native-select .btn-group button.dropdown-toggle::after {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        content: '';
+        display: block;
+
+        margin: 0 none;
+        border: 0 none;
+        border-bottom: 2px solid #777;
+        border-right: 2px solid #777;
+        width: 0.5rem;
+        height: 0.5rem;
+        margin-top: -0.4rem;
+        pointer-events: none;
+
+        -webkit-transform-origin: 66% 66%;
+        -ms-transform-origin: 66% 66%;
+        transform-origin: 66% 66%;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+    }
+
+    .multiselect-native-select .btn-group.show button.dropdown-toggle::after {
+        -webkit-transform: rotate(-90deg);
+        -ms-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+
+    .multiselect-container {
+        width: 100%;
+        font-size: 0.85rem;
+
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px rgba(77, 77, 77, 0.15);
+        box-sizing: border-box;
+        margin-top: 4px;
+        opacity: 0;
+        overflow: hidden;
+        padding: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        -webkit-transform-origin: 50% 0;
+        -ms-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+        -webkit-transform: scale(0.75) translateY(-21px);
+        -ms-transform: scale(0.75) translateY(-21px);
+        transform: scale(0.75) translateY(-21px);
+        -webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+        transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+        z-index: 9;
+    }
+
+    .multiselect-container.show {
+        opacity: 1;
+        pointer-events: auto;
+        -webkit-transform: scale(1) translateY(0);
+        -ms-transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0);
+    }
+
+    .multiselect-container .multiselect-filter {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+
+    .multiselect-container .multiselect-filter .multiselect-search,
+    .multiselect-container .multiselect-filter input.multiselect-search,
+    .multiselect-container .multiselect-filter>input.multiselect-search {
+        height: auto;
+        min-height: 2.25rem;
+    }
+
+    .multiselect-container .multiselect-all,
+    .multiselect-container .multiselect-group,
+    .multiselect-container .multiselect-option {
+        outline: none;
+        list-style: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.035);
+        min-height: 2.5rem;
+        padding: 0.25rem 0.25rem 0.25rem 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 400;
+        text-align: left;
+        background-color: #fafcfd;
+
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+
+
+    .multiselect-container .multiselect-all:focus,
+    .multiselect-container .multiselect-all:hover,
+    .multiselect-container .multiselect-group:focus,
+    .multiselect-container .multiselect-group:hover,
+    .multiselect-container .multiselect-option:focus,
+    .multiselect-container .multiselect-option:hover/*,
+
+    .multiselect-container .multiselect-all.active:not(.multiselect-active-item-fallback):hover,
+    .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):active:hover,
+    .multiselect-container .multiselect-group.active:not(.multiselect-active-item-fallback):hover,
+    .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):active:hover,
+    .multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback):hover,
+    .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active:hover*/ {
+        color: #135387;
+        background: #cdf5fa !important;
+    }
+
+
+    .multiselect-container .multiselect-all.active:not(.multiselect-active-item-fallback)::before,
+    .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):active::before,
+    .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):focus::before,
+    .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):hover::before,
+    .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):focus::before,
+    .multiselect-container .multiselect-group.active:not(.multiselect-active-item-fallback)::before,
+    .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):active::before,
+    .multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback)::before,
+    .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active::before {
+        content: "";
+        width: 0.15rem;
+        height: 0;
+        position: absolute;
+        left: 0;
+        background: #35c5d5 !important;
+        transition: all 0.2s linear;
+    }
+
+
+    .multiselect-container .multiselect-all.active:not(.multiselect-active-item-fallback),
+    .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):active,
+    .multiselect-container .multiselect-group.active:not(.multiselect-active-item-fallback),
+    .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):active,
+    .multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback),
+    .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active {
+        font-weight: 500;
+
+        color: #025378;
+        background: #a3d5f5 !important;
+        
+        color: #053858;
+        background: #85daf5 !important;
+    }
+
+    .multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback),
+    .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active {
+        padding-left: 0.95rem;
+    }
+
+
+    .multiselect-container .multiselect-all.active:not(.multiselect-active-item-fallback)::before,
+    .multiselect-container .multiselect-all:not(.multiselect-active-item-fallback):active::before,
+    .multiselect-container .multiselect-group.active:not(.multiselect-active-item-fallback)::before,
+    .multiselect-container .multiselect-group:not(.multiselect-active-item-fallback):active::before,
+    .multiselect-container .multiselect-option.active:not(.multiselect-active-item-fallback)::before,
+    .multiselect-container .multiselect-option:not(.multiselect-active-item-fallback):active::before {
+        content: "";
+        width: 0.15rem;
+        height: 0;
+        position: absolute;
+        left: 0;
+        background: #13b5d7 !important;
+        transition: all 0.2s linear;
+    }
+
+
+
+    .multiselect-container .multiselect-all .form-check-label {
+        font-weight: 600 !important;
+        font-size: 102% !important;
+    }
+
+    .multiselect-container .multiselect-group .form-check-label {
+        font-weight: 600 !important;
+    }
+
+</style>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+
+    .container {
+        max-width: 100% !important;
+    }
+
+    .container-fluid {
+        max-width: 95% !important;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+
+    .breadcrumb_area {
+        padding: 0;
+        background: none;
+    }
+
+    .breadcrumb_area .banner_search_form {
+        z-index: 5;
+        display: flex;
+        position: relative;
+        max-width: 70vw;
+        margin: 0 auto;
+    }
+
+    .banner_search_form .form-control {
+        border: 0 none;
+        height: 4.5rem;
+        padding-left: 2rem;
+        font-size: 0.85rem;
+        color: #1a2748;
+        box-shadow: none;
+        border-radius: 0.25rem;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .banner_search_form .form-control.placeholder ,
+    .banner_search_form .form-control:-moz-placeholder,
+    .banner_search_form .form-control::-moz-placeholder,
+    .banner_search_form .form-control::-webkit-input-placeholder {
+        color: #8587a5;
+    }
+
+    .banner_search_form button[type="submit"] {
+        border: 0 none;
+        padding: 0.25rem 1.75rem;
+        font-size: 1.25rem;
+        color: #fff;
+        text-align: center;
+        background: #10b3d5;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        transition: all 0.4s linear;
+    }
+
+
+
+
+    .categories-guide-item {
+        padding: 0px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .categories-guide-item img {
+        margin-bottom: 0px !important;
+    }
+
+
+    .com-title {
+        font-size: 0.8rem !important;
+        font-style: italic;
+        text-transform: uppercase;
+    }
+
+    .community-box {
+        padding: 1.25rem 1rem;
+        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+        margin-bottom: 1.25rem;
+        border-radius: 0.25rem;
+    }
+
+    .community-content {
+        min-height: 10rem;
+    }
+
+    .fact-navigation-info {
+        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
+        padding: 2.5rem 2rem 1.75rem;
+        border: 1px Solid rgba(130, 145, 150, 0.25)
+    }
+
+
+
+
+    .org-content {
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        padding: 10px;
+        width: auto;
+        height: 120px;
+        min-width: 120px;
+        box-shadow: 1px 2px 3px 2px rgba(75, 150, 175, 0.25);
+
+        background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
+        background-image: url(/static/img/banner_back/bann1.jpg);
+    }
+
+    .org-content:hover {
+        border: 1px solid #ccc;
+        box-shadow: 2px 3px 5px 4px rgba(25, 75, 175. 0.50);
+        box-shadow: 1px 5px 15px 3px rgba(70, 100, 150, 0.25);
+    }
+
+    .org-logo {
+        width: 90px;
+        margin-bottom: 10px;
+    }
+
+    .org-logo-BWDB {}
+
+    .org-logo-RRI {
+        width: 72px;
+    }
+
+    .org-logo-JRC {}
+
+    .org-logo-DBHWD {}
+
+    .org-logo-WARPO {
+        margin-top: 15px;
+        margin-bottom: 17px;
+    }
+
+    .org-logo-IWM {
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    .org-logo-CEGIS {
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+
+    .cat-title {
+        display: block;
+        margin-bottom: 0.5rem;
+        padding: 0.5rem;
+        padding-left: 0.75rem;
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-align: left;
+        background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
+        border-radius: 4px;
+    }
+
+    .cat-title:hover {
+        color: #aef;
+    }
+
+    .scat-title {
+        display: block;
+        border-left: 0.15rem solid #1ab;
+        margin: 0.35rem;
+        padding: 0.5rem;
+        padding-left: 0.65rem;
+        color: #135;
+        font-size: 0.85rem;
+        text-align: left;
+        background: rgba(25, 175, 235, 0.05);
+        border-radius: 0 !important;
+    }
+
+    .scat-title:hover {
+        border-left: 0.25rem solid #2cf;
+        color: #08c;
+    }
+
+    .data-cat-title {
+        display: block;
+        margin-bottom: 0.7rem;
+        padding: 0.5rem;
+        padding-left: 0.7rem;
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-align: left;
+        background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
+        border-radius: 0.25rem;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid mt-2 pl-3 pr-3">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-1 text-left">
+                    <a href="{% url 'home' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
+                        <i class="arrow_left m-0"></i> Back
+                    </a>
+                </div>
+                <div class="col-md-10 text-center">
+                    <h5 class="wow fadeInUp mt-3" style="color: #05a;">Search by Organization</h5>
+                </div>
+                <div class="col-md-1 text-right">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="container mt-1 mb-3">
+    <div class="row">
+
+        <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="." method="GET" multiple>
+                        <!-- List of Organization -->
+                        <section>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row wow fadeInUp">
+
+                                        {% for org_info in org_infos %}
+                                        <div class="col text-center wow fadeInUp">
+                                            <label class="w-100" for="src_org_{{org_info.short_name}}">
+                                                <div class="org-content text-center" data-bs-toggle="tooltip" data-bs-html="true"
+                                                    style="background-image: url(/static/img/org_img/bg/{{org_info.short_name}}.jpg);"
+                                                    title="{{org_info.organization_name}} ({{org_info.short_name}})">
+
+                                                    {% comment %} <img
+                                                        src="/static/img/org_img/logo/{{org_info.short_name}}.png"
+                                                        alt="{{org_info.organization_name}} ({{org_info.short_name}})"
+                                                        class="org-logo" /> {% endcomment %}
+                                                    <img src="{% static 'img/org_img/logo/' %}{{org_info.short_name}}.png"
+                                                        alt="{{org_info.organization_name}} ({{org_info.short_name}})"
+                                                        class="org-logo org-logo-{{org_info.short_name}}" />
+                                                    <br />
+                                                    <label style="color:#385878;">
+                                                        {{org_info.short_name}}
+                                                        <input type="checkbox" class="control-input"
+                                                            id="src_org_{{org_info.short_name}}" name="src_orgs"
+                                                            value="{{org_info.id}}" {% if org_info.id in src_orgs %}
+                                                            checked {% endif %} />
+
+                                                        {% comment %} <input type="checkbox" class="control-input"
+                                                            id="src_orgs_{{org_info.short_name}}" name="src_orgs"
+                                                            value="{{org_info.id}}" {% if org_info.id in org_ids %}
+                                                            checked {% else %} '' {% endif %} /> {% endcomment %}
+                                                    </label>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- searchbox area section    -->
+                        <section>
+                            <div class="breadcrumb_area mt-2">
+                                <div class="banner_search_form m-0 p-0"
+                                    style="max-width: 100%; border: 1px solid #13aeda;">
+                                    <div class="input-group">
+                                        <input type="search" id="search_term" name="search_term" class="form-control"
+                                            placeholder='Search ("/" to focus)' value='{{ search_term }}' />
+                                        <div class="input-group-append">
+                                            <select class="multi-select" id="src_doc_cats" name="src_doc_cats"
+                                                multiple="multiple">
+                                                {% comment %} <option value="" selected>All Categories</option>
+                                                {% endcomment %}
+
+                                                {% for cat_info in doc_cats %}
+                                                <option value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
+                                                    selected {% endif %}>{{cat_info.category_name}}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                        <button type="submit"><i class="icon_search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row mt-3" id="search_result_panel">
+
+                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp">
+                    <h5 class="border-bottom pb-2" style="color: #05a;"><i class="fa-solid fa-list-check"></i> Selected
+                        Organization</h5>
+
+                    <div class="pt-2 pl-2 pr-2 sticky-top" style="top: 4.75rem; max-height: 85vh; overflow-y: auto; background: #f7fafc; ">
+                        <div class="nav flex-column">
+                            {% for doc in documents %}
+                                {% ifchanged doc.organization.organization_name %}
+                                <a class="nav-link cat-title" data-wow-delay="0.2s"
+                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                    <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_name}}
+                                    ({{doc.organization.short_name}})
+                                </a>
+                                {% endifchanged %}
+
+                                {% ifchanged doc.data_category.category_name %}
+                                <a class="nav-link scat-title"
+                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                    {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
+                                        class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
+                                    {% endcomment %}
+                                    {{doc.data_category.category_name}}
+                                </a>
+                                {% endifchanged %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">
+
+                    <h5 class="border-bottom pb-2" style="color: #05a;"><i
+                            class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong
+                            style="color:#047; font-size:105%;">{{doc_count}}</strong>)</h5>
+
+                    <div class="pt-3 pl-3 pr-3" style="top: 75px;">
+
+                        {% for doc in documents %}
+
+                        {% ifchanged doc.data_category.category_name %}
+                        <div class="row wow fadeInUp">
+                            <div class="col-md-12">
+                                <span
+                                    id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
+                                    class="data-cat-title" data-wow-delay="0.2s">
+                                    <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
+                                    ({{doc.data_category.category_name}})
+                                </span>
+                            </div>
+                        </div>
+                        {% endifchanged %}
+
+                        <div class="community-box wow fadeInUp">
+                            <a href="">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="{{doc.title}}"
+                                                width="100%" style="max-width: 250px;" />
+                                            {% comment %} <img src="{% static doc.thumbnail %}" alt="{{doc.title}}"
+                                                width="100%" style="max-width: 250px;" /> {% endcomment %}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-0">
+                                            <tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                                <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>
+                                                {% comment %} <td class="text-left">
+                                                    {{ doc.subject|truncatewords:"100" }}</td> {% endcomment %}
+                                                <td class="text-left">{{doc.organization.organization_name}}
+                                                    ({{doc.data_category.category_name}})</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Keywords:</td>
+                                                <td class="text-left">{{doc.keywords}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+{% block script_content %}
+
+<script>
+    //$(document).ready(function() {
+    $(function () {
+        //$("#navbar_org_cats").scrollspy({target: "#search_result_panel", offset: 150});
+
+        //$("#nav_org_cats ul li a[href^='#']").on("click", function(event) {
+        //    if (this.hash !== "") {
+        //        event.preventDefault();
+        //        var hash = this.hash;
+
+        //        $("#search_result_panel").animate({scrollTop: $(hash).offset().top}, 1000, function() {
+        //            window.location.hash = hash;
+        //        });
+        //    }
+        //});
+
+
+
+        //var nav = $("#panel_org_cats");
+        //$(window).scroll(function() {
+        //    if ($(window).scrollTop() >= 150) {
+        //        nav.addClass("fixed-top");
+        //    } else {
+        //        nav.removeClass("fixed-top");
+        //    }
+        //});
+
+
+    });
+</script>
+
+
+<script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#src_doc_cats")
+            .multiselect({
+                maxHeight: 230,
+                buttonWidth: '100%',
+
+                enableFiltering: true,
+                filterPlaceholder: "Search",
+                enableCaseInsensitiveFiltering: true,
+
+                enableClickableOptGroups: true,
+                enableCollapsibleOptGroups: true,
+
+                selectAllText: "All Categories",
+                selectAllValue: "",
+                allSelectedText: "All Categories",
+                includeSelectAllOption: true,
+
+                nonSelectedText: "All Categories",
+                nSelectedText: " selected",
+                disableIfEmpty: false,
+            });
+
+    });
+</script>
+
+
+{% endblock %}
