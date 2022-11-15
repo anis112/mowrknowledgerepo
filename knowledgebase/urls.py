@@ -33,9 +33,28 @@ urlpatterns = [
     path('article/add', views.addArticleDetail, name="add_article"),
     #path('article/view', views.viewArticleDetail, name="view_article"),
 
-    path('search/', views.search_document, name="search"),
-    path('search/<search_term>', views.search_document, name="search"),
     #path('search/<string:search_term>', views.search_document, name="search"),
     path('search/doc-details/<int:id>',
          views.document_detail, name="document_detail"),
+
+
+
+    # ahi
+
+    path('search/', views.search_document, name="search"),
+    path('search/<search_term>', views.search_document, name="search"),
+    #path('search/<string:search_term>', views.search_document, name="search"),
+
+    path('search_by_org/', views.search_doc_by_org, name="search_by_org"),
+    path('search_by_org/<search_term>',
+         views.search_doc_by_org, name="search_by_org"),
+
+    path('search_by_cat/', views.search_doc_by_cat, name="search_by_cat"),
+    path('search_by_cat/<search_term>',
+         views.search_doc_by_cat, name="search_by_cat"),
+
+    path('search_by_nat/', views.search_doc_by_nat, name="search_by_nat"),
+    path('search_by_nat/<search_term>',
+         views.search_doc_by_nat, name="search_by_nat"),
+
 ]
