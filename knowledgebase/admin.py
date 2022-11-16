@@ -12,9 +12,9 @@ from .forms import DocumentForm
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ['id', 'organization_name', 'short_name',
+    list_display = ['short_name','organization_name', 
                     'chief_designation', 'focal_person', 'email', 'phone_no']
-    list_editable = ['organization_name', 'short_name']
+    list_editable = ['organization_name', 'focal_person']
     list_per_page = 50
     list_filter = ['organization_name']
     search_fields = ['organization_name__istartswith']
@@ -93,10 +93,9 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
 class DocumentAdmin(admin.ModelAdmin):
     #form=DocumentForm
     #autocomplete_fields = ['article_category']
-    list_display = ['id','is_parent_available', 'parent_id', 'organization', 'data_category',
-                    'title', 'author', 'access_category']
+    list_display = ['title','organization','data_category', 'access_category']
     list_editable = ['data_category', 'access_category']
-    list_per_page = 50
+    list_per_page = 20
     list_filter = [OrganizationWiseFilter, 'data_category', 'access_category',]
     search_fields = ['title__istartswith']
     
@@ -110,11 +109,10 @@ class DocumentAdmin(admin.ModelAdmin):
 
 @admin.register(ArticleDetail)
 class ArticleDetailAdmin(admin.ModelAdmin):
-    list_display = ['id', 'parent_id', 'organization', 'data_category',
-                    'title', 'author', 'access_category']
-    list_editable = ['parent_id', 'organization', 'data_category']
-    list_per_page = 50
-    list_filter = ['organization', 'data_category', 'access_category']
+    list_display = ['title','organization', 'data_category','parent_id']
+    list_editable = ['organization', 'data_category']
+    list_per_page = 20
+    list_filter = ['organization', 'data_category']
     search_fields = ['title__istartswith']
 
 
@@ -122,12 +120,12 @@ class ArticleDetailAdmin(admin.ModelAdmin):
 class ArticleAdmin(admin.ModelAdmin):
     autocomplete_fields = ['article_category']
     #list_display = ['title', 'get_article_category_name', 'entry_date']
-    list_display = ['id', 'title', 'parent_id', 'article_category',
-                    'publish_category', 'entry_date', 'updated_date']
+    list_display = ['id', 'title', 'parent_id', 'article_category','publish_category', 'entry_date', 'updated_date']
     list_editable = ['parent_id', 'article_category', 'publish_category']
     list_per_page = 50
     list_filter = ['article_category', 'entry_date', 'updated_date']
     search_fields = ['title__istartswith']
+
 
 
 @admin.register(ArticleCategory)

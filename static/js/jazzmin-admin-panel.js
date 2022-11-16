@@ -1,44 +1,42 @@
+
+
+
 jQuery(document).ready(function ($) {
     $('.field-parent_id').hide();
 
     $("#id_is_parent_available").change(function () {
 
+
         if ($("#id_is_parent_available").val() === 'true') {
-            // alert($("#id_organization").val());
-            fetch("http://127.0.0.1:8000/document/document_list")
-                .then(response => response.json())
-                .then(data => {
-                    
-                    data[0].forEach(element => {
-                        console.log("a");
-                        
-                    });
-                    // do something with users data
-            }
+            var base_url = window.location.origin;
+            var org_id=($("#id_organization").val());
+            fetch(base_url+"/document/document_list/"+org_id, {
+                headers:{
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+                },
+            })
+            .then(response => {
+                return response.json() //Convert response to JSON
+            })
+            .then(data => {
+                //Perform actions with the response data from the view
+            var form_parent_id=$('#id_parent_id');   
+            var option="" ;   
+            data.data.forEach(d => {
+                //console.log(d.id);
+                option+='<option value="'+d.id+'">'+d.title+'</option>'
+
+                
+            });  
+            //console.log('<select name="parent_id" required="" id="id_parent_id" data-select2-id="select2-data-id_parent tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">'+option+'</select>'); 
+           
+            $('.field-parent_id').empty()
+            $('.field-parent_id').append('<div class="form-group field-is_parent" data-select2-id="select2-data-32-6mhz"><div class="row" data-select2-id="select2-data-31-j511"><label class="col-sm-3 text-left" for="id_is_parent">Select Parent</label><div class=" col-sm-7 field-is_parent" data-select2-id="select2-data-30-yxpm"><select name="parent_id" class="form-control selectpicker" id="id_parent_id"  data-live-search="true">'+option+'</select></div></div></div>');    
             
-            );
-            // $.ajax({                       // initialize an AJAX request
-            //     type: "POST",
-            //     url: 'knowledgebase/document/document_list',
-            //     data: {
-            //         'id_organization': $("#id_organization").val(),       // add the country id to the POST parameters                 
-            //     },
-            //     dataType: 'json',
-            //     success: function (data) {  
-            //          // `data` is from `get_topics_ajax` view function
-            //          alert("OK");
-            //         console.log(data);
+                      
+            })
 
-            //         let html_data = '<option value="">---------</option>';
-            //         data.forEach(function (data) {
-            //             html_data += `<option value="${data.id}">${data.title}</option>`
-            //         });
-            //         $("#question-topic").html(html_data); // replace the contents of the topic input with the data that came from the server
-
-            //     }
-            // });
-            //id: id_parent_id
-            //name : parent_id
             $('.field-parent_id').show();
 
         } else if ($("#id_is_parent_available").val() === 'false') {
@@ -49,5 +47,4 @@ jQuery(document).ready(function ($) {
             $('.field-parent_id').hide();
         }
     });
-
 });

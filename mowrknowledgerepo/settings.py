@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'accounts',
-    # 'django_admin_logs',
+    'django_admin_logs',
     'crispy_forms',
     "debug_toolbar",  # debug_toolbar
 ]

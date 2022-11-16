@@ -639,8 +639,8 @@ def search_doc_by_nat(request, search_term='water', org_ids=None, data_category_
 
     return render(request, 'search_doc_by_nat.html', context)
 
-def document_list(request):
+def document_list(request,organization_id=None):
     # if request.method == "POST":
-    organization_id =1 #request.POST.get('id_organization')
+    organization_id =organization_id #request.POST.get('id_organization')
     other_instances=Document.objects.filter(organization_id=organization_id).values('id','title')
-    return JsonResponse({'data1':list(other_instances)})
+    return JsonResponse({'data':list(other_instances)})
