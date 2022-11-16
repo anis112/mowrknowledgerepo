@@ -295,6 +295,10 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown submenu">
+                        <a class="nav-link dropdown-toggle" href="{% url 'imp_links' %}" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Important Links</a>
+                    </li>
+                    <li class="nav-item dropdown submenu">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Help</a>
                     </li>
@@ -361,18 +365,17 @@
                 </svg>
             </div>
 
-            <div class="container">
-                <div class="row" style="border-bottom: 1px solid #004262; background: rgba(0, 0, 0, 0.025);">
-                    <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
-                    <div class="col text-center mt-2" style="min-height: 30px;">
-                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a
-                            href="{% url 'search_by_org' %}">Search by Organization</a> | <a
-                            href="{% url 'search_by_cat' %}">Search by Document Category</a> | <a
-                            href="{% url 'search_by_nat' %}">Other Document(s) Search</a> | <a href="#">Contact
-                            Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
-                    </div>
+            <div class="row" style="border-bottom: 1px solid #004262; background: rgba(0, 0, 0, 0.025);">
+                <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
+                <div class="col text-center mt-2" style="min-height: 30px;">
+                    <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a
+                        href="{% url 'search_by_org' %}">Search by Organization</a> | <a
+                        href="{% url 'search_by_cat' %}">Search by Document Category</a> | <a
+                        href="{% url 'search_by_nat' %}">Other Document(s) Search</a> | <a href="#">Contact
+                        Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
                 </div>
-
+            </div>
+            <div class="container">                
                 <div class="row p-2 h-auto">
                     <div class="col-md-3 text-center text-md-left pt-2 pb-2">
                         <a class="footer-logo" href="http://www.mowr.gov.bd/" target="_blank">
@@ -391,7 +394,7 @@
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://rri.gov.bd/"
-                                role="button" style="">
+                                role="button">
                                 <img src="/static/img/org_img/logo/RRI.png" alt="RRI" title="RRI" style="width: 40px;">
                                 <br>
                                 RRI
