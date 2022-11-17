@@ -42,6 +42,7 @@ Table of Content:
 /*----------------------------------------------------*/
 html {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 a {
@@ -95,7 +96,7 @@ figure {
 }
 
 figure figcaption {
-  color: rgba(0, 0, 0, 0.54);
+  color: rgba(0, 0, 0, 0.5);
   line-height: 20px;
   font-size: 14px;
   margin-top: 10px;
@@ -189,17 +190,17 @@ button:focus {
 }
 
 .main-content {
-  margin-top: 100px;
-  /* 
-  margin: 100px 20px 5px 20px;
-  min-height: 80vh;
-  min-height: cal(100% - 250px); */
+  margin-top: 100px;  
 }
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 1180px;
+    max-width: 98%;
   }
+  
+  .container-fluid {
+    max-width: 95% !important;
+  }  
 }
 
 @media (min-width: 1500px) {
@@ -448,16 +449,14 @@ p kbd {
 }
 
 .doc_border_btn {
-  border: 2px solid #79ccde;
-  /*   2px solid #79ccde;  2px solid #019d19; */
-  border-radius: 4px;
-  color:  #108cd6;
-  /* color: #108cd6; #10b3d6; #019d19 */
+  display: inline-block;
+  border: 2px solid #05abbc;
+  padding: 6px 34px;
+  color:  #0573ca;
   font-size: 14px;
   font-weight: 500;
-  background: #f3fcff;    /* #f8fdfe; */
-  display: inline-block;
-  padding: 6px 34px;
+  background: #f5fcfd;
+  border-radius: 4px;
   transition: all 0.3s linear, color 0.2s;
 }
 
@@ -472,7 +471,7 @@ p kbd {
 }
 
 .doc_border_btn i {
-  margin-left: 20px;   /*   6px;  */
+  margin-left: 15px;
   font-size: 16px;
   vertical-align: middle;
   display: inline-block;
@@ -480,9 +479,9 @@ p kbd {
 }
 
 .doc_border_btn:hover {
-  box-shadow:2px 2px 5px 0px rgba(12, 118, 142, 0.9); /*  0 10px 20px 0 rgba(12, 118, 142, 0.2); */
-  background: #10b3d6;    /*  #10b3d6; #019d19 */
-  border-color: #15a3c2;   /* #15a3c2  #10b3d6; #019d19 */
+  box-shadow: 2px 2px 5px 0px rgba(15, 125, 145, 0.5);
+  background: #00adb5;
+  border-color: #15b5c3;
   color: #fff;
 }
 

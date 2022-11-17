@@ -31,24 +31,29 @@ urlpatterns = [
 
     path('article/add', views.addArticleDetail, name="add_article"),
     #path('article/view', views.viewArticleDetail, name="view_article"),
-    path('search/doc-details/<int:id>',views.document_detail, name="document_detail"),
+    path('search/doc-details/<int:id>',
+         views.document_detail, name="document_detail"),
 
-    path('document/document_list/<int:organization_id>',views.document_list, name="document_list"),
-         
-       
-    #ahi
+    path('document/document_list/<int:organization_id>',
+         views.document_list, name="document_list"),
+
+
+    # ahi
 
     path('search/', views.search_document, name="search"),
     path('search/<search_term>', views.search_document, name="search"),
     #path('search/<string:search_term>', views.search_document, name="search"),
 
-    path('search_by_org/', views.search_doc_by_org, name="search_by_org"),
-    path('search_by_org/<search_term>', views.search_doc_by_org, name="search_by_org"),
+    path('search-by-org/', views.search_doc_by_org, name="search-by-org"),
+    path('search-by-org/<search_term>', views.search_doc_by_org, name="search-by-org"),
 
-    path('search_by_cat/', views.search_doc_by_cat, name="search_by_cat"),
-    path('search_by_cat/<search_term>', views.search_doc_by_cat, name="search_by_cat"),
+    path('search-by-cat/', views.search_doc_by_cat, name="search-by-cat"),
+    path('search-by-cat/<search_term>', views.search_doc_by_cat, name="search-by-cat"),
+
+    path('search-by-nat/', views.search_doc_by_nat, name="search-by-nat"),
+    path('search-by-nat/<search_term>', views.search_doc_by_nat, name="search-by-nat"),
     
-    path('search_by_nat/', views.search_doc_by_nat, name="search_by_nat"),
-    path('search_by_nat/<search_term>', views.search_doc_by_nat, name="search_by_nat"),
-    
+    path('document-details/', views.document_details, name="document-details"),
+    path('document-details/<int:id>', views.document_details, name="document-details"),
+
 ]

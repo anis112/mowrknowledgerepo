@@ -157,9 +157,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 JAZZMIN_SETTINGS = {
-    "site_title": "knowledgebase",
-    "site_header": "knowledgebase",
-    "site_brand": "knowledgebase",
+    "site_title": "MoW Knowledgebase",
+    "site_header": "MoW knowledgebase",
+    "site_brand": "MoW knowledgebase",
     "site_icon": "img/favicon.ico",
     # Add your own branding here
     "site_logo": "logo/bd_logo.png",

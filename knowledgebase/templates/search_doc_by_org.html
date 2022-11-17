@@ -1,6 +1,5 @@
 {% extends 'main.html' %}
 {% load static %}
-{% static "" as baseUrl %}
 
 
 {% block style_content %}
@@ -196,10 +195,6 @@
 </style>
 
 <style>
-    html {
-        scroll-behavior: smooth;
-    }
-
 
     .container {
         max-width: 100% !important;
@@ -256,43 +251,18 @@
         transition: all 0.4s linear;
     }
 
-
-
-
-    .categories-guide-item {
-        padding: 0px !important;
-        background: transparent !important;
-        box-shadow: none !important;
-    }
-
-    .categories-guide-item img {
-        margin-bottom: 0px !important;
-    }
-
-
-    .com-title {
-        font-size: 0.8rem !important;
-        font-style: italic;
-        text-transform: uppercase;
-    }
-
+    
     .community-box {
-        padding: 1.25rem 1rem;
-        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
+        margin: 0;
         margin-bottom: 1.25rem;
+        padding: 1rem 0;
+        box-shadow: 1px 2px 3px 2px rgba(5, 45, 58, 0.15);
         border-radius: 0.25rem;
     }
 
     .community-content {
         min-height: 10rem;
     }
-
-    .fact-navigation-info {
-        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
-        padding: 2.5rem 2rem 1.75rem;
-        border: 1px Solid rgba(130, 145, 150, 0.25)
-    }
-
 
 
 
@@ -306,7 +276,7 @@
         box-shadow: 1px 2px 3px 2px rgba(75, 150, 175, 0.25);
 
         background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
-        background-image: url(/static/img/banner_back/bann1.jpg);
+        background-image: url(/{{static}}/img/banner_back/bann1.jpg);
     }
 
     .org-content:hover {
@@ -393,6 +363,28 @@
         background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
         border-radius: 0.25rem;
     }
+    
+
+    .smbtn {
+        padding: 0.15rem 0.75rem 0.15rem 0.5rem;
+    }
+
+    .btn-rm {
+        outline: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        color: #1ac !important;
+        cursor: pointer;
+        background: none !important;
+    }
+
+    .btn-rm:hover {
+        margin-left: 0.25rem;
+        color: #2ce !important;
+    }
+
+    
 </style>
 
 {% endblock %}
@@ -400,24 +392,23 @@
 
 {% block content %}
 
-<div class="container-fluid mt-2 pl-3 pr-3">
+<div class="container-fluid mt-3 pl-3 pr-3">
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <div class="col-md-1 text-left">
+                <div class="col-md-3 text-left">
                     <a href="{% url 'home' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
                         <i class="arrow_left m-0"></i> Back
                     </a>
                 </div>
-                <div class="col-md-10 text-center">
-                    <h5 class="wow fadeInUp mt-3" style="color: #05a;">Search by Organization</h5>
+                <div class="col-md-6 text-center">
+                    <h5 class="wow fadeInUp mt-3" style="color: #05a; bord-bottom: 2px solid #27a;">Search by Organization</h5>
                 </div>
-                <div class="col-md-1 text-right">
+                <div class="col-md-3 text-right">
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 
@@ -439,13 +430,9 @@
                                         <div class="col text-center wow fadeInUp">
                                             <label class="w-100" for="src_org_{{org_info.short_name}}">
                                                 <div class="org-content text-center" data-bs-toggle="tooltip" data-bs-html="true"
-                                                    style="background-image: url(/static/img/org_img/bg/{{org_info.short_name}}.jpg);"
+                                                    style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"
                                                     title="{{org_info.organization_name}} ({{org_info.short_name}})">
 
-                                                    {% comment %} <img
-                                                        src="/static/img/org_img/logo/{{org_info.short_name}}.png"
-                                                        alt="{{org_info.organization_name}} ({{org_info.short_name}})"
-                                                        class="org-logo" /> {% endcomment %}
                                                     <img src="{% static 'img/org_img/logo/' %}{{org_info.short_name}}.png"
                                                         alt="{{org_info.organization_name}} ({{org_info.short_name}})"
                                                         class="org-logo org-logo-{{org_info.short_name}}" />
@@ -456,11 +443,6 @@
                                                             id="src_org_{{org_info.short_name}}" name="src_orgs"
                                                             value="{{org_info.id}}" {% if org_info.id in src_orgs %}
                                                             checked {% endif %} />
-
-                                                        {% comment %} <input type="checkbox" class="control-input"
-                                                            id="src_orgs_{{org_info.short_name}}" name="src_orgs"
-                                                            value="{{org_info.id}}" {% if org_info.id in org_ids %}
-                                                            checked {% else %} '' {% endif %} /> {% endcomment %}
                                                     </label>
                                                 </div>
                                             </label>
@@ -540,59 +522,99 @@
                             class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong
                             style="color:#047; font-size:105%;">{{doc_count}}</strong>)</h5>
 
-                    <div class="pt-3 pl-3 pr-3" style="top: 75px;">
+                    <div class="pt-2 pl-2 pr-2" style="top: 75px;">
 
                         {% for doc in documents %}
 
-                        {% ifchanged doc.data_category.category_name %}
-                        <div class="row wow fadeInUp">
-                            <div class="col-md-12">
-                                <span
-                                    id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
-                                    class="data-cat-title" data-wow-delay="0.2s">
-                                    <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
-                                    ({{doc.data_category.category_name}})
-                                </span>
-                            </div>
-                        </div>
-                        {% endifchanged %}
-
-                        <div class="community-box wow fadeInUp">
-                            <a href="">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="icon-container">
-                                            <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="{{doc.title}}"
-                                                width="100%" style="max-width: 250px;" />
-                                            {% comment %} <img src="{% static doc.thumbnail %}" alt="{{doc.title}}"
-                                                width="100%" style="max-width: 250px;" /> {% endcomment %}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <table class="table table-striped table-hover w-100 border mb-0">
-                                            <tr>
-                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
-                                                <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="text-left font-weight-bold">Subject:</td>
-                                                {% comment %} <td class="text-left">
-                                                    {{ doc.subject|truncatewords:"100" }}</td> {% endcomment %}
-                                                <td class="text-left">{{doc.organization.organization_name}}
-                                                    ({{doc.data_category.category_name}})</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="text-left font-weight-bold">Keywords:</td>
-                                                <td class="text-left">{{doc.keywords}}</td>
-                                            </tr>
-                                        </table>
+                            {% ifchanged doc.data_category.category_name %}
+                                <div class="row wow fadeInUp">
+                                    <div class="col-md-12">
+                                        <span
+                                            id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
+                                            class="data-cat-title" data-wow-delay="0.2s">
+                                            <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
+                                            ({{doc.data_category.category_name}})
+                                        </span>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            {% endifchanged %}
+                            
+                            <div class="row community-box wow fadeInUp text-left">
+                                <div class="col-md-2">
+                                    <div class="icon-container">
+                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                        
+                                    {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <table class="table table-striped table-hover w-100 border mb-2">
+                                        <tr>
+                                            <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                            <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left font-weight-bold">Subject:</td>
+                                            {% comment %} <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> {% endcomment %}
+                                            <td class="text-left">{{doc.organization.organization_name}}
+                                                ({{doc.data_category.category_name}})</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left font-weight-bold">Decription:</td>
+                                            <td class="text-left">
+                                                <div class="post">
+                                                    <span class="content_p">{{doc.decription|truncatewords:"1000"}}</span>
+                                                    <button class="btn-rm" onclick="read_more(this)">Read More</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
+                                        <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
+
+                                    <a target="_blank" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
+                                        <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
+
+                                    {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
+                                        <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span class="ml-2">Edit</span></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            {% comment %} <div class="community-box wow fadeInUp">
+                                <a href="">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="{{doc.title}}"
+                                                    width="100%" style="max-width: 250px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <table class="table table-striped table-hover w-100 border mb-0">
+                                                <tr>
+                                                    <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                                    <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-left font-weight-bold">Subject:</td>
+                                                    <td class="text-left">{{doc.organization.organization_name}}
+                                                        ({{doc.data_category.category_name}})</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td class="text-left font-weight-bold">Keywords:</td>
+                                                    <td class="text-left">{{doc.keywords}}</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div> {% endcomment %}
 
                         {% endfor %}
 
@@ -601,7 +623,6 @@
                 </div>
 
             </div>
-
 
         </div>
 
@@ -675,6 +696,33 @@
 
     });
 </script>
+
+
+<!-- *****  Starts Read More and Less Style  ***** -->
+<script type="text/javascript">
+    let noOfCharac = 250;
+    let contents = document.querySelectorAll(".content_p");
+
+    contents.forEach(content_p => {
+        if (content_p.textContent.length < noOfCharac) {
+            content_p.nextElementSibling.style.display = "none";
+        } else {
+            let displayText = content_p.textContent.slice(0, noOfCharac);
+            let moreText = content_p.textContent.slice(noOfCharac);
+            content_p.innerHTML = `${displayText}<span class="dots">...</span><span class="hide more">${moreText}</span>`;
+        }
+    });
+
+    function read_more(btn) {
+        let post = btn.parentElement;
+
+        post.querySelector(".dots").classList.toggle("hide");
+        post.querySelector(".more").classList.toggle("hide");
+
+        btn.textContent == "Read More" ? btn.textContent = "Read Less" : btn.textContent = "Read More";
+    }
+</script>
+<!-- *****  Ends Read More and Less Style  ***** -->
 
 
 {% endblock %}

@@ -1,19 +1,20 @@
-from django.http import JsonResponse
-
+import traceback
 from distutils.log import debug
+
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
 #from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.db.models import OuterRef, Q, Subquery
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
-from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
-from .models import (Article, ArticleCategory, ArticleDetail, ArticlePublishCategory,
-                     DataCommonCategory, DataCategory, Document, Organization)
 from accounts.models import CustomUser
 
-import traceback
+from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
+from .models import (Article, ArticleCategory, ArticleDetail,
+                     ArticlePublishCategory, DataCategory, DataCommonCategory,
+                     Document, Organization)
 
 
 def home(request):
@@ -241,16 +242,16 @@ def document_detail(request, id):
 
 # -------ahi------------
 
-    """ keywords = ['funny', 'old', 'black_humor']
-    qs = [Q(title__icontains=keyword) | Q(author__icontains=keyword)
-          | Q(tags__icontains=keyword) for keyword in keywords]
+    # keywords = ['funny', 'old', 'black_humor']
+    # qs = [Q(title__icontains=keyword) | Q(author__icontains=keyword)
+    #       | Q(tags__icontains=keyword) for keyword in keywords]
 
-    query = qs.pop()  # get the first element
+    # query = qs.pop()  # get the first element
 
-    for q in qs:
-        query |= q
-    filtered_user_meme = Meme.objects.filter(query, user=current_user)
-    publish_date__lte = timezone.now() """
+    # for q in qs:
+    #     query |= q
+    # filtered_user_meme = Meme.objects.filter(query, user=current_user)
+    # publish_date__lte = timezone.now() 
 
     #req_query = request.GET | request.POST
     #    req_query = request.POST
@@ -264,7 +265,7 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
         req_query = request.GET | request.POST
 
         if req_query and req_query.get("search_term"):
-            
+
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
@@ -297,17 +298,18 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
-        
+
         data_category_ids = [int(id) for id in data_category_ids]
 
         #cond_cat = Q(data_category_id__in=data_category_ids)
 
-        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+        cond_cat = Q(
+            data_category__data_common_category_id__in=data_category_ids)
 
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
-        
+
         access_category_ids = [int(id) for id in access_category_ids]
 
         cond_accat = Q(access_category_id__in=access_category_ids)
@@ -359,7 +361,7 @@ def search_doc_by_org(request, search_term='water', org_ids=None, data_category_
         req_query = request.GET | request.POST
 
         if req_query and req_query.get("search_term"):
-            
+
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
@@ -392,17 +394,18 @@ def search_doc_by_org(request, search_term='water', org_ids=None, data_category_
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
-        
+
         data_category_ids = [int(id) for id in data_category_ids]
 
         #cond_cat = Q(data_category_id__in=data_category_ids)
 
-        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+        cond_cat = Q(
+            data_category__data_common_category_id__in=data_category_ids)
 
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
-        
+
         access_category_ids = [int(id) for id in access_category_ids]
 
         cond_accat = Q(access_category_id__in=access_category_ids)
@@ -454,7 +457,7 @@ def search_doc_by_cat(request, search_term='water', org_ids=None, data_category_
         req_query = request.GET | request.POST
 
         if req_query and req_query.get("search_term"):
-            
+
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
@@ -487,17 +490,18 @@ def search_doc_by_cat(request, search_term='water', org_ids=None, data_category_
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
-        
+
         data_category_ids = [int(id) for id in data_category_ids]
 
         #cond_cat = Q(data_category_id__in=data_category_ids)
 
-        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+        cond_cat = Q(
+            data_category__data_common_category_id__in=data_category_ids)
 
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
-        
+
         access_category_ids = [int(id) for id in access_category_ids]
 
         cond_accat = Q(access_category_id__in=access_category_ids)
@@ -549,7 +553,7 @@ def search_doc_by_nat(request, search_term='water', org_ids=None, data_category_
         req_query = request.GET | request.POST
 
         if req_query and req_query.get("search_term"):
-            
+
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
@@ -582,17 +586,18 @@ def search_doc_by_nat(request, search_term='water', org_ids=None, data_category_
         documents = documents.filter(cond_org)
 
     if data_category_ids and data_category_ids[0] != '':
-        
+
         data_category_ids = [int(id) for id in data_category_ids]
 
         #cond_cat = Q(data_category_id__in=data_category_ids)
 
-        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+        cond_cat = Q(
+            data_category__data_common_category_id__in=data_category_ids)
 
         documents = documents.filter(cond_cat)
 
     if access_category_ids and access_category_ids[0] != '':
-        
+
         access_category_ids = [int(id) for id in access_category_ids]
 
         cond_accat = Q(access_category_id__in=access_category_ids)
@@ -637,8 +642,55 @@ def search_doc_by_nat(request, search_term='water', org_ids=None, data_category_
 
     return render(request, 'search_doc_by_nat.html', context)
 
-def document_list(request,organization_id=None):
+
+def document_list(request, organization_id=None):
     # if request.method == "POST":
-    organization_id =organization_id #request.POST.get('id_organization')
-    other_instances=Document.objects.filter(organization_id=organization_id).values('id','title')
-    return JsonResponse({'data':list(other_instances)})
+    organization_id = organization_id  # request.POST.get('id_organization')
+    other_instances = Document.objects.filter(
+        organization_id=organization_id).values('id', 'title')
+    return JsonResponse({'data': list(other_instances)})
+
+
+
+def get_related_keywords(title, keyword):
+    r_keywords = []
+
+    keywords = keyword.split(',|;')
+    keywords = keyword.replace(',', ';').split(';')
+
+    for kw in keywords:
+        if kw in title:
+            r_keywords.append(kw)
+
+    return r_keywords
+
+
+
+def document_details(request, id):
+
+    document = Document.objects.get(id=id)
+
+    documents = Document.objects.all()
+
+    related_keywords = get_related_keywords(document.title, document.keywords)
+
+    ####cond_cat = Q(data_category_id__in=data_category_ids)
+    ##data_category_id = document.data_category.data_common_category_id
+    ##cond_cat = Q(data_category__data_common_category_id=data_category_id)
+
+    conds = Q(title__in=related_keywords) | Q(data_category_id=document.data_category_id) | Q(data_category__data_common_category_id=document.data_category.data_common_category_id)
+    documents = documents.filter(conds)
+
+    important_links = [{'title': "First Assessment of Transboundary Rivers, Lakes and Groundwaters", 'link': "https://unece.org/DAM/env/water/blanks/assessment/assessmentweb_full.pdf"},
+                       {'title': "The Second Assessment of Transboundary Rivers, Lakes and Groundwaters in the UNECE Region", 'link': "https://unece.org/fileadmin/DAM/env/europe/monitoring/10thMeeting/Informal/ppp/TransboundaryWaters_2ndAssessment.pdf"},
+                       ]
+
+    context = {'document': document, 'documents': documents.order_by('organization_id', 'data_category_id')[:25], 'important_links': important_links}
+
+    return render(request, 'document_details.html', context)
+
+
+# Driver code
+#sentence = ['python coder', 'geeksforgeeks', 'coder in geeksforgeeks']
+#words = ['coder', 'geeksforgeeks']
+#print(check(sentence, words))

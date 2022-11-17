@@ -16,8 +16,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
-
     <link rel="stylesheet" href="{% static 'assets/bootstrap-data-tables/css/dataTables.bootstrap4.min.css' %}">
+    
+    <!-- Bootstrap SCSS -->
+    <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
 
     <!-- Fontawesome -->
     <link rel="stylesheet" href="{% static 'assets/font-awesome/css/all.css' %}">
@@ -25,10 +27,6 @@
 
     <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
     <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">
-
-    <!-- Bootstrap SCSS -->
-    {% comment %}
-    <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}"> {% endcomment %}
 
     <!-- Tooltip -->
     <link rel="stylesheet" href="{% static 'assets/tooltipster/css/tooltipster.bundle.css' %}">
@@ -40,6 +38,11 @@
     <link rel="stylesheet" href="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+
+    <!-- Bootstrap SCSS -->
+    {% comment %}
+    <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}"> {% endcomment %}
+
 
     <style>
         .container {
@@ -54,36 +57,6 @@
             width: 300px;
             height: 300px;
         }
-
-/*
-        .breadcrumb_area .banner_search_form button[type="submit"] {
-            background: #13cfd8;
-        }
-
-        .breadcrumb_area .banner_search_form button,
-        .custom-select ul li:hover,
-        .custom-select ul li.selected {
-            color: #13cfd8;
-        }
-
-        .breadcrumb_area {
-            padding: 130px 0 40px;
-        }
-*/
-        .section_title p {
-            max-width: none;
-        }
-
-        .sec_pad {
-            padding: 15px 0;
-        }
-
-        .section_title {
-            margin-bottom: 15px;
-        }
-
-
-        
 
         .footer-logo {
             color: #fff !important;
@@ -126,6 +99,7 @@
                 transform: translate(85px, 0%)
             }
         }
+
     </style>
 
 
@@ -147,7 +121,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!-- navbar with menu section -->
@@ -177,6 +150,7 @@
                     style="min-height: 40; height: 4vw; max-height: 60px; width: auto; padding-left: 8px;"
                     srcset="{% static 'img/knowledge_logo.png' %} 2x" alt="logo">
             </a>
+
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -195,85 +169,64 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav menu ml-auto">
-                    <li class="nav-item dropdown submenu">
+                    <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Home</a>
                     </li>
-                    <li class="nav-item dropdown submenu">
+                    <li class="nav-item">
                         <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
                     </li>
-                    <!-- <li class="nav-item dropdown submenu">
-                            <a class="nav-link dropdown-toggle" href="{% url 'article' %}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Knowledge Base</a>
-                        </li>
-                        <li class="nav-item dropdown submenu">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Research & Publication</a>
-                        </li>
-                        <li class="nav-item dropdown submenu">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Analysis & Reporting</a>
-                        </li> -->
 
                     {% if user.is_authenticated %}
-                    <!-- <li class="nav-item dropdown submenu">
+
+                        <li class="nav-item dropdown submenu mega_menu tab-demo">
                             <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Data Management <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                                aria-haspopup="true" aria-expanded="false">Data Management <i
+                                    class="fa-sharp fa-solid fa-caret-down"></i></a>
                             <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
                                 data-toggle="dropdown"></i>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a href="#" class="nav-link">Upload Document</a> </li>
-                                <li class="nav-item"><a href="#" class="nav-link">Data Entry</a></li>
-                            </ul>
-                        </li> -->
-
-
-
-                    <li class="nav-item dropdown submenu mega_menu tab-demo">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Data Management <i
-                                class="fa-sharp fa-solid fa-caret-down"></i></a>
-                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
-                            data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="row">
-                                    <div class="col-lg-5 tabHeader">
-                                        <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                            aria-orientation="vertical">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" id="v-pills-doc-tab" data-toggle="pill"
-                                                    href="#" role="tab" aria-controls="v-pills-doc"
-                                                    aria-selected="true">Data Entry</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="pill" href="#" role="tab">Others</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="tab-content tabContent" id="v-pills-tabContent"
-                                            style="box-shadow: none; border: none;">
-                                            <div class="tab-pane fade" id="v-pills-doc" role="tabpanel"
-                                                aria-labelledby="v-pills-doc-tab" style="margin-top: 0px;">
-                                                <div class="d-flex">
-                                                    <ul class="list-unstyled tab_list">
-                                                        <li>
-                                                            <a href="/organization/view">Organization</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/document/view">Document</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/article/view">Article</a>
-                                                        </li>
-                                                    </ul>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-lg-5 tabHeader">
+                                            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                                aria-orientation="vertical">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="v-pills-doc-tab" data-toggle="pill"
+                                                        href="#" role="tab" aria-controls="v-pills-doc"
+                                                        aria-selected="true">Data Entry</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="pill" href="#" role="tab">Others</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="tab-content tabContent" id="v-pills-tabContent"
+                                                style="box-shadow: none; border: none;">
+                                                <div class="tab-pane fade" id="v-pills-doc" role="tabpanel"
+                                                    aria-labelledby="v-pills-doc-tab" style="margin-top: 0px;">
+                                                    <div class="d-flex">
+                                                        <ul class="list-unstyled tab_list">
+                                                            <li>
+                                                                <a href="/organization/view">Organization</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/document/view">Document</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="/article/view">Article</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
+                                </li>
+                            </ul>
+                        </li>
 
                     {% endif %}
 
@@ -284,13 +237,13 @@
                         <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
                             data-toggle="dropdown"></i>
                         <ul class="dropdown-menu">
-                            <li class="nav-item"><a href="{% url 'search_by_org' %}" class="nav-link">Search by
+                            <li class="nav-item"><a href="{% url 'search-by-org' %}" class="nav-link">Search by
                                     Organization</a> </li>
                             {% comment %} <li class="nav-item"><a href="{% url 'orgsearch' %}" class="nav-link">Search
                                     by Organization</a> </li> {% endcomment %}
-                            <li class="nav-item"><a href="{% url 'search_by_cat' %}" class="nav-link">Search by Document
+                            <li class="nav-item"><a href="{% url 'search-by-cat' %}" class="nav-link">Search by Document
                                     Type</a></li>
-                            <li class="nav-item"><a href="{% url 'search_by_nat' %}" class="nav-link">Search
+                            <li class="nav-item"><a href="{% url 'search-by-nat' %}" class="nav-link">Search
                                     Other Document(s)</a> </li>
                         </ul>
                     </li>
@@ -299,7 +252,7 @@
                             aria-haspopup="true" aria-expanded="false">Help</a>
                     </li>
 
-                    <li class="nav-item dropdown submenu">
+                    {% comment %} <li class="nav-item dropdown submenu">
                         {% if user.is_authenticated  %}
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -311,22 +264,41 @@
                             <li class="nav-item"><a href={% url 'accounts/user_profile' user.username %}
                                     class="nav-link">View profile</a></li>
                             <li class="nav-item"><a href={% url 'accounts/logout' %} class="nav-link">Logout</a></li>
-                            {% comment %} <li class="nav-item"><a
-                                    href={% url 'accounts/user_list' user.organization_id %} class="nav-link">User
-                                    List</a></li> {% endcomment %}
                             <li class="nav-item"><a href='/admin/accounts/customuser/' class="nav-link">User List</a>
                             </li>
                             <li class="nav-item"><a href='/admin/' class="nav-link">Manage Data</a></li>
-
                         </ul>
                         {% else %}
                         <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
                         {% endif %}
-                    </li>
-
+                    </li> {% endcomment %}
 
                 </ul>
+
+
+                <ul class="navbar-nav menu">
+                    <li class="nav-item dropdown submenu">
+                    {% if user.is_authenticated  %}
+                        <a class="nav_btn dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Hi, {{ user.username }}!
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="{% url 'accounts/user_profile' user.username %}" class="nav-link">View profile</a></li>
+                            <li class="nav-item"><a href="{% url 'accounts/logout' %}" class="nav-link">Logout</a></li>
+                            <li class="nav-item"><a href="/admin/accounts/customuser/" class="nav-link">User List</a></li>
+                            <li class="nav-item"><a href="/admin/" class="nav-link">Manage Data</a></li>
+                        </ul>
+
+                    {% else %}
+                        <a class="nav_btn" href="{% url 'accounts/login' %}" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
+                    {% endif %}
+                    </li>
+                </ul>
+
             </div>
         </div>
     </nav>
@@ -362,14 +334,16 @@
             </div>
 
             <div class="container">
-                <div class="row" style="border-bottom: 1px solid #004262; background: rgba(0, 0, 0, 0.025);">
+                <div class="row" style="border-bottom: 1px solid #134575; background: rgba(0, 0, 0, 0.025);">
                     <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
                     <div class="col text-center mt-2" style="min-height: 30px;">
-                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | <a
-                            href="{% url 'search_by_org' %}">Search by Organization</a> | <a
-                            href="{% url 'search_by_cat' %}">Search by Document Category</a> | <a
-                            href="{% url 'search_by_nat' %}">Other Document(s) Search</a> | <a href="#">Contact
-                            Us</a> | <a href="#">Help</a> | <a href="#">Sign in </a>
+                        <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | 
+                        <a href="{% url 'search-by-org' %}">Search by Organization</a> | 
+                        <a href="{% url 'search-by-cat' %}">Search by Document Category</a> | 
+                        <a href="{% url 'search-by-nat' %}">Other Document(s) Search</a> | 
+                        <a href="#">Contact Us</a> | 
+                        <a href="#">Help</a> | 
+                        <a href="#">Sign in </a>
                     </div>
                 </div>
 
@@ -391,7 +365,7 @@
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://rri.gov.bd/"
-                                role="button" style="">
+                                role="button">
                                 <img src="/static/img/org_img/logo/RRI.png" alt="RRI" title="RRI" style="width: 40px;">
                                 <br>
                                 RRI
@@ -405,32 +379,28 @@
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/DBHWD.png" alt="DBHWD" title="DBHWD"
-                                    style="width: 50px;">
+                                <img src="/static/img/org_img/logo/DBHWD.png" alt="DBHWD" title="DBHWD" style="width: 50px;">
                                 <br>
                                 DBHWD
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/WARPO.png" alt="WARPO" title="WARPO"
-                                    style="width: 70px; padding: 1px 0px;">
+                                <img src="/static/img/org_img/logo/WARPO.png" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;">
                                 <br>
                                 WARPO
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.iwmbd.org/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/IWM.png" alt="IWM" title="IWM"
-                                    style="width: 50px; padding: 5px 0px;">
+                                <img src="/static/img/org_img/logo/IWM.png" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;">
                                 <br>
                                 IWM
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.cegisbd.com/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/CEGIS.png" alt="CEGIS" title="CEGIS"
-                                    style="width: 70px; padding: 9px 0px;">
+                                <img src="/static/img/org_img/logo/CEGIS.png" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;">
                                 <br>
                                 CEGIS
                             </a>
@@ -449,13 +419,11 @@
         </section>
     </footer>
 
-
     <!-- Back to top button -->
     <a id="back-to-top" title="Back to Top"></a>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
     <!-- <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> -->
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -467,11 +435,11 @@
     <script src="{% static 'assets/bootstrap-data-tables/js/dataTables.bootstrap4.min.js' %}"></script>
 
     <script src="{% static 'js/pre-loader.js' %}"> </script>
-    <script src="{% static 'assets/slick/slick.min.js' %}"></script>
     <script src="{% static 'js/parallaxie.js' %}"></script>
     <script src="{% static 'js/TweenMax.min.js' %}"></script>
     <script src="{% static 'js/jquery.wavify.js' %}"></script>
     <script src="{% static 'assets/wow/wow.min.js' %}"></script>
+    <script src="{% static 'assets/slick/slick.min.js' %}"></script>
     <script src="{% static 'assets/niceselectpicker/jquery.nice-select.min.js' %}"></script>
     <script src="{% static 'assets/mcustomscrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
     <script src="{% static 'assets/counterup/jquery.counterup.min.js' %}"></script>
