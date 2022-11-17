@@ -387,7 +387,7 @@
     .scat-title {
         display: block;
         border-left: 0.15rem solid #1ab;
-        margin: 0.35rem;
+        margin: 0.35rem 0;
         padding: 0.5rem;
         padding-left: 0.65rem;
         color: #135;
@@ -538,13 +538,13 @@
                 </div>
             </div>
 
-            <div class="row mt-3" id="search_result_panel">
+            <div class="row mt-5" id="search_result_panel">
 
                 <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp">
                     <h5 class="border-bottom pb-2" style="color: #05a;"><i class="fa-solid fa-list-check"></i> Selected
                         Organization</h5>
 
-                    <div class="pt-2 pl-2 pr-2 sticky-top" style="top: 4.75rem; max-height: 85vh; overflow-y: auto; background: #f7fafc; ">
+                    <div class="pt-2 sticky-top" style="top: 4.75rem; max-height: 85vh; overflow-y: auto; background: #f7fafc; ">
                         <div class="nav flex-column">
                             {% for doc in documents %}
                                 {% ifchanged doc.data_category.data_common_category.category_name %}
@@ -576,7 +576,7 @@
                             class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong
                             style="color:#047; font-size:105%;">{{doc_count}}</strong>)</h5>
 
-                    <div class="pt-3 pl-3 pr-3" style="top: 75px;">
+                    <div class="pt-2" style="top: 75px;">
 
                         {% for doc in documents %}
 
