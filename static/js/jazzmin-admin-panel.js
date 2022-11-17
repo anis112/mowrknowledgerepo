@@ -1,3 +1,6 @@
+
+
+
 jQuery(document).ready(function ($) {
     $('.field-parent_id').hide();
 
@@ -29,8 +32,9 @@ jQuery(document).ready(function ($) {
             //console.log('<select name="parent_id" required="" id="id_parent_id" data-select2-id="select2-data-id_parent tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">'+option+'</select>'); 
            
             $('.field-parent_id').empty()
-            $('.field-parent_id').append('<div class="form-group field-is_parent" data-select2-id="select2-data-32-6mhz"><div class="row" data-select2-id="select2-data-31-j511"><label class="col-sm-2 text-left" for="id_is_parent">Select Parent</label><div class=" col-sm-10 field-is_parent" data-select2-id="select2-data-30-yxpm"><select name="parent_id" class="form-control" id="id_parent_id" data-select2-id="select2-data-id_parent tabindex="-1" class="select2-hidden-accessible" aria-hidden="true">'+option+'</select></div></div></div>');    
-
+            $('.field-parent_id').append('<div class="form-group field-is_parent" data-select2-id="select2-data-32-6mhz"><div class="row" data-select2-id="select2-data-31-j511"><label class="col-sm-3 text-left" for="id_is_parent">Select Parent</label><div class=" col-sm-7 field-is_parent" data-select2-id="select2-data-30-yxpm"><select name="parent_id" class="form-control selectpicker" id="id_parent_id"  data-live-search="true">'+option+'</select></div></div></div>');    
+            
+                      
             })
 
             $('.field-parent_id').show();
@@ -43,5 +47,4 @@ jQuery(document).ready(function ($) {
             $('.field-parent_id').hide();
         }
     });
-
 });

@@ -226,7 +226,8 @@
     }
 
     .community-box {
-        padding: 10px 10px;  /* 20px 15px; */
+        padding: 10px 10px;
+        /* 20px 15px; */
         box-shadow: 1px 1px 3px 2px rgba(2, 47, 57, 0.14);
     }
 
@@ -244,28 +245,8 @@
         border: 1px Solid rgba(130, 148, 151, 0.2)
     }
 
-    .org-content {
-        /* background-color: #dde3ee; */
-        /* background-image: linear-gradient(to left bottom, #eeeeee, #ecedee, #eaebee, #e7eaee, #e4e9ee); */
-        /* border: 1px solid #d9ddea; */
-        padding: 10px;
-        margin: 10px 0px;
-        border-radius: 3px;
-        min-height: 95px !important;
-    }
-    
-    .org-content:hover{
-        box-shadow: #04859b 0px 1px 6px 0px !important;        
-    }
-
-    .org-img {
-        width: 75px;
-        margin-bottom: 10px;
-        margin-right: 10px;
-    }
-
     .carousel-caption {
-        left:0px;
+        left: 0px;
         right: 0px;
         bottom: 0px;
         width: 100%;
@@ -273,14 +254,15 @@
 
     .h_title_r {
         /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
-        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%); /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%);
+        /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
         color: #fff;
         font-family: arial;
         font-size: 13px;
         font-weight: bold;
         text-align: left;
-        display: block;   
-        padding: 7px;         
+        display: block;
+        padding: 7px;
         padding-left: 15px;
         margin-bottom: 10px;
         border-radius: 4px;
@@ -288,14 +270,15 @@
 
     .h_title_l {
         /* background-image: linear-gradient(60deg, rgb(16, 179, 214) 0%, rgb(29, 39, 70) 100%); */
-        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%); /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
+        background-image: linear-gradient(60deg, rgb(16, 181, 189) 0%, rgb(0, 38, 96) 100%);
+        /* linear-gradient(60deg, rgb(16, 189, 157) 0%, rgb(0, 82, 96) 100%); */
         color: #fff;
         font-family: arial;
         font-size: 13px;
         font-weight: bold;
         text-align: left;
-        display: block;    
-        padding: 7px;                
+        display: block;
+        padding: 7px;
         padding-left: 15px;
         margin-bottom: 10px;
         border-radius: 4px;
@@ -306,6 +289,7 @@
         opacity: 0.8;
     }
 
+<<<<<<< HEAD
     /*=========== Start Slider css (MNH) ============*/
 
 
@@ -427,6 +411,8 @@
     }
      /*=========== Ends SVG css (MNH) ============*/
 
+=======
+>>>>>>> 5e441b64a836516b0cbbd198ee7a50f7f703dd5a
     .custom-control-label::before,
     .custom-control-label::after {
         /* top: .8rem; */
@@ -435,8 +421,9 @@
         border: 1px solid #3cbdd9;
         border-radius: 0.15rem !important;
     }
-    
-    .typography_list h5, .dropcap_content h5 {
+
+    .typography_list h5,
+    .dropcap_content h5 {
         margin-bottom: 0px;
     }
 
@@ -444,29 +431,34 @@
         background: #10B3BC;
     }
 
-    .typography_list ul li a, .typography_list ol li a {  
+    .typography_list ul li a,
+    .typography_list ol li a {
         font-size: 14px;
-        color: #10b3d6; 
+        color: #10b3d6;
     }
 
     .btn_small {
         padding: 0 5px !important;
     }
-    
 
-     /*=========== Starts Document Reading Style (MNH) ============*/
+
+    /*=========== Starts Document Reading Style (MNH) ============*/
     .doc_details {
-        margin-bottom: 5px; text-align: justify; 
+        margin-bottom: 5px;
+        text-align: justify;
     }
 
-    @media (min-width: 768px) { 
+    @media (min-width: 768px) {
         .doc_details {
-            column-count: 2; column-gap: 30px; column-rule: 1px solid #79ccde;
+            column-count: 2;
+            column-gap: 30px;
+            column-rule: 1px solid #79ccde;
         }
     }
+
     /*=========== Ends Document Reading Style (MNH) ============*/
 
-    
+
     /*****  Starts Read More and Less Style  *****/
     .post {
         font-family: "Poppins", sans-serif;
@@ -499,7 +491,6 @@
     }
 
     /*****  Ends Read More and Less Style  *****/
-
 </style>
 
 {% endblock %}
@@ -516,33 +507,51 @@
                 <div class="col-md-3">
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community" style="max-width: 100%; border: 1px solid #ddd;">
+                            <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="community"
+                                style="max-width: 100%; border: 1px solid #ddd;">
                         </div>
                     </div>
                 </div>
                 <div class="col-md-9">
-                    <div class="pl-1">                        
-                        <h2 style="text-align: justify; font-weight: 400; font-family: Georgia,Times New Roman,serif;">{{document.title}}</h2>                         
-                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0; margin-bottom: 0;">Organization: {{document.organization}}</p> 
-                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0;">Document Type: {{document.data_category}}</p> 
+                    <div class="pl-1">
+                        <h2 style="text-align: justify; font-weight: 400; font-family: Georgia,Times New Roman,serif;">
+                            {{document.title}}</h2>
+                        <p
+                            style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0; margin-bottom: 0;">
+                            Organization: {{document.organization}}</p>
+                        <p
+                            style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0;">
+                            Document Type: {{document.data_category}}</p>
                         <!-- <br /> -->
+<<<<<<< HEAD
                         <p class="doc_details">{{document.description}}</p>
 
                         <a target="_blank" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" class="doc_border_btn smbtn ml-2">
                             <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
                             
+=======
+                        <p class="doc_details">
+                            {{document.description}}
+                        </p>
+                        <a href="#" class="doc_border_btn btn_small"><i
+                                class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                class="ml-3">Download</span></a>
+                        <!-- <a href="#" class="doc_border_btn btn_small" ><i class="fa-light fa-file-pdf fa-fw" style="margin-left: 0px; font-size: 21px;"></i><span style="margin-left: 10px;">Download</span></a>                                              -->
+>>>>>>> 5e441b64a836516b0cbbd198ee7a50f7f703dd5a
                     </div>
-                   
+
                     <br />
 
-                    <div class="pl-1">        
+                    <div class="pl-1">
                         <h5 style="font-weight: 400;">Relevant & Important Links</h5>
-                        <p class="mb-1">                    
-                            <a href="#" target="_blank">UNECE- Second Assessment of transboundary rivers, lakes and groundwaters (2011)</a>
+                        <p class="mb-1">
+                            <a href="#" target="_blank">UNECE- Second Assessment of transboundary rivers, lakes and
+                                groundwaters (2011)</a>
                             <img src="{% static 'img/pdf.gif' %}">
                         </p>
-                        <p class="mb-1">                    
-                            <a href="#" target="_blank">UNECE- First Assessment of Transboundary Rivers, Lakes and Groundwaters in the UNECE region (2007)</a>
+                        <p class="mb-1">
+                            <a href="#" target="_blank">UNECE- First Assessment of Transboundary Rivers, Lakes and
+                                Groundwaters in the UNECE region (2007)</a>
                             <img src="{% static 'img/pdf.gif' %}">
                         </p>
                     </div>
@@ -637,17 +646,353 @@
                                             </tr>
 
                                             <tr>
+<<<<<<< HEAD
                                                 <td class="text-left font-weight-bold">Keywords:</td>
                                                 <td class="text-left">{{doc.keywords}}</td>
                                             </tr>
                                         </table>
+=======
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p">Some dodgy chav bevvy amongst argy-bargy
+                                                            spiffing absolutely bladdered nancy boy cup of tea a load of
+                                                            old tosh porkies. Some dodgy chav bevvy boy cup of tea a
+                                                            load of old tosh porkies. Some dodgy chav bevvy amongst
+                                                            argy-bargy spiffing absolutely bladdered nancy boy cup of
+                                                            tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies.</span>
+                                                        <button onclick="readMore(this)">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a href="{% url 'doc-details' %}" class="doc_border_btn btn_small">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-3">View
+                                                More Details</span></a>
+                                        <a href="#" class="doc_border_btn btn_small ml-2">
+                                            <i class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                                class="ml-3">Download</span></a>
+                                        {% if user.is_authenticated %}<a href="#"
+                                            class="doc_border_btn btn_small float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span
+                                                class="ml-3">Edit</span></a>{% endif %}
+>>>>>>> 5e441b64a836516b0cbbd198ee7a50f7f703dd5a
                                     </div>
                                 </div>
                             </a>
                         </div> {% endcomment %}
 
+<<<<<<< HEAD
                 {% endfor %}
 
+=======
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="community-box wow fadeInUp text-left" style="color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/default_thumbnail_md.jpg' %}" alt="community"
+                                                style="max-width: 100%; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:
+                                                </td>
+                                                <td class="text-left font-weight-bold">Salinity problems and crop
+                                                    production in coastal regions of Bangladesh.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>
+                                                <td class="text-left">Joint Rivers Commission (Common River Basin
+                                                    Management on GBM basin)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p">Some dodgy chav bevvy amongst argy-bargy
+                                                            spiffing absolutely bladdered nancy boy cup of tea a load of
+                                                            old tosh porkies. Some dodgy chav bevvy amongst argy-bargy
+                                                            spiffing absolutely bladdered.</span>
+                                                        <button onclick="readMore(this)">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a href="{% url 'doc-details' %}" class="doc_border_btn btn_small">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-3">View
+                                                More Details</span></a>
+                                        <a href="#" class="doc_border_btn btn_small ml-2">
+                                            <i class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                                class="ml-3">Download</span></a>
+                                        {% if user.is_authenticated %}<a href="#"
+                                            class="doc_border_btn btn_small float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span
+                                                class="ml-3">Edit</span></a>{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="community-box wow fadeInUp text-left" style="color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/default_thumbnail_md.jpg' %}" alt="community"
+                                                style="max-width: 100%; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:
+                                                </td>
+                                                <td class="text-left font-weight-bold">Award points, level up, and
+                                                    earn new privileges.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>
+                                                <td class="text-left">Joint Rivers Commission (Common River Basin
+                                                    Management on GBM basin)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p">Some dodgy chav bevvy amongst argy-bargy
+                                                            spiffing absolutely bladdered nancy boy cup of tea a load of
+                                                            old tosh porkies. Some dodgy chav bevvy boy cup of tea a
+                                                            load of old tosh porkies. Some dodgy chav bevvy amongst
+                                                            argy-bargy spiffing absolutely bladdered nancy boy cup of
+                                                            tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies.</span>
+                                                        <button onclick="readMore(this)">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a href="{% url 'doc-details' %}" class="doc_border_btn btn_small">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-3">View
+                                                More Details</span></a>
+                                        <a href="#" class="doc_border_btn btn_small ml-2">
+                                            <i class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                                class="ml-3">Download</span></a>
+                                        {% if user.is_authenticated %}<a href="#"
+                                            class="doc_border_btn btn_small float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span
+                                                class="ml-3">Edit</span></a>{% endif %}
+                                        <!-- <h6 class="h6 bold">Award points, level up, and earn new privileges.</h6>
+                                        <p style="margin-bottom: 5px;">
+                                            Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies...
+                                        </p>
+                                        <a href="#" style="color:darkviolet;">Read more</a> | <a href="#" class="doc_border_btn btn_small" ><i class="fa-sharp fa-solid fa-download fa-fw" style="margin-left: 0px;"></i><span style="margin-left: 10px;">Download</span></a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="wow fadeInUp h_title_r" data-wow-delay="0.2s">Analysis & Reporting</h4>
+                        </div>
+                    </div>
+
+                    <!-- Sliding Cards -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <a href="#" title="Click here to view"> -->
+                            <div class="community-box wow fadeInUp text-left" style="color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/default_thumbnail_md.jpg' %}" alt="community"
+                                                style="max-width: 100%; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:
+                                                </td>
+                                                <td class="text-left font-weight-bold">Case study on water logging
+                                                    problems in an urban area of Bangladesh and probable analytical
+                                                    solution.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>
+                                                <td class="text-left">Joint Rivers Commission (Common River Basin
+                                                    Management on GBM basin)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p">Some dodgy chav bevvy amongst argy-bargy
+                                                            spiffing absolutely bladdered nancy boy cup of tea a load of
+                                                            old tosh porkies. Some dodgy chav bevvy boy cup of tea a
+                                                            load of old tosh porkies. Some dodgy chav bevvy amongst
+                                                            argy-bargy spiffing absolutely bladdered nancy boy cup of
+                                                            tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies.</span>
+                                                        <button onclick="readMore(this)">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a href="{% url 'doc-details' %}" class="doc_border_btn btn_small">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-3">View
+                                                More Details</span></a>
+                                        <a href="#" class="doc_border_btn btn_small ml-2">
+                                            <i class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                                class="ml-3">Download</span></a>
+                                        {% if user.is_authenticated %}<a href="#"
+                                            class="doc_border_btn btn_small float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span
+                                                class="ml-3">Edit</span></a>{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- </a> -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="community-box wow fadeInUp text-left" style="color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/default_thumbnail_md.jpg' %}" alt="community"
+                                                style="max-width: 100%; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:
+                                                </td>
+                                                <td class="text-left font-weight-bold">Salinity problems and crop
+                                                    production in coastal regions of Bangladesh.</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>
+                                                <td class="text-left">Joint Rivers Commission (Common River Basin
+                                                    Management on GBM basin)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p">Some dodgy chav bevvy amongst argy-bargy
+                                                            spiffing absolutely bladdered nancy boy cup of tea a load of
+                                                            old tosh porkies. Some dodgy chav bevvy boy cup of tea a
+                                                            load of old tosh porkies. Some dodgy chav bevvy amongst
+                                                            argy-bargy spiffing absolutely bladdered nancy boy cup of
+                                                            tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                            amongst argy-bargy spiffing absolutely bladdered nancy boy
+                                                            cup of tea a load of old tosh porkies.</span>
+                                                        <button onclick="readMore(this)">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <a href="{% url 'doc-details' %}" class="doc_border_btn btn_small">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-3">View
+                                                More Details</span></a>
+                                        <a href="#" class="doc_border_btn btn_small ml-2">
+                                            <i class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                                class="ml-3">Download</span></a>
+                                        {% if user.is_authenticated %}<a href="#"
+                                            class="doc_border_btn btn_small float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span
+                                                class="ml-3">Edit</span></a>{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="community-box wow fadeInUp text-left" style="color: #000 !important;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="{% static 'img/default_thumbnail_md.jpg' %}" alt="community"
+                                                style="max-width: 100%; border: 1px solid #ddd;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h6 class="h6 bold">Salinity problems and crop production in coastal regions
+                                            of Bangladesh.</h6>
+                                        <div class="post">
+                                            <span class="content_p">Some dodgy chav bevvy amongst argy-bargy spiffing
+                                                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                                Some dodgy chav bevvy boy cup of tea a load of old tosh porkies. Some
+                                                dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy
+                                                boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy amongst
+                                                argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of
+                                                old tosh porkies. Some dodgy chav bevvy amongst argy-bargy spiffing
+                                                absolutely bladdered nancy boy cup of tea a load of old tosh porkies.
+                                                Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered
+                                                nancy boy cup of tea a load of old tosh porkies. Some dodgy chav bevvy
+                                                amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a
+                                                load of old tosh porkies.</span>
+                                            <button onclick="readMore(this)">Read More</button>
+                                        </div>
+                                        <a href="{% url 'doc-details' %}" class="doc_border_btn btn_small">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-3">View
+                                                More Details</span></a>
+                                        <a href="#" class="doc_border_btn btn_small ml-2">
+                                            <i class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
+                                                class="ml-3">Download</span></a>
+                                        {% if user.is_authenticated %}<a href="#"
+                                            class="doc_border_btn btn_small float-right">
+                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span
+                                                class="ml-3">Edit</span></a>{% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+>>>>>>> 5e441b64a836516b0cbbd198ee7a50f7f703dd5a
 
                 </div>
 

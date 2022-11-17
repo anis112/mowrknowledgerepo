@@ -108,6 +108,8 @@ def SearchResult1(request):
 def doc_details(request):
     return render(request, 'doc-details.html')
 
+def imp_links(request):
+    return render(request, 'imp_links.html')
 
 def article(request):
     #article_obj = Article.objects.get(pk=1)
