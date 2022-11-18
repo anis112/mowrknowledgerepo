@@ -260,8 +260,7 @@
     }
 
     .community-box {
-        margin: 0;
-        margin-bottom: 1.25rem;
+        margin: 0 0 0.75rem 0;
         padding: 1rem 0;
         box-shadow: 1px 2px 3px 2px rgba(5, 45, 58, 0.15);
         border-radius: 0.25rem;
@@ -277,12 +276,12 @@
         display: inline-block;
         border: 2px solid #75cade;
         min-height: 90%;
-        padding: 6px 34px;
+        padding: 0.35rem 2.25rem;
         color:  #138cd8;
         font-size: 14px;
         font-weight: 500;
         background: #f3fcfe;
-        border-radius: 4px;
+        border-radius: 0.25rem;
         transition: all 0.3s linear, color 0.2s;
     }
 
@@ -296,7 +295,7 @@
 
     .cat-title {
         display: block;
-        margin-bottom: 0.5rem;
+        margin: 0.5rem 0 0.25rem 0;
         padding: 0.5rem;
         padding-left: 0.75rem;
         color: #fff;
@@ -314,7 +313,7 @@
     .scat-title {
         display: block;
         border-left: 0.15rem solid #1ab;
-        margin: 0.35rem 0;
+        margin: 0.25rem 0 0.25rem 0.25rem;
         padding: 0.5rem;
         padding-left: 0.65rem;
         color: #135;
@@ -370,28 +369,22 @@
 {% block content %}
 
 
-<div class="container-fluid mt-3 pl-3 pr-3">
+<div class="container-fluid mt-3 pl-3 pr-3">    
     <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-3 text-left">
-                    <a href="{% url 'home' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
-                        <i class="arrow_left m-0"></i> Back
-                    </a>
-                </div>
-                <div class="col-md-6 text-center">
-                    <h5 class="wow fadeInUp mt-3" style="color: #05a; border-bottom: 2px solid #27a;">Search by Data Category</h5>
-                </div>
-                <div class="col-md-3 text-right">
-                </div>
-            </div>
+        <div class="col-md-3 text-left">
+            <a href="{% url 'home' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
+                <i class="arrow_left m-0"></i> Back
+            </a>
         </div>
+        <div class="col-md-6 text-center">
+            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid #147; color: #05a;">Search by Data Category</h5>
+        </div>
+        <div class="col-md-3 text-right"></div>
     </div>
 </div>
 
 
-
-<div class="container mt-1 mb-3">
+<div class="container mt-3 mb-3">
     <div class="row">
 
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
@@ -456,45 +449,46 @@
                 </div>
             </div>
 
-            <div class="row mt-5" id="search_result_panel">
+            <div class="row m-0 mt-3">
+                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" style="background: #f5fafc;">
+                    <div class="pt-2 sticky-top" style="top: 4.75rem;">
+                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                            <i class="fa-solid fa-list-check"></i> Selected Data Category
+                        </h5>
+                        
+                        <div class="row" >
+                            <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
+                                <div class="nav flex-column">
+                                    {% for doc in documents %}
+                                        {% ifchanged doc.data_category.data_common_category.category_name %}
+                                        <a class="nav-link cat-title" data-wow-delay="0.2s"
+                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                            <i class="fa-solid fa-list fa-fw"></i> {{doc.data_category.category_name}}
+                                        </a>
+                                        {% endifchanged %}
 
-                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp">
-                    <h5 class="border-bottom pb-2" style="color: #05a;"><i class="fa-solid fa-list-check"></i> Selected
-                        Organization</h5>
-
-                    <div class="pt-2 sticky-top" style="top: 4.75rem; max-height: 85vh; overflow-y: auto; background: #f7fafc; ">
-                        <div class="nav flex-column">
-                            {% for doc in documents %}
-                                {% ifchanged doc.data_category.data_common_category.category_name %}
-                                <a class="nav-link cat-title"
-                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                    {{doc.data_category.category_name}}
-                                </a>
-                                {% endifchanged %}
-
-                                {% ifchanged doc.organization.organization_name %}
-                                <a class="nav-link scat-title" data-wow-delay="0.2s"
-                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                    <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_name}}
-                                    ({{doc.organization.short_name}})
-                                </a>
-                                {% endifchanged %}
-                            {% endfor %}
+                                        {% ifchanged doc.organization.organization_name %}
+                                        <a class="nav-link scat-title" data-wow-delay="0.2s"
+                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                            {{doc.organization.organization_name}}
+                                            ({{doc.organization.short_name}})
+                                        </a>
+                                        {% endifchanged %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
 
-                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">
-
-                    <h5 class="border-bottom pb-2" style="color: #05a;"><i
-                            class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong
-                            style="color:#047; font-size:105%;">{{doc_count}}</strong>)</h5>
-<<<<<<< HEAD
+                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp" style="background: #fafcfe;">
+                    
                     <div class="pt-2" style="top: 75px;">
-=======
-                    <div class="pt-2 pl-2 pr-2" style="top: 75px;">
->>>>>>> ba09ce93e9c807d87650088419df5399640c5971
+
+                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                            <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
+                        </h5>
 
                         {% for doc in documents %}
 
@@ -559,7 +553,6 @@
                     </div>
 
                 </div>
-
             </div>
 
         </div>

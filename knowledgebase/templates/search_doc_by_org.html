@@ -253,8 +253,7 @@
 
     
     .community-box {
-        margin: 0;
-        margin-bottom: 1.25rem;
+        margin: 0 0 0.75rem 0;
         padding: 1rem 0;
         box-shadow: 1px 2px 3px 2px rgba(5, 45, 58, 0.15);
         border-radius: 0.25rem;
@@ -269,10 +268,10 @@
     .org-content {
         border: 1px solid #ddd;
         margin: 0 auto;
-        padding: 10px;
+        padding: 0.75rem;
         width: auto;
-        height: 120px;
-        min-width: 120px;
+        height: 7.5rem;
+        min-width: 7.5rem;
         box-shadow: 1px 2px 3px 2px rgba(75, 150, 175, 0.25);
 
         background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
@@ -281,7 +280,6 @@
 
     .org-content:hover {
         border: 1px solid #ccc;
-        box-shadow: 2px 3px 5px 4px rgba(25, 75, 175. 0.50);
         box-shadow: 1px 5px 15px 3px rgba(70, 100, 150, 0.25);
     }
 
@@ -318,7 +316,7 @@
 
     .cat-title {
         display: block;
-        margin-bottom: 0.5rem;
+        margin: 0.5rem 0 0.25rem 0;
         padding: 0.5rem;
         padding-left: 0.75rem;
         color: #fff;
@@ -336,7 +334,7 @@
     .scat-title {
         display: block;
         border-left: 0.15rem solid #1ab;
-        margin: 0.35rem;
+        margin: 0.25rem 0 0.25rem 0.25rem;
         padding: 0.5rem;
         padding-left: 0.65rem;
         color: #135;
@@ -353,7 +351,7 @@
 
     .data-cat-title {
         display: block;
-        margin-bottom: 0.7rem;
+        margin: 0.5rem 0 0.75rem 0;
         padding: 0.5rem;
         padding-left: 0.7rem;
         color: #fff;
@@ -394,25 +392,21 @@
 
 <div class="container-fluid mt-3 pl-3 pr-3">
     <div class="row">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-3 text-left">
-                    <a href="{% url 'home' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
-                        <i class="arrow_left m-0"></i> Back
-                    </a>
-                </div>
-                <div class="col-md-6 text-center">
-                    <h5 class="wow fadeInUp mt-3" style="color: #05a; bord-bottom: 2px solid #27a;">Search by Organization</h5>
-                </div>
-                <div class="col-md-3 text-right">
-                </div>
-            </div>
+        <div class="col-md-3 text-left">
+            <a href="{% url 'home' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
+                <i class="arrow_left m-0"></i> Back
+            </a>
+        </div>
+        <div class="col-md-6 text-center">
+            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid #27a; color: #05a;">Search by Organization</h5>
+        </div>
+        <div class="col-md-3 text-right">
         </div>
     </div>
 </div>
 
 
-<div class="container mt-1 mb-3">
+<div class="container mt-3 mb-3">
     <div class="row">
 
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
@@ -484,45 +478,50 @@
                 </div>
             </div>
 
-            <div class="row mt-3" id="search_result_panel">
+            <div class="row m-0 mt-3">
+                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" style="background: #f5fafc;">
+                    <div class="pt-2 sticky-top" style="top: 4.75rem;">
+                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                            <i class="fa-solid fa-list-check"></i> Selected Organization
+                        </h5>
+                        
+                        <div class="row" >
+                            <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
+                                <div class="nav flex-column">
+                                    {% for doc in documents %}
+                                        {% ifchanged doc.organization.organization_name %}
+                                        <a class="nav-link cat-title" data-wow-delay="0.2s"
+                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                            <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_name}}
+                                            ({{doc.organization.short_name}})
+                                        </a>
+                                        {% endifchanged %}
 
-                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp">
-                    <h5 class="border-bottom pb-2" style="color: #05a;"><i class="fa-solid fa-list-check"></i> Selected
-                        Organization</h5>
-
-                    <div class="pt-2 pl-2 pr-2 sticky-top" style="top: 4.75rem; max-height: 85vh; overflow-y: auto; background: #f7fafc; ">
-                        <div class="nav flex-column">
-                            {% for doc in documents %}
-                                {% ifchanged doc.organization.organization_name %}
-                                <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                    <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_name}}
-                                    ({{doc.organization.short_name}})
-                                </a>
-                                {% endifchanged %}
-
-                                {% ifchanged doc.data_category.category_name %}
-                                <a class="nav-link scat-title"
-                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                    {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
-                                        class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
-                                    {% endcomment %}
-                                    {{doc.data_category.category_name}}
-                                </a>
-                                {% endifchanged %}
-                            {% endfor %}
+                                        {% ifchanged doc.data_category.category_name %}
+                                        <a class="nav-link scat-title"
+                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                            {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
+                                                class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
+                                            {% endcomment %}
+                                            {{doc.data_category.category_name}}
+                                        </a>
+                                        {% endifchanged %}
+                                    {% endfor %}
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
+
+                    </div>
                 </div>
 
-                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">
+                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp" style="background: #fafcfe;">
+                    
+                    <div class="pt-2" style="top: 75px;">
 
-                    <h5 class="border-bottom pb-2" style="color: #05a;"><i
-                            class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong
-                            style="color:#047; font-size:105%;">{{doc_count}}</strong>)</h5>
-
-                    <div class="pt-2 pl-2 pr-2" style="top: 75px;">
+                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                            <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
+                        </h5>
 
                         {% for doc in documents %}
 
@@ -583,45 +582,11 @@
                                 </div>
                             </div>
 
-                            {% comment %} <div class="community-box wow fadeInUp">
-                                <a href="">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="icon-container">
-                                                <img src="{% static 'img/home_support/saltwater.jpg' %}" alt="{{doc.title}}"
-                                                    width="100%" style="max-width: 250px;" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <table class="table table-striped table-hover w-100 border mb-0">
-                                                <tr>
-                                                    <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
-                                                    <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}
-                                                    </td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="text-left font-weight-bold">Subject:</td>
-                                                    <td class="text-left">{{doc.organization.organization_name}}
-                                                        ({{doc.data_category.category_name}})</td>
-                                                </tr>
-
-                                                <tr>
-                                                    <td class="text-left font-weight-bold">Keywords:</td>
-                                                    <td class="text-left">{{doc.keywords}}</td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> {% endcomment %}
-
                         {% endfor %}
 
                     </div>
 
                 </div>
-
             </div>
 
         </div>
@@ -634,37 +599,6 @@
 
 
 {% block script_content %}
-
-<script>
-    //$(document).ready(function() {
-    $(function () {
-        //$("#navbar_org_cats").scrollspy({target: "#search_result_panel", offset: 150});
-
-        //$("#nav_org_cats ul li a[href^='#']").on("click", function(event) {
-        //    if (this.hash !== "") {
-        //        event.preventDefault();
-        //        var hash = this.hash;
-
-        //        $("#search_result_panel").animate({scrollTop: $(hash).offset().top}, 1000, function() {
-        //            window.location.hash = hash;
-        //        });
-        //    }
-        //});
-
-
-
-        //var nav = $("#panel_org_cats");
-        //$(window).scroll(function() {
-        //    if ($(window).scrollTop() >= 150) {
-        //        nav.addClass("fixed-top");
-        //    } else {
-        //        nav.removeClass("fixed-top");
-        //    }
-        //});
-
-
-    });
-</script>
 
 
 <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>

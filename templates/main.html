@@ -18,9 +18,6 @@
     <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/bootstrap-data-tables/css/dataTables.bootstrap4.min.css' %}">
     
-    <!-- Bootstrap SCSS -->
-    <link rel="stylesheet" href="{% static 'scss/_banner.scss' %}">
-
     <!-- Fontawesome -->
     <link rel="stylesheet" href="{% static 'assets/font-awesome/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'assets/font-awesome/css/sharp-solid.css' %}">
@@ -114,14 +111,14 @@
     <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
             <div class="round_spinner preloader-bg">
-                <div class="text text-white">
-                    <!-- <img src="{% static 'img/loadings/806_BT.gif' %}" width="100%" alt=""> -->
-                    <h6 class="text-white">Loading...</h6>
+                <div class="spinner"></div>
+                <div class="text">
+                    <h6 class="text-white">Loading... . .</h6>
                 </div>
             </div>
+            <h2 class="head">Knowledge Repository, MoWR</h2>            
         </div>
     </div>
-
 
     <!-- navbar with menu section -->
     <nav class="navbar navbar-expand-lg menu_one" id="sticky"
@@ -441,6 +438,7 @@
 
     <script src="{% static 'js/pre-loader.js' %}"> </script>
     <script src="{% static 'js/parallaxie.js' %}"></script>
+    <script src="{% static 'js/anchor.js' %}"></script>
     <script src="{% static 'js/TweenMax.min.js' %}"></script>
     <script src="{% static 'js/jquery.wavify.js' %}"></script>
     <script src="{% static 'assets/wow/wow.min.js' %}"></script>

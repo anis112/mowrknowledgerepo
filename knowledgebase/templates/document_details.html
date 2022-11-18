@@ -144,7 +144,7 @@
                         <!-- <br /> -->
                         <p class="doc_details">{{document.description}}</p>
 
-                        <a target="_blank" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" class="doc_border_btn smbtn ml-2">
+                        <a target="_blank" class="doc_border_btn smbtn ml-2" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
                             <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
                             
                     </div>
@@ -152,7 +152,7 @@
                     <br />
 
                     <div class="pl-1">        
-                        <h5 style="font-weight: 400;">Relevant & Important Links</h5>
+                        <h5 class="font-weight-normal">Relevant & Important Links</h5>
 
                         {% for ilnk in important_links %}
                             <p class="mb-1">
@@ -168,8 +168,8 @@
 
             <div class="row">
                 <div class="col-12 pl-3">
-                    <h5 style="font-weight: 400;">Related Documents</h5>
-                    <hr />
+                    <h5 class="m-0 p-0 mt-3 font-weight-normal">Related Documents</h5>
+                    <hr class="mt-1" />
                     
                     {% for doc in documents %}
 
