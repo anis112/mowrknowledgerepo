@@ -167,141 +167,110 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav menu ml-auto">
-                    <li class="nav-item dropdown submenu">
-                        <a class="nav-link dropdown-toggle" href="/" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Home</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li class="nav-item dropdown submenu">
-                        <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                     </li>
                     
                     {% if user.is_authenticated %}
-
-                        <li class="nav-item dropdown submenu mega_menu tab-demo">
-                            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">Data Management <i
-                                    class="fa-sharp fa-solid fa-caret-down"></i></a>
-                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
-                                data-toggle="dropdown"></i>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-lg-5 tabHeader">
-                                            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
-                                                aria-orientation="vertical">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="v-pills-doc-tab" data-toggle="pill"
-                                                        href="#" role="tab" aria-controls="v-pills-doc"
-                                                        aria-selected="true">Data Entry</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="pill" href="#" role="tab">Others</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <div class="tab-content tabContent" id="v-pills-tabContent"
-                                                style="box-shadow: none; border: none;">
-                                                <div class="tab-pane fade" id="v-pills-doc" role="tabpanel"
-                                                    aria-labelledby="v-pills-doc-tab" style="margin-top: 0px;">
-                                                    <div class="d-flex">
-                                                        <ul class="list-unstyled tab_list">
-                                                            <li>
-                                                                <a href="/organization/view">Organization</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="/document/view">Document</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="/article/view">Article</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                    <li class="nav-item dropdown submenu mega_menu">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Data Management 
+                            <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true" data-toggle="dropdown"></i>
+                        
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-5 tabHeader">
+                                        <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                            aria-orientation="vertical">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="v-pills-doc-tab" data-toggle="pill"
+                                                    href="#" role="tab" aria-controls="v-pills-doc"
+                                                    aria-selected="true">Data Entry</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="pill" href="#" role="tab">Others</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="tab-content tabContent" id="v-pills-tabContent"
+                                            style="box-shadow: none; border: none;">
+                                            <div class="tab-pane fade" id="v-pills-doc" role="tabpanel"
+                                                aria-labelledby="v-pills-doc-tab" style="margin-top: 0px;">
+                                                <div class="d-flex">
+                                                    <ul class="list-unstyled tab_list">
+                                                        <li>
+                                                            <a href="/organization/view">Organization</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/document/view">Document</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/article/view">Article</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
-
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     {% endif %}
 
                     <li class="nav-item dropdown submenu">
                         <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Search <i
-                                class="fa-sharp fa-solid fa-caret-down"></i></a>
-                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true"
-                            data-toggle="dropdown"></i>
+                            aria-haspopup="true" aria-expanded="false">Search 
+                            <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true" data-toggle="dropdown"></i>
+
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a href="{% url 'search-by-org' %}" class="nav-link">Search by
                                     Organization</a> </li>
-                            {% comment %} <li class="nav-item"><a href="{% url 'orgsearch' %}" class="nav-link">Search
-                                    by Organization</a> </li> {% endcomment %}
                             <li class="nav-item"><a href="{% url 'search-by-cat' %}" class="nav-link">Search by Document
                                     Type</a></li>
                             <li class="nav-item"><a href="{% url 'search-by-nat' %}" class="nav-link">Search
                                     Other Document(s)</a> </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown submenu">
-                        <a class="nav-link dropdown-toggle" href="{% url 'imp_links' %}" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Important Links</a>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'imp_links' %}">Important Links</a>
                     </li>
-                    <li class="nav-item dropdown submenu">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Help</a>
-                    </li>
-
-                    {% comment %} <li class="nav-item dropdown submenu">
-                        {% if user.is_authenticated  %}
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Hi {{ user.username }}! <i class="fa-sharp fa-solid fa-caret-down"></i>
-                        </a>
-                        <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="false"
-                            data-toggle="dropdown"></i>
-                        <ul class="dropdown-menu">
-                            <li class="nav-item"><a href={% url 'accounts/user_profile' user.username %}
-                                    class="nav-link">View profile</a></li>
-                            <li class="nav-item"><a href={% url 'accounts/logout' %} class="nav-link">Logout</a></li>
-                            <li class="nav-item"><a href='/admin/accounts/customuser/' class="nav-link">User List</a>
-                            </li>
-                            <li class="nav-item"><a href='/admin/' class="nav-link">Manage Data</a></li>
-                        </ul>
-                        {% else %}
-                        <a class="nav-link dropdown-toggle" href="{% url 'accounts/login' %}" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
-                        {% endif %}
-                    </li> {% endcomment %}
-
-                </ul>
-
-
-                <ul class="navbar-nav menu">
-                    <li class="nav-item dropdown submenu">
-                    {% if user.is_authenticated  %}
-                        <a class="nav_btn dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Hi, {{ user.username }}!
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li class="nav-item"><a href="{% url 'accounts/user_profile' user.username %}" class="nav-link">View profile</a></li>
-                            <li class="nav-item"><a href="{% url 'accounts/logout' %}" class="nav-link">Logout</a></li>
-                            <li class="nav-item"><a href="/admin/accounts/customuser/" class="nav-link">User List</a></li>
-                            <li class="nav-item"><a href="/admin/" class="nav-link">Manage Data</a></li>
-                        </ul>
-
-                    {% else %}
-                        <a class="nav_btn nav-item dropdown submenu" href="{% url 'accounts/login' %}" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign In</a>
-                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
                     </li>
                 </ul>
+
+                {% if user.is_authenticated  %}
+                    <ul class="navbar-nav menu ml-md-5">
+                        <li class="nav-item dropdown submenu ml-md-5 pr-md-3">
+                            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">Hi, {{ user.username }}! 
+                                <i class="fa-sharp fa-solid fa-caret-down"></i></a>
+                            <i class="arrow_carrot-down_alt2 mobile_dropdown_icon" aria-hidden="true" data-toggle="dropdown"></i>
+
+                            <ul class="dropdown-menu">
+                                <li class="nav-item"><a href="{% url 'accounts/user_profile' user.username %}" class="nav-link">View profile</a></li>
+                                <li class="nav-item"><a href="/admin/accounts/customuser/" class="nav-link">User List</a></li>
+                                <li class="nav-item"><a href="/admin/" class="nav-link">Manage Data</a></li>
+                                <li class="nav-item"><a href="{% url 'accounts/logout' %}" class="nav-link">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                {% else %}
+                    <a class="nav_btn" href="{% url 'accounts/login' %}">Sign In</a>
+                {% endif %}
 
             </div>
+
+
         </div>
     </nav>
 
