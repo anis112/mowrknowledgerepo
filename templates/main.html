@@ -47,7 +47,8 @@
         }
 
         .preloader-bg {
-            background-image: url('/static/img/loadings/806_BT.gif');
+            background-image: url("{% static 'img/loadings/806_BT.gif' %}");
+            background-image: url("{% static 'img/loadings/806_GT.gif' %}");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 90%;
@@ -348,11 +349,11 @@
                     </div>
                 </div>
             </div>
-            <div class="container">                
+            <div class="container">
                 <div class="row p-2 h-auto">
                     <div class="col-md-3 text-center text-md-left pt-2 pb-2">
                         <a class="footer-logo" href="http://www.mowr.gov.bd/" target="_blank">
-                            <img src="/static/img/article_logo/BD_GOV.png" alt="MOWR" title="MOWR" style="width: 50px;">
+                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt="MOWR" title="MOWR" style="width: 50px;">
                             <label>© 2022 MOWR | All Rights Reserved.</label>
                         </a>
                     </div>
@@ -361,48 +362,48 @@
                         <div class="mb-1">
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://bwdb.gov.bd/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/BWDB.png" alt="BWDB" title="BWDB" style="width: 50px;">
+                                <img src="{% static 'img/org_img/logo/BWDB.png' %}" alt="BWDB" title="BWDB" style="width: 50px;">
                                 <br>
                                 BWDB
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://rri.gov.bd/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/RRI.png" alt="RRI" title="RRI" style="width: 40px;">
+                                <img src="{% static 'img/org_img/logo/RRI.png' %}" alt="RRI" title="RRI" style="width: 40px;">
                                 <br>
                                 RRI
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="#!" role="button">
-                                <img src="/static/img/org_img/logo/JRC.png" alt="JRC" title="JRC" style="width: 50px;">
+                                <img src="{% static 'img/org_img/logo/JRC.png' %}" alt="JRC" title="JRC" style="width: 50px;">
                                 <br>
                                 JRC
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/DBHWD.png" alt="DBHWD" title="DBHWD" style="width: 50px;">
+                                <img src="{% static 'img/org_img/logo/DBHWD.png' %}" alt="DBHWD" title="DBHWD" style="width: 50px;">
                                 <br>
                                 DBHWD
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/WARPO.png" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;">
+                                <img src="{% static 'img/org_img/logo/WARPO.png' %}" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;">
                                 <br>
                                 WARPO
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.iwmbd.org/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/IWM.png" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;">
+                                <img src="{% static 'img/org_img/logo/IWM.png' %}" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;">
                                 <br>
                                 IWM
                             </a>
 
                             <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.cegisbd.com/"
                                 role="button">
-                                <img src="/static/img/org_img/logo/CEGIS.png" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;">
+                                <img src="{% static 'img/org_img/logo/CEGIS.png' %}" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;">
                                 <br>
                                 CEGIS
                             </a>
@@ -412,7 +413,7 @@
                     <div class="col-md-3 text-center text-md-right pt-2 pb-2">
                         <a class="footer-logo" href="https://cegisbd.com/" target="_blank">
                             <label>Developed by</label>
-                            <img src="/static/img/article_logo/CEGIS.png" alt="CEGIS" style="width: 70px; margin-left: 5px;">
+                            <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="CEGIS" style="width: 70px; margin-left: 5px;">
                         </a>
                     </div>
                 </div>
