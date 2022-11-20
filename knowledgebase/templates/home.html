@@ -164,7 +164,7 @@
     }
 
     .slide:hover .inner {
-        transform: scale(1.3);      /* Zoom Level */
+        transform: scale(1.2);      /* Zoom Level */
         /* transition-delay: 0.1s;*/      /* Zoom Delay*/
     }
 
@@ -215,8 +215,37 @@
     /*=========== SVG css (MNH) ============*/
 
     /* Starts Responsive Image Slider Image */
+    
+    @media (min-width: 2200px) {
+        .slide, .inner {
+            height:850px;
+        }
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom:100px;
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
 
-    @media (min-width: 1200px) {
+    @media (max-width: 2199px) {
+        .slide, .inner {
+            height:750px;
+        }
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom:100px;
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+    /* @media (min-width: 1200px) { */
+    @media (max-width: 1999px) {
         .slide, .inner {
             height:650px;
         }
@@ -230,9 +259,23 @@
         }
     }
 
-    @media (max-width: 1199.98px) {
+    @media (max-width: 1450px) {
         .slide, .inner {
             height:450px;
+        }
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom:100px;
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .slide, .inner {
+            height:350px;
         }
         .content {
             display:block;
@@ -247,7 +290,7 @@
 
     @media (max-width: 776px) {
         .slide, .inner {
-            height:300px;
+            height:250px;
         }
         .content {
             display:none;
@@ -262,7 +305,7 @@
 
     @media (max-width: 567px) {
         .slide, .inner {
-            height:200px;
+            height:190px;
         }
         .content {
             display:none;
@@ -275,7 +318,7 @@
     }
 
 
-    @media (max-width: 300px) {
+    @media (max-width: 350px) {
         .slide, .inner {
             height:110px;
         }
@@ -316,7 +359,7 @@
         <a href="{% url 'search-by-org' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Organization<i class="arrow_right"></i></a>
         <div class="content">            
             <h4 style="color:#04aadd;">Search by Organization</h4>  <!-- #25a800 -->
-            <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>            
+            <p>Searching provision is available here to get an informaion/document of any category by selecting one or more relevant organizations as well as one or more document types.</p>            
         </div>
     </div>
     <div class="slide">
@@ -324,15 +367,15 @@
         <a href="{% url 'search-by-cat' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Document Type<i class="arrow_right"></i></a>
         <div class="content">
             <h4 style="color:#04aadd;">Search by Document Type</h4>
-            <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>            
+            <p>System has the facilities for getting information of any category by selecting one or more relevant documents as well as one or more document types.</p>            
         </div>
     </div>
     <div class="slide">
         <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide3.jpg);"></span>
-        <a href="{% url 'search-by-nat' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Other Document(s) Search<i class="arrow_right"></i></a>
+        <a href="#" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Other Document(s) Search<i class="arrow_right"></i></a>
         <div class="content">
             <h4 style="color:#04aadd;">Other Document(s) Search</h4>
-            <p>Some dodgy chav bevvy amongst argy-bargy spiffing absolutely bladdered nancy boy cup of tea a load of old tosh porkies.</p>            
+            <p>In order to search any informaion/document of any category by selecting one or more relevant documents of other national/international organizations, there is another search panel.</p>            
         </div>
     </div>    
 </section>
@@ -369,42 +412,42 @@
         <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">                            
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipOrganization">                            
                     <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>
                     <p style="color: #000000; text-shadow: 0px 0px 0px black; margin-bottom: 10px;">Organization</p>
                 </div>                        
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipTopics">
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">
                     <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">{{categories}}</div>
                     <p style="color: #039541; text-shadow: 0px 0px 0px black; margin-bottom: 10px;">Categories</p>
                 </div>                        
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipArticles">
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
                     <div class="counter" style="color: #FFB300; text-shadow: 0px 0px 1px black;">{{publication}}</div>
                     <p style="color: #FFB300; text-shadow: 0px 0px 0px black; margin-bottom: 10px;">Publication</p>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
                     <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{reports}}</div>
                     <p style="color: #1316d4; text-shadow: 0px 0px 0px black; margin-bottom: 10px;">Reports</p>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
                     <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">{{law_act_policy}}</div>
                     <p style="color: #b800d2; text-shadow: 0px 0px 0px black; margin-bottom: 10px;">Law, Act & Policy</p>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
                 <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReferences">
+                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
                     <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{plan}}</div>
                     <p style="color: #df1f11; text-shadow: 0px 0px 0px black; margin-bottom: 10px;">Plan</p>
                 </div>
@@ -1682,44 +1725,44 @@
 
 <!-- Tooltip content -->
 <div class="tooltip_templates d-none">
+    <div id="tooltipOrganization" class="tip_content">
+        <div class="text">
+            <p>There are about <b>{{organization}}</b> contributing organizations who shared the knowledge products of water sector of Bangladesh including the reports, policies, plans, guidelines, agreement, MoUs, etc. in the repository.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
     <div id="tooltipCategories" class="tip_content">
         <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipTopics" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
-        </div>
-    </div>
-</div>
-<div class="tooltip_templates d-none">
-    <div id="tooltipArticles" class="tip_content">
-        <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+            <p>The repository contains a total of <b>{{categories}}</b> categories of knowledge information collected from the different national and international organizations based on the overall water sector of Bangladesh.</p>
         </div>
     </div>
 </div>
 <div class="tooltip_templates d-none">
     <div id="tooltipPublications" class="tip_content">
         <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+            <p>There are <b>{{publication}}</b> publications relevant to water sector of Bangladesh available in the knowledge repository as off today.</p>
         </div>
     </div>
 </div>
 <div class="tooltip_templates d-none">
     <div id="tooltipReports" class="tip_content">
         <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+            <p>The total no. of reports available in the repository is <b>{{reports}}</b>.</p>
         </div>
     </div>
 </div>
 <div class="tooltip_templates d-none">
-    <div id="tooltipReferences" class="tip_content">
+    <div id="tooltipLawActPolicy" class="tip_content">
         <div class="text">
-            <p>Me old mucker bamboozled horse play fantastic skive off baking cakes knees up lurgy spiffing.</p>
+            <p>The Knowledge Repository has a significant collection of Law, Acts & Policy documents which is about <b>{{law_act_policy}}</b> in numbers till now.</p>
+        </div>
+    </div>
+</div>
+<div class="tooltip_templates d-none">
+    <div id="tooltipPlan" class="tip_content">
+        <div class="text">
+            <p>A total no. of <b>{{plan}}</b> national level planning documents from different water sector agencies are available in the repository.</p>
         </div>
     </div>
 </div>

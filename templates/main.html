@@ -19,8 +19,10 @@
     <link rel="stylesheet" href="{% static 'assets/bootstrap-data-tables/css/dataTables.bootstrap4.min.css' %}">
     
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/all.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/sharp-solid.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'assets/font-awesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/font-awesome/css/sharp-solid.css' %}"> -->
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/sharp-solid.css">
 
     <link rel="stylesheet" href="{% static 'assets/slick/slick.css' %}">
     <link rel="stylesheet" href="{% static 'assets/slick/slick-theme.css' %}">
@@ -235,7 +237,7 @@
                                     Organization</a> </li>
                             <li class="nav-item"><a href="{% url 'search-by-cat' %}" class="nav-link">Search by Document
                                     Type</a></li>
-                            <li class="nav-item"><a href="{% url 'search-by-nat' %}" class="nav-link">Search
+                            <li class="nav-item"><a href="#" class="nav-link">Search
                                     Other Document(s)</a> </li>
                         </ul>
                     </li>
@@ -304,6 +306,7 @@
                 </svg>
             </div>
 
+            {% comment %}
             <div class="container">
                 <div class="row" style="border-bottom: 1px solid #134575; background: rgba(0, 0, 0, 0.025);">
                     <!-- background: rgba(0, 39, 57, 0.3);  background: #E4EEF0;   #00026a -->
@@ -317,6 +320,17 @@
                         <a href="#">Sign in </a>
                     </div>
                 </div>
+            </div>
+            {% endcomment %}
+
+            <div class="col-md-12 text-center mt-2" style="padding: 8px 10px; margin-top: 0 !important; border-bottom: 1px solid #134575; background: rgba(0, 0, 0, 0.025); min-height: 30px;">
+                <a href="/">Home</a> | <a href="{% url 'dashboard' %}">Dashboard</a> | 
+                <a href="{% url 'search-by-org' %}">Search by Organization</a> | 
+                <a href="{% url 'search-by-cat' %}">Search by Document Category</a> | 
+                <a href="#">Other Document(s) Search</a> | 
+                <a href="#">Contact Us</a> | 
+                <a href="#">Help</a> | 
+                <a href="{% url 'accounts/login' %}">Sign in </a>
             </div>
             <div class="container">
                 <div class="row p-2 h-auto">
