@@ -538,7 +538,7 @@ def search_doc_by_cat(request, search_term='water', org_ids=None, data_category_
     #doc_cats = DataCategory.objects.all().order_by('id')
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
-    context = {'doc_count': doc_count, 'documents': documents.order_by('organization_id', 'data_category_id'),
+    context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
                'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
                'org_infos': org_infos, 'doc_cats': doc_cats}
 
