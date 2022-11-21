@@ -408,80 +408,81 @@
 
 <div class="container mt-3 mb-3">
     <div class="row">
-
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
+            <form action="." method="GET" multiple>
+                <!-- List of Organization -->
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row wow fadeInUp">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="." method="GET" multiple>
-                        <!-- List of Organization -->
-                        <section>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row wow fadeInUp">
+                                {% for org_info in org_infos %}
+                                <div class="col text-center wow fadeInUp">
+                                    <label class="w-100" for="src_org_{{org_info.short_name}}">
+                                        <div class="org-content text-center" data-bs-toggle="tooltip" data-bs-html="true"
+                                            style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"
+                                            title="{{org_info.organization_name}} ({{org_info.short_name}})">
 
-                                        {% for org_info in org_infos %}
-                                        <div class="col text-center wow fadeInUp">
-                                            <label class="w-100" for="src_org_{{org_info.short_name}}">
-                                                <div class="org-content text-center" data-bs-toggle="tooltip" data-bs-html="true"
-                                                    style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"
-                                                    title="{{org_info.organization_name}} ({{org_info.short_name}})">
-
-                                                    <img src="{% static 'img/org_img/logo/' %}{{org_info.short_name}}.png"
-                                                        alt="{{org_info.organization_name}} ({{org_info.short_name}})"
-                                                        class="org-logo org-logo-{{org_info.short_name}}" />
-                                                    <br />
-                                                    <label style="color:#385878;">
-                                                        {{org_info.short_name}}
-                                                        <input type="checkbox" class="control-input"
-                                                            id="src_org_{{org_info.short_name}}" name="src_orgs"
-                                                            value="{{org_info.id}}" {% if org_info.id in src_orgs %}
-                                                            checked {% endif %} />
-                                                    </label>
-                                                </div>
+                                            <img src="{% static 'img/org_img/logo/' %}{{org_info.short_name}}.png"
+                                                alt="{{org_info.organization_name}} ({{org_info.short_name}})"
+                                                class="org-logo org-logo-{{org_info.short_name}}" />
+                                            <br />
+                                            <label style="color:#385878;">
+                                                {{org_info.short_name}}
+                                                <input type="checkbox" class="control-input"
+                                                    id="src_org_{{org_info.short_name}}" name="src_orgs"
+                                                    value="{{org_info.id}}" {% if org_info.id in src_orgs %}
+                                                    checked {% endif %} />
                                             </label>
                                         </div>
+                                    </label>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- searchbox area section    -->
+                <section>
+                    <div class="breadcrumb_area mt-2">
+                        <div class="banner_search_form m-0 p-0"
+                            style="max-width: 100%; border: 1px solid #13aeda;">
+                            <div class="input-group">
+                                <input type="search" id="search_term" name="search_term" class="form-control"
+                                    placeholder='Search ("/" to focus)' value='{{ search_term }}' />
+                                <div class="input-group-append">
+                                    <select class="multi-select" id="src_doc_cats" name="src_doc_cats"
+                                        multiple="multiple">
+                                        {% comment %} <option value="" selected>All Categories</option>
+                                        {% endcomment %}
+
+                                        {% for cat_info in doc_cats %}
+                                        <option value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
+                                            selected {% endif %}>{{cat_info.category_name}}</option>
                                         {% endfor %}
 
-                                    </div>
+                                    </select>
                                 </div>
+                                <button type="submit"><i class="icon_search"></i></button>
                             </div>
-                        </section>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>
 
-                        <!-- searchbox area section    -->
-                        <section>
-                            <div class="breadcrumb_area mt-2">
-                                <div class="banner_search_form m-0 p-0"
-                                    style="max-width: 100%; border: 1px solid #13aeda;">
-                                    <div class="input-group">
-                                        <input type="search" id="search_term" name="search_term" class="form-control"
-                                            placeholder='Search ("/" to focus)' value='{{ search_term }}' />
-                                        <div class="input-group-append">
-                                            <select class="multi-select" id="src_doc_cats" name="src_doc_cats"
-                                                multiple="multiple">
-                                                {% comment %} <option value="" selected>All Categories</option>
-                                                {% endcomment %}
 
-                                                {% for cat_info in doc_cats %}
-                                                <option value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
-                                                    selected {% endif %}>{{cat_info.category_name}}</option>
-                                                {% endfor %}
-
-                                            </select>
-                                        </div>
-                                        <button type="submit"><i class="icon_search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </form>
-                </div>
-            </div>
-
-            <div class="row m-0 mt-3">
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
+            <div class="row">
                 <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" style="background: #f5fafc;">
                     <div class="pt-2 sticky-top" style="top: 4.75rem;">
-                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-list-check"></i> Selected Organization
                         </h5>
                         
@@ -511,7 +512,6 @@
                             </div>
                         </div>
 
-
                     </div>
                 </div>
 
@@ -519,7 +519,7 @@
                     
                     <div class="pt-2" style="top: 75px;">
 
-                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                         </h5>
 
@@ -588,9 +588,7 @@
 
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
 

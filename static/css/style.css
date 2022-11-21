@@ -210,7 +210,7 @@ button:focus {
 }
 
 .sec_pad {
-  padding: 100px 0;
+  padding: 25px 0;
 }
 
 .pl-40 {
@@ -1072,6 +1072,16 @@ p kbd {
   margin-right: 0;
 }
 
+@media (min-width: 767px) {
+  .menu-login > .nav-item.submenu .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+  .menu-login > .nav-item.submenu .dropdown-menu::before {
+    left: auto;
+    right: 40px;
+  }
+}
 /*================= header area css ===============*/
 /*=========== dk_menu css ===========*/
 .menu_two {

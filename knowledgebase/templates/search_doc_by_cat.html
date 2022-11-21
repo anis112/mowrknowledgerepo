@@ -330,7 +330,7 @@
 
     .data-cat-title {
         display: block;
-        margin-bottom: 0.7rem;
+        margin: 0.5rem 0 0.75rem 0;
         padding: 0.5rem;
         padding-left: 0.7rem;
         color: #fff;
@@ -386,73 +386,74 @@
 
 <div class="container mt-3 mb-3">
     <div class="row">
-
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
+            <form action="." method="GET" multiple>
+                <!-- List of Organization -->
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row wow fadeInUp">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="." method="GET" multiple>
-                        <!-- List of Organization -->
-                        <section>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="row wow fadeInUp">
+                                {% for cat_info in doc_cats %}
+                                    <div class="col text-center wow fadeInUp">
+                                        <label class="cat-content w-100" for="src_cat_{{cat_info.id}}">
+                                            <div class="text-center" data-bs-toggle="tooltip" data-bs-html="true"
+                                                title="{{cat_info.category_name}}">
 
-                                        {% for cat_info in doc_cats %}
-                                            <div class="col text-center wow fadeInUp">
-                                                <label class="cat-content w-100" for="src_cat_{{cat_info.id}}">
-                                                    <div class="text-center" data-bs-toggle="tooltip" data-bs-html="true"
-                                                        title="{{cat_info.category_name}}">
-
-                                                        <label style="color:#385878;">
-                                                            {{cat_info.category_name}}
-                                                            <br />
-                                                            <input type="checkbox" class="control-input"
-                                                                id="src_cat_{{cat_info.id}}" name="src_doc_cats"
-                                                                value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
-                                                                checked {% endif %} />
-                                                        </label>
-                                                    </div>
+                                                <label style="color:#385878;">
+                                                    {{cat_info.category_name}}
+                                                    <br />
+                                                    <input type="checkbox" class="control-input"
+                                                        id="src_cat_{{cat_info.id}}" name="src_doc_cats"
+                                                        value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
+                                                        checked {% endif %} />
                                                 </label>
                                             </div>
+                                        </label>
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- searchbox area section    -->
+                <section>
+                    <div class="breadcrumb_area mt-2">
+                        <div class="banner_search_form m-0 p-0"
+                            style="max-width: 100%; border: 1px solid #13aeda;">
+                            <div class="input-group">
+                                <input type="search" id="search_term" name="search_term" class="form-control"
+                                    placeholder='Search ("/" to focus)' value='{{ search_term }}' />
+                                <div class="input-group-append">
+                                    <select class="multi-select" id="src_orgs" name="src_orgs" multiple="multiple">
+
+                                        {% for org_info in org_infos %}
+                                        <option value="{{org_info.id}}" {% if org_info.id in src_orgs %}
+                                            selected {% endif %}>{{org_info.organization_name}}({{org_info.short_name}})</option>
                                         {% endfor %}
 
-                                    </div>
+                                    </select>
                                 </div>
+                                <button type="submit"><i class="icon_search"></i></button>
                             </div>
-                        </section>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>
 
-                        <!-- searchbox area section    -->
-                        <section>
-                            <div class="breadcrumb_area mt-2">
-                                <div class="banner_search_form m-0 p-0"
-                                    style="max-width: 100%; border: 1px solid #13aeda;">
-                                    <div class="input-group">
-                                        <input type="search" id="search_term" name="search_term" class="form-control"
-                                            placeholder='Search ("/" to focus)' value='{{ search_term }}' />
-                                        <div class="input-group-append">
-                                            <select class="multi-select" id="src_orgs" name="src_orgs" multiple="multiple">
-
-                                                {% for org_info in org_infos %}
-                                                <option value="{{org_info.id}}" {% if org_info.id in src_orgs %}
-                                                    selected {% endif %}>{{org_info.organization_name}}({{org_info.short_name}})</option>
-                                                {% endfor %}
-
-                                            </select>
-                                        </div>
-                                        <button type="submit"><i class="icon_search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </form>
-                </div>
-            </div>
+<div class="container mt-3 mb-3">
+    <div class="row">
+        <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
 
             <div class="row m-0 mt-3">
                 <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" style="background: #f5fafc;">
                     <div class="pt-2 sticky-top" style="top: 4.75rem;">
-                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-list-check"></i> Selected Data Category
                         </h5>
                         
@@ -462,16 +463,15 @@
                                     {% for doc in documents %}
                                         {% ifchanged doc.data_category.data_common_category.category_name %}
                                         <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                            <i class="fa-solid fa-list fa-fw"></i> {{doc.data_category.category_name}}
+                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
+                                            <i class="fa-solid fa-list fa-fw"></i> {{doc.data_category.data_common_category.category_name}}
                                         </a>
                                         {% endifchanged %}
 
                                         {% ifchanged doc.organization.organization_name %}
                                         <a class="nav-link scat-title" data-wow-delay="0.2s"
-                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                            {{doc.organization.organization_name}}
-                                            ({{doc.organization.short_name}})
+                                            href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
+                                            {{doc.organization.organization_name}} ({{doc.organization.short_name}})
                                         </a>
                                         {% endifchanged %}
                                     {% endfor %}
@@ -486,7 +486,7 @@
                     
                     <div class="pt-2" style="top: 75px;">
 
-                        <h5 class="border-bottom pt-1 pb-2" style="color: #05a;">
+                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                         </h5>
 
@@ -496,7 +496,7 @@
                                 <div class="row wow fadeInUp">
                                     <div class="col-md-12">
                                         <span
-                                            id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
+                                            id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}'
                                             class="data-cat-title" data-wow-delay="0.2s">
                                             <i class="fa-solid fa-table-list"></i> {{doc.data_category.data_common_category.category_name}} ({{doc.organization.short_name}})
                                         </span>
@@ -521,8 +521,7 @@
                                         <tr>
                                             <td class="text-left font-weight-bold">Subject:</td>
                                             {% comment %} <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> {% endcomment %}
-                                            <td class="text-left">{{doc.organization.organization_name}}
-                                                ({{doc.data_category.category_name}})</td>
+                                            <td class="text-left">{{doc.organization.organization_name}}({{doc.data_category.category_name}})</td>
                                         </tr>
                                         <tr>
                                             <td class="text-left font-weight-bold">Decription:</td>
@@ -556,7 +555,6 @@
             </div>
 
         </div>
-
     </div>
 </div>
 
