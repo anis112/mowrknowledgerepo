@@ -81,6 +81,10 @@
         padding: 25px 0;
     }
     
+    .tip_content {
+        text-align: justify;
+    }
+    
 /*=========== SVG css (MNH) ============*/
 .water-wave {
   display: block;
@@ -361,35 +365,40 @@
             <h5 class="wow fadeInUp">Type of Documents</h5>
         </div>
         <div class="row">                            
-            <div class="col-md-2 mt-3 wow fadeInUp ">
+            <div class="col-md mt-3 wow fadeInUp ">
                 <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_carrot-2right"></i></a>    style="color:#019d19;"  ="icon_cloud-upload_alt"  -->
                 <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px; ">
-                    <i class="fa-solid fa-lightbulb-exclamation-on fa-fw"></i><span style="margin-left: 10px;">Knowledge Base</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-book-section"></i><span style="margin-left: 10px;">Acts, Policy, Rules, Guidelines</span><i class="arrow_right"></i>                    
                 </a>
             </div>                                
-            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="0.4s">
+            <div class="col-md mt-3 wow fadeInUp " data-wow-delay="0.4s">
                 <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-book-open-reader fa-fw"></i><span style="margin-left: 10px;">Research & Publications</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="0.8s">
+            <div class="col-md mt-3 wow fadeInUp " data-wow-delay="0.8s">
                 <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="fa-solid fa-chart-pie-simple fa-fw"></i><span style="margin-left: 10px;">Analysis & Reporting</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-chart-pie-simple fa-fw"></i><span style="margin-left: 10px;">Reports</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="1.2s">
+            <div class="col-md mt-3 wow fadeInUp " data-wow-delay="1.2s">
                 <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="fa-solid fa-books fa-fw"></i><span style="margin-left: 10px;">Documentation</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-lightbulb-exclamation-on"></i><span style="margin-left: 10px;">Plans</span><i class="arrow_right"></i>                    
                 </a>
             </div>               
-            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="1.6s">
+            <div class="col-md mt-3 wow fadeInUp " data-wow-delay="1.6s">
                 <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="fa-solid fa-typewriter fa-fw"></i><span style="margin-left: 10px;">Publication</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-handshake"></i><span style="margin-left: 10px;">Agreements and MoUs</span><i class="arrow_right"></i>                    
                 </a>
             </div>   
-            <div class="col-md-2 mt-3 wow fadeInUp " data-wow-delay="2s">
+            <div class="col-md mt-3 wow fadeInUp " data-wow-delay="2s">
                 <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
-                    <i class="fa-solid fa-thought-bubble fa-fw"></i><span style="margin-left: 10px;">Plan</span><i class="arrow_right"></i>                    
+                    <i class="fa-solid fa-bridge-water"></i><span style="margin-left: 10px;">Models</span><i class="arrow_right"></i>                    
+                </a>
+            </div>    
+            <div class="col-md mt-3 wow fadeInUp " data-wow-delay="2s">
+                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                    <i class="fa-solid fa-presentation-screen"></i><span style="margin-left: 10px;">Workshops and Seminar</span><i class="arrow_right"></i>                    
                 </a>
             </div>               
         </div>
