@@ -73,11 +73,11 @@ def dashboard(request):
         data_category__id__in=plan_cat_ids).count()
 
     count_docs = Document.objects.count()
-    count_bwdb = Document.objects.filter(organization__id=4).count()
-    count_rri = Document.objects.filter(organization__id=2).count()
-    count_jrc = Document.objects.filter(organization__id=1).count()
+    count_bwdb = Document.objects.filter(organization__id=1).count()
+    count_warpo = Document.objects.filter(organization__id=2).count()
+    count_rri = Document.objects.filter(organization__id=3).count()
+    count_jrc = Document.objects.filter(organization__id=4).count()
     count_dbhwd = Document.objects.filter(organization__id=5).count()
-    count_warpo = Document.objects.filter(organization__id=3).count()
     count_iwm = Document.objects.filter(organization__id=6).count()
     count_cegis = Document.objects.filter(organization__id=7).count()
 
@@ -108,8 +108,10 @@ def SearchResult1(request):
 def doc_details(request):
     return render(request, 'doc-details.html')
 
+
 def imp_links(request):
     return render(request, 'imp_links.html')
+
 
 def article(request):
     #article_obj = Article.objects.get(pk=1)
@@ -232,14 +234,11 @@ def viewArticleDetail(request):
     return render(request, 'articledetail/view.html', context)
 
 
-
 def document_detail(request, id):
     document = Document.objects.get(id=id)
     context = {'document': document}
 
     return render(request, 'doc-details.html', context)
-
-
 
 
 # -------ahi------------
@@ -253,12 +252,11 @@ def document_detail(request, id):
     # for q in qs:
     #     query |= q
     # filtered_user_meme = Meme.objects.filter(query, user=current_user)
-    # publish_date__lte = timezone.now() 
+    # publish_date__lte = timezone.now()
 
     #req_query = request.GET | request.POST
     #    req_query = request.POST
     # if req_query is not None & req_query.get("search_term") is not None:
-
 
 
 def search_document(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
@@ -653,7 +651,6 @@ def document_list(request, organization_id=None):
     return JsonResponse({'data': list(other_instances)})
 
 
-
 def get_related_keywords(title, keyword):
     r_keywords = []
 
@@ -665,7 +662,6 @@ def get_related_keywords(title, keyword):
             r_keywords.append(kw)
 
     return r_keywords
-
 
 
 def document_details(request, id):
@@ -680,14 +676,17 @@ def document_details(request, id):
     ##data_category_id = document.data_category.data_common_category_id
     ##cond_cat = Q(data_category__data_common_category_id=data_category_id)
 
-    conds = Q(title__in=related_keywords) | Q(data_category_id=document.data_category_id) | Q(data_category__data_common_category_id=document.data_category.data_common_category_id)
+    conds = Q(title__in=related_keywords) | Q(data_category_id=document.data_category_id) | Q(
+        data_category__data_common_category_id=document.data_category.data_common_category_id)
     documents = documents.filter(conds)
 
     important_links = [{'title': "First Assessment of Transboundary Rivers, Lakes and Groundwaters", 'link': "https://unece.org/DAM/env/water/blanks/assessment/assessmentweb_full.pdf"},
-                       {'title': "The Second Assessment of Transboundary Rivers, Lakes and Groundwaters in the UNECE Region", 'link': "https://unece.org/fileadmin/DAM/env/europe/monitoring/10thMeeting/Informal/ppp/TransboundaryWaters_2ndAssessment.pdf"},
+                       {'title': "The Second Assessment of Transboundary Rivers, Lakes and Groundwaters in the UNECE Region",
+                           'link': "https://unece.org/fileadmin/DAM/env/europe/monitoring/10thMeeting/Informal/ppp/TransboundaryWaters_2ndAssessment.pdf"},
                        ]
 
-    context = {'document': document, 'documents': documents.order_by('organization_id', 'data_category_id')[:25], 'important_links': important_links}
+    context = {'document': document, 'documents': documents.order_by(
+        'organization_id', 'data_category_id')[:25], 'important_links': important_links}
 
     return render(request, 'document_details.html', context)
 

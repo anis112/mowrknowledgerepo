@@ -144,7 +144,7 @@
                         <!-- <br /> -->
                         <p class="doc_details">{{document.description}}</p>
 
-                        <a target="_blank" class="doc_border_btn smbtn ml-2" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
+                        <a target="_blank" class="doc_border_btn smbtn ml-2" id="test1" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
                             <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
                             
                     </div>
@@ -250,6 +250,23 @@
 
 <!-- *****  Starts Read More and Less Style  ***** -->
 <script type="text/javascript">
+
+    // $.ajax($("#test1").attr("href"), {
+    // statusCode: {
+    //     404: function() {
+    //         //$("#result1").html("not working");
+    //         document.location.href = '/dashboard';
+    //     },
+    //     200: function() {
+    //     $("#result1").html("working");
+    //     }
+    // }
+    // });
+
+    // $('#test1').click(function(){
+        
+    // });
+
     let noOfCharac = 250;
     let contents = document.querySelectorAll(".content_p");
 
