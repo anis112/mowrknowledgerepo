@@ -144,9 +144,10 @@
                         <!-- <br /> -->
                         <p class="doc_details">{{document.description}}</p>
 
-                        <a target="_blank" class="doc_border_btn smbtn ml-2" id="test1" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
-                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
-                            
+                        <!-- <a target="_blank" class="doc_border_btn smbtn ml-2" id="test1" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
+                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
+                        <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{document.organization.short_name}}', '{{document.access_category}}', '{{document.file_name}}')">
+                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>    
                     </div>
                    
                     <br />
@@ -250,22 +251,38 @@
 
 <!-- *****  Starts Read More and Less Style  ***** -->
 <script type="text/javascript">
+    
+    function checkFileAvailability (shortName, accessCat, fileName){
+        var fileLocation = window.location.origin + '/static/document/'+ shortName + '/' + accessCat + '/' + fileName
+        //alert(fileLocation);
+        $.ajax({
+            type: 'get',
+            url: fileLocation,
+            success: function(data, textStatus, XMLHttpRequest){
+                //console.log('Error: ' + textStatus);
+                var anchor = document.createElement('a');
+                anchor.href = fileLocation;
+                anchor.target="_blank";
+                anchor.click();                
+            },
+            error: function (xhr, ajaxOptions, thrownError){
+                alert('Error! File Not Found!');
+                // Swal.fire(
+                //     'Error!',
+                //     'File Not Found!',
+                //     'error'
+                // )
 
-    // $.ajax($("#test1").attr("href"), {
-    // statusCode: {
-    //     404: function() {
-    //         //$("#result1").html("not working");
-    //         document.location.href = '/dashboard';
-    //     },
-    //     200: function() {
-    //     $("#result1").html("working");
-    //     }
-    // }
-    // });
-
-    // $('#test1').click(function(){
-        
-    // });
+                // Swal.fire({
+                //     position: 'top-end',
+                //     icon: 'error',
+                //     title: 'File Not Found!',
+                //     showConfirmButton: false,
+                //     timer: 5500
+                // })
+            }
+        })
+    }
 
     let noOfCharac = 250;
     let contents = document.querySelectorAll(".content_p");
