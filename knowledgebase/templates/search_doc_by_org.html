@@ -572,7 +572,7 @@
                                     <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
                                         <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
 
-                                    <a target="_blank" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
+                                    <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{document.organization.short_name}}', '{{document.access_category}}', '{{document.file_name}}')">
                                         <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
 
                                     {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
@@ -602,6 +602,39 @@
 <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>
 
 <script type="text/javascript">
+    
+    function checkFileAvailability (shortName, accessCat, fileName){
+        var fileLocation = window.location.origin + '/static/document/'+ shortName + '/' + accessCat + '/' + fileName
+        //alert(fileLocation);
+        $.ajax({
+            type: 'get',
+            url: fileLocation,
+            success: function(data, textStatus, XMLHttpRequest){
+                //console.log('Error: ' + textStatus);
+                var anchor = document.createElement('a');
+                anchor.href = fileLocation;
+                anchor.target="_blank";
+                anchor.click();                
+            },
+            error: function (xhr, ajaxOptions, thrownError){
+                alert('Error! File Not Found!');
+                // Swal.fire(
+                //     'Error!',
+                //     'File Not Found!',
+                //     'error'
+                // )
+
+                // Swal.fire({
+                //     position: 'top-end',
+                //     icon: 'error',
+                //     title: 'File Not Found!',
+                //     showConfirmButton: false,
+                //     timer: 5500
+                // })
+            }
+        })
+    }
+
     $(function () {
 
         $("#src_doc_cats")
