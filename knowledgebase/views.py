@@ -259,7 +259,7 @@ def document_detail(request, id):
     # if req_query is not None & req_query.get("search_term") is not None:
 
 
-def search_document(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_document(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -355,7 +355,7 @@ def search_document(request, search_term='water', org_ids=None, data_category_id
     return render(request, 'search_document.html', context)
 
 
-def search_doc_by_org(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_doc_by_org(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -451,7 +451,7 @@ def search_doc_by_org(request, search_term='water', org_ids=None, data_category_
     return render(request, 'search_doc_by_org.html', context)
 
 
-def search_doc_by_cat(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_doc_by_cat(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -547,7 +547,7 @@ def search_doc_by_cat(request, search_term='water', org_ids=None, data_category_
     return render(request, 'search_doc_by_cat.html', context)
 
 
-def search_doc_by_nat(request, search_term='water', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_doc_by_nat(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
