@@ -572,7 +572,7 @@
                                     <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
                                         <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
 
-                                    <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{document.organization.short_name}}', '{{document.access_category}}', '{{document.file_name}}')">
+                                    <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
                                         <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
 
                                     {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
