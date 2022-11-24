@@ -572,9 +572,12 @@
                                     <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
                                         <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
 
-                                    <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
-                                        <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
+                                    <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
+                                        <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
 
+                                    <a id="docFileDownload" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
+                                    <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
+    
                                     {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
                                         <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
                                             <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span class="ml-2">Edit</span></a>
@@ -602,6 +605,9 @@
 <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>
 
 <script type="text/javascript">
+    function download_file() {
+        document.getElementById("docFileDownload").click()
+    }
     
     function checkFileAvailability (shortName, accessCat, fileName){
         var fileLocation = window.location.origin + '/static/document/'+ shortName + '/' + accessCat + '/' + fileName
