@@ -144,9 +144,13 @@
                         <!-- <br /> -->
                         <p class="doc_details">{{document.description}}</p>
 
-                        <a target="_blank" class="doc_border_btn smbtn ml-2" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
-                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
-                            
+                        <!-- <a target="_blank" class="doc_border_btn smbtn ml-2" id="test1" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}">
+                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
+                        <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{document.organization.short_name}}', '{{document.access_category}}', '{{document.file_name}}')">
+                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>     -->
+                        
+                        <a id="docFileDownload" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
+                        <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
                     </div>
                    
                     <br />
@@ -220,8 +224,11 @@
                                 <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
                                     <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
 
-                                <a target="_blank" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
-                                    <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
+                                <!-- <a target="_blank" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
+                                    <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>    
+                                                             -->
+                                <a id="docFileDownload" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
+                                <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
 
                                 {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
                                     <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
@@ -250,6 +257,43 @@
 
 <!-- *****  Starts Read More and Less Style  ***** -->
 <script type="text/javascript">
+
+    function download_file() {
+        document.getElementById("docFileDownload").click()
+    }    
+
+    // function checkFileAvailability (shortName, accessCat, fileName){
+    //     var fileLocation = window.location.origin + '/static/document/'+ shortName + '/' + accessCat + '/' + fileName
+    //     //alert(fileLocation);
+    //     $.ajax({
+    //         type: 'get',
+    //         url: fileLocation,
+    //         success: function(data, textStatus, XMLHttpRequest){
+    //             //console.log('Error: ' + textStatus);
+    //             var anchor = document.createElement('a');
+    //             anchor.href = fileLocation;
+    //             anchor.target="_blank";
+    //             anchor.click();                
+    //         },
+    //         error: function (xhr, ajaxOptions, thrownError){
+    //             alert('Error! File Not Found!');
+    //             Swal.fire(
+    //                 'Error!',
+    //                 'File Not Found!',
+    //                 'error'
+    //             )
+
+    //             Swal.fire({
+    //                 position: 'top-end',
+    //                 icon: 'error',
+    //                 title: 'File Not Found!',
+    //                 showConfirmButton: false,
+    //                 timer: 5500
+    //             })
+    //         }
+    //     })
+    // }
+
     let noOfCharac = 250;
     let contents = document.querySelectorAll(".content_p");
 

@@ -204,7 +204,7 @@
                 <div class="row">                    
                     <div class="col-md">
                         <div class="text-center org-content wow fadeInUp" style="font-weight: bold; background-image: url(/static/img/banner_back/bann1.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
+                            <a href="/search-by-org/?src_orgs=1&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
                                 <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
                                 <label style="color:#4F5773; font-size: 13px;">BWDB</label>                                
                                 <div class="text-center" style="color: #40f;">                                    
@@ -214,8 +214,20 @@
                         </div>
                     </div>
                     <div class="col-md">
+                        <div class="text-center org-content wow fadeInUp" data-wow-delay="1.6s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann15.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                            <a href="/search-by-org/?src_orgs=2&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
+                                <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
+                                <label style="color:#4F5773; font-size: 13px;">WARPO</label>                                
+                                <div class="text-center" style="color: #40f;">
+                                    (<label><div class="counter">{{warpo_docs}}</div></label>)      <!--250-->
+                                </div>
+                                <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md">
                         <div class="text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann19.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
+                            <a href="/search-by-org/?src_orgs=3&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
                                 <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 40px;" />
                                 <label style="color:#4F5773; font-size: 13px;">RRI</label>                                
                                 <div class="text-center" style="color: #40f;">
@@ -227,7 +239,7 @@
                     </div>
                     <div class="col-md">
                         <div class="text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann5.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
+                            <a href="/search-by-org/?src_orgs=4&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
                                 <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;" />
                                 <label style="color:#4F5773; font-size: 13px;">JRC</label>                                
                                 <div class="text-center" style="color: #40f;">
@@ -239,7 +251,7 @@
                     </div>
                     <div class="col-md">
                         <div class="text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann13.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
+                            <a href="/search-by-org/?src_orgs=5&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
                                 <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;"  />
                                 <label style="color:#4F5773; font-size: 13px;">DBHWD</label>                                
                                 <div class="text-center" style="color: #40f;">
@@ -249,21 +261,10 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md">
-                        <div class="text-center org-content wow fadeInUp" data-wow-delay="1.6s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann15.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
-                                <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
-                                <label style="color:#4F5773; font-size: 13px;">WARPO</label>                                
-                                <div class="text-center" style="color: #40f;">
-                                    (<label><div class="counter">{{warpo_docs}}</div></label>)      <!--250-->
-                                </div>
-                                <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
-                            </a>
-                        </div>
-                    </div>
+                    
                     <div class="col-md">
                         <div class="text-center org-content wow fadeInUp" data-wow-delay="2.0s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann18.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
+                            <a href="/search-by-org/?src_orgs=6&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
                                 <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" style="width: 65px;"  />
                                 <label style="color:#4F5773; font-size: 13px;">IWM</label>  
                                 <div class="text-center" style="color: #40f;">                         
@@ -276,7 +277,7 @@
                     </div>
                     <div class="col-md">
                         <div class="text-center org-content wow fadeInUp" data-wow-delay="2.4s" style="font-weight: bold; background-image: url(/static/img/banner_back/bann4.jpg); min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                           
-                            <a href="{% url 'search-by-org' %}" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
+                            <a href="/search-by-org/?src_orgs=7&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
                                 <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"  style="margin-top: 10px;" />
                                 <label style="color:#4F5773; font-size: 13px;">CEGIS</label>                                
                                 <div class="text-center" style="color: #40f;">
