@@ -107,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': 'MOWKBDB',
         'USER': 'MOWKBAdmin',
-        'PASSWORD': 'MoWKb#DbAdmin$22',
+        'PASSWORD': '#DbsMoWRKb@23',
         'HOST': '202.53.173.185',
         'PORT': '1521',
     }
