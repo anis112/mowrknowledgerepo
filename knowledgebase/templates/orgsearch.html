@@ -570,7 +570,7 @@
             <!--  #019d19; -->
             <!-- style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);" -->
             <div class="input-group">
-                <input type="search" class="form-control" placeholder='Search...'>
+                <input type="search" id="search_term" class="form-control" placeholder='Search'>
                 <div class="input-group-append">
 
                     <!-- <select id="mySelect" multiple="multiple">
@@ -630,16 +630,14 @@
                     <div style="padding: 0px 0px 0px 10px;">
                         <div class="row">
                             <div class="col-6"><h5 class="mb-0">Search Result</h5></div>
-                            <div class="col-6">
-                                <div class="form-check float-right" >
+                            <div class="col-6">                               
+                                <div class="form-check float-right" id="KM_chkDiv" >
                                     <input class="form-check-input" type="checkbox" id="KM_FormCheck">
                                     <label class="form-check-label bold" style="color: blueviolet;" for="KM_FormCheck">
                                       View Knowlwdge Map
                                     </label>
                                 </div>
-                            </div>
-                            
-                            
+                            </div>                            
                         </div>
                         
                         
@@ -1074,6 +1072,8 @@
             </div>
 
             <div class="modal-body p-3">
+                <button id="submit1" type="submit" class="btn btn-primary">Select</button>
+                
                 <!-- <div class="tab-content" id="myTabContent">
                     <div class="tfade show active" id="row_seetings_general_tab" role="tabpanel" aria-labelledby="home-tab">
                         <div class="form-group">
@@ -1142,7 +1142,17 @@
 
 <script>
 
+    $("#submit").click(function () {
 
+        if (!$("#search_term").val())
+        {
+            $("#KM_chkDiv").hide();
+        }
+        else
+        {
+            $("#KM_chkDiv").show(); 
+        }
+    });
 
     $("#KM_FormCheck").change(function () {
         if(this.checked){
@@ -1151,7 +1161,7 @@
                 backdrop: false,
                 show: true,
             });
-            //// reset modal if it isn't visible
+            // reset modal if it isn't visible
             if (!$(".modal.in").length) {
                 $(".modal-dialog").css({             
                     top: 20,
@@ -1173,25 +1183,25 @@
         }
     });
 
+    // On Modal Close button click
+    $("#btnClose").click(function () {
+        let isChecked = $('#KM_FormCheck')[0].checked;
+        
+        if(isChecked === true){
+            $('#KM_FormCheck')[0].checked = false;    
+        }
+    });
 
-$("#btnClose").click(function () {
-    let isChecked = $('#KM_FormCheck')[0].checked;
-    // console.log(isChecked); 
+    // On Modal Close(X) button click
+    $("#btn_x").click(function () {
+        let isChecked = $('#KM_FormCheck')[0].checked;
+        
+        if(isChecked === true){
+            $('#KM_FormCheck')[0].checked = false;    
+        }
+    });
 
-    if(isChecked === true){
-        $('#KM_FormCheck')[0].checked = false;    
-    }
-});
-$("#btn_x").click(function () {
-    let isChecked = $('#KM_FormCheck')[0].checked;
-    // console.log(isChecked); 
-
-    if(isChecked === true){
-        $('#KM_FormCheck')[0].checked = false;    
-    }
-});
-
-
+    // **** Use this script if use button insteed of using checkbox
     $("#edit_row_btn").click(function () {
           
         //open modal
@@ -1211,13 +1221,7 @@ $("#btn_x").click(function () {
             cursor: "move",
             handle: ".modal-header",
         });    
-
     });
-
-
-
-
-
 
 </script>
 

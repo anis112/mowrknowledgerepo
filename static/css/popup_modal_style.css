@@ -3,11 +3,11 @@
 }
 
 .modal {
-  width:auto;
-  height:auto;
+  width:auto !important;
+  height:auto !important;
 }
 .modal-open {
-  overflow: auto;
+  overflow: auto !important;
 }
 
 #dragable_modal {
