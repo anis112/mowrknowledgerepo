@@ -77,7 +77,7 @@ class DataAccessCategory(models.Model):
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
     #id = models.PositiveSmallIntegerField(primary_key=True)
-   
+
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True)
 
@@ -97,21 +97,21 @@ class Document(models.Model):
     access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True)
     publication_date = models.CharField(max_length=50, null=True, blank=True)
-    
-    file_name = models.FileField(upload_to='static/document', max_length=500, null=True, blank=True)
-    thumbnail = models.ImageField(upload_to='static/img', null=True, blank=True)
-    
-    
+
+    file_name = models.FileField(
+        upload_to='static/document', max_length=500, null=True, blank=True)
+    thumbnail = models.ImageField(
+        upload_to='static/img', null=True, blank=True)
+
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     entry_by = models.CharField(max_length=100, null=True, blank=True)
     #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True)
-    
+
     is_parent_available = models.BooleanField(null=True, blank=True)
     parent_id = models.PositiveBigIntegerField(null=True, blank=True)
-
 
     def __str__(self) -> str:
         return self.title
@@ -123,7 +123,7 @@ class Document(models.Model):
 
 class ArticleDetail(models.Model):
     id = models.AutoField(primary_key=True)
-   
+
     organization = models.ForeignKey(
         Organization, on_delete=models.PROTECT, null=True, blank=True)
     data_category = models.ForeignKey(
@@ -172,6 +172,39 @@ class ArticleDocDetail(models.Model):
         db_table = 'tbl_article_doc_details'
         ordering = ['id']
 
+
+class ImportantLinkCategory(models.Model):
+    id = models.PositiveSmallIntegerField(primary_key=True)
+    category_name = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.category_name
+
+    class Meta:
+        db_table = 'lkp_important_link_categories'
+        ordering = ['id']
+
+
+class ImportantLink(models.Model):
+    id = models.AutoField(primary_key=True)
+    link_category = models.ForeignKey(
+        ImportantLinkCategory, on_delete=models.PROTECT, null=True, blank=True)
+    title = models.CharField(max_length=500, null=True, blank=True)
+    web_link = models.CharField(max_length=255)
+    description = models.CharField(max_length=500, null=True, blank=True)
+    entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    entry_by = models.CharField(max_length=100, null=True, blank=True)
+    modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
+    modified_by = models.CharField(max_length=100, null=True, blank=True)
+    delete_status = models.BooleanField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return self.link_category
+
+    class Meta:
+        db_table = 'tbl_important_links'
+        ordering = ['id']
+
 # database tables
 
 
@@ -204,7 +237,8 @@ class Article(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    parent_id = models.SmallIntegerField(null=True, validators=[MinValueValidator(0)])
+    parent_id = models.SmallIntegerField(
+        null=True, validators=[MinValueValidator(0)])
 
     article_category = models.ForeignKey(
         ArticleCategory, on_delete=models.PROTECT, null=True)
@@ -216,7 +250,7 @@ class Article(models.Model):
 
     def __str__(self) -> str:
         return self.title
-    
+
     # def get_article_category_name(self):
     #     return self.article_category.category_name
     # get_article_category_name.short_description = 'Article Category Name'

@@ -5,6 +5,7 @@
 {% block style_content %}
 
 <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-multiselect.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/popup_modal_style.css' %}">  
 
 <style>
     
@@ -451,7 +452,7 @@
                             style="max-width: 100%; border: 1px solid #13aeda;">
                             <div class="input-group">
                                 <input type="search" id="search_term" name="search_term" class="form-control"
-                                    placeholder='Search ("/" to focus)' value='{{ search_term }}' />
+                                    placeholder='Search' value='{{ search_term }}' />
                                 <div class="input-group-append">
                                     <select class="multi-select" id="src_doc_cats" name="src_doc_cats"
                                         multiple="multiple">
@@ -465,7 +466,7 @@
 
                                     </select>
                                 </div>
-                                <button type="submit"><i class="icon_search"></i></button>
+                                <button type="submit" id="btnSearch"><i class="icon_search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -518,10 +519,26 @@
                 <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp" style="background: #fafcfe;">
                     
                     <div class="pt-2" style="top: 75px;">
-
-                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6 pl-0 border-bottom">
+                                    <h5 class="mb-1 pt-1 pb-1" style="color: #05a;">
+                                        <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
+                                    </h5>
+                                </div>
+                                <div class="col-6 pr-0 border-bottom">
+                                    <div class="form-check float-right" id="KM_chkDiv" >
+                                        <input class="form-check-input" type="checkbox" id="KM_FormCheck">
+                                        <label class="form-check-label bold" style="color: blueviolet;" for="KM_FormCheck">
+                                        View Knowlwdge Map
+                                        </label>
+                                    </div>
+                                </div> 
+                            </div>                           
+                        </div>
+                        <!-- <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
-                        </h5>
+                        </h5> -->
 
                         {% for doc in documents %}
 
@@ -595,11 +612,120 @@
     </div>
 </div>
 
+
+<!-- dragable and editable bootsttrap modal modal -->
+<div class="modal col-12 fade" id="dragable_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header w-100">
+                <div class="row m-0 w-100">
+                    <div class="col-md-12 px-4 p-2 dragable_touch d-block">
+                        <h3 class="m-0 d-inline">MoWR - Knowledge Map</h3>
+                        <button type="button" id="btn_x" class="close close_btn" data-dismiss="modal" aria-label="Close" data-backdrop="static" data-keyboard="false" for="KM_FormCheck"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-body p-3">
+                <!-- Put Your Modal Content Here Below -->
+                <label><h3>Put Your Modal Content (Knowledge Map) Here...</h3></label>             
+            </div>
+
+            <div class="modal-footer bg-light">
+                <div class="row w-100">
+                    <div class="col-12 text-right">
+                        <button type="reset" id="btnClose" class="btn btn-primary" data-dismiss="modal" for="KM_FormCheck">Close</button>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- dragable and editable bootsttrap modal modal Ends -->
+
+
 {% endblock %}
 
 
 
 {% block script_content %}
+
+<script>
+
+    // View the Checkbox (To Show Modal - Knowledge Map) While kewword exists on search box on Page Load
+    $(document).ready(function() {
+        if (!$("#search_term").val())
+        {
+            $("#KM_chkDiv").hide();
+        }
+        else
+        {
+            $("#KM_chkDiv").show(); 
+        }
+    });
+
+    // View the Checkbox (To Show Modal - Knowledge Map) While kewword exists on search box on Search button click
+    $("#btnSearch").click(function () {
+
+        if (!$("#search_term").val())
+        {
+            $("#KM_chkDiv").hide();
+        }
+        // else
+        // {
+        //     $("#KM_chkDiv").show(); 
+        // }
+    });
+
+    // View Modal from Checkbox on click
+    $("#KM_FormCheck").change(function () {
+        if(this.checked){
+            //open modal
+            $("#dragable_modal").modal({
+                backdrop: false,
+                show: true,
+            });
+            // reset modal if it isn't visible
+            if (!$(".modal.in").length) {
+                $(".modal-dialog").css({             
+                    top: 20,
+                    left: 100,        
+                });
+            }
+
+            $(".modal-dialog").draggable({
+                cursor: "move",
+                handle: ".modal-header",
+            }); 
+
+            $('#dragable_modal').appendTo("body") 
+        }
+        else
+        {            
+            $('#dragable_modal').modal('hide');
+            ////$('#dragable_modal').modal('toggle');          
+        }
+    });
+
+    // On Modal Close button click
+    $("#btnClose").click(function () {
+        let isChecked = $('#KM_FormCheck')[0].checked;
+        
+        if(isChecked === true){
+            $('#KM_FormCheck')[0].checked = false;    
+        }
+    });
+
+    // On Modal Close(X) button click
+    $("#btn_x").click(function () {
+        let isChecked = $('#KM_FormCheck')[0].checked;
+        
+        if(isChecked === true){
+            $('#KM_FormCheck')[0].checked = false;    
+        }
+    });   
+
+</script>
 
 
 <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>
@@ -695,5 +821,10 @@
 </script>
 <!-- *****  Ends Read More and Less Style  ***** -->
 
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 {% endblock %}

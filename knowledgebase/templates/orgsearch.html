@@ -1,10 +1,17 @@
-{% extends 'main_bk-ok.html' %}
+{% extends 'main.html' %}
 {% load static %}
-{% static "" as baseUrl %}
-
-{% block content %}
 
 
+
+{% block style_content %}
+
+<!-- <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-select.css' %}">     -->
+<link rel="stylesheet" href="{% static 'css/popup_modal_style.css' %}">  
+
+<!-- font awesome  -->
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" /> -->
+<!-- Bootstrap 4 -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" /> -->
 
 <style>
 
@@ -328,6 +335,12 @@
 
 </style>
 
+{% endblock %}
+
+
+
+{% block content %}
+
 <!-- <section class="doc_fun_fact_area" style="padding: 70px 0px; background: #c5e9ff; margin-top: 10px;;"> 
     <div class="animated-waves">
         <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
@@ -557,7 +570,7 @@
             <!--  #019d19; -->
             <!-- style="margin: 0; padding: 0; max-width: 100%; border: 1px solid rgba(0,0,0,.1);" -->
             <div class="input-group">
-                <input type="search" class="form-control" placeholder='Search...'>
+                <input type="search" id="search_term" class="form-control" placeholder='Search'>
                 <div class="input-group-append">
 
                     <!-- <select id="mySelect" multiple="multiple">
@@ -571,7 +584,7 @@
 
                     <!-- <select class="custom-select" id="inlineFormCustomSelect" multiple="multiple"> -->
                     <!-- <select class="custom-select selectpicker" multiple data-live-search="true"> -->
-                    <select id="ddlListOfCategory" class="form-control selectpicker" placeholder="-- Select --" multiple>
+                    <select id="ddlListOfCategory" class="form-control selectpicker" placeholder="-- Select --" >
                         <!-- <option value="99">All Category</option> -->
                         <option value="1">Knowledge Base</option>
                         <option value="2">Research & Publications</option>
@@ -594,8 +607,10 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="row">
-                        <div class="col-md-12 typography_list">
-                            <h5>Selected Organization</h5>
+                        <div class="col-md-12 typography_list">   
+                            <div class="row">                       
+                                <div class="col-12"><h5>Selected Organization</h5> </div> 
+                            </div>                                                        
                             <hr />
                             <h4 class="wow fadeInUp h_title_l" data-wow-delay="0.2s">Bangladesh Water Development Board
                             </h4>
@@ -613,7 +628,25 @@
                 </div>
                 <div class="col-md-9">
                     <div style="padding: 0px 0px 0px 10px;">
-                        <h5>Search Result</h5>
+                        <div class="row">
+                            <div class="col-6"><h5 class="mb-0">Search Result</h5></div>
+                            <div class="col-6">                               
+                                <div class="form-check float-right" id="KM_chkDiv" >
+                                    <input class="form-check-input" type="checkbox" id="KM_FormCheck">
+                                    <label class="form-check-label bold" style="color: blueviolet;" for="KM_FormCheck">
+                                      View Knowlwdge Map
+                                    </label>
+                                </div>
+                            </div>                            
+                        </div>
+                        
+                        
+                        <!-- <div class="form-check mb-2 mr-sm-2 text-right">
+                            <input class="form-check-input" type="checkbox" id="KM_FormCheck">
+                            <label class="form-check-label" for="KM_FormCheck">
+                              View Knowlwdge Map
+                            </label>
+                        </div> -->
                         <hr />
                         <div class="row">
                             <div class="col-md-12">
@@ -624,6 +657,116 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- <a href="#" title="Click here to view"> -->
+
+
+
+                                <div class="row community-box wow fadeInUp text-left" style="visibility: visible; animation-name: fadeInUp;">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="/static/img/doc-img/pdf_thum.jpg" alt="Resettlement Plan for Bank Protection work (1400m) at Zaforgonj (Contract Package W-08) Flood &amp; Riverbank Erosion Risk Management" style="max-width: 100%; border: 1px solid #ddd;">                                                                                    
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tbody><tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                                <td class="text-left font-weight-bold">Resettlement Plan for Bank Protection work (1400m) at Zaforgonj (Contract Package W-08) Flood &amp; Riverbank Erosion Risk Management</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>                                                
+                                                <td class="text-left">Bangladesh Water Development Board (Plan)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p"></span>
+                                                        <button class="btn-rm" onclick="read_more(this)" style="display: none;">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>    
+                                        <a target="_blank" href="/knowledgebase/document-details/959" class="doc_border_btn smbtn">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>    
+                                        <a id="docFileDownload" href="/static/document/BWDB/Public/resettlement_plan for_bank_1400_at_zaforgonj.pdf" download="resettlement_plan for_bank_1400_at_zaforgonj.pdf" style="display:none;"></a>
+                                        <button class="doc_border_btn smbtn ml-2" onclick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>                                                
+                                    </div>
+                                </div>
+    
+                                <div class="row community-box wow fadeInUp text-left" style="visibility: visible; animation-name: fadeInUp;">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="/static/img/doc-img/pdf_thum.jpg" alt="Resettlement Plan for Bank Protection work at Chauhali (Contract Package W-06 &amp; 07) Flood &amp; Riverbank Erosion Risk Management" style="max-width: 100%; border: 1px solid #ddd;">                                                                                    
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tbody><tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                                <td class="text-left font-weight-bold">Resettlement Plan for Bank Protection work at Chauhali (Contract Package W-06 &amp; 07) Flood &amp; Riverbank Erosion Risk Management</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>                                                
+                                                <td class="text-left">Bangladesh Water Development Board (Plan)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p"></span>
+                                                        <button class="btn-rm" onclick="read_more(this)" style="display: none;">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>    
+                                        <a target="_blank" href="/knowledgebase/document-details/961" class="doc_border_btn smbtn">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>    
+                                        <a id="docFileDownload" href="/static/document/BWDB/Public/sia_report_on_ecrrp_polder41_7b.pdf" download="sia_report_on_ecrrp_polder41_7b.pdf" style="display:none;"></a>
+                                        <button class="doc_border_btn smbtn ml-2" onclick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>                                                
+                                    </div>
+                                </div>    
+                                
+                                <div class="row community-box wow fadeInUp text-left" style="visibility: visible; animation-name: fadeInUp;">
+                                    <div class="col-md-2">
+                                        <div class="icon-container">
+                                            <img src="/static/img/doc-img/pdf_thum.jpg" alt="Resettlement Plan for Bank Protection work (600m) at Zaforgonj (Contract Package W-08) Flood &amp; Riverbank Erosion Risk Management" style="max-width: 100%; border: 1px solid #ddd;">                                                                                    
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                            <tbody><tr>
+                                                <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                                <td class="text-left font-weight-bold">Resettlement Plan for Bank Protection work (600m) at Zaforgonj (Contract Package W-08) Flood &amp; Riverbank Erosion Risk Management</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Subject:</td>                                                
+                                                <td class="text-left">Bangladesh Water Development Board (Plan)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left font-weight-bold">Decription:</td>
+                                                <td class="text-left">
+                                                    <div class="post">
+                                                        <span class="content_p"></span>
+                                                        <button class="btn-rm" onclick="read_more(this)" style="display: none;">Read More</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>    
+                                        <a target="_blank" href="/knowledgebase/document-details/960" class="doc_border_btn smbtn">
+                                            <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>    
+                                        <a id="docFileDownload" href="/static/document/BWDB/Public/resettlement_plan_for_bank_600m_at zaforgonj.pdf" download="resettlement_plan_for_bank_600m_at zaforgonj.pdf" style="display:none;"></a>
+                                        <button class="doc_border_btn smbtn ml-2" onclick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>                                                
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
                                 <div class="community-box wow fadeInUp text-left" style="color: #000 !important;">
                                     <div class="row">
                                         <div class="col-md-2">
@@ -903,6 +1046,186 @@
 </div>
 
 
+<!-- dragable and editable bootsttrap modal modal -->
+<div class="modal col-12 fade" id="dragable_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header w-100">
+                <div class="row m-0 w-100">
+                    <div class="col-md-12 px-4 p-2 dragable_touch d-block">
+                        <h3 class="m-0 d-inline">MoWR - Knowledge Map</h3>
+                        <button type="button" id="btn_x" class="close close_btn" data-dismiss="modal" aria-label="Close" data-backdrop="static" data-keyboard="false" for="KM_FormCheck"><i class="fa fa-times"></i></button>
+                    </div>
+
+
+                    <!-- <div class="col-md-12 p-0">
+                        <ul class="nav nav-tabs custom_tab_on_editor" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#row_seetings_general_tab" role="tab" aria-controls="home" aria-selected="true">General</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#row_seetings_design_tab" role="tab" aria-controls="profile" aria-selected="false">Design</a>
+                        </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="modal-body p-3">
+                <button id="submit1" type="submit" class="btn btn-primary">Select</button>
+                
+                <!-- <div class="tab-content" id="myTabContent">
+                    <div class="tfade show active" id="row_seetings_general_tab" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="form-group">
+                            <label for="edit_project_name">Add row id</label>
+                            <input type="text" class="form-control" id="row_id" >
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_project_name">Add extra class</label>
+                            <input type="text" class="form-control" id="edit_project_name" />
+                        </div>
+                    </div>
+                    <div class="fade" id="row_seetings_design_tab" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                </div> -->
+            </div>
+
+            <div class="modal-footer bg-light">
+                <div class="row w-100">
+                    <div class="col-12 text-right">
+                        <button type="reset" id="btnClose" class="btn btn-primary" data-dismiss="modal" for="KM_FormCheck">Close</button>
+                    </div>
+                    <!-- <div class="col-6 text-right">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- dragable and editable bootsttrap modal modal Ends -->
+
+
+
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" ba>
+    Launch demo modal
+  </button> -->
+
+
+<!-- <div class="container-fluid">
+    <div class="row d-flex justify-content-center pt-5  h-100">
+        <div class="col-6 p-4 text-center border_dot">
+            <div class="form-check mb-2 mr-sm-2">
+                <input class="form-check-input" type="checkbox" id="KM_FormCheck">
+                <label class="form-check-label" for="KM_FormCheck">
+                  View Knowlwdge Map
+                </label>
+            </div>
+            
+            <button class="btn btn-primary" id="edit_row_btn">
+                <i class="fas fa-pencil-alt"></i>Open dragable modal
+              </button>
+        </div>
+    </div>
+</div> -->
+
+
+
+{% endblock %}
+
+
+
+
+{% block script_content %}
+
+<script>
+
+    $("#submit").click(function () {
+
+        if (!$("#search_term").val())
+        {
+            $("#KM_chkDiv").hide();
+        }
+        else
+        {
+            $("#KM_chkDiv").show(); 
+        }
+    });
+
+    $("#KM_FormCheck").change(function () {
+        if(this.checked){
+            //open modal
+            $("#dragable_modal").modal({
+                backdrop: false,
+                show: true,
+            });
+            // reset modal if it isn't visible
+            if (!$(".modal.in").length) {
+                $(".modal-dialog").css({             
+                    top: 20,
+                    left: 100,        
+                });
+            }
+
+            $(".modal-dialog").draggable({
+                cursor: "move",
+                handle: ".modal-header",
+            }); 
+
+            $('#dragable_modal').appendTo("body") 
+        }
+        else
+        {            
+            $('#dragable_modal').modal('hide');
+            ////$('#dragable_modal').modal('toggle');          
+        }
+    });
+
+    // On Modal Close button click
+    $("#btnClose").click(function () {
+        let isChecked = $('#KM_FormCheck')[0].checked;
+        
+        if(isChecked === true){
+            $('#KM_FormCheck')[0].checked = false;    
+        }
+    });
+
+    // On Modal Close(X) button click
+    $("#btn_x").click(function () {
+        let isChecked = $('#KM_FormCheck')[0].checked;
+        
+        if(isChecked === true){
+            $('#KM_FormCheck')[0].checked = false;    
+        }
+    });
+
+    // **** Use this script if use button insteed of using checkbox
+    $("#edit_row_btn").click(function () {
+          
+        //open modal
+        $("#dragable_modal").modal({
+            backdrop: false,
+            show: true,
+        });
+        // reset modal if it isn't visible
+        if (!$(".modal.in").length) {
+            $(".modal-dialog").css({             
+                top: 20,
+                left: 100,        
+            });
+        }
+
+        $(".modal-dialog").draggable({
+            cursor: "move",
+            handle: ".modal-header",
+        });    
+    });
+
+</script>
+
+
 <script>
     const targetDiv = document.getElementById("DivSearch");
     const btn = document.getElementById("submit");
@@ -915,9 +1238,9 @@
         }
     };
 
-    $(document).ready(function() {
-        $('#ddlListOfCategory').multiselect();
-    });
+    // $(document).ready(function() {
+    //     $('#ddlListOfCategory').multiselect();
+    // });
 
 
 //     $(document).ready(function(){
@@ -957,6 +1280,12 @@
     }
 </script>
 <!-- *****  Ends Read More and Less Style  ***** -->
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 
 {% endblock %}
