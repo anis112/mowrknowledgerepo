@@ -1072,8 +1072,8 @@
             </div>
 
             <div class="modal-body p-3">
-                <button id="submit1" type="submit" class="btn btn-primary">Select</button>
-                
+                <button id="btn_961" type="submit" class="btn btn-primary button_for_link" onclick="GetLink ('btn_961')">961</button>
+                <button id="btn_960" type="submit" class="btn btn-primary button_for_link" onclick="GetLink ('btn_960')">960</button>
                 <!-- <div class="tab-content" id="myTabContent">
                     <div class="tfade show active" id="row_seetings_general_tab" role="tabpanel" aria-labelledby="home-tab">
                         <div class="form-group">
@@ -1179,6 +1179,7 @@
         else
         {            
             $('#dragable_modal').modal('hide');
+            $('.community-box').css({background: '#fff'});
             ////$('#dragable_modal').modal('toggle');          
         }
     });
@@ -1190,6 +1191,7 @@
         if(isChecked === true){
             $('#KM_FormCheck')[0].checked = false;    
         }
+        $('.community-box').css({background: '#fff'});
     });
 
     // On Modal Close(X) button click
@@ -1199,7 +1201,9 @@
         if(isChecked === true){
             $('#KM_FormCheck')[0].checked = false;    
         }
+        $('.community-box').css({background: '#fff'});
     });
+
 
     // **** Use this script if use button insteed of using checkbox
     $("#edit_row_btn").click(function () {
@@ -1222,6 +1226,52 @@
             handle: ".modal-header",
         });    
     });
+    // **** Use this script if use button insteed of using checkbox
+
+
+
+
+    // **** From modal button click
+    function GetLink (btn_id) {
+        const arr = btn_id.split('_');
+        var doc_id = arr[arr.length - 1];
+
+        $('.community-box').each(function () {            
+            $(this).find('a').each(function () {
+                //alert($(this).attr('href'));
+                const arr_link  = $(this).attr('href').split('/');
+                var link_doc_id = arr_link[arr_link.length - 1];
+
+                if ($.isNumeric(link_doc_id ))
+                {
+                    if (link_doc_id === doc_id)
+                    {
+                        const parentWithClass = $(this).closest('.community-box');
+                        parentWithClass.css({background: '#d5edf7'});                                          
+                        $(this).scrollToMe();
+                        //$(this).css({color: 'red'});
+                        //$(this).closest('.community-box').closest("div").focus();
+                        // $('input:focus').attr('.community-box');
+                        // ('.community-box').f$(this).parentElement
+                        // $(this).css({ color: 'red' }).siblings().css({ color: 'red' });
+                    }
+                    else 
+                    {
+                        const parentWithClass = $(this).closest('.community-box');
+                        parentWithClass.css({background: '#fff'});
+                        //$(this).css({color: '#0573ca'});
+                        //$(this).css({ color: '#0573ca' }).siblings().css({ color: '#0573ca' });                    
+                    } 
+                }               
+            });            
+        });
+    };
+
+    jQuery.fn.extend({
+    scrollToMe: function () {
+        var x = jQuery(this).offset().top - 250;
+        jQuery('html,body').animate({scrollTop: x}, 500);
+    }});
 
 </script>
 
