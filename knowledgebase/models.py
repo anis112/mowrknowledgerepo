@@ -58,6 +58,7 @@ class DataCategory(models.Model):
         return self.category_name
 
     class Meta:
+        verbose_name_plural = "Data Categories"
         db_table = 'lkp_data_categories'
         ordering = ['id']
 
@@ -70,6 +71,7 @@ class DataAccessCategory(models.Model):
         return self.category_name
 
     class Meta:
+        verbose_name_plural = "Data Access Categories"
         db_table = 'lkp_data_access_categories'
         ordering = ['id']
 
@@ -217,6 +219,7 @@ class ArticleCategory(models.Model):
         return self.category_name
 
     class Meta:
+        verbose_name_plural = "Article Categories"
         db_table = 'kbase_article_categories'
         ordering = ['id']
 
@@ -229,6 +232,7 @@ class ArticlePublishCategory(models.Model):
         return self.category_name
 
     class Meta:
+        verbose_name_plural = "Article Publish Categories"
         db_table = 'kbase_article_pub_categories'
         ordering = ['id']
 

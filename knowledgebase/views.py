@@ -660,7 +660,6 @@ def get_related_keywords(title, keyword):
     for kw in keywords:
         if kw in title:
             r_keywords.append(kw)
-
     return r_keywords
 
 
