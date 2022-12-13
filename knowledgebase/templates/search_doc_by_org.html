@@ -628,7 +628,11 @@
 
             <div class="modal-body p-3">
                 <!-- Put Your Modal Content Here Below -->
-                <label><h3>Put Your Modal Content (Knowledge Map) Here...</h3></label>             
+                <label><h3>Put Your Modal Content (Knowledge Map) Here...</h3></label> <br/> 
+                <label>Search by river keyword to work the below buttons</label> <br/> 
+                <button id="btn_959" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_959')">Doc Id - 959</button> <br/>
+                <button id="btn_960" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_960')">Doc Id - 960</button> <br/> 
+                <button id="btn_961" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_961')">Doc Id - 961</button>         
             </div>
 
             <div class="modal-footer bg-light">
@@ -714,6 +718,7 @@
         if(isChecked === true){
             $('#KM_FormCheck')[0].checked = false;    
         }
+        $('.community-box').css({background: '#fff'});
     });
 
     // On Modal Close(X) button click
@@ -723,7 +728,45 @@
         if(isChecked === true){
             $('#KM_FormCheck')[0].checked = false;    
         }
-    });   
+        $('.community-box').css({background: '#fff'});
+    }); 
+    
+    
+    // **** From popup modal button click
+    function GetLink (btn_id) {
+        const arr = btn_id.split('_');
+        var doc_id = arr[arr.length - 1];
+
+        $('.community-box').each(function () {            
+            $(this).find('a').each(function () {
+                //alert($(this).attr('href'));
+                const arr_link  = $(this).attr('href').split('/');
+                var link_doc_id = arr_link[arr_link.length - 1];
+
+                if ($.isNumeric(link_doc_id ))
+                {
+                    if (link_doc_id === doc_id)
+                    {
+                        const parentWithClass = $(this).closest('.community-box');
+                        parentWithClass.css({background: '#d5edf7'});                                          
+                        $(this).scrollToMe();                        
+                    }
+                    else 
+                    {
+                        const parentWithClass = $(this).closest('.community-box');
+                        parentWithClass.css({background: '#fff'});                                        
+                    } 
+                }               
+            });            
+        });
+    };
+
+    jQuery.fn.extend({
+    scrollToMe: function () {
+        var x = jQuery(this).offset().top - 250;
+        jQuery('html,body').animate({scrollTop: x}, 500);
+    }});
+
 
 </script>
 
