@@ -15,6 +15,7 @@ from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataCategory, DataCommonCategory,
                      Document, Organization)
+from django.http import HttpResponse
 
 
 def home(request):
