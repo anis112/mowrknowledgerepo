@@ -268,7 +268,7 @@
                                 <li class="nav-item"><a href="/admin/accounts/customuser/" class="nav-link">User List</a></li>
                                 <li class="nav-item"><a href="/admin/" class="nav-link">Manage Data</a></li>
                                 {% if user.is_staff %}
-                                <li class="nav-item"><a href="{% static 'user_manual/User_Manual_Admin.pdf' %}" target="_blank" class="nav-link">User Manual</a></li>
+                                <li class="nav-item"><a href="{% static 'user_manual/User_Manual_Admin.pdf' %}" target="_blank" class="nav-link">Admin User Manual</a></li>
                                 {% endif %}
                                 <li class="nav-item"><a href="{% url 'accounts/logout' %}" class="nav-link">Logout</a></li>
                             </ul>
