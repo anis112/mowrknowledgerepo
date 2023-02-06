@@ -113,6 +113,9 @@ def doc_details(request):
 def imp_links(request):
     return render(request, 'imp_links.html')
 
+def countings(request):
+    return render(request, 'countings.html')   
+
 
 def article(request):
     #article_obj = Article.objects.get(pk=1)
