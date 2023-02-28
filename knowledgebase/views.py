@@ -114,6 +114,7 @@ def imp_links(request):
     return render(request, 'imp_links.html')
 
 
+
 def article(request):
     #article_obj = Article.objects.get(pk=1)
     query_set = ArticlePublishCategory.objects.all()
@@ -467,6 +468,8 @@ def search_doc_by_cat(request, search_term='', org_ids=None, data_category_ids=N
         search_term = search_term[0]
 
     documents = Document.objects.all()
+    # documents = Document.objects.values_list('id', 'title', 'subject')
+    # print(documents)
 
     user_organization_id = None  # request.user.organization_id
 
@@ -695,3 +698,137 @@ def document_details(request, id):
 #sentence = ['python coder', 'geeksforgeeks', 'coder in geeksforgeeks']
 #words = ['coder', 'geeksforgeeks']
 #print(check(sentence, words))
+
+
+
+#=================================================================  HUD ==============================================================================
+def org_counting(request):
+    orgranization_name = Organization.objects.values_list('organization_name')
+    org_count = len(orgranization_name)
+    context = {'org_names': orgranization_name, 'org_count': org_count}
+    return render(request, 'org_countings.html', context)  
+
+def cat_counting(request):
+    category_name = DataCategory.objects.filter(parent__isnull = True).values_list('category_name')
+    cat_count = len(category_name)
+    context = {'cat_names': category_name, 'cat_count': cat_count}
+    return render(request, 'cat_counting.html', context)
+#============================ START Data Search Code Common====================================
+
+def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None):
+    show_doc = documents.all()[:100]
+    doc_count = len(documents)
+    if len(documents) < 1:
+        show_doc = Document.objects.none()
+
+    if search_term is not None and search_term != '':
+        cond = Q(title__icontains=search_term) | Q(
+                subject__icontains=search_term) | Q(keywords__icontains=search_term)
+
+        show_doc = documents.filter(cond)
+        doc_count = len(show_doc)
+
+    if org_ids and org_ids[0]:
+        org_ids = [int(id) for id in org_ids]
+        cond_org = Q(organization_id__in=org_ids)
+
+        show_doc = documents.filter(cond_org)
+        doc_count = len(show_doc)
+
+    if data_category_ids and data_category_ids[0] != '':
+        data_category_ids = [int(id) for id in data_category_ids]
+        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+
+        show_doc = documents.filter(cond_cat)
+        doc_count = len(show_doc)
+    
+    
+    org_infos = Organization.objects.all().order_by('id')
+    doc_cats = DataCommonCategory.objects.all().order_by('id')
+
+    context = {'doc_count': doc_count, 'documents': show_doc,
+                'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+                'org_infos': org_infos, 'doc_cats': doc_cats}
+    
+    # context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
+        #            'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
+        #            'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    return context
+
+
+#============================ END Data Search Code Common ================================================================
+
+def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_ids=None):
+     if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+        if req_query and req_query.get("search_term"):
+            search_term = req_query.get("search_term", None)
+            org_ids = req_query.get("src_orgs", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+
+     if not isinstance(search_term, str):
+        search_term = search_term[0]
+    
+     if not request.user.is_authenticated:
+         public_documents = Document.objects.filter(access_category=1)
+        #  print(type(public_documents))
+         context = show_search_results(public_documents, search_term, org_ids, data_category_ids)
+     else:
+          if request.user.is_superuser:
+            all_documents = Document.objects.all()
+            context = show_search_results(all_documents, search_term, org_ids, data_category_ids)
+          else:
+            user_id = request.user
+            user_organization_id = user_id.organization_id
+
+            public_documents = Document.objects.filter(access_category=1)
+            user_org_documents = Document.objects.filter(organization = user_organization_id)
+            documents = user_org_documents | public_documents
+            context = show_search_results(documents, search_term, org_ids, data_category_ids)
+      
+     return render(request, 'search_doc_by_org_hud.html', context)
+
+def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
+
+    if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+        if req_query and req_query.get("search_term"):
+            search_term = req_query.get("search_term", None)
+            org_ids = req_query.get("src_orgs", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+
+    if not isinstance(search_term, str):
+        search_term = search_term[0]
+
+    if not request.user.is_authenticated:
+        public_documents = Document.objects.filter(access_category=1)
+        # print(len(public_documents))
+        context = show_search_results(public_documents, search_term, org_ids, data_category_ids)  
+    else:
+        if request.user.is_superuser:
+            all_documents = Document.objects.all()
+            context = show_search_results(all_documents, search_term, org_ids, data_category_ids)
+        else:      
+            # Currently logged in username and id Start
+            user_id = request.user
+            user_organization_id = user_id.organization_id
+            # print(user_organization_id)
+            # user_name = user_id.username
+            # user_name = user_name.split('_')[-1]
+            # print(user_name)   
+            #end
+            # user_org_documents = Document.objects.filter(Q(organization__short_name__icontains = user_name))
+
+            public_documents = Document.objects.filter(access_category=1)
+            user_org_documents = Document.objects.filter(organization = user_organization_id)
+            documents = (user_org_documents | public_documents)
+
+            # print(documents)
+            # print(len(documents))
+            context = show_search_results(documents, search_term, org_ids, data_category_ids)
+    return render(request, 'search_doc_by_cat_hud.html', context)
+
+#====================================== END HUD ==========================================================================

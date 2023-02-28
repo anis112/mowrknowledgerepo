@@ -1,0 +1,110 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block style_content %}
+<style>
+     body {
+        background-image: url(/static/img/patterns/patt2.jpg) !important;
+    }
+
+    .basic_table_info {
+        border: 1px solid #f1f2f3;
+    }
+
+    .basic_table_info tbody tr th, .basic_table_info tbody tr td {
+    border-color: #b9c7d5;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="container" style="margin-top: 50px;">
+
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid #147; color: #05a;">{{org_count}} Organizations</h5>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+
+            <div class="row">
+                <div style="padding: 0px 0px 0px 10px; width: 100%;">                    
+                    
+                    
+                    <!-- Sliding Cards -->
+                    <div class="row">
+                        <div class="col-md-12">                            
+                            <div class="basic_table">
+                                <!-- <h4 class="s_title load-order-2" id="basic">Basic Tables</h4>
+                                <p>Since KbDoc is based on Bootstrap 4, so you can safley use Bootstrap's table classes to style your table. We also added more table styles and functionality to our template.</p> -->
+                                <table class="table basic_table_info">
+                                    <thead>
+                                        <tr>
+                                            <th><h5>#</h5></th>
+                                            <th><h5>Organizations</h5></th>                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for org in org_names %}
+                                        <tr>
+                                            <th scope="row">{{ forloop.counter }}</th>
+                                            <td>{{ org.0 }}</td>                                            
+                                        </tr>
+                                        {% endfor %}
+                                        <!-- <tr>
+                                            <th scope="row">1</th>
+                                            <td>Bangladesh Water Development Board (BWDB)</td>                                            
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Water Resources Planning Organization (WARPO)</td>                                           
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>River Research Institute (RRI)</td>                                            
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>Joint Rivers Commission (JRC), Bangladesh</td>                                            
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>Department of Bangladesh Haor and Wetlands Development (DBHWD)</td>                                            
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">6</th>
+                                            <td>Institute of Water Modelling (IWM)</td>                                            
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">7</th>
+                                            <td>Center for Environmental and Geographic Information Services (CEGIS)</td>                                            
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>                      
+                        </div>
+                    </div>
+
+                 
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block script_content %}
+{% endblock %}

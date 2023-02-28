@@ -146,46 +146,58 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content">
-                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipOrganization">                            
-                    <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>                    
-                    <p style="color: #000000; text-shadow: 0px 0px 0px black;">Organization</p>
-                </div>                        
+                <a href="/knowledgebase/org_countings/">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipOrganization">                            
+                        <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>                    
+                        <p style="color: #000000; text-shadow: 0px 0px 0px black;">Organization</p>
+                    </div>       
+                </a>                 
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
-                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">
-                    <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">{{categories}}</div>                    
-                    <p style="color: #039541; text-shadow: 0px 0px 0px black;">Categories</p>
-                </div>                        
+                <a href="/knowledgebase/cat_countings/">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">
+                        <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">{{categories}}</div>                    
+                        <p style="color: #039541; text-shadow: 0px 0px 0px black;">Categories</p>
+                    </div>    
+                </a>                    
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
-                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
-                    <div class="counter" style="color: #FFB300; text-shadow: 0px 0px 1px black;">{{publication}}</div>
-                    <p style="color: #FFB300; text-shadow: 0px 0px 0px black;">Publication</p>
-                </div>
+                <a href="#">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
+                        <div class="counter" style="color: #FFB300; text-shadow: 0px 0px 1px black;">{{publication}}</div>
+                        <p style="color: #FFB300; text-shadow: 0px 0px 0px black;">Publication</p>
+                    </div>
+                </a>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
-                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
-                    <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{reports}}</div>
-                    <p style="color: #1316d4; text-shadow: 0px 0px 0px black;">Reports</p>
-                </div>
+                <a href="#">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                        <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{reports}}</div>
+                        <p style="color: #1316d4; text-shadow: 0px 0px 0px black;">Reports</p>
+                    </div>
+                </a>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
-                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
-                    <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">{{law_act_policy}}</div>
-                    <p style="color: #b800d2; text-shadow: 0px 0px 0px black;">Law, Act & Policy</p>
-                </div>
+                <a href="#">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
+                        <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">{{law_act_policy}}</div>
+                        <p style="color: #b800d2; text-shadow: 0px 0px 0px black;">Law, Act & Policy</p>
+                    </div>
+                </a>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
-                <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
-                    <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{plan}}</div>
-                    <p style="color: #df1f11; text-shadow: 0px 0px 0px black;">Plan</p>
-                </div>
+                <a href="#">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
+                        <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{plan}}</div>
+                        <p style="color: #df1f11; text-shadow: 0px 0px 0px black;">Plan</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -368,37 +380,37 @@
         <div class="row">                            
             <div class="col-md mt-3 wow fadeInUp ">
                 <!-- <a href="#" class="col-sm-12 doc_border_btn"><i class="arrow_carrot-2right"></i></a>    style="color:#019d19;"  ="icon_cloud-upload_alt"  -->
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px; ">
+                <a href="/search-by-cat/?src_doc_cats=1&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px; ">
                     <i class="fa-solid fa-book-section"></i><span style="margin-left: 10px;">Acts, Policy, Rules, Guidelines</span><i class="arrow_right"></i>                    
                 </a>
             </div>                                
             <div class="col-md mt-3 wow fadeInUp " data-wow-delay="0.4s">
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                <a href="/search-by-cat/?src_doc_cats=2&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-book-open-reader fa-fw"></i><span style="margin-left: 10px;">Research & Publications</span><i class="arrow_right"></i>                    
                 </a>
             </div>
             <div class="col-md mt-3 wow fadeInUp " data-wow-delay="0.8s">
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                <a href="/search-by-cat/?src_doc_cats=3&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-chart-pie-simple fa-fw"></i><span style="margin-left: 10px;">Reports</span><i class="arrow_right"></i>                    
                 </a>
             </div>
             <div class="col-md mt-3 wow fadeInUp " data-wow-delay="1.2s">
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                <a href="/search-by-cat/?src_doc_cats=4&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-lightbulb-exclamation-on"></i><span style="margin-left: 10px;">Plans</span><i class="arrow_right"></i>                    
                 </a>
             </div>               
             <div class="col-md mt-3 wow fadeInUp " data-wow-delay="1.6s">
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                <a href="/search-by-cat/?src_doc_cats=5&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-handshake"></i><span style="margin-left: 10px;">Agreements and MoUs</span><i class="arrow_right"></i>                    
                 </a>
             </div>   
             <div class="col-md mt-3 wow fadeInUp " data-wow-delay="2s">
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                <a href="/search-by-cat/?src_doc_cats=6&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-bridge-water"></i><span style="margin-left: 10px;">Models</span><i class="arrow_right"></i>                    
                 </a>
             </div>    
             <div class="col-md mt-3 wow fadeInUp " data-wow-delay="2s">
-                <a href="{% url 'search-by-cat' %}" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
+                <a href="/search-by-cat/?src_doc_cats=7&search_term=" class="doc_border_btn" style="width: 100%; padding: 20px 5px;">
                     <i class="fa-solid fa-presentation-screen"></i><span style="margin-left: 10px;">Workshops and Seminar</span><i class="arrow_right"></i>                    
                 </a>
             </div>               
