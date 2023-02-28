@@ -113,9 +113,6 @@ def doc_details(request):
 def imp_links(request):
     return render(request, 'imp_links.html')
 
-def countings(request):
-    return render(request, 'countings.html')   
-
 
 
 def article(request):
@@ -719,37 +716,39 @@ def cat_counting(request):
 #============================ START Data Search Code Common====================================
 
 def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None):
-    show_doc = documents.all()[:100]
     doc_count = len(documents)
     if len(documents) < 1:
-        show_doc = Document.objects.none()
+        documents = Document.objects.none()
+    
+    if (search_term == '' and org_ids == None and data_category_ids == None):
+         documents = documents.all()[:100]
 
-    if search_term is not None and search_term != '':
-        cond = Q(title__icontains=search_term) | Q(
+    else:
+        if search_term is not None and search_term != '':
+            cond = Q(title__icontains=search_term) | Q(
                 subject__icontains=search_term) | Q(keywords__icontains=search_term)
 
-        show_doc = documents.filter(cond)
-        doc_count = len(show_doc)
+            documents = documents.filter(cond)
+            doc_count = len(documents)
 
-    if org_ids and org_ids[0]:
-        org_ids = [int(id) for id in org_ids]
-        cond_org = Q(organization_id__in=org_ids)
+        if org_ids and org_ids[0]:
+            org_ids = [int(id) for id in org_ids]
+            cond_org = Q(organization_id__in=org_ids)
 
-        show_doc = documents.filter(cond_org)
-        doc_count = len(show_doc)
+            documents = documents.filter(cond_org)
+            doc_count = len(documents)
 
-    if data_category_ids and data_category_ids[0] != '':
-        data_category_ids = [int(id) for id in data_category_ids]
-        cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+        if data_category_ids and data_category_ids[0] != '':
+            data_category_ids = [int(id) for id in data_category_ids]
+            cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
 
-        show_doc = documents.filter(cond_cat)
-        doc_count = len(show_doc)
-    
+            documents = documents.filter(cond_cat)
+            doc_count = len(documents)
     
     org_infos = Organization.objects.all().order_by('id')
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
-    context = {'doc_count': doc_count, 'documents': show_doc,
+    context = {'doc_count': doc_count, 'documents': documents,
                 'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
                 'org_infos': org_infos, 'doc_cats': doc_cats}
     
