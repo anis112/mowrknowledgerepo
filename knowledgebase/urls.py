@@ -13,8 +13,12 @@ urlpatterns = [
     path('doc-details/', views.doc_details, name="doc-details"),
     path('imp_links/', views.imp_links, name="imp_links"),
 
+
     path('org_countings/', views.org_counting, name="org-countings"),
     path('cat_countings/', views.cat_counting, name="cat-countings"),
+
+    path('countings/', views.countings, name="countings"),
+
 
     path('home2/', views.home2, name="home2"),
     path('home3/', views.home3, name="home3"),
