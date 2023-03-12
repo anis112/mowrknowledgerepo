@@ -73,6 +73,7 @@ def dashboard(request):
     count_plan = Document.objects.filter(
         data_category__id__in=plan_cat_ids).count()
 
+
     count_docs = Document.objects.count()
     count_bwdb = Document.objects.filter(organization__id=1).count()
     count_warpo = Document.objects.filter(organization__id=2).count()
@@ -82,10 +83,12 @@ def dashboard(request):
     count_iwm = Document.objects.filter(organization__id=6).count()
     count_cegis = Document.objects.filter(organization__id=7).count()
 
+
     context = {'organization': count_organization,
                'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan,
                'total_docs': count_docs, 'bwdb_docs': count_bwdb, 'rri_docs': count_rri, 'jrc_docs': count_jrc, 'dbhwd_docs': count_dbhwd, 'warpo_docs': count_warpo,
                'iwm_docs': count_iwm, 'bwdb_cegis': count_cegis}
+
 
     return render(request, 'dashboard.html', context)
 
