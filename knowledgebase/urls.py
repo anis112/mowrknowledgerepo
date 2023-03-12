@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('org_countings/', views.org_counting, name="org-countings"),
     path('cat_countings/', views.cat_counting, name="cat-countings"),
+    path('category_mapping/', views.category_mapping, name="category-mapping"),
 
 
 

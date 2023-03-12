@@ -713,6 +713,14 @@ def cat_counting(request):
     cat_count = len(category_name)
     context = {'cat_names': category_name, 'cat_count': cat_count}
     return render(request, 'cat_counting.html', context)
+
+def category_mapping(request):
+    # category_name_map = DataCategory.objects.filter(parent__isnull = True).values('data_common_category', 'category_name', 'organization').order_by('data_common_category')
+    category_name_map = DataCategory.objects.filter(parent__isnull = True).order_by('data_common_category')
+    print(len(category_name_map))
+    print(category_name_map)
+    context = {'cat_map': category_name_map}
+    return render(request, "category_mapping_with_common_category.html", context)
 #============================ START Data Search Code Common====================================
 
 def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None):

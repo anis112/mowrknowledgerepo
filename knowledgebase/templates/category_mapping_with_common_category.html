@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Category Mapping with Common Category</title>
+    <style>
+      /* Center the modal on the page */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      /* Style the modal content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+
+      /* Style the table */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+      }
+    </style>
+    <script rel="stylesheet" src="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css"></script>
+  </head>
+  <body>
+    <!-- Button to open the modal -->
+    <!-- <button onclick="openModal()">Open Modal</button> -->
+
+    <!-- The modal -->
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Category Mapping with Common Category</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Common Category</th>
+              <th>Category Name</th>
+              <th>Organization</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cat_info in cat_map %}
+            <tr>
+              <td>{{ cat_info.data_common_category }}</td>
+              <td>{{ cat_info.category_name }}</td>
+              <td>{{ cat_info.organization.short_name }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementsByTagName("button")[0];
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      //   function openModal() {
+      //     modal.style.display = "block";
+      //   }
+
+      // Open the modal when the page loads
+      window.onload = function () {
+        // Position the modal at the top of the page
+        modal.style.top = "0";
+
+        modal.style.display = "block";
+      };
+
+      function closeModal() {
+        history.back();
+        modal.style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          history.back();
+          modal.style.display = "none";
+        }
+      };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+          $('#table').DataTable({
+            paging: true,
+            pageLength: 10,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bsort: true,
+          });
+      });
+    </script>
+  </body>
+</html>
