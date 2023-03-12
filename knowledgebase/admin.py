@@ -23,9 +23,10 @@ class OrganizationAdmin(admin.ModelAdmin):
 @admin.register(DataCategory)
 class DataCategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'category_name', 'parent', 'organization']
-    list_editable = ['category_name', 'organization']
+    list_editable = ['category_name', 'organization']  
     list_per_page = 50
-    search_fields = ['category_name']
+    list_filter = ['category_name','parent','organization']
+
 
 
 @admin.register(DataAccessCategory)
@@ -33,6 +34,7 @@ class DataAccessCategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'category_name']
     list_editable = ['category_name']
     list_per_page = 50
+    list_filter = ['category_name']
 
 
 
@@ -125,7 +127,6 @@ class ArticleAdmin(admin.ModelAdmin):
     list_per_page = 50
     list_filter = ['article_category', 'entry_date', 'updated_date']
     search_fields = ['title__istartswith']
-
 
 
 @admin.register(ArticleCategory)
