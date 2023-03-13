@@ -486,11 +486,12 @@
                         <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-list-check"></i> Selected Organization
                         </h5>
-                        
+                        {% comment %} |dictsort:'organization.organization_name'|dictsort:'data_category.category_name'  {% endcomment %}
                         <div class="row" >
                             <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
                                 <div class="nav flex-column">
-                                    {% for doc in documents %}
+
+                                    {% for doc in documents|dictsort:'organization.organization_name' %}
                                         {% if doc.organization.id in src_orgs %}
                                             {% ifchanged doc.organization.organization_name %}
                                                 <a class="nav-link cat-title" data-wow-delay="0.2s"
@@ -499,16 +500,19 @@
                                                 ({{doc.organization.short_name}})
                                                 </a>
                                             {% endifchanged %}
-
-                                            {% ifchanged doc.data_category.category_name %}
-                                                <a class="nav-link scat-title"
-                                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                                    {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
-                                                        class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
-                                                    {% endcomment %}
-                                                    {{doc.data_category.category_name}}
-                                                </a>
-                                            {% endifchanged %}
+                                            {% comment %} {% if doc.data_category.category_name is null %} {% endcomment %}
+                                                {% ifchanged doc.data_category.category_name %}
+                                                    <a class="nav-link scat-title"
+                                                        href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                                       
+                                                        {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
+                                                            class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
+                                                        {% endcomment %}
+                                                        
+                                                        {{doc.data_category.category_name}}
+                                                    </a>
+                                                {% endifchanged %}
+                                            {% comment %} {% endif %} {% endcomment %}
                                         {% endif %}
                                     {% endfor %}
                                 </div>
@@ -517,9 +521,7 @@
 
                     </div>
                 </div>
-
-                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp" style="background: #fafcfe;">
-                    
+                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp" style="background: #fafcfe;">                
                     <div class="pt-2" style="top: 75px;">
                         <div class="col-12">
                             <div class="row">

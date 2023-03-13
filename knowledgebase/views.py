@@ -759,7 +759,7 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     org_infos = Organization.objects.all().order_by('id')
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
-    context = {'doc_count': doc_count, 'documents': documents,
+    context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
                 'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
                 'org_infos': org_infos, 'doc_cats': doc_cats}
     
