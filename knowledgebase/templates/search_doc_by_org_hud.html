@@ -416,12 +416,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row wow fadeInUp">
-
+                                {% comment %} style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);" {% endcomment %}
                                 {% for org_info in org_infos %}
                                 <div class="col text-center wow fadeInUp">
                                     <label class="w-100" for="src_org_{{org_info.short_name}}">
                                         <div class="org-content text-center" data-bs-toggle="tooltip" data-bs-html="true"
-                                            style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"
+                                           
                                             title="{{org_info.organization_name}} ({{org_info.short_name}})">
 
                                             <img src="{% static 'img/org_img/logo/' %}{{org_info.short_name}}.png"
