@@ -450,7 +450,7 @@
 
 <style>
     /* Center the modal on the page */
-    .modal {
+    /* .modal {
       display: none;
       position: fixed;
       z-index: 10000;
@@ -461,22 +461,26 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      /* background-color: rgba(0, 0, 0, 0.4); */
-    }
+      background-color: rgba(0, 0, 0, 0.4);
+    } */
 
     /* Style the modal content */
-    .modal-content {
+    /* .modal-content {
       background-color: #fefefe;
       margin: 15% auto;
       padding: 20px;
       border: 1px solid #888;
       width: 80%;
-    }
+    } */
 
     /* Style the table */
     table {
       border-collapse: collapse;
       width: 100%;
+    }
+
+    th {
+        background-color: #d0e9ea;
     }
 
     table,
@@ -487,6 +491,13 @@
       text-align: left;
     }
   </style>
+
+
+<!-- <link rel="stylesheet" href="cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"> </script> -->
+<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 
 <section class="slide_section"> <!-- style="position: inherit; width: 100%; height: auto; display: flex; border:2px solid #000; z-index: 100;"  -->
@@ -517,7 +528,7 @@
 </section>
 
 <!-- Counting -->
-<section class="doc_fun_fact_area" style="padding: 25px 0px; border-top: 2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(6, 93, 98) 90%);">     <!--  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
+<section class="doc_fun_fact_area" style="padding: 25px 0px; border-top: 2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 75, 79) 90%);">     <!--  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
     {% comment %} <div class="animated-waves">
         <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
             <defs>
@@ -816,8 +827,10 @@
     <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Category Mapping with Common Category</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Category Mapping with Common Category</h5>
+
+          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Category Mapping with Common Category</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
             <span aria-hidden="true">×</span>
           </button>
         </div>
@@ -826,7 +839,7 @@
             <div class="col-md-12">
                 <!-- <h2>Category Mapping with Common Category</h2> -->
                 <div style="width: 100%; max-height:500px; overflow:auto;">
-                    <table>
+                    <table id="tblCatMapp">
                     <thead>
                         <tr>
                         <th>Common Category</th>
@@ -849,7 +862,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </div>
       </div>
@@ -2120,6 +2133,16 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $(document).ready( function () {
+    $('#tblCatMapp').DataTable();
+} );
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 
 {% endblock %}
