@@ -479,9 +479,9 @@
       width: 100%;
     }
 
-    th {
+    /* th {
         background-color: #d0e9ea;
-    }
+    } */
 
     table,
     th,
@@ -492,12 +492,103 @@
     }
   </style>
 
+<!-- /* Slider */ -->
+<style>
 
-<!-- <link rel="stylesheet" href="cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-<script src="cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"> </script> -->
-<link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-  
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+@media (max-width:991.98px) {
+     .padding {
+         padding: 1.5rem
+     }
+ }
+
+ @media (max-width:767.98px) {
+     .padding {
+         padding: 1rem
+     }
+ }
+
+ .padding {
+     padding: 5rem
+ }
+
+ .card {
+    position: relative;
+    display: flex;
+    width: 350px;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: none;
+    /* border: 1px solid #d2d2dc;
+    border-radius: 11px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(249, 249, 250);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(212,182,212,1);
+    box-shadow: 0px 0px 5px 0px rgb(161, 163, 164); */
+}
+
+ .card .card-body {
+    padding: 0px;
+        /* padding: 1rem 1rem; */
+ }
+
+ .card-body {
+     flex: 1 1 auto;
+     padding: 1.25rem
+ }
+
+ /* p {
+     font-size: 0.875rem;
+     margin-bottom: .5rem;
+     line-height: 1.5rem
+ }
+
+ h4{
+         line-height: .2 !important;
+ } */
+.profile{
+           margin-top: 16px;
+    margin-left: 11px;
+}
+
+.profile-pic{
+     width: 58px;
+}
+
+.cust-name{
+     font-size: 18px;
+}
+
+.cust-profession{
+     font-size: 10px;
+}
+
+
+
+.items {
+    width: 90%;    
+     margin: 0px auto;   
+    /* margin-top: 100px */
+}
+
+.slick-slide {
+    margin: 10px
+}
+
+.slick-slide img {
+  display: initial !important;
+}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
+
 
 
 <section class="slide_section"> <!-- style="position: inherit; width: 100%; height: auto; display: flex; border:2px solid #000; z-index: 100;"  -->
@@ -550,7 +641,7 @@
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipOrganization">                            
                         <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>                    
-                        <p style="color: #000000; text-shadow: 0px 0px 0px black;">Organization</p>
+                        <p style="color: #000000; text-shadow: 0px 0px 0px black; font-size: 20px;">Organization</p>
                     </div>       
                 </a>                 
             </div>
@@ -559,7 +650,7 @@
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
                         <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">{{law_act_policy}}</div>
-                        <p style="color: #b800d2; text-shadow: 0px 0px 0px black;">Law, Act & Policy</p>
+                        <p style="color: #b800d2; text-shadow: 0px 0px 0px black; font-size: 20px;">Law, Act & Policy</p>
                     </div>
                 </a>
             </div>
@@ -568,7 +659,7 @@
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
                         <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{plan}}</div>
-                        <p style="color: #df1f11; text-shadow: 0px 0px 0px black;">Plan</p>
+                        <p style="color: #df1f11; text-shadow: 0px 0px 0px #600404; font-size: 20px;">Plan</p>
                     </div>
                 </a>
             </div>
@@ -585,8 +676,8 @@
                 <a href="#">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
-                        <div class="counter" style="color: #FFB300; text-shadow: 0px 0px 1px #5e321c;">{{publication}}</div>
-                        <p style="color: #FFB300; text-shadow: 0px 0px 0px #5e321c;">Publication</p>
+                        <div class="counter" style="color: #FF8F00; text-shadow: 0px 0px 1px #5e321c;">{{publication}}</div>
+                        <p style="color: #FF8F00; text-shadow: 0px 0px 1px #ee5102; font-size: 20px;">Publication</p>
                     </div>
                 </a>
             </div>
@@ -595,7 +686,7 @@
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                         <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
                         <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{reports}}</div>
-                        <p style="color: #1316d4; text-shadow: 0px 0px 0px black;">Reports</p>
+                        <p style="color: #1316d4; text-shadow: 0px 0px 0px black; font-size: 20px;">Reports</p>
                     </div>
                 </a>
             </div>
@@ -605,8 +696,179 @@
 </section>
 
 
+<div class="row mt-5">
+    <div class="col-md-12">
+        <div class="section_title text-center" style="margin-bottom: 10px; margin-top: 20px;">
+            <h5 class="wow fadeInUp">No. of Documents (<label style="color: #40f;"><div class="counter">{{total_docs}}</div></label>)</h5> <!--1345-->
+        </div>
+    </div>
+</div>
+
+
+<!-- >>>>>>>>>>>>>>> Ref: https://codingyaar.com/bootstrap-4-carousel-multiple-items-responsive/  <<<<<<<<<<<<<<<<<<<<<<<< -->
+<div class="items">  
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                        <a href="/search-by-org/?src_orgs=1&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
+                            <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
+                                                            
+                            <div class="text-center" style="color: #40f;">                                    
+                                <label style="color:#4F5773; font-size: 13px;">BWDB</label> (<label><div class="counter">{{bwdb_docs}}</div></label>)    <!--550-->                                
+                            </div>                               
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <h4 class="card-title"><img src="https://img.icons8.com/ultraviolet/40/000000/quote-left.png"></h4>                           
+            <div class="template-demo">
+                <p>Online reviews can make or break a customer's decision to make a purchase. Read about these customer review sites where your customers'</p>
+            </div>   
+            <hr>   
+            <div class="row">   
+                <div class="col-sm-2">
+                    <img class="profile-pic" src="https://img.icons8.com/bubbles/100/000000/edit-user.png">                                    
+                </div>
+                <div class="col-sm-10">                                       
+                    <div class="profile">                                         
+                        <h4 class="cust-name">Delbert Simonas</h4>
+                        <p class="cust-profession">Store Owner</p>       
+                    </div>                                                                              
+                </div>                                    
+            </div> -->
+        </div>
+    </div>
+   
+   
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                        <a href="/search-by-org/?src_orgs=2&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
+                            <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
+                                                            
+                            <div class="text-center" style="color: #40f;">
+                                <label style="color:#4F5773; font-size: 13px;">WARPO</label> (<label><div class="counter">{{warpo_docs}}</div></label>)      <!--250-->
+                            </div>
+                            <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                        <a href="/search-by-org/?src_orgs=3&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
+                            <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 40px;" />
+                                                           
+                            <div class="text-center" style="color: #40f;">
+                                <label style="color:#4F5773; font-size: 13px;">RRI</label> (<label><div class="counter">{{rri_docs}}</div></label>)   <!--170-->                                  
+                            </div>
+                            <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+   
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="font-weight: bold ; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                        <a href="/search-by-org/?src_orgs=4&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
+                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;" />
+                                                            
+                            <div class="text-center" style="color: #40f;">
+                                <label style="color:#4F5773; font-size: 13px;">JRC</label> (<label><div class="counter">{{jrc_docs}}</div></label>)    <!--80-->
+                            </div>
+                            <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+   
+   
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" data-wow-delay="1.6s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                        <a href="/search-by-org/?src_orgs=5&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
+                            <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;"  />
+                                                            
+                            <div class="text-center" style="color: #40f;">
+                                <label style="color:#4F5773; font-size: 13px;">DBHWD</label> (<label><div class="counter">{{dbhwd_docs}}</div></label>)    <!--75-->
+                            </div>
+                            <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" data-wow-delay="2.0s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                        <a href="/search-by-org/?src_orgs=6&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
+                            <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" style="width: 65px;"  />
+                              
+                            <div class="text-center" style="color: #40f;">                         
+                                <label style="color:#4F5773; font-size: 13px;">IWM</label> (<label><div class="counter">{{iwm_docs}}</div></label>)      <!--70-->
+                            </div>     
+                            <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
+                                </span>Institute of Water Modelling</p> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+    <div class="card">
+        <div class="card-body">
+            <div class="row">                    
+                <div class="col-md-12">
+                    <div class="text-center org-content wow fadeInUp" data-wow-delay="2.4s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                           
+                        <a href="/search-by-org/?src_orgs=7&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
+                            <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"  style="margin-top: 10px;" />
+                                                         
+                            <div class="text-center" style="color: #40f;">
+                                <label style="color:#4F5773; font-size: 13px;">CEGIS</label>(<label><div class="counter">{{cegis_docs}}</div></label>)        <!--150-->
+                            </div>
+                            <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
+                                </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
 <!-- List of Organization & No. of Documents -->
-<section class="doc_categories_guide_area sec_pad">
+<section class="doc_categories_guide_area sec_pad d-none">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -772,11 +1034,11 @@
 
 
 <!-- Categorywise search -->
-<section class="doc_faq_area_two sec_pad">
+<section class="doc_faq_area_two sec_pad mt-5">
     <div class="container">
         
         <div class="section_title text-center" style="margin-bottom: 15px;">
-            <h5 class="wow fadeInUp"><a data-toggle="modal" href="#exampleModalCenter">Category <i class="arrow_right"></i></a></h5>        <!--   href="/knowledgebase/category_mapping/" -->
+            <h5 class="wow fadeInUp"><a data-toggle="modal" href="#exampleModalCenter" style="border: 1px solid #05abbc; padding: 10px;">Category <i class="arrow_right"></i></a></h5>        <!--   href="/knowledgebase/category_mapping/" -->
         </div>
         <div class="row">                            
             <div class="col-md mt-3 wow fadeInUp ">
@@ -821,6 +1083,9 @@
     </div>
 </section>
 
+<br />
+<br />
+
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -838,8 +1103,10 @@
           <div class="row">
             <div class="col-md-12">
                 <!-- <h2>Category Mapping with Common Category</h2> -->
-                <div style="width: 100%; max-height:500px; overflow:auto;">
-                    <table id="tblCatMapp">
+                <!-- <div style="width: 100%; max-height:500px; overflow:auto;">
+                    <table id="tblCatMapp"> -->
+                <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">
+                    <table id="tblCatMapp" class="table table_shortcode">
                     <thead>
                         <tr>
                         <th>Common Category</th>
@@ -2137,12 +2404,72 @@
 
 <script>
     $(document).ready( function () {
-    $('#tblCatMapp').DataTable();
-} );
+    // $('#tblCatMapp').DataTable();
+
+    $('.items').slick({
+        dots: true,
+    infinite: true,
+    speed: 2000,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    responsive: [
+        {
+        breakpoint: 1024,
+        settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+        }
+        },
+        {
+        breakpoint: 600,
+        settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+        }
+        },
+        {
+        breakpoint: 480,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
+        }
+
+    ]
+    });
+
+
+    // $('.customer-logos').slick({
+    //     slidesToShow: 6,
+    //     slidesToScroll: 1,
+    //     autoplay: true,
+    //     autoplaySpeed: 2000,
+    //     arrows: true,
+    //     dots: true,
+    //     pauseOnHover: true,
+    //     responsive: [{
+    //         breakpoint: 768,
+    //         settings: {
+    //             slidesToShow: 4
+    //         }
+    //     }, {
+    //         breakpoint: 520,
+    //         settings: {
+    //             slidesToShow: 3
+    //         }
+    //     }]
+    // });
+
+});
 </script>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
 
 
 {% endblock %}
