@@ -462,7 +462,7 @@
                         <div class="row" >
                             <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
                                 <div class="nav flex-column">
-                                    {% for doc in documents %}
+                                    {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
                                         {% if doc.data_category.data_common_category.id in src_doc_cats %}
                                             {% ifchanged doc.data_category.data_common_category.category_name %}
                                                 <a class="nav-link cat-title" data-wow-delay="0.2s"
@@ -494,7 +494,7 @@
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                         </h5>
 
-                        {% for doc in documents %}
+                        {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
 
                             {% ifchanged doc.organization.organization_name %}
                                 <div class="row wow fadeInUp">

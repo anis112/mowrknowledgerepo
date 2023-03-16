@@ -745,14 +745,14 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
             org_ids = [int(id) for id in org_ids]
             cond_org = Q(organization_id__in=org_ids)
 
-            documents = documents.filter(cond_org)
+            documents = documents.filter(cond_org).order_by('data_category_id')
             doc_count = len(documents)
 
         if data_category_ids and data_category_ids[0] != '':
             data_category_ids = [int(id) for id in data_category_ids]
             cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
 
-            documents = documents.filter(cond_cat)
+            documents = documents.filter(cond_cat).order_by('organization_id', 'data_category_id')
             doc_count = len(documents)
     
     org_infos = Organization.objects.all().order_by('id')

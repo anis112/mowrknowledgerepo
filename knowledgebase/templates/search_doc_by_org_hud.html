@@ -490,7 +490,8 @@
                         <div class="row" >
                             <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
                                 <div class="nav flex-column">
-
+                                    {% comment %}   {% for doc in documents|dictsort:'organization.organization_name' %} {% endcomment %}
+                                    
                                     {% for doc in documents|dictsort:'organization.organization_name' %}
                                         {% if doc.organization.id in src_orgs %}
                                             {% ifchanged doc.organization.organization_name %}
