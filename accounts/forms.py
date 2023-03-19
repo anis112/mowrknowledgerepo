@@ -1,7 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm, PasswordResetForm
 from .models import CustomUser
-
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext as _
 
    
 class CustomUserForm(UserCreationForm):
@@ -67,4 +69,19 @@ class ChangeCustomUserForm(UserChangeForm):
         #          'last_name'
         #         )
         exclude = ['password','username','is_staff', 'is_superuser', 'user_permissions','last_login', 'date_joined']
-        
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    email = forms.EmailField(label=_("Email"), max_length=254, widget=forms.EmailInput(attrs={'autocomplete': 'email'}))
+
+    def get_users(self, email):
+        """
+        Given an email, return matching user(s) who should receive a reset.
+        """
+        if not email:
+            raise ValidationError(_('Email field is required.'), code='required')
+        user_model = get_user_model()
+        users = user_model._default_manager.filter(email__iexact=email, is_active=True)
+        if not users:
+            raise ValidationError(_('Sorry, this email address is not registered in our system.'), code='invalid')
+        return users
