@@ -289,15 +289,15 @@
         margin-bottom: 10px;
     }
 
-    .org-logo-BWDB {}
+    /* .org-logo-BWDB {} */
 
     .org-logo-RRI {
         width: 72px;
     }
 
-    .org-logo-JRC {}
+    /* .org-logo-JRC {} */
 
-    .org-logo-DBHWD {}
+    /* .org-logo-DBHWD {} */
 
     .org-logo-WARPO {
         margin-top: 15px;
@@ -335,6 +335,9 @@
     .scat-title {
         display: block;
         border-left: 0.15rem solid #1ab;
+        border-top: 1px solid #acd9d9;
+        border-right: 1px solid #acd9d9;
+        border-bottom: 1px solid #acd9d9;
         margin: 0.25rem 0 0.25rem 0.25rem;
         padding: 0.5rem;
         padding-left: 0.65rem;
@@ -382,6 +385,11 @@
         margin-left: 0.25rem;
         color: #2ce !important;
     }
+
+    .sticky-top{
+        z-index: 0 !important;
+    }
+
 
     
 </style>
@@ -443,13 +451,31 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <a class="doc_border_btn smbtn" id="select_more" data-wow-delay="0.2s" href="#">Select More Organizations</a>
+                                </div>
+                                <div class="col-md-8">
+                                    <div id="select_more_part" class="form-control" style="max-width: 100%; border: 1px solid #13aeda; display: none;">
+                                        <select class="multi-select form-control" id="src_orgs" name="src_orgs" multiple="multiple">
+                                            {% for org_info in org_infos %}
+                                            <option value="{{org_info.id}}" {% if org_info.id in src_orgs %}
+                                                selected {% endif %}>{{org_info.organization_name}}({{org_info.short_name}})</option>
+                                            {% endfor %}    
+                                        </select>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
 
-                <!-- searchbox area section    -->
+                <!-- searchbox area section    -->  
                 <section>
                     <div class="breadcrumb_area mt-2">
-                        <div class="banner_search_form m-0 p-0"
-                            style="max-width: 100%; border: 1px solid #13aeda;">
+                        <div class="banner_search_form m-0 p-0" style="max-width: 100%; border: 1px solid #13aeda;">
                             <div class="input-group">
                                 <input type="search" id="search_term" name="search_term" class="form-control"
                                     placeholder='Search' value='{{ search_term }}' />
@@ -692,6 +718,18 @@
         // }
     });
 
+    $("#select_more").click(function () {     
+        
+        var dim = $('#select_more_part').is(":visible");
+            if (dim == false) {
+                $("#select_more_part").show();
+            }
+            else
+            {
+                $("#select_more_part").hide();
+            }             
+    });
+
     // View Modal from Checkbox on click
     $("#KM_FormCheck").change(function () {
         if(this.checked){
@@ -822,6 +860,28 @@
     }
 
     $(function () {
+
+        $("#src_orgs")
+            .multiselect({
+                maxHeight: 230,
+                buttonWidth: '100%',
+
+                enableFiltering: true,
+                filterPlaceholder: "Search",
+                enableCaseInsensitiveFiltering: true,
+
+                enableClickableOptGroups: true,
+                enableCollapsibleOptGroups: true,
+
+                selectAllText: "All Organizations",
+                selectAllValue: "",
+                allSelectedText: "All Organizations",
+                includeSelectAllOption: true,
+
+                nonSelectedText: "All Organizations",
+                nSelectedText: " selected",
+                disableIfEmpty: false,
+            });
 
         $("#src_doc_cats")
             .multiselect({
