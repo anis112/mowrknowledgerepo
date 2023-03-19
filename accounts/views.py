@@ -3,7 +3,7 @@ from email import message
 from django.contrib.auth import authenticate, get_user_model
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordResetForm
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -13,6 +13,8 @@ from accounts.models import CustomUser
 from .forms import CustomUserForm, ChangeCustomUserForm
 from django.contrib.auth.decorators import login_required,permission_required
 from django.core.exceptions import ValidationError
+
+
 
 User = get_user_model()
 
@@ -118,6 +120,11 @@ def edit_user(request,id):
         form = ChangeCustomUserForm(instance=user)
         return render(request, 'edit_user.html', {"form":form})
 
+
+# def CustomPasswordResetView(request):
+#     form_class = PasswordResetForm
+#     return render(request,"password_reset.html")
+    
 
 # def manage_data(request):
 #     return redirect('/admin/') 
