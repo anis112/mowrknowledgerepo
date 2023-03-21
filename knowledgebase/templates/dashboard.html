@@ -596,9 +596,6 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-
-
-
 <section class="slide_section"> <!-- style="position: inherit; width: 100%; height: auto; display: flex; border:2px solid #000; z-index: 100;"  -->
     <div class="slide" >
         <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide1.jpg);"></span> <!-- <img src="{% static 'img/slider-img/MWR_Slide1.jpg' %}" style="width:100%;"> -->        
@@ -627,7 +624,7 @@
 </section>
 
 <!-- Counting -->
-<section class="doc_fun_fact_area" style="padding: 10px 0px; border-top: 2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 70, 102) 90%);">     <!--  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 75, 79) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
+<section class="doc_fun_fact_area" style="padding: 25px 0px; border-top: 2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 70, 102) 90%);">     <!--  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 75, 79) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
     {% comment %} <div class="animated-waves">
         <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
             <defs>
@@ -718,17 +715,19 @@
         <div class="items">  
             <div class="card">
                 <div class="card-body">
-                    <div class="row">                    
+                    <div class="row" >                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                                <a href="/search-by-org/?src_orgs=1&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
-                                    <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
-                                                                    
-                                    <div class="text-center" style="color: #40f;">                                    
-                                        <label style="color:#4F5773; font-size: 13px;">BWDB</label> (<label><div class="counter">{{bwdb_docs}}</div></label>)    <!--550-->                                
-                                    </div>                               
-                                </a>
-                            </div>
+                            <a href="/search-by-org/?src_orgs=1&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
+                                    <!-- <a id="aBWDB_Count" href="/search-by-org/?src_orgs=1&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Bangladesh Water Development Board" target="_blank"> -->
+                                        <img src="{% static 'img/article_logo/BWDB.png' %}" alt="Organization One" class="org-img" style="width: 50px;" />
+                                                                        
+                                        <div class="text-center" style="color: #40f;">                                    
+                                            <label style="color:#4F5773; font-size: 13px;">BWDB</label> (<label><div class="counter">{{bwdb_docs}}</div></label>)    <!--550-->                                
+                                        </div>                               
+                                    <!-- </a> -->
+                                </div>
+                            </a>
                         </div>
                     </div>
                     
@@ -756,16 +755,16 @@
                 <div class="card-body">
                     <div class="row">                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                                <a href="/search-by-org/?src_orgs=2&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
+                            <a href="/search-by-org/?src_orgs=2&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Water Resources Planning Organization (WARPO)" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" data-wow-delay="0.4s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                                                            
                                     <img src="{% static 'img/article_logo/WARPO.png' %}" alt="" class="org-img" style="width: 70px;" />
                                                                     
                                     <div class="text-center" style="color: #40f;">
                                         <label style="color:#4F5773; font-size: 13px;">WARPO</label> (<label><div class="counter">{{warpo_docs}}</div></label>)      <!--250-->
                                     </div>
-                                    <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->
-                                </a>
-                            </div>
+                                    <!-- <p style="color:#4F5773;">Water Resources Planning Organization (WARPO)</p> -->                                    
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -776,16 +775,16 @@
                 <div class="card-body">
                     <div class="row">                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                                <a href="/search-by-org/?src_orgs=3&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
+                            <a href="/search-by-org/?src_orgs=3&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="River Research Institute (RRI)" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" data-wow-delay="0.8s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                                                                
                                     <img src="{% static 'img/article_logo/rri.png' %}" alt="" class="org-img" style="width: 40px;" />
                                                                 
                                     <div class="text-center" style="color: #40f;">
                                         <label style="color:#4F5773; font-size: 13px;">RRI</label> (<label><div class="counter">{{rri_docs}}</div></label>)   <!--170-->                                  
                                     </div>
-                                    <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->
-                                </a>
-                            </div>
+                                    <!-- <p style="color:#4F5773;">River Research Institute (RRI)</p> -->                                    
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -796,16 +795,16 @@
                 <div class="card-body">
                     <div class="row">                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="font-weight: bold ; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                                <a href="/search-by-org/?src_orgs=4&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
+                            <a href="/search-by-org/?src_orgs=4&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Joint Rivers Commission, Bangladesh" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" data-wow-delay="1.2s" style="font-weight: bold ; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                                                                
                                     <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;" />
                                                                     
                                     <div class="text-center" style="color: #40f;">
                                         <label style="color:#4F5773; font-size: 13px;">JRC</label> (<label><div class="counter">{{jrc_docs}}</div></label>)    <!--80-->
                                     </div>
-                                    <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->
-                                </a>
-                            </div>
+                                    <!-- <p style="color:#4F5773;">Joint Rivers Commission, Bangladesh</p> -->                                    
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -816,16 +815,16 @@
                 <div class="card-body">
                     <div class="row">                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" data-wow-delay="1.6s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                                <a href="/search-by-org/?src_orgs=5&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
+                            <a href="/search-by-org/?src_orgs=5&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Department of Bangladesh Haor and Wetlands Development" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" data-wow-delay="1.6s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                                                                
                                     <img src="{% static 'img/article_logo/BD_GOV.png' %}" alt=""  class="org-img" style="width: 50px;"  />
                                                                     
                                     <div class="text-center" style="color: #40f;">
                                         <label style="color:#4F5773; font-size: 13px;">DBHWD</label> (<label><div class="counter">{{dbhwd_docs}}</div></label>)    <!--75-->
                                     </div>
-                                    <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->
-                                </a>
-                            </div>
+                                    <!-- <p style="color:#4F5773;">Department of Bangladesh Haor and Wetlands Development</p> -->                                    
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -836,17 +835,16 @@
                 <div class="card-body">
                     <div class="row">                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" data-wow-delay="2.0s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                            
-                                <a href="/search-by-org/?src_orgs=6&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
+                            <a href="/search-by-org/?src_orgs=6&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Institute of Water Modelling" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" data-wow-delay="2.0s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                                                            
                                     <img src="{% static 'img/article_logo/iwm.png' %}" alt="" class="org-img" style="width: 65px;"  />
                                     
                                     <div class="text-center" style="color: #40f;">                         
                                         <label style="color:#4F5773; font-size: 13px;">IWM</label> (<label><div class="counter">{{iwm_docs}}</div></label>)      <!--70-->
                                     </div>     
-                                    <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
-                                        </span>Institute of Water Modelling</p> -->
-                                </a>
-                            </div>
+                                    <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Institute of Water Modelling</p> -->                                
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -857,28 +855,26 @@
                 <div class="card-body">
                     <div class="row">                    
                         <div class="col-md-12">
-                            <div class="text-center org-content wow fadeInUp" data-wow-delay="2.4s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                           
-                                <a href="/search-by-org/?src_orgs=7&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
+                            <a href="/search-by-org/?src_orgs=7&search_term=" data-bs-toggle="tooltip" data-bs-html="true"  title="Center for Environmental and Geographic Information Services (CEGIS)" target="_blank">
+                                <div class="text-center org-content wow fadeInUp" data-wow-delay="2.4s" style="font-weight: bold; min-height: 85px; border: 1px solid #bdbdbd; box-shadow: 1px 2px 3px 2px rgb(2 47 57 / 14%);">                                                           
                                     <img src="{% static 'img/article_logo/CEGIS.png' %}" alt="" class="org-img"  style="margin-top: 10px;" />
                                                                 
                                     <div class="text-center" style="color: #40f;">
                                         <label style="color:#4F5773; font-size: 13px;">CEGIS</label>(<label><div class="counter">{{cegis_docs}}</div></label>)        <!--150-->
                                     </div>
-                                    <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization:
-                                        </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->
-                                </a>
-                            </div>
+                                    <!-- <p style="color:#4F5773;"><span style="color:#07839F;">Trusty Organization: </span>Center for Environmental and Geographic Information Services (CEGIS)</p> -->                                
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>    
 </section>
 
 
-<!-- List of Organization & No. of Documents  (Fixed Number Org) (Previously Designed)   -->
+<!-- List of Organization & No. of Documents  (Previously Designed)   -->
 <section class="doc_categories_guide_area sec_pad d-none">
     <div class="container">
         <div class="row">

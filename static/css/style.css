@@ -2731,7 +2731,7 @@ p kbd {
 }
 
 .learn_btn.c_blue {
-  color: #10b3d6;
+  color: #027e99;   /*  #10b3d6; */
 }
 
 .learn_btn:hover {
