@@ -54,13 +54,16 @@
         }
 
         .preloader-bg {
-            background-image: url("{% static 'img/loadings/806_BT.gif' %}");
-            background-image: url("{% static 'img/loadings/806_GT.gif' %}");
+            /* background-image: url("{% static 'img/loadings/806_BT.gif' %}");
+            background-image: url("{% static 'img/loadings/806_GT.gif' %}"); */
+            background-image: url("{% static 'img/loadings/800_B.gif' %}");  /* Added */
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 90%;
-            width: 300px;
-            height: 300px;
+            width: 80px;    /* 300px; */
+            height: 22px;   /* 300px; */
+            margin-left: auto;  /* Added */
+            margin-right: auto; /* Added */
         }
 
         .footer-logo {
@@ -72,7 +75,7 @@
             color: #18c !important;
         }
 
-        .parallax>use {
+         .parallax>use {
             animation: move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
         }
 
@@ -93,7 +96,7 @@
         .parallax>use:nth-child(4) {
             animation-delay: -3s;
             animation-duration: 10.25s
-        }
+        } 
 
         @keyframes move-forever {
             0% {
@@ -118,13 +121,14 @@
     <!-- preloader section -->
     <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
-            <div class="round_spinner preloader-bg">
-                <div class="spinner"></div>
+            <div class="preloader-bg">  <!-- round_spinner -->
+                <!-- <div class="spinner"></div>
                 <div class="text">
                     <h6 class="text-white">Loading...</h6>
-                </div>
+                </div> -->
             </div>
-            <h2>Knowledge Repository, MoWR</h2>            
+            <br />
+            <h5>Knowledge Repository, MoWR</h2>            
         </div>
     </div>
 

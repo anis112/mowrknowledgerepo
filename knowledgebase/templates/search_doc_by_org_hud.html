@@ -461,10 +461,10 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div id="select_more_part" class="form-control" style="max-width: 100%; border: 1px solid #13aeda; display: none;">
-                                        <select class="multi-select form-control" id="src_orgs" name="src_orgs" multiple="multiple" onChange="getSelectedValuesFromList(this)" >
-                                            {% for org_info in org_infos %}
-                                            <option class="src_orgs_items" value="{{org_info.id}}" {% if org_info.id in src_orgs %}  
-                                                selected {% endif %}>{{org_info.organization_name}}({{org_info.short_name}})</option>
+                                        <select class="multi-select form-control" id="src_org_list" name="src_org_list" multiple="multiple" onChange="getSelectedValuesFromList(this)" >
+                                            {% for all_org_info in all_org_infos %}
+                                            <option class="src_org_list_items" value="{{all_org_info.id}}" {% if all_org_info.id in src_orgs %}  
+                                                selected {% endif %}>{{all_org_info.organization_name}}({{all_org_info.short_name}})</option>
                                             {% endfor %}    
                                         </select>
                                     </div>                                    
@@ -558,15 +558,7 @@
                                     <h5 class="mb-1 pt-1 pb-1" style="color: #05a;">
                                         <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                                     </h5>
-                                </div>
-                                {% comment %} <div class="col-6 pr-0 border-bottom">
-                                    <div class="form-check float-right" id="KM_chkDiv" >
-                                        <input class="form-check-input" type="checkbox" id="KM_FormCheck">
-                                        <label class="form-check-label bold" style="color: blueviolet;" for="KM_FormCheck">
-                                        View Knowlwdge Map
-                                        </label>
-                                    </div>
-                                </div>  {% endcomment %}
+                                </div>                                
                             </div>                           
                         </div>
                         <!-- <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
@@ -652,41 +644,6 @@
 </div>
 
 
-<!-- dragable and editable bootsttrap modal modal -->
-<div class="modal col-12 fade" id="dragable_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static" data-keyboard="false" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header w-100">
-                <div class="row m-0 w-100">
-                    <div class="col-md-12 px-4 p-2 dragable_touch d-block">
-                        <h3 class="m-0 d-inline">MoWR - Knowledge Map</h3>
-                        <button type="button" id="btn_x" class="close close_btn" data-dismiss="modal" aria-label="Close" data-backdrop="static" data-keyboard="false" for="KM_FormCheck"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-body p-3">
-                <!-- Put Your Modal Content Here Below -->
-                <label><h3>Put Your Modal Content (Knowledge Map) Here...</h3></label> <br/> 
-                <label>Search by river keyword to work the below buttons</label> <br/> 
-                <button id="btn_959" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_959')">Doc Id - 959</button> <br/>
-                <button id="btn_960" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_960')">Doc Id - 960</button> <br/> 
-                <button id="btn_961" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_961')">Doc Id - 961</button>         
-            </div>
-
-            <div class="modal-footer bg-light">
-                <div class="row w-100">
-                    <div class="col-12 text-right">
-                        <button type="reset" id="btnClose" class="btn btn-primary" data-dismiss="modal" for="KM_FormCheck">Close</button>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- dragable and editable bootsttrap modal modal Ends -->
-
-
 {% endblock %}
 
 
@@ -695,128 +652,52 @@
 
 <script>
 
-    // View the Checkbox (To Show Modal - Knowledge Map) While kewword exists on search box on Page Load
-    $(document).ready(function() {
-        if (!$("#search_term").val())
-        {
-            $("#KM_chkDiv").hide();
+$("#select_more").click(function () {     
+        
+    var dim = $('#select_more_part').is(":visible");
+        if (dim == false) {
+            $("#select_more_part").show();
         }
         else
         {
-            $("#KM_chkDiv").show(); 
-        }
-    });
+            $("#select_more_part").hide();
+        }             
+});
 
-    // View the Checkbox (To Show Modal - Knowledge Map) While kewword exists on search box on Search button click
-    $("#btnSearch").click(function () {
-
-        if (!$("#search_term").val())
-        {
-            $("#KM_chkDiv").hide();
-        }
-        // else
-        // {
-        //     $("#KM_chkDiv").show(); 
-        // }
-    });
-
-    $("#select_more").click(function () {     
-        
-        var dim = $('#select_more_part').is(":visible");
-            if (dim == false) {
-                $("#select_more_part").show();
-            }
-            else
-            {
-                $("#select_more_part").hide();
-            }             
-    });
-
-    // View Modal from Checkbox on click
-    $("#KM_FormCheck").change(function () {
-        if(this.checked){
-            //open modal
-            $("#dragable_modal").modal({
-                backdrop: false,
-                show: true,
-            });
-            // reset modal if it isn't visible
-            if (!$(".modal.in").length) {
-                $(".modal-dialog").css({             
-                    top: 20,
-                    left: 100,        
-                });
-            }
-
-            $(".modal-dialog").draggable({
-                cursor: "move",
-                handle: ".modal-header",
-            }); 
-
-            $('#dragable_modal').appendTo("body") 
-        }
-        else
-        {            
-            $('#dragable_modal').modal('hide');
-            ////$('#dragable_modal').modal('toggle');          
-        }
-    });
-
-    // On Modal Close button click
-    $("#btnClose").click(function () {
-        let isChecked = $('#KM_FormCheck')[0].checked;
-        
-        if(isChecked === true){
-            $('#KM_FormCheck')[0].checked = false;    
-        }
-        $('.community-box').css({background: '#fff'});
-    });
-
-    // On Modal Close(X) button click
-    $("#btn_x").click(function () {
-        let isChecked = $('#KM_FormCheck')[0].checked;
-        
-        if(isChecked === true){
-            $('#KM_FormCheck')[0].checked = false;    
-        }
-        $('.community-box').css({background: '#fff'});
-    }); 
-    
-    
     // **** From popup modal button click
-    function GetLink (btn_id) {
-        const arr = btn_id.split('_');
-        var doc_id = arr[arr.length - 1];
+    // function GetLink (btn_id) {
+    //     const arr = btn_id.split('_');
+    //     var doc_id = arr[arr.length - 1];
 
-        $('.community-box').each(function () {            
-            $(this).find('a').each(function () {
-                //alert($(this).attr('href'));
-                const arr_link  = $(this).attr('href').split('/');
-                var link_doc_id = arr_link[arr_link.length - 1];
+    //     $('.community-box').each(function () {            
+    //         $(this).find('a').each(function () {
+    //             //alert($(this).attr('href'));
+    //             const arr_link  = $(this).attr('href').split('/');
+    //             var link_doc_id = arr_link[arr_link.length - 1];
 
-                if ($.isNumeric(link_doc_id ))
-                {
-                    if (link_doc_id === doc_id)
-                    {
-                        const parentWithClass = $(this).closest('.community-box');
-                        parentWithClass.css({background: '#d5edf7'});                                          
-                        $(this).scrollToMe();                        
-                    }
-                    else 
-                    {
-                        const parentWithClass = $(this).closest('.community-box');
-                        parentWithClass.css({background: '#fff'});                                        
-                    } 
-                }               
-            });            
-        });
-    };
+    //             if ($.isNumeric(link_doc_id ))
+    //             {
+    //                 if (link_doc_id === doc_id)
+    //                 {
+    //                     const parentWithClass = $(this).closest('.community-box');
+    //                     parentWithClass.css({background: '#d5edf7'});                                          
+    //                     $(this).scrollToMe();                        
+    //                 }
+    //                 else 
+    //                 {
+    //                     const parentWithClass = $(this).closest('.community-box');
+    //                     parentWithClass.css({background: '#fff'});                                        
+    //                 } 
+    //             }               
+    //         });            
+    //     });
+    // };
 
-    jQuery.fn.extend({
-    scrollToMe: function () {
-        var x = jQuery(this).offset().top - 250;
-        jQuery('html,body').animate({scrollTop: x}, 500);
-    }});
+    // jQuery.fn.extend({
+    // scrollToMe: function () {
+    //     var x = jQuery(this).offset().top - 250;
+    //     jQuery('html,body').animate({scrollTop: x}, 500);
+    // }});
 
 
 </script>
@@ -863,7 +744,7 @@
 
     $(function () {
 
-        $("#src_orgs")
+        $("#src_org_list")
             .multiselect({
                 maxHeight: 230,
                 buttonWidth: '100%',
@@ -914,7 +795,7 @@
 
 function getSelectedValuesToList(SelectedItem) {
 
-    var OrgList = document.getElementById('src_orgs');
+    var OrgList = document.getElementById('src_org_list');
 
     var len = OrgList.options.length;
 
@@ -940,7 +821,7 @@ function getSelectedValuesToList(SelectedItem) {
         }
     }
 
-    $("src_orgs").multiselect('reload');
+    //$("src_orgs").multiselect('reload');
 }
 
 
@@ -987,7 +868,9 @@ function getSelectedValuesFromList(OrgList) {
             else if(opt.value == CEGIS.value)
             {
                 CEGIS.checked = true;
-            }            
+            } 
+            // else 
+            // opt.selected = true;           
         }
         else
         {
@@ -1018,7 +901,9 @@ function getSelectedValuesFromList(OrgList) {
             else if(opt.value == CEGIS.value)
             {
                 CEGIS.checked = false;
-            }    
+            }   
+            // else 
+            // opt.selected = false;  
         }
     }
 }
