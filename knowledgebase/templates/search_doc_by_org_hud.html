@@ -455,12 +455,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
-                                    <a id="select_more" href="#" class="learn_btn c_blue" >Select More Organizations <i class="arrow_right"></i></a>
+                                <div class="col-md-2">
+                                    <a id="select_more" href="#" class="learn_btn c_blue" style="margin-top: 10px;" >Select More Organizations <i class="arrow_right"></i></a>
                                     <!-- <a class="doc_border_btn smbtn" id="select_more" href="#">Select More Organizations</a> -->
                                 </div>
-                                <div class="col-md-8">
-                                    <div id="select_more_part" class="form-control" style="max-width: 100%; border: 1px solid #13aeda; display: none;">
+                                <div class="col-md-10">
+                                    <div id="select_more_part" class="form-control" style="max-width: 100%; border: 1px solid #13aeda; margin: 10px 0px; display: none;">
                                         <select class="multi-select form-control" id="src_org_list" name="src_org_list" multiple="multiple" onChange="getSelectedValuesFromList(this)" >
                                             {% for all_org_info in all_org_infos %}
                                             <option class="src_org_list_items" value="{{all_org_info.id}}" {% if all_org_info.id in src_orgs %}  
@@ -547,7 +547,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">         <!--  style="background: #f5fafc;" -->        
@@ -583,9 +582,12 @@
                             <div class="row community-box wow fadeInUp text-left">
                                 <div class="col-md-2">
                                     <div class="icon-container">
-                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
-                                        
-                                    {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
+                                        {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                        
+                                        {% else %}
+                                        <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                        {% endif %}
+                                    <!-- <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> -->
                                     </div>
                                 </div>
                                 <div class="col-md-10">

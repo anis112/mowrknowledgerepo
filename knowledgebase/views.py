@@ -84,11 +84,14 @@ def dashboard(request):
     count_cegis = Document.objects.filter(organization__id=7).count()
 
     category_name_map = DataCategory.objects.filter(parent__isnull = True).order_by('data_common_category')
+
+    orgranization_name = Organization.objects.values_list('organization_name')
+    org_count = len(orgranization_name)
     
     context = {'organization': count_organization,
                'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan,
                'total_docs': count_docs, 'bwdb_docs': count_bwdb, 'rri_docs': count_rri, 'jrc_docs': count_jrc, 'dbhwd_docs': count_dbhwd, 'warpo_docs': count_warpo,
-               'iwm_docs': count_iwm, 'bwdb_cegis': count_cegis, 'cat_map': category_name_map}
+               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name, 'org_count': org_count}
 
 
     return render(request, 'dashboard.html', context)

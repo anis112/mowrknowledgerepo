@@ -64,6 +64,7 @@
             height: 22px;   /* 300px; */
             margin-left: auto;  /* Added */
             margin-right: auto; /* Added */
+            margin-bottom: 10px;
         }
 
         .footer-logo {
@@ -110,6 +111,20 @@
 
     </style>
 
+    <style>
+        #myBar {
+        /* width: 10%;
+        height: 30px;
+        background-color: #04AA6D; 
+        font-size: 15px; */
+        float: left;        
+        text-align: center; /* To center it horizontally (if you want) */
+        line-height: 30px; /* To center it vertically */
+        color: rgb(14, 40, 80);        
+        }
+    </style>
+
+
 
     {% block style_content %}
 
@@ -117,7 +132,7 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100" data-scroll-animation="true">
+<body class="_d-flex flex-column min-vh-100" data-scroll-animation="true">
     <!-- preloader section -->
     <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
@@ -126,12 +141,14 @@
                 <div class="text">
                     <h6 class="text-white">Loading...</h6>
                 </div> -->
-            </div>
-            <br />
-            <h5>Knowledge Repository, MoWR</h2>            
+            </div>            
+            <h5><div id="myBar">Please wait... 1%</div></h5>     
+            <!-- <h5>Knowledge Repository, MoWR</h5>             -->
         </div>
     </div>
 
+    
+    
     <!-- navbar with menu section -->
     <nav class="navbar navbar-expand-lg menu_one" id="sticky"
         style="background-image: linear-gradient(60deg, rgb(0, 145, 175) 0%, rgb(25, 45, 85) 70%);">
@@ -430,6 +447,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> -->
 
+    
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
 
     <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
@@ -455,6 +474,32 @@
 
     <script src="{% static 'js/main.js' %}"></script>
 
+    <script>
+        $(window).on('load', function() {
+ 
+         var i = 0;
+ 
+         if (i == 0) {
+             i = 1;
+             var elem = document.getElementById("myBar");
+             var width = 20;
+             var id = setInterval(frame, 10);
+             function frame() {
+             if (width >= 100) {
+                 clearInterval(id);
+                 i = 0;
+             } else {
+                 width = width + 2;
+                 // elem.style.width = width + "%";
+                 elem.innerHTML = "Progress: " + width  + "%";
+             }
+             }
+         }
+ 
+        });
+    </script>
+
+    
 
     {% block script_content %}
 
