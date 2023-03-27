@@ -85,13 +85,12 @@ def dashboard(request):
 
     category_name_map = DataCategory.objects.filter(parent__isnull = True).order_by('data_common_category')
 
-    orgranization_name = Organization.objects.values_list('organization_name')
-    org_count = len(orgranization_name)
+    orgranization_name = Organization.objects.all()             # .only()('short_name', 'organization_name')  # Organization.objects.values_list('organization_name')
     
     context = {'organization': count_organization,
                'categories': count_categories, 'publication': count_publication, 'reports': count_reports, 'law_act_policy': count_law_act_policy, 'plan': count_plan,
                'total_docs': count_docs, 'bwdb_docs': count_bwdb, 'rri_docs': count_rri, 'jrc_docs': count_jrc, 'dbhwd_docs': count_dbhwd, 'warpo_docs': count_warpo,
-               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name, 'org_count': org_count}
+               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name}
 
 
     return render(request, 'dashboard.html', context)
@@ -786,9 +785,13 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
 
         if req_query and req_query.get("search_term"):
             search_term = req_query.get("search_term", None)
-            org_ids = req_query.get("src_org_list", None)
-            # org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
+            #org_ids = req_query.get("src_org_list", None)
+            org_ids = req_query.get("src_orgs", None)
+            org_list_ids = req_query.get("src_org_list", None)           
+
+            if org_list_ids and org_list_ids.strip :
+                org_ids = org_list_ids
 
      if not isinstance(search_term, str):
         search_term = search_term[0]

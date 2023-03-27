@@ -365,6 +365,7 @@
         text-align: left;
         background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
         border-radius: 0.25rem;
+        box-shadow: 1px 2px 3px 2px rgba(5, 45, 58, 0.57);
     }
     
 
@@ -424,8 +425,8 @@
                 <section>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row wow fadeInUp">
-                                {% comment %} style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);" {% endcomment %}
+                            <div class="row wow fadeInUp">      <!-- style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"  -->                                
+                                
                                 {% for org_info in org_infos %}
                                 <div class="col text-center wow fadeInUp">
                                     <label class="w-100" for="src_org_{{org_info.short_name}}">
@@ -442,13 +443,12 @@
                                                 <input type="checkbox" class="control-input"
                                                     id="src_org_{{org_info.short_name}}" name="src_orgs" onChange="getSelectedValuesToList(this)"
                                                     value="{{org_info.id}}" {% if org_info.id in src_orgs %}
-                                                    checked {% endif %} />
+                                                    checked {% endif %} />                                                
                                             </label>
                                         </div>
                                     </label>
                                 </div>
                                 {% endfor %}
-
                             </div>
                         </div>
                     </div> 
