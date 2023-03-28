@@ -196,7 +196,7 @@
 </style>
 
 <style>
-
+    
     .container {
         max-width: 100% !important;
     }
@@ -277,6 +277,7 @@
 
         background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
         background-image: url(/{{static}}/img/banner_back/bann1.jpg);
+        background-color: #f5fcfd;
     }
 
     .org-content:hover {
@@ -289,15 +290,15 @@
         margin-bottom: 10px;
     }
 
-    .org-logo-BWDB {}
+    /* .org-logo-BWDB {} */
 
     .org-logo-RRI {
         width: 72px;
     }
 
-    .org-logo-JRC {}
+    /* .org-logo-JRC {} */
 
-    .org-logo-DBHWD {}
+    /* .org-logo-DBHWD {} */
 
     .org-logo-WARPO {
         margin-top: 15px;
@@ -335,6 +336,9 @@
     .scat-title {
         display: block;
         border-left: 0.15rem solid #1ab;
+        border-top: 1px solid #acd9d9;
+        border-right: 1px solid #acd9d9;
+        border-bottom: 1px solid #acd9d9;
         margin: 0.25rem 0 0.25rem 0.25rem;
         padding: 0.5rem;
         padding-left: 0.65rem;
@@ -361,6 +365,7 @@
         text-align: left;
         background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
         border-radius: 0.25rem;
+        box-shadow: 1px 2px 3px 2px rgba(5, 45, 58, 0.57);
     }
     
 
@@ -382,6 +387,11 @@
         margin-left: 0.25rem;
         color: #2ce !important;
     }
+
+    .sticky-top{
+        z-index: 0 !important;
+    }
+
 
     
 </style>
@@ -415,8 +425,8 @@
                 <section>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row wow fadeInUp">
-                                {% comment %} style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);" {% endcomment %}
+                            <div class="row wow fadeInUp">      <!-- style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"  -->                                
+                                
                                 {% for org_info in org_infos %}
                                 <div class="col text-center wow fadeInUp">
                                     <label class="w-100" for="src_org_{{org_info.short_name}}">
@@ -431,25 +441,43 @@
                                             <label style="color:#385878;">
                                                 {{org_info.short_name}}
                                                 <input type="checkbox" class="control-input"
-                                                    id="src_org_{{org_info.short_name}}" name="src_orgs"
+                                                    id="src_org_{{org_info.short_name}}" name="src_orgs" onChange="getSelectedValuesToList(this)"
                                                     value="{{org_info.id}}" {% if org_info.id in src_orgs %}
-                                                    checked {% endif %} />
+                                                    checked {% endif %} />                                                
                                             </label>
                                         </div>
                                     </label>
                                 </div>
                                 {% endfor %}
-
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a id="select_more" href="#" class="learn_btn c_blue" style="margin-top: 10px;" >Select More Organizations <i class="arrow_right"></i></a>
+                                    <!-- <a class="doc_border_btn smbtn" id="select_more" href="#">Select More Organizations</a> -->
+                                </div>
+                                <div class="col-md-10">
+                                    <div id="select_more_part" class="form-control" style="max-width: 100%; border: 1px solid #13aeda; margin: 10px 0px; display: none;">
+                                        <select class="multi-select form-control" id="src_org_list" name="src_org_list" multiple="multiple" onChange="getSelectedValuesFromList(this)" >
+                                            {% for all_org_info in all_org_infos %}
+                                            <option class="src_org_list_items" value="{{all_org_info.id}}" {% if all_org_info.id in src_orgs %}  
+                                                selected {% endif %}>{{all_org_info.organization_name}}({{all_org_info.short_name}})</option>
+                                            {% endfor %}    
+                                        </select>
+                                    </div>                                    
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- searchbox area section    -->
+                <!-- searchbox area section    -->  
                 <section>
                     <div class="breadcrumb_area mt-2">
-                        <div class="banner_search_form m-0 p-0"
-                            style="max-width: 100%; border: 1px solid #13aeda;">
+                        <div class="banner_search_form m-0 p-0" style="max-width: 100%; border: 1px solid #13aeda;">
                             <div class="input-group">
                                 <input type="search" id="search_term" name="search_term" class="form-control"
                                     placeholder='Search' value='{{ search_term }}' />
@@ -481,8 +509,8 @@
     <div class="row">
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
             <div class="row">
-                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" style="background: #f5fafc;">
-                    <div class="pt-2 sticky-top" style="top: 4.75rem;">
+                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" >   <!--  style="background: #f5fafc;" -->
+                    <div class="pt-2 sticky-top" style="top: 4.75rem;"> 
                         <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-list-check"></i> Selected Organization
                         </h5>
@@ -519,10 +547,9 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp" style="background: #fafcfe;">                
+                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">         <!--  style="background: #f5fafc;" -->        
                     <div class="pt-2" style="top: 75px;">
                         <div class="col-12">
                             <div class="row">
@@ -530,15 +557,7 @@
                                     <h5 class="mb-1 pt-1 pb-1" style="color: #05a;">
                                         <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                                     </h5>
-                                </div>
-                                {% comment %} <div class="col-6 pr-0 border-bottom">
-                                    <div class="form-check float-right" id="KM_chkDiv" >
-                                        <input class="form-check-input" type="checkbox" id="KM_FormCheck">
-                                        <label class="form-check-label bold" style="color: blueviolet;" for="KM_FormCheck">
-                                        View Knowlwdge Map
-                                        </label>
-                                    </div>
-                                </div>  {% endcomment %}
+                                </div>                                
                             </div>                           
                         </div>
                         <!-- <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
@@ -563,9 +582,12 @@
                             <div class="row community-box wow fadeInUp text-left">
                                 <div class="col-md-2">
                                     <div class="icon-container">
-                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
-                                        
-                                    {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
+                                        {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                        
+                                        {% else %}
+                                        <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                        {% endif %}
+                                    <!-- <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> -->
                                     </div>
                                 </div>
                                 <div class="col-md-10">
@@ -624,41 +646,6 @@
 </div>
 
 
-<!-- dragable and editable bootsttrap modal modal -->
-<div class="modal col-12 fade" id="dragable_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" data-backdrop="static" data-keyboard="false" >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header w-100">
-                <div class="row m-0 w-100">
-                    <div class="col-md-12 px-4 p-2 dragable_touch d-block">
-                        <h3 class="m-0 d-inline">MoWR - Knowledge Map</h3>
-                        <button type="button" id="btn_x" class="close close_btn" data-dismiss="modal" aria-label="Close" data-backdrop="static" data-keyboard="false" for="KM_FormCheck"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal-body p-3">
-                <!-- Put Your Modal Content Here Below -->
-                <label><h3>Put Your Modal Content (Knowledge Map) Here...</h3></label> <br/> 
-                <label>Search by river keyword to work the below buttons</label> <br/> 
-                <button id="btn_959" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_959')">Doc Id - 959</button> <br/>
-                <button id="btn_960" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_960')">Doc Id - 960</button> <br/> 
-                <button id="btn_961" type="submit" class="btn btn-primary button_for_link m-2" onclick="GetLink ('btn_961')">Doc Id - 961</button>         
-            </div>
-
-            <div class="modal-footer bg-light">
-                <div class="row w-100">
-                    <div class="col-12 text-right">
-                        <button type="reset" id="btnClose" class="btn btn-primary" data-dismiss="modal" for="KM_FormCheck">Close</button>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- dragable and editable bootsttrap modal modal Ends -->
-
-
 {% endblock %}
 
 
@@ -667,116 +654,52 @@
 
 <script>
 
-    // View the Checkbox (To Show Modal - Knowledge Map) While kewword exists on search box on Page Load
-    $(document).ready(function() {
-        if (!$("#search_term").val())
-        {
-            $("#KM_chkDiv").hide();
+$("#select_more").click(function () {     
+        
+    var dim = $('#select_more_part').is(":visible");
+        if (dim == false) {
+            $("#select_more_part").show();
         }
         else
         {
-            $("#KM_chkDiv").show(); 
-        }
-    });
+            $("#select_more_part").hide();
+        }             
+});
 
-    // View the Checkbox (To Show Modal - Knowledge Map) While kewword exists on search box on Search button click
-    $("#btnSearch").click(function () {
-
-        if (!$("#search_term").val())
-        {
-            $("#KM_chkDiv").hide();
-        }
-        // else
-        // {
-        //     $("#KM_chkDiv").show(); 
-        // }
-    });
-
-    // View Modal from Checkbox on click
-    $("#KM_FormCheck").change(function () {
-        if(this.checked){
-            //open modal
-            $("#dragable_modal").modal({
-                backdrop: false,
-                show: true,
-            });
-            // reset modal if it isn't visible
-            if (!$(".modal.in").length) {
-                $(".modal-dialog").css({             
-                    top: 20,
-                    left: 100,        
-                });
-            }
-
-            $(".modal-dialog").draggable({
-                cursor: "move",
-                handle: ".modal-header",
-            }); 
-
-            $('#dragable_modal').appendTo("body") 
-        }
-        else
-        {            
-            $('#dragable_modal').modal('hide');
-            ////$('#dragable_modal').modal('toggle');          
-        }
-    });
-
-    // On Modal Close button click
-    $("#btnClose").click(function () {
-        let isChecked = $('#KM_FormCheck')[0].checked;
-        
-        if(isChecked === true){
-            $('#KM_FormCheck')[0].checked = false;    
-        }
-        $('.community-box').css({background: '#fff'});
-    });
-
-    // On Modal Close(X) button click
-    $("#btn_x").click(function () {
-        let isChecked = $('#KM_FormCheck')[0].checked;
-        
-        if(isChecked === true){
-            $('#KM_FormCheck')[0].checked = false;    
-        }
-        $('.community-box').css({background: '#fff'});
-    }); 
-    
-    
     // **** From popup modal button click
-    function GetLink (btn_id) {
-        const arr = btn_id.split('_');
-        var doc_id = arr[arr.length - 1];
+    // function GetLink (btn_id) {
+    //     const arr = btn_id.split('_');
+    //     var doc_id = arr[arr.length - 1];
 
-        $('.community-box').each(function () {            
-            $(this).find('a').each(function () {
-                //alert($(this).attr('href'));
-                const arr_link  = $(this).attr('href').split('/');
-                var link_doc_id = arr_link[arr_link.length - 1];
+    //     $('.community-box').each(function () {            
+    //         $(this).find('a').each(function () {
+    //             //alert($(this).attr('href'));
+    //             const arr_link  = $(this).attr('href').split('/');
+    //             var link_doc_id = arr_link[arr_link.length - 1];
 
-                if ($.isNumeric(link_doc_id ))
-                {
-                    if (link_doc_id === doc_id)
-                    {
-                        const parentWithClass = $(this).closest('.community-box');
-                        parentWithClass.css({background: '#d5edf7'});                                          
-                        $(this).scrollToMe();                        
-                    }
-                    else 
-                    {
-                        const parentWithClass = $(this).closest('.community-box');
-                        parentWithClass.css({background: '#fff'});                                        
-                    } 
-                }               
-            });            
-        });
-    };
+    //             if ($.isNumeric(link_doc_id ))
+    //             {
+    //                 if (link_doc_id === doc_id)
+    //                 {
+    //                     const parentWithClass = $(this).closest('.community-box');
+    //                     parentWithClass.css({background: '#d5edf7'});                                          
+    //                     $(this).scrollToMe();                        
+    //                 }
+    //                 else 
+    //                 {
+    //                     const parentWithClass = $(this).closest('.community-box');
+    //                     parentWithClass.css({background: '#fff'});                                        
+    //                 } 
+    //             }               
+    //         });            
+    //     });
+    // };
 
-    jQuery.fn.extend({
-    scrollToMe: function () {
-        var x = jQuery(this).offset().top - 250;
-        jQuery('html,body').animate({scrollTop: x}, 500);
-    }});
+    // jQuery.fn.extend({
+    // scrollToMe: function () {
+    //     var x = jQuery(this).offset().top - 250;
+    //     jQuery('html,body').animate({scrollTop: x}, 500);
+    // }});
 
 
 </script>
@@ -823,6 +746,28 @@
 
     $(function () {
 
+        $("#src_org_list")
+            .multiselect({
+                maxHeight: 230,
+                buttonWidth: '100%',
+
+                enableFiltering: true,
+                filterPlaceholder: "Search",
+                enableCaseInsensitiveFiltering: true,
+
+                enableClickableOptGroups: true,
+                enableCollapsibleOptGroups: true,
+
+                selectAllText: "All Organizations",
+                selectAllValue: "",
+                allSelectedText: "All Organizations",
+                includeSelectAllOption: true,
+
+                nonSelectedText: "All Organizations",
+                nSelectedText: " selected",
+                disableIfEmpty: false,
+            });
+
         $("#src_doc_cats")
             .multiselect({
                 maxHeight: 230,
@@ -847,6 +792,127 @@
 
     });
 </script>
+
+<script type="text/javascript">
+
+function getSelectedValuesToList(SelectedItem) {
+
+    var OrgList = document.getElementById('src_org_list');
+
+    var len = OrgList.options.length;
+
+    for (var i = 0; i < len; i++) {        
+        if (OrgList.options[i].value == SelectedItem.value) {  
+                        
+            if(SelectedItem.checked == true)    
+            {    
+                OrgList.options[i].selected = true;  
+                
+                var destination = $(OrgList.options[i]).closest('#select_more_part');
+                console.log(destination);
+                $(destination).find(":checkbox[class='form-check-input'][value='"+ OrgList.options[i].value +"']").trigger('click');
+                //$(":checkbox[class='form-check-input'][value='"+ OrgList.options[i].value +"']").trigger('click');                                               
+            }
+            else
+            {
+                OrgList.options[i].selected = false;    
+                var destination = $(OrgList.options[i]).closest('#select_more_part');
+                $(destination).find(":checkbox[class='form-check-input'][value='"+ OrgList.options[i].value +"']").trigger('click');
+                // $(":checkbox[class='form-check-input'][value='"+ OrgList.options[i].value +"']").trigger('click');              
+            }            
+        }
+    }
+
+    //$("src_orgs").multiselect('reload');
+}
+
+
+function getSelectedValuesFromList(OrgList) {
+
+    var BWDB = document.getElementById('src_org_BWDB');
+    var WARPO = document.getElementById('src_org_WARPO');
+    var RRI = document.getElementById('src_org_RRI');
+    var JRC = document.getElementById('src_org_JRC');
+    var DBHWD = document.getElementById('src_org_DBHWD');
+    var IWM = document.getElementById('src_org_IWM');
+    var CEGIS = document.getElementById('src_org_CEGIS');
+
+    var len = OrgList.options.length;
+    
+    for (var i = 0; i < len; i++) {
+        opt = OrgList.options[i];
+
+        if (opt.selected) {            
+            if(opt.value == BWDB.value)
+            {
+                BWDB.checked = true;
+            }
+            else if(opt.value == WARPO.value)
+            {
+                WARPO.checked = true;
+            }
+            else if(opt.value == RRI.value)
+            {
+                RRI.checked = true;
+            }
+            else if(opt.value == JRC.value)
+            {
+                JRC.checked = true;
+            }
+            else if(opt.value == DBHWD.value)
+            {
+                DBHWD.checked = true;
+            }
+            else if(opt.value == IWM.value)
+            {
+                IWM.checked = true;
+            }
+            else if(opt.value == CEGIS.value)
+            {
+                CEGIS.checked = true;
+            } 
+            // else 
+            // opt.selected = true;           
+        }
+        else
+        {
+            if(opt.value == BWDB.value)
+            {
+                BWDB.checked = false;
+            }
+            else if(opt.value == WARPO.value)
+            {
+                WARPO.checked = false;
+            }
+            else if(opt.value == RRI.value)
+            {
+                RRI.checked = false;
+            }
+            else if(opt.value == JRC.value)
+            {
+                JRC.checked = false;
+            }
+            else if(opt.value == DBHWD.value)
+            {
+                DBHWD.checked = false;
+            }
+            else if(opt.value == IWM.value)
+            {
+                IWM.checked = false;
+            }
+            else if(opt.value == CEGIS.value)
+            {
+                CEGIS.checked = false;
+            }   
+            // else 
+            // opt.selected = false;  
+        }
+    }
+}
+
+</script>
+
+
 
 
 <!-- *****  Starts Read More and Less Style  ***** -->

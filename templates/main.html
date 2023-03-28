@@ -44,18 +44,27 @@
 
 
     <style>
+
+        body {
+            background-color: #ececec;
+        }
+        
         .container {
             max-width: 95% !important;
         }
 
         .preloader-bg {
-            background-image: url("{% static 'img/loadings/806_BT.gif' %}");
-            background-image: url("{% static 'img/loadings/806_GT.gif' %}");
+            /* background-image: url("{% static 'img/loadings/806_BT.gif' %}");
+            background-image: url("{% static 'img/loadings/806_GT.gif' %}"); */
+            background-image: url("{% static 'img/loadings/800_B.gif' %}");  /* Added */
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 90%;
-            width: 300px;
-            height: 300px;
+            width: 80px;    /* 300px; */
+            height: 22px;   /* 300px; */
+            margin-left: auto;  /* Added */
+            margin-right: auto; /* Added */
+            margin-bottom: 10px;
         }
 
         .footer-logo {
@@ -67,7 +76,7 @@
             color: #18c !important;
         }
 
-        .parallax>use {
+         .parallax>use {
             animation: move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
         }
 
@@ -88,7 +97,7 @@
         .parallax>use:nth-child(4) {
             animation-delay: -3s;
             animation-duration: 10.25s
-        }
+        } 
 
         @keyframes move-forever {
             0% {
@@ -102,6 +111,20 @@
 
     </style>
 
+    <style>
+        #myBar {
+        /* width: 10%;
+        height: 30px;
+        background-color: #04AA6D; 
+        font-size: 15px; */
+        float: left;        
+        text-align: center; /* To center it horizontally (if you want) */
+        line-height: 30px; /* To center it vertically */
+        color: rgb(14, 40, 80);        
+        }
+    </style>
+
+
 
     {% block style_content %}
 
@@ -109,20 +132,23 @@
 
 </head>
 
-<body class="d-flex flex-column min-vh-100" data-scroll-animation="true">
+<body class="_d-flex flex-column min-vh-100" data-scroll-animation="true">
     <!-- preloader section -->
     <div id="preloader">
         <div id="ctn-preloader" class="ctn-preloader">
-            <div class="round_spinner preloader-bg">
-                <div class="spinner"></div>
+            <div class="preloader-bg">  <!-- round_spinner -->
+                <!-- <div class="spinner"></div>
                 <div class="text">
-                    <h6 class="text-white">Loading... . .</h6>
-                </div>
-            </div>
-            <h2>Knowledge Repository, MoWR</h2>            
+                    <h6 class="text-white">Loading...</h6>
+                </div> -->
+            </div>            
+            <h5><div id="myBar">Please wait... 1%</div></h5>     
+            <!-- <h5>Knowledge Repository, MoWR</h5>             -->
         </div>
     </div>
 
+    
+    
     <!-- navbar with menu section -->
     <nav class="navbar navbar-expand-lg menu_one" id="sticky"
         style="background-image: linear-gradient(60deg, rgb(0, 145, 175) 0%, rgb(25, 45, 85) 70%);">
@@ -421,6 +447,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script> -->
 
+    
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
 
     <script src="{% static 'assets/bootstrap/js/popper.min.js' %}"></script>
@@ -446,6 +474,32 @@
 
     <script src="{% static 'js/main.js' %}"></script>
 
+    <script>
+        $(window).on('load', function() {
+ 
+         var i = 0;
+ 
+         if (i == 0) {
+             i = 1;
+             var elem = document.getElementById("myBar");
+             var width = 20;
+             var id = setInterval(frame, 10);
+             function frame() {
+             if (width >= 100) {
+                 clearInterval(id);
+                 i = 0;
+             } else {
+                 width = width + 2;
+                 // elem.style.width = width + "%";
+                 elem.innerHTML = "Progress: " + width  + "%";
+             }
+             }
+         }
+ 
+        });
+    </script>
+
+    
 
     {% block script_content %}
 

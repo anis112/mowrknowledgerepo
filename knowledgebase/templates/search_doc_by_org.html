@@ -289,15 +289,17 @@
         margin-bottom: 10px;
     }
 
-    .org-logo-BWDB {}
+    /* .org-logo-BWDB {
+
+    } */
 
     .org-logo-RRI {
         width: 72px;
     }
 
-    .org-logo-JRC {}
+    /* .org-logo-JRC {} */
 
-    .org-logo-DBHWD {}
+    /* .org-logo-DBHWD {} */
 
     .org-logo-WARPO {
         margin-top: 15px;
@@ -383,7 +385,12 @@
         color: #2ce !important;
     }
 
-    
+    /* 
+    .sticky-top {        
+        position: initial !important;        
+        z-index: 100 !important;
+    } */
+
 </style>
 
 {% endblock %}
@@ -420,8 +427,9 @@
                                 {% for org_info in org_infos %}
                                 <div class="col text-center wow fadeInUp">
                                     <label class="w-100" for="src_org_{{org_info.short_name}}">
+                                        <!-- style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg)" -->
                                         <div class="org-content text-center" data-bs-toggle="tooltip" data-bs-html="true"
-                                            style="background-image: url({% static 'img/org_img/bg/' %}{{org_info.short_name}}.jpg);"
+                                            style="background-image: url('../img/org_img/bg/{{org_info.short_name}}.jpg')"
                                             title="{{org_info.organization_name}} ({{org_info.short_name}})">
 
                                             <img src="{% static 'img/org_img/logo/' %}{{org_info.short_name}}.png"
@@ -482,11 +490,10 @@
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
             <div class="row">
                 <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" style="background: #f5fafc;">
-                    <div class="pt-2 sticky-top" style="top: 4.75rem;">
+                    <div class="pt-2" style="top: 4.75rem;"></div><!-- <div class="pt-2 sticky-top" style="top: 4.75rem;"> -->
                         <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-list-check"></i> Selected Organization
-                        </h5>
-                        
+                        </h5>                        
                         <div class="row" >
                             <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
                                 <div class="nav flex-column">
