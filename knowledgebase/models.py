@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.utils.text import slugify
 #from accounts.models import CustomUser
 
 # Create your models here.
@@ -76,6 +77,24 @@ class DataAccessCategory(models.Model):
         ordering = ['id']
 
 
+from django.db import models
+import os
+
+
+def get_upload_path(instance, filename):
+    """Function to generate a new filename for uploaded files"""
+    # Get the value of the property you want to use in the filename
+    doc_id = slugify(instance.title)
+    #property_value = instance.id
+    name, ext = os.path.splitext(filename)
+    #new_name = f'{doc_id}-{name}{ext}'
+    new_name = f'{doc_id}{ext}'
+    return os.path.join('static/documents/', new_name)
+
+
+
+
+
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
     #id = models.PositiveSmallIntegerField(primary_key=True)
@@ -100,10 +119,13 @@ class Document(models.Model):
         DataAccessCategory, on_delete=models.PROTECT, null=True)
     publication_date = models.CharField(max_length=50, null=True, blank=True)
 
-    file_name = models.FileField(
-        upload_to='static/document', max_length=500, null=True, blank=True)
-    thumbnail = models.ImageField(
-        upload_to='static/img', null=True, blank=True)
+    # file_name = models.FileField(
+    #     upload_to='static/document', max_length=500, null=True, blank=True)
+    # thumbnail = models.ImageField(
+    #     upload_to='static/img', null=True, blank=True)
+    
+    file_name = models.FileField(upload_to=get_upload_path, null=True, blank=True)
+    thumbnail = models.ImageField(upload_to=get_upload_path, null=True, blank=True)
 
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
