@@ -41,7 +41,7 @@ class Organization(models.Model):
     phone_no = models.CharField(max_length=20, blank=True)
     mobile_no = models.CharField(max_length=14, blank=True)
     logo = models.ImageField(upload_to='static/logo', blank=True)  
-    organization_type = models.ForeignKey(OrganizationType, on_delete=models.PROTECT, null=True)
+    #organization_type = models.ForeignKey(OrganizationType, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
         return self.organization_name
