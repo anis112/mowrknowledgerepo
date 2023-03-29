@@ -20,6 +20,7 @@ class OrganizationAdmin(admin.ModelAdmin):
     search_fields = ['organization_name__istartswith']
 
 
+
 @admin.register(DataCategory)
 class DataCategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'category_name', 'parent', 'organization']
