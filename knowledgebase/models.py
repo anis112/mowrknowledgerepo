@@ -105,11 +105,8 @@ def get_upload_path(instance, filename):
     name, ext = os.path.splitext(filename)
 
     org_name = instance.organization.short_name
-    print(org_name)
     doc_access_cat = instance.access_category.category_name
-    print(doc_access_cat)
     doc_id = Document.objects.aggregate(Max('id'))['id__max']
-    print(doc_id)
     
     base_path = os.path.join('static', 'documents', org_name, doc_access_cat)
     # path="static/documents/JRC/Public/document.pdf"
@@ -121,13 +118,10 @@ def get_upload_path_thumb(instance, filename):
     name, ext = os.path.splitext(filename)
 
     org_name = instance.organization.short_name
-    print(org_name)
     doc_access_cat = instance.access_category.category_name
-    print(doc_access_cat)
     doc_id = Document.objects.aggregate(Max('id'))['id__max']
-    print(doc_id)
     
-    base_path = os.path.join('static', 'documents', org_name, doc_access_cat)
+    base_path = os.path.join('static', 'documents', org_name, doc_access_cat, 'thumbnail')
     # path="static/documents/JRC/Public/document.pdf"
     new_name = f'thumb_{doc_id}{ext}'
     return os.path.join(base_path, new_name)
