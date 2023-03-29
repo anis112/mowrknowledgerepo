@@ -1,10 +1,30 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.utils.text import slugify
+import os
+from django.db.models import Max
+
 #from accounts.models import CustomUser
 
 # Create your models here.
 
 # new tables
+
+
+
+
+class OrganizationType(models.Model):
+    id = models.PositiveSmallIntegerField(primary_key=True)
+    type_name = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.type_name
+
+    class Meta:
+        verbose_name_plural = "Organization Types"
+        db_table = 'lkp_organization_types'
+        ordering = ['id']   
+
 
 
 class Organization(models.Model):
@@ -21,8 +41,8 @@ class Organization(models.Model):
     email = models.EmailField(max_length=100, blank=True)
     phone_no = models.CharField(max_length=20, blank=True)
     mobile_no = models.CharField(max_length=14, blank=True)
-    logo = models.ImageField(
-        upload_to='static/logo', blank=True)
+    logo = models.ImageField(upload_to='static/logo', blank=True)  
+    organization_type = models.ForeignKey(OrganizationType, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
         return self.organization_name
@@ -48,11 +68,9 @@ class DataCategory(models.Model):
     id = models.PositiveSmallIntegerField(primary_key=True)
     category_name = models.CharField(max_length=100)
     parent = models.PositiveSmallIntegerField(null=True)
-    data_common_category = models.ForeignKey(
-        DataCommonCategory, on_delete=models.PROTECT, null=True)
+    data_common_category = models.ForeignKey(DataCommonCategory, on_delete=models.PROTECT, null=True)
     #is_organizational_data = models.BooleanField(null=True)
-    organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, null=True)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
         return self.category_name
@@ -74,17 +92,48 @@ class DataAccessCategory(models.Model):
         verbose_name_plural = "Data Access Categories"
         db_table = 'lkp_data_access_categories'
         ordering = ['id']
+        
+     
+def get_upload_path(instance, filename):
+    """Function to generate a new filename for uploaded files"""
+    # Get the value of the property you want to use in the filename  
+    #doc_id=len(Document.objects)==0 and 1 or Document.objects.order_by('id').first().id+1
+    # doc_id = slugify(instance.title)
+    #property_value = instance.id
+    #new_name = f'{doc_id}-{name}{ext}'
+
+    name, ext = os.path.splitext(filename)
+
+    org_name = instance.organization.short_name
+    doc_access_cat = instance.access_category.category_name
+    doc_id = Document.objects.aggregate(Max('id'))['id__max']
+    
+    base_path = os.path.join('static', 'documents', org_name, doc_access_cat)
+    # path="static/documents/JRC/Public/document.pdf"
+    new_name = f'{doc_id}{ext}'
+    return os.path.join(base_path, new_name)
+
+def get_upload_path_thumb(instance, filename):
+    """Function to generate a new filename for uploaded files"""
+    name, ext = os.path.splitext(filename)
+
+    org_name = instance.organization.short_name
+    doc_access_cat = instance.access_category.category_name
+    doc_id = Document.objects.aggregate(Max('id'))['id__max']
+    
+    base_path = os.path.join('static', 'documents', org_name, doc_access_cat, 'thumbnail')
+    # path="static/documents/JRC/Public/document.pdf"
+    new_name = f'thumb_{doc_id}{ext}'
+    return os.path.join(base_path, new_name)
 
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
     #id = models.PositiveSmallIntegerField(primary_key=True)
 
-    organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, null=True)
+    organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
 
-    data_category = models.ForeignKey(
-        DataCategory, on_delete=models.PROTECT, null=True)
+    data_category = models.ForeignKey(DataCategory, on_delete=models.PROTECT, null=True)
 
     # sub_category_id = models.ForeignKey("SubCategory", on_delete=models.PROTECT, null=True)
     # sub_sub_category_id = models.ForeignKey("SubSubCategory", on_delete=models.PROTECT, null=True)
@@ -100,10 +149,13 @@ class Document(models.Model):
         DataAccessCategory, on_delete=models.PROTECT, null=True)
     publication_date = models.CharField(max_length=50, null=True, blank=True)
 
-    file_name = models.FileField(
-        upload_to='static/document', max_length=500, null=True, blank=True)
-    thumbnail = models.ImageField(
-        upload_to='static/img', null=True, blank=True)
+    # file_name = models.FileField(
+    #     upload_to='static/document', max_length=500, null=True, blank=True)
+    # thumbnail = models.ImageField(
+    #     upload_to='static/img', null=True, blank=True)
+    
+    file_name = models.FileField(upload_to=get_upload_path, max_length=500, null=True, blank=True)
+    thumbnail = models.ImageField(upload_to=get_upload_path_thumb, null=True, blank=True)
 
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
