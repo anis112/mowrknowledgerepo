@@ -8,8 +8,7 @@ urlpatterns = [
     path('', views.dashboard, name="dashboard"),
     path('orgsearch/', views.orgsearch, name="orgsearch"),
     path('docsearch/', views.docsearch, name="docsearch"),
-    path('national_international/', views.national_international,
-         name="national_international"),
+    path('national_international/', views.national_international, name="national_international"),
     path('SearchResult1/', views.SearchResult1, name="SearchResult1"),
     path('doc-details/', views.doc_details, name="doc-details"),
     path('imp_links/', views.imp_links, name="imp_links"),
@@ -59,8 +58,11 @@ urlpatterns = [
     path('search-by-cat/', views.search_doc_by_cat_test, name="search-by-cat"),
     path('search-by-cat/<search_term>', views.search_doc_by_cat_test, name="search-by-cat"),
 
-    path('search-by-nat/', views.search_doc_by_nat, name="search-by-nat"),
-    path('search-by-nat/<search_term>', views.search_doc_by_nat, name="search-by-nat"),
+    path('search-by-nat/', views.search_doc_by_other, name="search-by-nat"),
+    path('search-by-nat/<search_term>', views.search_doc_by_other, name="search-by-nat"),
+
+     #path('search-by-nat/', views.search_doc_by_nat, name="search-by-nat"),
+     #path('search-by-nat/<search_term>', views.search_doc_by_nat, name="search-by-nat"),
     
     path('document-details/', views.document_details, name="document-details"),
     path('document-details/<int:id>', views.document_details, name="document-details"),
