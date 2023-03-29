@@ -102,12 +102,13 @@ WSGI_APPLICATION = 'mowrknowledgerepo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 # live_db
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': 'MOWKBDB',
         'USER': 'MOWKBAdmin',
-        'PASSWORD': '#DbsMoWRKb@23',
+        'PASSWORD': '#MoWKb#DbAdmin$2#23',
         'HOST': '202.53.173.185',
         'PORT': '1521',
     }

@@ -41,7 +41,7 @@ class Organization(models.Model):
     phone_no = models.CharField(max_length=20, blank=True)
     mobile_no = models.CharField(max_length=14, blank=True)
     logo = models.ImageField(upload_to='static/logo', blank=True)  
-    #organization_type = models.ForeignKey(OrganizationType, on_delete=models.PROTECT, null=True)
+    organization_type = models.ForeignKey(OrganizationType, on_delete=models.PROTECT, null=True)
 
     def __str__(self) -> str:
         return self.organization_name
@@ -93,9 +93,6 @@ class DataAccessCategory(models.Model):
         ordering = ['id']
         
      
-
-
-
 def get_upload_path(instance, filename):
     """Function to generate a new filename for uploaded files"""
     # Get the value of the property you want to use in the filename  
@@ -120,8 +117,7 @@ class Document(models.Model):
 
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
 
-    data_category = models.ForeignKey(
-        DataCategory, on_delete=models.PROTECT, null=True)
+    data_category = models.ForeignKey(DataCategory, on_delete=models.PROTECT, null=True)
 
     # sub_category_id = models.ForeignKey("SubCategory", on_delete=models.PROTECT, null=True)
     # sub_sub_category_id = models.ForeignKey("SubSubCategory", on_delete=models.PROTECT, null=True)
@@ -142,7 +138,7 @@ class Document(models.Model):
     # thumbnail = models.ImageField(
     #     upload_to='static/img', null=True, blank=True)
     
-    file_name = models.FileField(upload_to=get_upload_path, null=True, blank=True)
+    file_name = models.FileField(upload_to=get_upload_path, max_length=500, null=True, blank=True)
     thumbnail = models.ImageField(upload_to=get_upload_path, null=True, blank=True)
 
     keywords = models.CharField(max_length=1000, null=True, blank=True)

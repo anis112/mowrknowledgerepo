@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataAccessCategory, DataCategory,
-                     Document, Organization)
+                     Document, Organization,OrganizationType)
 
 
 from .forms import DocumentForm
@@ -12,7 +12,7 @@ from .forms import DocumentForm
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ['short_name','organization_name', 
+    list_display = ['short_name','organization_name','organization_type', 
                     'chief_designation', 'focal_person', 'email', 'phone_no']
     list_editable = ['organization_name', 'focal_person']
     list_per_page = 50
@@ -143,6 +143,14 @@ class ArticlePublishCategoryAdmin(admin.ModelAdmin):
     list_display = ['id', 'category_name']
     list_editable = ['category_name']
     list_per_page = 50
+
+
+@admin.register(OrganizationType)
+class OrganizationTypeAdmin(admin.ModelAdmin):
+    list_display = ['id', 'type_name']
+    list_editable = ['type_name']
+    list_per_page = 50
+
 
 
 #admin.site.register(Article, ArticleAdmin)
