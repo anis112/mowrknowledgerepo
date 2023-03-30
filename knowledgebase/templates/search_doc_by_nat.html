@@ -495,14 +495,14 @@
                                     {% comment %}{% if doc.organization.organization_type.id in src_doc_type %} {% endcomment %}
                                     {% comment %}   {% ifchanged src_doc_type %} {% endcomment %}
                                             <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                                href="#{{doc.organization.organization_type.type_name}}_{{doc.organization.organization_type.id}}">
+                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
                                                 <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_type.type_name}}
                                             </a>
                                             {% comment %}  {% endifchanged %}{% endcomment %}
 
                                         {% ifchanged doc.data_category.category_name %}
                                             <a class="nav-link scat-title" data-wow-delay="0.2s"
-                                                href="#{{doc.organization.organization_type.type_name}}_{{doc.organization.organization_type.id}}_{{doc.data_category.category_name}}">
+                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
                                                 {{doc.data_category.category_name}} 
                                             </a>
                                         {% endifchanged %}
