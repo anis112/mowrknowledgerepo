@@ -427,25 +427,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row wow fadeInUp">                                 
-                                
-                                <div class="col-md-2 mt-3">                
-                                    <label class="doc_border_btn" for="national_doc" style="width: 100%; padding: 10px 5px; ">
-                                        <i class="fa-regular fa-map-location-dot fa-fw"></i><label for="national_doc" style="margin: 10px 0px 0px 15px;">National</label><i class="arrow_right"></i>
-                                        <div class="mb-3" style="float: right; bottom: 15px; right: -6px;">
-                                            <input type="checkbox" class="control-input" id="national_doc" name="src_doc_type" value="National">
-                                            <!-- <label class="custom-control-label" for="customCheck1"></label> -->
-                                        </div> 
-                                    </label>
-                                </div>                                
-                                <div class="col-md-2 mt-3">
-                                    <label class="doc_border_btn" for="international_doc" style="width: 100%; padding: 10px 5px;">
-                                        <i class="fa-sharp fa-solid fa-earth-asia fa-fw"></i><label for="international_doc" style="margin: 10px 0px 0px 15px;">International</label><i class="arrow_right"></i>
-                                        <div class="mb-3" style="float: right; bottom: 15px; right: -6px;">
-                                            <input type="checkbox" class="control-input" id="international_doc" name="src_doc_type" value="International">
-                                            <!-- <label class="custom-control-label" for="customCheck2"></label> -->
-                                        </div>  
-                                    </label>
-                                </div> 
+                                {% for org_type in org_types %}
+                                    <div class="col-md-2 mt-3">                
+	                                    <label class="doc_border_btn" for="doc_type_{{org_type.id}}" style="width: 100%; padding: 10px 5px; ">                                       
+		                                    <label for="doc_type_{{org_type.id}}" style="margin: 10px 0px 0px 15px;">{{org_type}}</label><i class="arrow_right"></i>
+		                                    <div class="mb-3" style="float: right; bottom: 15px; right: -6px;">
+			                                    <input type="checkbox" class="control-input" id="doc_type_{{org_type.id}}" name="src_doc_type" value="{{org_type.id}}" {% if src_doc_type in org_type.id  %}
+			                                        checked {% endif %} >                                           
+		                                    </div> 
+	                                    </label>
+                                    </div> 
+                                {% endfor %}
 
                             </div>
                         </div>
@@ -495,71 +487,27 @@
                         <div class="row" >
                             <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
                                 <div class="nav flex-column">    
-                                    <a class="nav-link cat-title" data-wow-delay="0.2s" href="#">
-                                        <i class="fa-solid fa-list fa-fw"></i><strong>{{s_doc_type}}</strong>
-                                    </a>
+                                    <!-- <a class="nav-link cat-title" data-wow-delay="0.2s" href="#">
+                                        <i class="fa-solid fa-list fa-fw"></i><strong>{{src_doc_type}}</strong>
+                                    </a> -->
 
-                                    {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
-                                    {% if doc.data_category.data_common_category.id in src_doc_cats %}
-                                        {% ifchanged s_doc_type %}
+                                    {% for doc in documents %}
+                                    {% comment %}{% if doc.organization.organization_type.id in src_doc_type %} {% endcomment %}
+                                    {% comment %}   {% ifchanged src_doc_type %} {% endcomment %}
                                             <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                                href="#{{s_doc_type}}">
-                                                <i class="fa-solid fa-list fa-fw"></i> {{doc.data_category.data_common_category.category_name}}
+                                                href="#{{doc.organization.organization_type.type_name}}_{{doc.organization.organization_type.id}}">
+                                                <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_type.type_name}}
                                             </a>
-                                        {% endifchanged %}
+                                            {% comment %}  {% endifchanged %}{% endcomment %}
 
-                                        {% ifchanged doc.organization.organization_name %}
+                                        {% ifchanged doc.data_category.category_name %}
                                             <a class="nav-link scat-title" data-wow-delay="0.2s"
-                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
-                                                {{doc.organization.organization_name}} ({{doc.organization.short_name}})
+                                                href="#{{doc.organization.organization_type.type_name}}_{{doc.organization.organization_type.id}}_{{doc.data_category.category_name}}">
+                                                {{doc.data_category.category_name}} 
                                             </a>
                                         {% endifchanged %}
-                                    {% endif %}
-                                {% endfor %}
-
-
-
-                                    <!-- {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
-                                        {% if doc.data_category.data_common_category.id in src_doc_cats %}
-                                            {% ifchanged doc.data_category.data_common_category.category_name %}
-                                                <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
-                                                    <i class="fa-solid fa-list fa-fw"></i> {{doc.data_category.data_common_category.category_name}}
-                                                </a>
-                                            {% endifchanged %}
-
-                                            {% ifchanged doc.organization.organization_name %}
-                                                <a class="nav-link scat-title" data-wow-delay="0.2s"
-                                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
-                                                    {{doc.organization.organization_name}} ({{doc.organization.short_name}})
-                                                </a>
-                                            {% endifchanged %}
-                                        {% endif %}
-                                    {% endfor %}                                 -->
-                                    <!-- {% for doc in documents|dictsort:'organization.organization_name' %}
-                                        {% if doc.organization.id in src_orgs %}
-                                            {% ifchanged doc.organization.organization_name %}
-                                                <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                                <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_name}}
-                                                ({{doc.organization.short_name}})
-                                                </a>
-                                            {% endifchanged %}
-                                            {% comment %} {% if doc.data_category.category_name is null %} {% endcomment %}
-                                                {% ifchanged doc.data_category.category_name %}
-                                                    <a class="nav-link scat-title"
-                                                        href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                                       
-                                                        {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
-                                                            class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
-                                                        {% endcomment %}
-                                                        
-                                                        {{doc.data_category.category_name}}
-                                                    </a>
-                                                {% endifchanged %}
-                                            {% comment %} {% endif %} {% endcomment %}
-                                        {% endif %}
-                                    {% endfor %} -->
+                                        {% comment %}  {% endif %}{% endcomment %}
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
@@ -581,14 +529,13 @@
                         </h5> -->
 
                         {% for doc in documents %}
-
                             {% ifchanged doc.data_category.category_name %}
                                 <div class="row wow fadeInUp">
                                     <div class="col-md-12">
                                         <span
                                             id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
                                             class="data-cat-title" data-wow-delay="0.2s">
-                                            <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
+                                            <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_type}}
                                             ({{doc.data_category.category_name}})
                                         </span>
                                     </div>

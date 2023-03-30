@@ -14,7 +14,7 @@ from accounts.models import CustomUser
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataCategory, DataCommonCategory,
-                     Document, Organization)
+                     Document, Organization, OrganizationType)
 from django.http import HttpResponse
 
 
@@ -666,7 +666,7 @@ def search_doc_by_nat(request, search_term='', org_ids=None, data_category_ids=N
 
     return render(request, 'search_doc_by_nat.html', context)
 
-def search_doc_by_other(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -674,30 +674,27 @@ def search_doc_by_other(request, search_term='', org_ids=None, data_category_ids
         if req_query and req_query.get("search_term"):
             search_term = req_query.get("search_term", None)
             data_category_ids = req_query.get("src_doc_cats", None)
-            #org_ids = req_query.get("src_org_list", None)
-            org_ids = req_query.get("src_orgs", None)
             s_doc_type = req_query.get("src_doc_type", None)                  
-        
+            # print(s_doc_type)
 
         if not isinstance(search_term, str):
             search_term = search_term[0]
         
         if not request.user.is_authenticated:
-            public_documents = Document.objects.filter(access_category=1, organization__gt=7)
-            #  print(type(public_documents))
-            context = show_search_results(public_documents, search_term, org_ids, data_category_ids)
+            public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
+            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids)
         else:
             if request.user.is_superuser:
-                all_documents = Document.objects.filter(organization__gt=7)         # Document.objects.all()
-                context = show_search_results(all_documents, search_term, org_ids, data_category_ids)
+                all_documents = Document.objects.exclude(organization__organization_type=1)
+                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids)
             else:
                 user_id = request.user
                 user_organization_id = user_id.organization_id
 
-                public_documents = Document.objects.filter(access_category=1, organization__gt=7)
+                public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
                 user_org_documents = Document.objects.filter(organization = user_organization_id)
                 documents = user_org_documents | public_documents
-                context = show_search_results(documents, search_term, org_ids, data_category_ids), {'s_doc_type': s_doc_type}
+                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids), {'s_doc_type': s_doc_type}
 
     return render(request, 'search_doc_by_nat.html', context)
 
@@ -806,9 +803,9 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
             doc_count = len(documents)
     
 
-    cond_org_fixed = Q(id__range=(1, 7))                                          # Added by MNH/ARH
+    #cond_org_fixed = Q(id__range=(1, 7))                                          # Added by MNH/ARH
 
-    org_infos = Organization.objects.filter(cond_org_fixed).order_by('id')        # Added by MNH/ARH
+    org_infos = Organization.objects.filter(organization_type=1).order_by('id')   # Added by MNH/ARH
     all_org_infos = Organization.objects.all().order_by('id')                     # Added by MNH/ARH
     # org_infos = Organization.objects.all().order_by('id')                       # Comment by MNH/ARH
     doc_cats = DataCommonCategory.objects.all().order_by('id')
@@ -820,6 +817,49 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     # context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
         #            'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
         #            'org_infos': org_infos, 'doc_cats': doc_cats}
+
+    return context
+
+
+def show_search_results_for_other_doc(documents, search_term='', org_types=None, data_category_ids=None):
+    doc_count = len(documents)
+    if len(documents) < 1:
+        documents = Document.objects.none()
+    
+    if (search_term == '' and data_category_ids == None and org_types == None):
+         documents = documents.all()[:100]
+         print('hello')
+
+    else:
+        if search_term is not None and search_term != '':
+            cond = Q(title__icontains=search_term) | Q(
+                subject__icontains=search_term) | Q(keywords__icontains=search_term)
+
+            documents = documents.filter(cond)
+            doc_count = len(documents)
+            print('Hi')
+        
+        if org_types and org_types[0] != '':
+            org_types = [int(id) for id in org_types]
+            print(org_types)
+            cond_org_type = Q(organization__organization_type_id__in=org_types)
+
+            documents = documents.filter(cond_org_type)
+            doc_count = len(documents)
+
+
+        if data_category_ids and data_category_ids[0] != '':
+            data_category_ids = [int(id) for id in data_category_ids]
+            cond_cat = Q(data_category__data_common_category_id__in=data_category_ids)
+
+            documents = documents.filter(cond_cat).order_by('organization_id', 'data_category_id')
+            doc_count = len(documents)
+
+    org_types = OrganizationType.objects.exclude(id=1).order_by('id')                   
+    doc_cats = DataCommonCategory.objects.all().order_by('id')
+
+    context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
+                'search_term': search_term, 'src_doc_cats': data_category_ids, 'org_types': org_types, 'doc_cats': doc_cats}
 
     return context
 
