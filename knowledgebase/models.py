@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.utils.text import slugify
 import os
+from django.db.models import Max
 
 #from accounts.models import CustomUser
 
@@ -97,18 +98,33 @@ def get_upload_path(instance, filename):
     """Function to generate a new filename for uploaded files"""
     # Get the value of the property you want to use in the filename  
     #doc_id=len(Document.objects)==0 and 1 or Document.objects.order_by('id').first().id+1
-    #MyModel.objects.aggregate(Max('id'))['id__max']
-    doc_id = slugify(instance.title)
+    # doc_id = slugify(instance.title)
     #property_value = instance.id
-    name, ext = os.path.splitext(filename)
     #new_name = f'{doc_id}-{name}{ext}'
+
+    name, ext = os.path.splitext(filename)
+
+    org_name = instance.organization.short_name
+    doc_access_cat = instance.access_category.category_name
+    doc_id = Document.objects.aggregate(Max('id'))['id__max']
     
-    #org_name=instance.organization.short_name
-    
-    #path="tatic/documents/JRC/Public/document.pdf"
-    
+    base_path = os.path.join('static', 'documents', org_name, doc_access_cat)
+    # path="static/documents/JRC/Public/document.pdf"
     new_name = f'{doc_id}{ext}'
-    return os.path.join('static/documents/', new_name)
+    return os.path.join(base_path, new_name)
+
+def get_upload_path_thumb(instance, filename):
+    """Function to generate a new filename for uploaded files"""
+    name, ext = os.path.splitext(filename)
+
+    org_name = instance.organization.short_name
+    doc_access_cat = instance.access_category.category_name
+    doc_id = Document.objects.aggregate(Max('id'))['id__max']
+    
+    base_path = os.path.join('static', 'documents', org_name, doc_access_cat, 'thumbnail')
+    # path="static/documents/JRC/Public/document.pdf"
+    new_name = f'thumb_{doc_id}{ext}'
+    return os.path.join(base_path, new_name)
 
 
 class Document(models.Model):
@@ -139,7 +155,7 @@ class Document(models.Model):
     #     upload_to='static/img', null=True, blank=True)
     
     file_name = models.FileField(upload_to=get_upload_path, max_length=500, null=True, blank=True)
-    thumbnail = models.ImageField(upload_to=get_upload_path, null=True, blank=True)
+    thumbnail = models.ImageField(upload_to=get_upload_path_thumb, null=True, blank=True)
 
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)

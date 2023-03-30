@@ -263,7 +263,7 @@
                                     Organization</a> </li>
                             <li class="nav-item"><a href="{% url 'search-by-cat' %}" class="nav-link">Search by Category
                                     </a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Search
+                            <li class="nav-item"><a href="{% url 'search-by-nat' %}" class="nav-link">Search
                                     Other Document(s)</a> </li>
                         </ul>
                     </li>
@@ -491,7 +491,7 @@
              } else {
                  width = width + 2;
                  // elem.style.width = width + "%";
-                 elem.innerHTML = "Progress: " + width  + "%";
+                 elem.innerHTML = "Please wait: " + width  + "%";
              }
              }
          }

@@ -5,6 +5,7 @@
 {% block style_content %}
 
 <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-multiselect.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/popup_modal_style.css' %}">  
 
 <style>
     
@@ -251,14 +252,7 @@
         transition: all 0.4s linear;
     }
 
-
-
-    .com-title {
-        font-size: 0.8rem !important;
-        font-style: italic;
-        text-transform: uppercase;
-    }
-
+    
     .community-box {
         margin: 0 0 0.75rem 0;
         padding: 1rem 0;
@@ -271,25 +265,54 @@
     }
 
 
-    
-    .cat-content {
-        display: inline-block;
-        border: 2px solid #75cade;
-        min-height: 90%;
-        padding: 0.35rem 2.25rem;
-        color:  #138cd8;
-        font-size: 14px;
-        font-weight: 500;
-        background: #f3fcfe;
-        border-radius: 0.25rem;
-        transition: all 0.3s linear, color 0.2s;
+
+    .org-content {
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        padding: 0.75rem;
+        width: auto;
+        height: 7.5rem;
+        min-width: 7.5rem;
+        box-shadow: 1px 2px 3px 2px rgba(75, 150, 175, 0.25);
+
+        background-image: linear-gradient(to left bottom, #eee, #ecedee, #f4f4f4, #e7eaee, #e4e9ee);
+        background-image: url(/{{static}}/img/banner_back/bann1.jpg);
+        background-color: #f5fcfd;
     }
 
-    .cat-content:hover {
-        border-color: #15a3c5;
-        color: #fff;
-        background: #daeefa;
-        box-shadow: 2px 2px 5px 0px rgba(13, 120, 145, 0.85);
+    .org-content:hover {
+        border: 1px solid #ccc;
+        box-shadow: 1px 5px 15px 3px rgba(70, 100, 150, 0.25);
+    }
+
+    .org-logo {
+        width: 90px;
+        margin-bottom: 10px;
+    }
+
+    /* .org-logo-BWDB {} */
+
+    .org-logo-RRI {
+        width: 72px;
+    }
+
+    /* .org-logo-JRC {} */
+
+    /* .org-logo-DBHWD {} */
+
+    .org-logo-WARPO {
+        margin-top: 15px;
+        margin-bottom: 17px;
+    }
+
+    .org-logo-IWM {
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    .org-logo-CEGIS {
+        margin-top: 20px;
+        margin-bottom: 30px;
     }
 
 
@@ -345,6 +368,7 @@
         border-radius: 0.25rem;
         box-shadow: 2px 2px 3px 1px rgba(5, 45, 58, 0.46);
     }
+    
 
     .smbtn {
         padding: 0.15rem 0.75rem 0.15rem 0.5rem;
@@ -360,16 +384,17 @@
         background: none !important;
     }
 
-
     .btn-rm:hover {
         margin-left: 0.25rem;
         color: #2ce !important;
     }
-    
+
     .sticky-top{
         z-index: 0 !important;
     }
 
+
+    
 </style>
 
 {% endblock %}
@@ -377,8 +402,7 @@
 
 {% block content %}
 
-
-<div class="container-fluid mt-3 pl-3 pr-3">    
+<div class="container-fluid mt-3 pl-3 pr-3">
     <div class="row">
         <div class="col-md-3 text-left">
             <a href="{% url 'dashboard' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
@@ -386,10 +410,9 @@
             </a>
         </div>
         <div class="col-md-6 text-center">
-            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid #147; color: #05a;">Search by Category</h5>
+            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid #27a; color: #05a;">Search Other Documents</h5>
         </div>
         <div class="col-md-3 text-right">
-            <!-- <a href="/knowledgebase/category_mapping/"> Category Mapping</a> -->
         </div>
     </div>
 </div>
@@ -399,54 +422,57 @@
     <div class="row">
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
             <form action="." method="GET" multiple>
-                <!-- List of Categories -->
+                <!-- List of Organization -->
                 <section>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row wow fadeInUp">
-
-                                {% for cat_info in doc_cats %}
-                                    <div class="col-md text-center wow fadeInUp">
-                                        <label class="cat-content w-100" style="padding: 0.5rem 0.5rem;" for="src_cat_{{cat_info.id}}">
-                                            <div class="text-center" data-bs-toggle="tooltip" data-bs-html="true"
-                                                title="{{cat_info.category_name}}">
-                                                <label style="color:#385878;">
-                                                    {{cat_info.category_name}}
-                                                    <br />
-                                                    <input type="checkbox" class="control-input"
-                                                        id="src_cat_{{cat_info.id}}" name="src_doc_cats"
-                                                        value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
-                                                        checked {% endif %} />
-                                                </label>
-                                            </div>
-                                        </label>
-                                    </div>
-                                {% endfor %}
+                            <div class="row wow fadeInUp">                                 
+                                
+                                <div class="col-md-2 mt-3">                
+                                    <label class="doc_border_btn" for="national_doc" style="width: 100%; padding: 10px 5px; ">
+                                        <i class="fa-regular fa-map-location-dot fa-fw"></i><label for="national_doc" style="margin: 10px 0px 0px 15px;">National</label><i class="arrow_right"></i>
+                                        <div class="mb-3" style="float: right; bottom: 15px; right: -6px;">
+                                            <input type="checkbox" class="control-input" id="national_doc" name="src_doc_type" value="National">
+                                            <!-- <label class="custom-control-label" for="customCheck1"></label> -->
+                                        </div> 
+                                    </label>
+                                </div>                                
+                                <div class="col-md-2 mt-3">
+                                    <label class="doc_border_btn" for="international_doc" style="width: 100%; padding: 10px 5px;">
+                                        <i class="fa-sharp fa-solid fa-earth-asia fa-fw"></i><label for="international_doc" style="margin: 10px 0px 0px 15px;">International</label><i class="arrow_right"></i>
+                                        <div class="mb-3" style="float: right; bottom: 15px; right: -6px;">
+                                            <input type="checkbox" class="control-input" id="international_doc" name="src_doc_type" value="International">
+                                            <!-- <label class="custom-control-label" for="customCheck2"></label> -->
+                                        </div>  
+                                    </label>
+                                </div> 
 
                             </div>
                         </div>
-                    </div>
+                    </div>                     
                 </section>
 
-                <!-- searchbox area section    -->
+                <!-- searchbox area section    -->  
                 <section>
                     <div class="breadcrumb_area mt-2">
-                        <div class="banner_search_form m-0 p-0"
-                            style="max-width: 100%; border: 1px solid #13aeda;">
+                        <div class="banner_search_form m-0 p-0" style="max-width: 100%; border: 1px solid #13aeda;">
                             <div class="input-group">
                                 <input type="search" id="search_term" name="search_term" class="form-control"
                                     placeholder='Search' value='{{ search_term }}' />
                                 <div class="input-group-append">
-                                    <select class="multi-select" id="src_orgs" name="src_orgs" multiple="multiple">
+                                    <select class="multi-select" id="src_doc_cats" name="src_doc_cats"
+                                        multiple="multiple">
+                                        {% comment %} <option value="" selected>All Categories</option>
+                                        {% endcomment %}
 
-                                        {% for org_info in org_infos %}
-                                        <option value="{{org_info.id}}" {% if org_info.id in src_orgs %}
-                                            selected {% endif %}>{{org_info.organization_name}}({{org_info.short_name}})</option>
+                                        {% for cat_info in doc_cats %}
+                                        <option value="{{cat_info.id}}" {% if cat_info.id in src_doc_cats %}
+                                            selected {% endif %}>{{cat_info.category_name}}</option>
                                         {% endfor %}
 
                                     </select>
                                 </div>
-                                <button type="submit"><i class="icon_search"></i></button>
+                                <button type="submit" id="btnSearch"><i class="icon_search"></i></button>
                             </div>
                         </div>
                     </div>
@@ -456,21 +482,44 @@
     </div>
 </div>
 
+
 <div class="container mt-3 mb-3">
     <div class="row">
         <div class="col-12 col-lg-10 col-xlg-8 ml-auto mr-auto">
-
-            <div class="row m-0 mt-3">
-                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp">    <!--   style="background: #f5fafc;" -->
-                    <div class="pt-2 sticky-top" style="top: 4.75rem;">
+            <div class="row">
+                <div class="col-12 col-md-4 col-xl-3 col-xxl-2 wow fadeInUp" >   <!--  style="background: #f5fafc;" -->
+                    <div class="pt-2 sticky-top" style="top: 4.75rem;"> 
                         <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
-                            <i class="fa-solid fa-list-check"></i> Selected Category
-                        </h5>
-                        
+                            <i class="fa-solid fa-list-check"></i> Selected Document Type
+                        </h5>                        
                         <div class="row" >
                             <div class="col-12" style="max-height: 85vh; overflow-y: auto;">
-                                <div class="nav flex-column">
+                                <div class="nav flex-column">    
+                                    <a class="nav-link cat-title" data-wow-delay="0.2s" href="#">
+                                        <i class="fa-solid fa-list fa-fw"></i><strong>{{s_doc_type}}</strong>
+                                    </a>
+
                                     {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
+                                    {% if doc.data_category.data_common_category.id in src_doc_cats %}
+                                        {% ifchanged s_doc_type %}
+                                            <a class="nav-link cat-title" data-wow-delay="0.2s"
+                                                href="#{{s_doc_type}}">
+                                                <i class="fa-solid fa-list fa-fw"></i> {{doc.data_category.data_common_category.category_name}}
+                                            </a>
+                                        {% endifchanged %}
+
+                                        {% ifchanged doc.organization.organization_name %}
+                                            <a class="nav-link scat-title" data-wow-delay="0.2s"
+                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
+                                                {{doc.organization.organization_name}} ({{doc.organization.short_name}})
+                                            </a>
+                                        {% endifchanged %}
+                                    {% endif %}
+                                {% endfor %}
+
+
+
+                                    <!-- {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
                                         {% if doc.data_category.data_common_category.id in src_doc_cats %}
                                             {% ifchanged doc.data_category.data_common_category.category_name %}
                                                 <a class="nav-link cat-title" data-wow-delay="0.2s"
@@ -486,31 +535,61 @@
                                                 </a>
                                             {% endifchanged %}
                                         {% endif %}
-                                    {% endfor %}
+                                    {% endfor %}                                 -->
+                                    <!-- {% for doc in documents|dictsort:'organization.organization_name' %}
+                                        {% if doc.organization.id in src_orgs %}
+                                            {% ifchanged doc.organization.organization_name %}
+                                                <a class="nav-link cat-title" data-wow-delay="0.2s"
+                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                                <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_name}}
+                                                ({{doc.organization.short_name}})
+                                                </a>
+                                            {% endifchanged %}
+                                            {% comment %} {% if doc.data_category.category_name is null %} {% endcomment %}
+                                                {% ifchanged doc.data_category.category_name %}
+                                                    <a class="nav-link scat-title"
+                                                        href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                                       
+                                                        {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
+                                                            class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
+                                                        {% endcomment %}
+                                                        
+                                                        {{doc.data_category.category_name}}
+                                                    </a>
+                                                {% endifchanged %}
+                                            {% comment %} {% endif %} {% endcomment %}
+                                        {% endif %}
+                                    {% endfor %} -->
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">     <!--   style="background: #f5fafc;" -->
-                    
+                <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">         <!--  style="background: #f5fafc;" -->        
                     <div class="pt-2" style="top: 75px;">
-
-                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6 pl-0 border-bottom">
+                                    <h5 class="mb-1 pt-1 pb-1" style="color: #05a;">
+                                        <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
+                                    </h5>
+                                </div>                                
+                            </div>                           
+                        </div>
+                        <!-- <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
-                        </h5>
+                        </h5> -->
 
-                        {% for doc in documents|dictsort:'data_category.data_common_category.category_name' %}
+                        {% for doc in documents %}
 
-                            {% ifchanged doc.organization.organization_name %}
+                            {% ifchanged doc.data_category.category_name %}
                                 <div class="row wow fadeInUp">
                                     <div class="col-md-12">
                                         <span
-                                            id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}'
+                                            id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
                                             class="data-cat-title" data-wow-delay="0.2s">
-                                            <i class="fa-solid fa-table-list"></i> {{doc.data_category.data_common_category.category_name}} ({{doc.organization.short_name}})
+                                            <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
+                                            ({{doc.data_category.category_name}})
                                         </span>
                                     </div>
                                 </div>
@@ -519,9 +598,12 @@
                             <div class="row community-box wow fadeInUp text-left">
                                 <div class="col-md-2">
                                     <div class="icon-container">
-                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
-                                        
-                                    {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
+                                        {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                        
+                                        {% else %}
+                                        <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                        {% endif %}
+                                    <!-- <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> -->
                                     </div>
                                 </div>
                                 <div class="col-md-10">
@@ -539,7 +621,8 @@
                                         <tr>
                                             <td class="text-left font-weight-bold">Subject:</td>
                                             {% comment %} <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> {% endcomment %}
-                                            <td class="text-left">{{doc.organization.organization_name}}({{doc.data_category.category_name}})</td>
+                                            <td class="text-left">{{doc.organization.organization_name}}
+                                                ({{doc.data_category.category_name}})</td>
                                         </tr>
                                         <tr>
                                             <td class="text-left font-weight-bold">Decription:</td>
@@ -557,10 +640,10 @@
 
                                     <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
                                         <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
-                                    
+
                                     <a id="docFileDownload" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
                                     <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
-
+    
                                     {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
                                         <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
                                             <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span class="ml-2">Edit</span></a>
@@ -574,10 +657,10 @@
 
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
 
 {% endblock %}
 
@@ -585,13 +668,66 @@
 
 {% block script_content %}
 
+<script>
+
+$("#select_more").click(function () {     
+        
+    var dim = $('#select_more_part').is(":visible");
+        if (dim == false) {
+            $("#select_more_part").show();
+        }
+        else
+        {
+            $("#select_more_part").hide();
+        }             
+});
+
+    // **** From popup modal button click
+    // function GetLink (btn_id) {
+    //     const arr = btn_id.split('_');
+    //     var doc_id = arr[arr.length - 1];
+
+    //     $('.community-box').each(function () {            
+    //         $(this).find('a').each(function () {
+    //             //alert($(this).attr('href'));
+    //             const arr_link  = $(this).attr('href').split('/');
+    //             var link_doc_id = arr_link[arr_link.length - 1];
+
+    //             if ($.isNumeric(link_doc_id ))
+    //             {
+    //                 if (link_doc_id === doc_id)
+    //                 {
+    //                     const parentWithClass = $(this).closest('.community-box');
+    //                     parentWithClass.css({background: '#d5edf7'});                                          
+    //                     $(this).scrollToMe();                        
+    //                 }
+    //                 else 
+    //                 {
+    //                     const parentWithClass = $(this).closest('.community-box');
+    //                     parentWithClass.css({background: '#fff'});                                        
+    //                 } 
+    //             }               
+    //         });            
+    //     });
+    // };
+
+    // jQuery.fn.extend({
+    // scrollToMe: function () {
+    //     var x = jQuery(this).offset().top - 250;
+    //     jQuery('html,body').animate({scrollTop: x}, 500);
+    // }});
+
+
+</script>
+
+
 <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>
 
 <script type="text/javascript">
     function download_file() {
         document.getElementById("docFileDownload").click()
     }
-
+    
     function checkFileAvailability (shortName, accessCat, fileName){
         var fileLocation = window.location.origin + '/static/document/'+ shortName + '/' + accessCat + '/' + fileName
         //alert(fileLocation);
@@ -622,11 +758,11 @@
                 // })
             }
         })
-    }    
+    }
 
     $(function () {
 
-        $("#src_orgs")
+        $("#src_doc_cats")
             .multiselect({
                 maxHeight: 230,
                 buttonWidth: '100%',
@@ -638,12 +774,12 @@
                 enableClickableOptGroups: true,
                 enableCollapsibleOptGroups: true,
 
-                selectAllText: "All Organizations",
+                selectAllText: "All Categories",
                 selectAllValue: "",
-                allSelectedText: "All Organizations",
+                allSelectedText: "All Categories",
                 includeSelectAllOption: true,
 
-                nonSelectedText: "All Organizations",
+                nonSelectedText: "All Categories",
                 nSelectedText: " selected",
                 disableIfEmpty: false,
             });
@@ -678,5 +814,10 @@
 </script>
 <!-- *****  Ends Read More and Less Style  ***** -->
 
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
 {% endblock %}

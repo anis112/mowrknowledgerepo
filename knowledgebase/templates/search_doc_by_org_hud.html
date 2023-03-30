@@ -327,6 +327,7 @@
         text-align: left;
         background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
         border-radius: 4px;
+        box-shadow: 2px 2px 3px 1px rgba(5, 45, 58, 0.46);
     }
 
     .cat-title:hover {
@@ -365,7 +366,7 @@
         text-align: left;
         background-image: linear-gradient(60deg, rgb(15, 180, 185) 0%, rgb(0, 40, 100) 100%);
         border-radius: 0.25rem;
-        box-shadow: 1px 2px 3px 2px rgba(5, 45, 58, 0.57);
+        box-shadow: 2px 2px 3px 1px rgba(5, 45, 58, 0.46);
     }
     
 
@@ -441,9 +442,9 @@
                                             <label style="color:#385878;">
                                                 {{org_info.short_name}}
                                                 <input type="checkbox" class="control-input"
-                                                    id="src_org_{{org_info.short_name}}" name="src_orgs" onChange="getSelectedValuesToList(this)"
+                                                    id="src_org_{{org_info.short_name}}" name="src_orgs"
                                                     value="{{org_info.id}}" {% if org_info.id in src_orgs %}
-                                                    checked {% endif %} />                                                
+                                                    checked {% endif %}  onChange="getSelectedValuesToList(this)" />                                                
                                             </label>
                                         </div>
                                     </label>
