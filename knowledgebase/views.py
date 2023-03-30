@@ -66,7 +66,7 @@ def dashboard(request):
     count_reports = Document.objects.filter(
         Q(data_category__id=10) | Q(data_category__parent=10)).count()
 
-    law_act_policy_rule_guidline_cat_ids = [1, 3, 4, 7, 9, 11, 19]
+    law_act_policy_rule_guidline_cat_ids = [1, 3, 4, 6, 7, 9, 11, 19, 50]
     count_law_act_policy = Document.objects.filter(
         data_category__id__in=law_act_policy_rule_guidline_cat_ids).count()
 
@@ -100,10 +100,12 @@ def dashboard(request):
 
     orgranization_name = Organization.objects.all()             # .only()('short_name', 'organization_name')  # Organization.objects.values_list('organization_name')
     
+    acts_policy_rules_guidelines_docs = Document.objects.filter(Q(data_category__data_common_category_id=1)).order_by('data_category_id')
+
     context = {'organization': count_organization,
                'categories': count_categories, 'no_of_research_publications': count_publication, 'no_of_reports': count_reports, 'no_of_acts_policy_rules_gdlines': count_law_act_policy, 'no_of_plans': count_plan, 'no_of_agreements_mous': count_agreements_mous, 'no_of_modeling_tools': count_modeling_tools, 'no_of_workshops_seminar': count_workshops_seminar,
                'total_docs': count_docs, 'bwdb_docs': count_bwdb, 'rri_docs': count_rri, 'jrc_docs': count_jrc, 'dbhwd_docs': count_dbhwd, 'warpo_docs': count_warpo,
-               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name}
+               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name, 'acts_policy_rules_guidelines_docs' : acts_policy_rules_guidelines_docs}
 
 
     return render(request, 'dashboard.html', context)
@@ -132,6 +134,8 @@ def doc_details(request):
 def imp_links(request):
     return render(request, 'imp_links.html')
 
+def help_info(request):
+    return render(request, 'help.html')
 
 
 def article(request):

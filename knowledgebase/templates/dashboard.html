@@ -642,7 +642,7 @@
         <div class="row">
             <div class="col-lg-1 col-md-3 col-sm-4 wow fadeInUp tooltip_content"></div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">                
-                <a data-toggle="modal" href="#ModalCountings">  <!-- href="/knowledgebase/org_countings/" -->
+                <a data-toggle="modal" href="#ModalOrgCountings">  <!-- href="/knowledgebase/org_countings/" -->
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipOrganization">                            
                         <div class="counter" style="color: #000000; text-shadow: 0px 0px 1px black;">{{organization}}</div>                    
@@ -651,7 +651,7 @@
                 </a>                 
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
-                <a href="#">
+                <a data-toggle="modal" href="#ModalActPolicyRuleCountings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
                         <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">{{no_of_acts_policy_rules_gdlines}}</div>
@@ -1023,8 +1023,8 @@
 <br />
 
 
-<!-- Modal Countings -->
-<div class="modal fade" id="ModalCountings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+<!-- Modal Countings Organizations -->
+<div class="modal fade" id="ModalOrgCountings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
         <div class="modal-content">
             <div class="modal-header">
@@ -1066,6 +1066,53 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Countings Act-Policy-Rules -->
+<div class="modal fade" id="ModalActPolicyRuleCountings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">All Documents of Acts, Policy, Rules and Guidelines</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for act_pol_rul in acts_policy_rules_guidelines_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ act_pol_rul_docs.data_category.category_name }}</td>  
+                                    <td>{{ act_pol_rul.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Modal Category -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -12,7 +12,8 @@ urlpatterns = [
     path('SearchResult1/', views.SearchResult1, name="SearchResult1"),
     path('doc-details/', views.doc_details, name="doc-details"),
     path('imp_links/', views.imp_links, name="imp_links"),
-
+    path('help_info/', views.help_info, name="help_info"),
+    
 
     path('org_countings/', views.org_counting, name="org-countings"),
     path('cat_countings/', views.cat_counting, name="cat-countings"),

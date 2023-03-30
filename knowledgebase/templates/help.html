@@ -1,0 +1,157 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block style_content %}
+
+<style>
+    .doc_faq_info .card .card-body {
+        padding: 30px 30px 35px;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid mt-3 pl-3 pr-3">
+    <div class="row">
+        <div class="col-md-3 text-left">
+            <a href="{% url 'dashboard' %}" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3">
+                <i class="arrow_left m-0"></i> Back
+            </a>
+        </div>
+        <div class="col-md-6 text-center">
+            <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid #27a; color: #05a;">Help</h5>
+        </div>
+        <div class="col-md-3 text-right">
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5 mb-3">
+    <div class="row">
+        <div class="col-12 col-lg-8 col-xlg-8 ml-auto mr-auto">           
+            <!-- List of Organization -->
+            <section>
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="accordion doc_faq_info" id="accordionExample">
+                            <div class="card wow fadeInUp">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                data-target="#collapseOne" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                            How can I deploy Documentation Landing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.4s">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseTwo" aria-expanded="false"
+                                                aria-controls="collapseTwo">
+                                            Is maternity covered in health insurance policies?<i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="0.8s">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseThree" aria-expanded="false"
+                                                aria-controls="collapseThree">
+                                            What are the documents required for claiming? <i
+                                                class="icon_plus"></i><i class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="1.2s">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapseFour" aria-expanded="false"
+                                                aria-controls="collapseFour">
+                                            Any useful books on numerical computing?<i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card wow fadeInUp" data-wow-delay="1.6s">
+                                <div class="card-header" id="headingfive">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                                                data-target="#collapsefive" aria-expanded="false"
+                                                aria-controls="collapsefive">
+                                            How do I repair an item? <i class="icon_plus"></i><i
+                                                class="icon_minus-06"></i>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapsefive" class="collapse" aria-labelledby="headingfive"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Skive off he lost his bottle the little rotter absolutely bladdered in my
+                                        flat William no biggie, gormless me old mucker such a fibber David bum bag
+                                        so I said cack.!
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>                     
+            </section>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+{% block script_content %}
+
+{% endblock %}
