@@ -34,10 +34,10 @@ def login(request):
                     return redirect('/admin')  # or your url name
                 elif user.is_staff:
                     auth_login(request,user)
-                    return redirect('/knowledgebase/dashboard')  # or your url name
+                    return redirect('/')  # or your url name
                 else:
                     auth_login(request,user)
-                    return redirect('/knowledgebase/dashboard/')
+                    return redirect('/')
             else:
                 raise ValidationError("This account is inactive.",code='inactive',)
             
@@ -67,7 +67,7 @@ def signup(request):
         if form.is_valid():
             form.save()
             auth_login(request,form)
-            return redirect('/knowledgebase/dashboard/')             
+            return redirect('/')             
     else:
         form = CustomUserForm()
         return render(request, 'signup.html', {
@@ -113,7 +113,7 @@ def edit_user(request,id):
         form = ChangeCustomUserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('/knowledgebase/dashboard/')   
+            return redirect('/')   
     else:    
         
         user = CustomUser.objects.get(id=id)
