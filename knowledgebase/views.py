@@ -832,7 +832,7 @@ def show_search_results_for_other_doc(documents, search_term='', org_types=None,
     
     if (search_term == '' and data_category_ids == None and org_types == None):
          documents = documents.all()[:100]
-         print('hello')
+
 
     else:
         if search_term is not None and search_term != '':
@@ -841,11 +841,10 @@ def show_search_results_for_other_doc(documents, search_term='', org_types=None,
 
             documents = documents.filter(cond)
             doc_count = len(documents)
-            print('Hi')
+        
         
         if org_types and org_types[0] != '':
             org_types = [int(id) for id in org_types]
-            print(org_types)
             cond_org_type = Q(organization__organization_type_id__in=org_types)
 
             documents = documents.filter(cond_org_type)
