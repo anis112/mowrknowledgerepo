@@ -428,11 +428,11 @@
                         <div class="col-md-12">
                             <div class="row wow fadeInUp">                                 
                                 {% for org_type in org_types %}
-                                    <div class="col-md-2 mt-3">                
+                                    <div class="col-md-2 mt-3">                                           
 	                                    <label class="doc_border_btn" for="doc_type_{{org_type.id}}" style="width: 100%; padding: 10px 5px; ">                                       
-		                                    <label for="doc_type_{{org_type.id}}" style="margin: 10px 0px 0px 15px;">{{org_type}}</label><i class="arrow_right"></i>
+		                                    <label for="doc_type_{{org_type.id}}" style="margin: 10px 0px 0px 15px;">{{org_type.type_name}}</label><i class="arrow_right"></i>
 		                                    <div class="mb-3" style="float: right; bottom: 15px; right: -6px;">
-			                                    <input type="checkbox" class="control-input" id="doc_type_{{org_type.id}}" name="src_doc_type" value="{{org_type.id}}" {% if src_doc_type in org_type.id  %}
+			                                    <input type="checkbox" class="control-input" id="doc_type_{{org_type.id}}" name="src_doc_type" value="{{org_type.id}}" {% if org_type.id in src_doc_type  %}
 			                                        checked {% endif %} >                                           
 		                                    </div> 
 	                                    </label>
@@ -492,21 +492,21 @@
                                     </a> --> 
                                     
                                     {% for doc in documents %}
-                                    {% comment %}{% if doc.organization.organization_type.id in src_doc_type %} {% endcomment %}
-                                    {% comment %}   {% ifchanged src_doc_type %} {% endcomment %}
-                                            <a class="nav-link cat-title" data-wow-delay="0.2s"
-                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                                <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_type.type_name}}
-                                            </a>
-                                            {% comment %}  {% endifchanged %}{% endcomment %}
+                                        {% if doc.organization.organization_type.id in src_doc_type %}
+                                            {% ifchanged src_doc_type %}
+                                                <a class="nav-link cat-title" data-wow-delay="0.2s"
+                                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                                    <i class="fa-solid fa-list fa-fw"></i> {{doc.organization.organization_type.type_name}}
+                                                </a>
+                                            {% endifchanged %}
 
-                                        {% ifchanged doc.data_category.category_name %}
-                                            <a class="nav-link scat-title" data-wow-delay="0.2s"
-                                                href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                                {{doc.data_category.category_name}} 
-                                            </a>
-                                        {% endifchanged %}
-                                        {% comment %}  {% endif %}{% endcomment %}
+                                            {% ifchanged doc.data_category.category_name %}
+                                                <a class="nav-link scat-title" data-wow-delay="0.2s"
+                                                    href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
+                                                    {{doc.data_category.category_name}} 
+                                                </a>
+                                            {% endifchanged %}
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>

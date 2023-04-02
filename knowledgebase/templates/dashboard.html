@@ -660,7 +660,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
-                <a href="#">
+                <a data-toggle="modal" href="#ModalPlansCountings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
                         <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{no_of_plans}}</div>
@@ -678,7 +678,7 @@
                 </a>                    
             </div> -->
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
-                <a href="#">
+                <a data-toggle="modal" href="#ModalResearchPublication_Countings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
                         <div class="counter" style="color: #FF8F00; text-shadow: 0px 0px 1px #5e321c;">{{no_of_research_publications}}</div>
@@ -687,7 +687,7 @@
                 </a>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
-                <a href="#">
+                <a data-toggle="modal" href="#ModalReports_Countings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                         <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
                         <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{no_of_reports}}</div>
@@ -1067,13 +1067,12 @@
     </div>
 </div>
 
-
 <!-- Modal Countings Act-Policy-Rules -->
 <div class="modal fade" id="ModalActPolicyRuleCountings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">All Documents of Acts, Policy, Rules and Guidelines</h5>
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Acts, Policy, Rules and Guidelines</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -1096,6 +1095,138 @@
                                     <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
                                     <td>{{ act_pol_rul_docs.data_category.category_name }}</td>  
                                     <td>{{ act_pol_rul_docs.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Countings Plans -->
+<div class="modal fade" id="ModalPlansCountings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Plans</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for plan_docs in plans_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ plan_docs.data_category.category_name }}</td>  
+                                    <td>{{ plan_docs.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Countings Research & Publications -->
+<div class="modal fade" id="ModalResearchPublication_Countings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Research & Publications</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for res_pub_docs in research_pub_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ res_pub_docs.data_category.category_name }}</td>  
+                                    <td>{{ res_pub_docs.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Countings Reports -->
+<div class="modal fade" id="ModalReports_Countings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Reports</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for report_doc in report_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ report_doc.data_category.category_name }}</td>  
+                                    <td>{{ report_doc.title }}</td>                                            
                                 </tr>
                                 {% endfor %}                            
                             </tbody>

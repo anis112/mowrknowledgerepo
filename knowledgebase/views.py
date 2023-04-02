@@ -63,20 +63,20 @@ def dashboard(request):
     count_publication = Document.objects.filter(
         data_category__id__in=pub_cat_ids).count()
 
-    count_reports = Document.objects.filter(
-        Q(data_category__id=10) | Q(data_category__parent=10)).count()
+    count_reports = Document.objects.filter(Q(data_category__data_common_category_id=3)).count()
+    # count_reports = Document.objects.filter(Q(data_category__id=10) | Q(data_category__parent=10)).count()
 
     law_act_policy_rule_guidline_cat_ids = [1, 3, 4, 6, 7, 9, 11, 19, 50]
     count_law_act_policy = Document.objects.filter(
         data_category__id__in=law_act_policy_rule_guidline_cat_ids).count()
 
-    plan_cat_ids = [33, 51]
+    plan_cat_ids = [33, 34, 51]
     count_plan = Document.objects.filter(
         data_category__id__in=plan_cat_ids).count()
 
     agreements_mous = [2, 12, 13, 63]
     count_agreements_mous = Document.objects.filter(
-        data_category__id__in=agreements_mous).count()         # Q(data_category__data_common_category_id=5)).count()
+        data_category__id__in=agreements_mous).count()         # Q(data_category__data_common_category_id=5)).count()  
 
     modeling_tools = [59, 60]
     count_modeling_tools = Document.objects.filter(
@@ -98,15 +98,18 @@ def dashboard(request):
 
     category_name_map = DataCategory.objects.filter(parent__isnull = True).order_by('data_common_category')
 
-    orgranization_name = Organization.objects.all()             # .only()('short_name', 'organization_name')  # Organization.objects.values_list('organization_name')
-    
-    acts_policy_rules_guidelines_docs = Document.objects.filter(Q(data_category__data_common_category_id=1)).order_by('data_category_id')
-    plans_docs = Document.objects.filter(Q(data_category__data_common_category_id=1)).order_by('data_category_id')
+    orgranization_name = Organization.objects.all()             # .only()('short_name', 'organization_name')  # Organization.objects.values_list('organization_name')    
+    acts_policy_rules_guidelines_docs = Document.objects.filter(Q(data_category__data_common_category_id=1)).order_by('data_category_id')        
+    plans_docs = Document.objects.filter(data_category__id__in=plan_cat_ids).order_by('data_category_id')
+    # plans_docs = Document.objects.filter(Q(data_category__data_common_category_id=4)).order_by('data_category_id')
+    research_pub_docs = Document.objects.filter(data_category__id__in=pub_cat_ids).order_by('data_category_id')
+    report_docs = Document.objects.filter(Q(data_category__data_common_category_id=3)).order_by('data_category_id')
+    # report_docs = Document.objects.filter(Q(data_category__id=10) | Q(data_category__parent=10)).order_by('data_category_id') 
 
     context = {'organization': count_organization,
                'categories': count_categories, 'no_of_research_publications': count_publication, 'no_of_reports': count_reports, 'no_of_acts_policy_rules_gdlines': count_law_act_policy, 'no_of_plans': count_plan, 'no_of_agreements_mous': count_agreements_mous, 'no_of_modeling_tools': count_modeling_tools, 'no_of_workshops_seminar': count_workshops_seminar,
                'total_docs': count_docs, 'bwdb_docs': count_bwdb, 'rri_docs': count_rri, 'jrc_docs': count_jrc, 'dbhwd_docs': count_dbhwd, 'warpo_docs': count_warpo,
-               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name, 'acts_policy_rules_guidelines_docs' : acts_policy_rules_guidelines_docs}
+               'iwm_docs': count_iwm, 'cegis_docs': count_cegis, 'cat_map': category_name_map, 'org_names': orgranization_name, 'acts_policy_rules_guidelines_docs' : acts_policy_rules_guidelines_docs, 'plans_docs' : plans_docs, 'research_pub_docs' : research_pub_docs, 'report_docs' : report_docs }
 
 
     return render(request, 'dashboard.html', context)
