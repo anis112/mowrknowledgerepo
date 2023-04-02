@@ -523,24 +523,13 @@
                             style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0;">
                             Document Type: {{document.data_category}}</p>
                         <!-- <br /> -->
-<<<<<<< HEAD
                         <p class="doc_details">{{document.description}}</p>
 
-                        <a target="_blank" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" class="doc_border_btn smbtn ml-2">
-                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
-                            
-=======
-                        <p class="doc_details">
-                            {{document.description}}
-                        </p>
-                        <a href="#" class="doc_border_btn btn_small"><i
-                                class="fa-sharp fa-solid fa-download fa-fw ml-0"></i><span
-                                class="ml-3">Download</span></a>
-                        <!-- <a href="#" class="doc_border_btn btn_small" ><i class="fa-light fa-file-pdf fa-fw" style="margin-left: 0px; font-size: 21px;"></i><span style="margin-left: 10px;">Download</span></a>                                              -->
->>>>>>> 5e441b64a836516b0cbbd198ee7a50f7f703dd5a
+                        <a target="_blank" href="/{{document.file_name}}" class="doc_border_btn smbtn ml-2">
+                            <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>                        
                     </div>
 
-                    <br />
+                    <!-- <br />
 
                     <div class="pl-1">
                         <h5 style="font-weight: 400;">Relevant & Important Links</h5>
@@ -554,7 +543,7 @@
                                 Groundwaters in the UNECE region (2007)</a>
                             <img src="{% static 'img/pdf.gif' %}">
                         </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -581,8 +570,11 @@
                         <div class="row community-box wow fadeInUp text-left">
                             <div class="col-md-2">
                                 <div class="icon-container">
-                                    <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
-                                    
+                                    {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                                                                
+                                    {% else %}
+                                        <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                    {% endif %}
                                 {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
                                 </div>
                             </div>
@@ -612,7 +604,7 @@
                                 <a target="_blank" href="{% url 'doc-details' %}{{doc.id}}" class="doc_border_btn smbtn">
                                     <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
 
-                                <a target="_blank" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
+                                <a target="_blank" href="/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
                                     <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>
 
                                 {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}

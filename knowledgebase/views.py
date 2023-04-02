@@ -101,6 +101,7 @@ def dashboard(request):
     orgranization_name = Organization.objects.all()             # .only()('short_name', 'organization_name')  # Organization.objects.values_list('organization_name')
     
     acts_policy_rules_guidelines_docs = Document.objects.filter(Q(data_category__data_common_category_id=1)).order_by('data_category_id')
+    plans_docs = Document.objects.filter(Q(data_category__data_common_category_id=1)).order_by('data_category_id')
 
     context = {'organization': count_organization,
                'categories': count_categories, 'no_of_research_publications': count_publication, 'no_of_reports': count_reports, 'no_of_acts_policy_rules_gdlines': count_law_act_policy, 'no_of_plans': count_plan, 'no_of_agreements_mous': count_agreements_mous, 'no_of_modeling_tools': count_modeling_tools, 'no_of_workshops_seminar': count_workshops_seminar,

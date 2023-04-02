@@ -132,7 +132,11 @@
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                    {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                    <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                        
+                    {% else %}
+                    <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                    {% endif %}
                     
                     {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
                 </div>
@@ -149,13 +153,13 @@
                         <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{document.organization.short_name}}', '{{document.access_category}}', '{{document.file_name}}')">
                             <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>     -->
                         
-                        <a id="docFileDownload" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
+                        <a id="docFileDownload" href="/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
                         <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
                     </div>
                    
                     <br />
 
-                    <div class="pl-1">        
+                    <!-- <div class="pl-1">        
                         <h5 class="font-weight-normal">Relevant & Important Links</h5>
 
                         {% for ilnk in important_links %}
@@ -166,7 +170,7 @@
                                 {% endif %}
                             </p>
                         {% endfor %}
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -193,7 +197,11 @@
                         <div class="row community-box wow fadeInUp text-left">
                             <div class="col-md-2">
                                 <div class="icon-container">
-                                    <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                    {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                    {% else %}
+                                        <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                    {% endif %}
                                     
                                 {% comment %} <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> {% endcomment %}
                                 </div>
@@ -227,7 +235,7 @@
                                 <!-- <a target="_blank" href="{% static 'document/' %}{{doc.organization.short_name}}/{{doc.access_category}}/{{doc.file_name}}" class="doc_border_btn smbtn ml-2">
                                     <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a>    
                                                              -->
-                                <a id="docFileDownload" href="{% static 'document/' %}{{document.organization.short_name}}/{{document.access_category}}/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
+                                <a id="docFileDownload" href="/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
                                 <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
 
                                 {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
