@@ -829,12 +829,12 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     return context
 
 
-def show_search_results_for_other_doc(documents, search_term='', org_types=None, data_category_ids=None):
+def show_search_results_for_other_doc(documents, search_term='', src_org_types=None, data_category_ids=None):
     doc_count = len(documents)
     if len(documents) < 1:
         documents = Document.objects.none()
     
-    if (search_term == '' and data_category_ids == None and org_types == None):
+    if (search_term == '' and data_category_ids == None and src_org_types == None):
          documents = documents.all()[:100]
 
 
@@ -847,9 +847,9 @@ def show_search_results_for_other_doc(documents, search_term='', org_types=None,
             doc_count = len(documents)
         
         
-        if org_types and org_types[0] != '':
-            org_types = [int(id) for id in org_types]
-            cond_org_type = Q(organization__organization_type_id__in=org_types)
+        if src_org_types and src_org_types[0] != '':
+            src_org_types = [int(id) for id in src_org_types]
+            cond_org_type = Q(organization__organization_type_id__in=src_org_types)
 
             documents = documents.filter(cond_org_type)
             doc_count = len(documents)
@@ -866,7 +866,7 @@ def show_search_results_for_other_doc(documents, search_term='', org_types=None,
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
-                'search_term': search_term, 'src_doc_cats': data_category_ids, 'org_types': org_types, 'doc_cats': doc_cats}
+                'search_term': search_term, 'src_doc_cats': data_category_ids, "src_doc_type": src_org_types, 'org_types': org_types, 'doc_cats': doc_cats}
 
     return context
 
