@@ -626,9 +626,11 @@
                                     <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
                                         <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
 
-                                    <a id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
-                                    <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button>
+                                    <!-- <a id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
+                                    <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button> -->
     
+                                    <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="{% static '/'  %}{{doc.file_name}}" download="{{doc.file_name}}">Download</a>
+
                                     {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
                                         <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
                                             <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span class="ml-2">Edit</span></a>
