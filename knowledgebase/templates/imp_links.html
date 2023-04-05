@@ -22,6 +22,7 @@
         padding: 15px;
         margin: 0 0 15px 0;     /*   10px 0; */
         font: 14px/1.5 'robotolight', arial;
+        transition: all 0.3s linear, color 0.2s;
     }
 
     .linkbox_content a {
@@ -31,6 +32,11 @@
     .linkbox_content p {
         margin-bottom: 0;
         text-align: justify;
+    }
+
+    .linkbox_content:hover {
+        box-shadow: 1px 5px 10px 3px rgba(70, 100, 150, 0.25);
+        transform: translateY(-2px);
     }
     
     .link-line {
