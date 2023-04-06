@@ -67,7 +67,7 @@ class CustomUserAdmin(UserAdmin):
     
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'is_staff',
-        'is_organization_admin','is_superuser','organization'
+        'is_organization_admin','is_superuser','organization', 'last_login'
         )
     list_filter= (OrganizationWiseFilter,'is_organization_admin',)
     
@@ -80,7 +80,7 @@ class CustomUserAdmin(UserAdmin):
         if db_field.name == "organization": #courier is the foreignkey name
             if request.user.is_organization_admin:
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)        
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)      
     
     
     #readonly_fields = ('is_organization_admin', )
@@ -99,7 +99,7 @@ class CustomUserAdmin(UserAdmin):
                 )
         }),
         ('Important dates', {
-            'fields': ('last_login', 'date_joined')
+            'fields': ('date_joined',)
         }),
         ('Additional info', {
             'fields': ('is_organization_admin', 'organization')
@@ -120,7 +120,7 @@ class CustomUserAdmin(UserAdmin):
                 )
         }),
         ('Important dates', {
-            'fields': ('last_login', 'date_joined')
+            'fields': ('date_joined')
         }),
         ('Additional info', {
             'fields': ('is_organization_admin', 'organization')

@@ -92,21 +92,76 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
         elif request.user.is_organization_admin:
             return queryset.filter(organization_id=request.user.organization_id)
         #return queryset.all()
+
+class CategoryWiseFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = ('Select Data Category')
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = 'data_category_id'
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        if request.user.is_superuser:
+            return Document.objects.values_list('data_category_id','data_category__category_name').order_by('data_category_id').distinct()
+        elif request.user.is_organization_admin:
+            return Document.objects.values_list('data_category_id','data_category__category_name').filter(organization_id=request.user.organization_id).order_by('data_category_id').distinct()
+               
+    def choices(self, cl):  # Overwrite this method to prevent the default "All"
+            from django.utils.encoding import force_str
+            for lookup, title in self.lookup_choices:
+                yield {
+                    'selected': self.value() == force_str(lookup),
+                    'query_string': cl.get_query_string({
+                        self.parameter_name: lookup,
+                    }, []),
+                    'display': title,
+                }
+
+    def queryset(self, request, queryset):  # Run the queryset based on your lookup values
+        if request.user.is_superuser:
+            if self.value() is not None:
+                return queryset.filter(data_category_id=self.value())
+            else:    
+                return queryset.all()
+        elif request.user.is_organization_admin:
+            return queryset.filter(organization_id=request.user.organization_id)
+        
+
+
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     #form=DocumentForm
     #autocomplete_fields = ['article_category']
-    list_display = ['title','organization','data_category', 'access_category']
+    list_display = ['title','organization','data_category', 'access_category', 'modified_date', 'modified_by']
+    exclude = ('is_parent_available',)
     list_editable = ['data_category', 'access_category']
     list_per_page = 20
-    list_filter = [OrganizationWiseFilter, 'data_category', 'access_category',]
+    list_filter = [OrganizationWiseFilter, CategoryWiseFilter , 'access_category',]
     search_fields = ['title__istartswith']
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):     
         if db_field.name == "organization": #courier is the foreignkey name
             if request.user.is_organization_admin:
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)     
+        elif db_field.name == "data_category":
+            if request.user.is_organization_admin:
+                kwargs["queryset"] = DataCategory.objects.filter(organization_id=request.user.organization_id)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        if not request.user.is_superuser:
+            form.base_fields['organization'].initial = request.user.organization
+            # form.base_fields['organization'].widget.attrs['disabled'] = True
+        return form     
 
 # admin.site.register(Document)
 
