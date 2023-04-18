@@ -108,7 +108,7 @@ def get_upload_path(instance, filename):
     doc_access_cat = instance.access_category.category_name
     doc_id = Document.objects.aggregate(Max('id'))['id__max']+1
     
-    base_path = os.path.join('static', 'documents', org_name, doc_access_cat)
+    base_path = os.path.join('static', 'document', org_name, doc_access_cat)
     # path="static/documents/JRC/Public/document.pdf"
     new_name = f'{doc_id}{ext}'
     return os.path.join(base_path, new_name)
@@ -121,7 +121,7 @@ def get_upload_path_thumb(instance, filename):
     doc_access_cat = instance.access_category.category_name
     doc_id = Document.objects.aggregate(Max('id'))['id__max']+1
     
-    base_path = os.path.join('static', 'documents', org_name, doc_access_cat, 'thumbnail')
+    base_path = os.path.join('static', 'document', org_name, doc_access_cat, 'thumbnail')
     # path="static/documents/JRC/Public/document.pdf"
     new_name = f'thumb_{doc_id}{ext}'
     return os.path.join(base_path, new_name)

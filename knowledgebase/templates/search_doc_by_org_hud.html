@@ -535,12 +535,11 @@
                                                 {% ifchanged doc.data_category.category_name %}
                                                     <a class="nav-link scat-title"
                                                         href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}">
-                                                       
                                                         {% comment %}wow fadeInUp <i class="fa-solid fa-circle"></i><i
                                                             class="fa-solid fa-square"></i> <i class="fa-solid fa-square-small"></i>
                                                         {% endcomment %}
                                                         
-                                                        {{doc.data_category.category_name}}
+                                                        {{doc.data_category.category_name}} {% for doc_count in doc_cat_wise_count %} {% if doc_count.data_category == doc.data_category.id %} ({{doc_count.count}}) {% endif %} {% endfor %}
                                                     </a>
                                                 {% endifchanged %}
                                             {% comment %} {% endif %} {% endcomment %}
@@ -606,9 +605,9 @@
                                         </tr>
                                         <tr>
                                             <td class="text-left font-weight-bold">Subject:</td>
-                                            {% comment %} <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> {% endcomment %}
-                                            <td class="text-left">{{doc.organization.organization_name}}
-                                                ({{doc.data_category.category_name}})</td>
+                                             <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> 
+                                             {% comment %} <td class="text-left">{{doc.organization.organization_name}}
+                                                ({{doc.data_category.category_name}})</td> {% endcomment %}
                                         </tr>
                                         <tr>
                                             <td class="text-left font-weight-bold">Decription:</td>
@@ -630,7 +629,7 @@
                                     <!-- <a id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
                                     <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button> -->
     
-                                    <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="{% static '/'  %}{{doc.file_name}}" download="{{doc.file_name}}">Download</a>
+                                    <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}">Download</a>
 
                                     {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
                                         <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
