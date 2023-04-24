@@ -776,6 +776,33 @@ def category_mapping(request):
     context = {'cat_map': category_name_map}   
     return render(request, "category_mapping_with_common_category.html", context)
 #============================ START Data Search Code Common====================================
+def document_count_organization_wise(data):
+    cat_lst = []
+    org_lst = []
+    for item in data:
+        temp_cat = item['data_category__data_common_category']
+        if temp_cat in cat_lst:
+            continue
+        else:
+            cat_lst.append(item['data_category__data_common_category']) 
+    for item in data:
+        temp_org = item['organization']
+        if temp_org in org_lst:
+            continue
+        else:
+            org_lst.append(item['organization'])  
+    org_wise_count_lst = []
+    for cat in cat_lst:
+        for org in org_lst:
+            temp = 0
+            for item in data:
+                if cat == item['data_category__data_common_category'] and org == item['organization']:
+                    temp = temp + item['count']
+            if temp == 0:
+                continue
+            temp_dict = {'organization': org, 'data_category__data_common_category': cat, 'count': temp}
+            org_wise_count_lst.append(temp_dict)
+    return org_wise_count_lst
 
 def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None):
     doc_count = len(documents)
@@ -811,6 +838,8 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     #cond_org_fixed = Q(id__range=(1, 7))                                          # Added by MNH/ARH
 
     document_cat_wise_count = documents.values('data_category').annotate(count=Count('data_category'))
+    document_org_wise_query = documents.values('organization', 'data_category__data_common_category').annotate(count=Count('data_category__data_common_category'))
+    document_org_wise_count = document_count_organization_wise(document_org_wise_query)
     org_infos = Organization.objects.filter(organization_type=1).order_by('id')   # Added by MNH/ARH
     all_org_infos = Organization.objects.all().order_by('id')                     # Added by MNH/ARH
     # org_infos = Organization.objects.all().order_by('id')                       # Comment by MNH/ARH
@@ -818,7 +847,8 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
 
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
                 'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
-                'org_infos': org_infos, 'all_org_infos': all_org_infos, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count}
+                'org_infos': org_infos, 'all_org_infos': all_org_infos, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count, 
+                'doc_org_wise_count': document_org_wise_count}
     
     # context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
         #            'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
