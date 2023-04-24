@@ -624,7 +624,7 @@
 </section>
 
 <!-- Counting -->
-<section class="doc_fun_fact_area" style="padding: 25px 0px; border-top: 2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 70, 102) 90%);">     <!--  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 75, 79) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
+<section class="doc_fun_fact_area" style="padding: 15px 0px 0px 0px; border-top: 2px solid #618c8e; border-bottom:2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(244, 248, 251) 0%, rgb(176, 211, 227) 90%);">     <!-- linear-gradient(180deg, rgb(244, 248, 251) 0%, rgb(176, 211, 227) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 70, 102) 90%);  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 75, 79) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
     {% comment %} <div class="animated-waves">
         <svg class="water-wave animated-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">                    
             <defs>
@@ -640,8 +640,8 @@
     </div>     {% endcomment %}
     <div class="container">
         <div class="row">
-            <div class="col-lg-1 col-md-3 col-sm-4 wow fadeInUp tooltip_content"></div>
-            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">                
+            <!-- <div class="col-lg-1 col-md-3 col-sm-4 wow fadeInUp tooltip_content"></div> -->
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content">                
                 <a data-toggle="modal" href="#ModalOrgCountings">  <!-- href="/knowledgebase/org_countings/" -->
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Categories.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipOrganization">                            
@@ -650,52 +650,69 @@
                     </div>       
                 </a>                 
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
                 <a data-toggle="modal" href="#ModalActPolicyRuleCountings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Reports.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
-                        <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px black;">{{no_of_acts_policy_rules_gdlines}}</div>
-                        <p style="color: #b800d2; text-shadow: 0px 0px 0px black; font-size: 20px;">Acts, Policy, Rules, Guidelines</p>
+                        <div class="counter" style="color: #008e23; text-shadow: 0px 0px 1px black;">{{no_of_acts_policy_rules_gdlines}}</div>
+                        <p style="color: #008e23; text-shadow: 0px 0px 0px black; font-size: 20px;">Acts, Policy, Rules, Guidelines</p>
                     </div>
                 </a>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
-                <a data-toggle="modal" href="#ModalPlansCountings">
-                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
-                        <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{no_of_plans}}</div>
-                        <p style="color: #df1f11; text-shadow: 0px 0px 0px #600404; font-size: 20px;">Plans</p>
-                    </div>
-                </a>
-            </div>
-            <!-- <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.4s">
-                <a href="/knowledgebase/cat_countings/">
-                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Topics.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>                        
-                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipCategories">
-                        <div class="counter" style="color: #039541; text-shadow: 0px 0px 1px black;">{{categories}}</div>                    
-                        <p style="color: #039541; text-shadow: 0px 0px 0px black;">Categories</p>
-                    </div>    
-                </a>                    
-            </div> -->
-            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="0.8s">
                 <a data-toggle="modal" href="#ModalResearchPublication_Countings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_two/folder1.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPublications">
-                        <div class="counter" style="color: #FF8F00; text-shadow: 0px 0px 1px #5e321c;">{{no_of_research_publications}}</div>
-                        <p style="color: #FF8F00; text-shadow: 0px 0px 1px #ee5102; font-size: 20px;">Research & Publications</p>
+                        <div class="counter" style="color: #b800d2; text-shadow: 0px 0px 1px #5e321c;">{{no_of_research_publications}}</div>
+                        <p style="color: #b800d2; text-shadow: 0px 0px 1px #ee5102; font-size: 20px;">Research & Publications</p>
                     </div>
                 </a>
             </div>
-            <div class="col-lg-2 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.2s">
+                <a data-toggle="modal" href="#ModalPlansCountings">
+                    <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/References.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipPlan">
+                        <div class="counter" style="color: #FF8F00; text-shadow: 0px 0px 1px black;">{{no_of_reports}}</div>
+                        <p style="color: #FF8F00; text-shadow: 0px 0px 0px #600404; font-size: 20px;">Reports</p>
+                    </div>
+                </a>
+            </div>            
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="1.6s">
                 <a data-toggle="modal" href="#ModalReports_Countings">
                     <div class="col-md-12 text-center d-none"><img src="{% static 'img/home_one/Publications.png' %}" alt="" style="min-height: 55px; margin-bottom: 20px;" /> </div>
-                        <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
-                        <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{no_of_reports}}</div>
-                        <p style="color: #1316d4; text-shadow: 0px 0px 0px black; font-size: 20px;">Reports</p>
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                        <div class="counter" style="color: #df1f11; text-shadow: 0px 0px 1px black;">{{no_of_plans}}</div>
+                        <p style="color: #df1f11; text-shadow: 0px 0px 0px black; font-size: 20px;">Plans</p>
                     </div>
                 </a>
             </div>
-            <div class="col-lg-1 col-md-3 col-sm-4 wow fadeInUp tooltip_content" data-wow-delay="2.4s"></div>
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2s">
+                <a data-toggle="modal" href="#ModalAgree_Mous_Countings">                    
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipLawActPolicy">
+                        <div class="counter" style="color: #1316d4; text-shadow: 0px 0px 1px black;">{{no_of_agreements_mous}}</div>
+                        <p style="color: #1316d4; text-shadow: 0px 0px 0px black; font-size: 20px;">Agreements and MoUs</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2.4s">
+                <a data-toggle="modal" href="#Modal_Modeling_tools_Countings">                    
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                        <div class="counter" style="color: #0092aa; text-shadow: 0px 0px 1px black;">{{no_of_modeling_tools}}</div>
+                        <p style="color: #0092aa; text-shadow: 0px 0px 0px black; font-size: 20px;">Modeling Tools</p>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2.8s">
+                <a data-toggle="modal" href="#Modal_Workshops_Seminars_Countings">                    
+                    <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
+                        <div class="counter" style="color: #ff699a; text-shadow: 0px 0px 1px black;">{{no_of_workshops_seminar}}</div>
+                        <p style="color: #ff699a; text-shadow: 0px 0px 0px black; font-size: 20px;">Workshops and Seminars</p>
+                    </div>
+                </a>
+            </div>
+            <!-- <div class="col-lg-1 col-md-3 col-sm-4 wow fadeInUp tooltip_content" data-wow-delay="2.4s"></div> -->
         </div>
     </div>
 </section>
@@ -704,7 +721,7 @@
 <!-- List of Organization & No. of Documents  -->
 <section class="doc_categories_guide_area sec_pad">
     <div class="container">
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <div class="text-center">  <!-- section_title  style="margin-bottom: 10px; margin-top: 20px;" -->
                     <h5 class="wow fadeInUp">No. of Documents (<label style="color: #40f;"><div class="counter">{{total_docs}}</div></label>)</h5> <!--1345-->
@@ -874,7 +891,6 @@
     </div>    
 </section>
 
-
 <!-- List of Organization & No. of Documents  (Previously Designed)   -->
 <!-- <section class="doc_categories_guide_area sec_pad d-none">
     <div class="container">
@@ -971,7 +987,7 @@
 
 
 <!-- List of Category -->
-<section class="doc_faq_area_two sec_pad mt-4">
+<section class="doc_faq_area_two sec_pad mt-2">
     <div class="container">
         
         <div class="section_title text-center" style="margin-bottom: 15px;">
@@ -984,17 +1000,17 @@
                     <i class="fa-solid fa-book-section"></i><span style="margin-left: 10px;">Acts, Policy, Rules, Guidelines</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md mt-3 wow fadeInUp tooltip_content tooltips" data-tooltip-content="#catTooltipResearchPublication" data-wow-delay="0.8s">
+            <div class="col-md mt-3 wow fadeInUp tooltip_content tooltips" data-tooltip-content="#catTooltipResearchPublication" data-wow-delay="0.4s">
                 <a href="/search-by-cat/?src_doc_cats=2&search_term=" class="doc_border_btn text-center" style="width: 100%; padding: 20px 5px; height: 90px;">
                     <i class="fa-solid fa-book-open-reader fa-fw"></i><span style="margin-left: 10px;">Research & Publications</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md mt-3 wow fadeInUp tooltip_content tooltips" data-tooltip-content="#catTooltipReports" data-wow-delay="1.2s">
+            <div class="col-md mt-3 wow fadeInUp tooltip_content tooltips" data-tooltip-content="#catTooltipReports" data-wow-delay="0.8s">
                 <a href="/search-by-cat/?src_doc_cats=3&search_term=" class="doc_border_btn text-center" style="width: 100%; padding: 20px 5px; height: 90px;">
                     <i class="fa-solid fa-chart-pie-simple fa-fw"></i><span style="margin-left: 10px;">Reports</span><i class="arrow_right"></i>                    
                 </a>
             </div>
-            <div class="col-md mt-3 wow fadeInUp tooltip_content tooltips" data-tooltip-content="#catTooltipPlans" data-wow-delay="0.4s">
+            <div class="col-md mt-3 wow fadeInUp tooltip_content tooltips" data-tooltip-content="#catTooltipPlans" data-wow-delay="1.2s">
                 <a href="/search-by-cat/?src_doc_cats=4&search_term=" class="doc_border_btn text-center" style="width: 100%; padding: 20px 5px; height: 90px;">
                     <i class="fa-solid fa-lightbulb-exclamation-on"></i><span style="margin-left: 10px;">Plans</span><i class="arrow_right"></i>                    
                 </a>
@@ -1227,6 +1243,138 @@
                                     <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
                                     <td>{{ report_doc.data_category.category_name }}</td>  
                                     <td>{{ report_doc.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Countings Agreements and MoUs -->
+<div class="modal fade" id="ModalAgree_Mous_Countings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Agreements and MoUs</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for agree_mous_doc in agree_mous_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ agree_mous_doc.data_category.category_name }}</td>  
+                                    <td>{{ agree_mous_doc.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Countings Modeling Tools -->
+<div class="modal fade" id="Modal_Modeling_tools_Countings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Modeling Tools</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for modeling_tools_doc in modeling_tools_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ modeling_tools_doc.data_category.category_name }}</td>  
+                                    <td>{{ modeling_tools_doc.title }}</td>                                            
+                                </tr>
+                                {% endfor %}                            
+                            </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="doc_border_btn m-1 pt-2 pb-2 pl-3 pr-3" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Countings Workshops Seminars -->
+<div class="modal fade" id="Modal_Workshops_Seminars_Countings" tabindex="-1" role="dialog" aria-labelledby="ModalCountingsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-top" role="document" style="max-width: 900px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="wow fadeInUp mt-2 d-inline-flex" style="border-bottom: 2px solid rgb(34, 119, 170); color: rgb(0, 85, 170); visibility: visible; animation-name: fadeInUp; margin-left: auto; margin-right: auto;">Workshops and Seminars</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 0;">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">                        
+                        <div class="table-responsive" style="width: 100%; max-height:500px; overflow:auto;">                    
+                            <table id="tblTabularData" class="table table_shortcode">
+                            <thead>
+                                <tr>
+                                    <th><h5>#</h5></th>
+                                    <th><h5>Category</h5></th>
+                                    <th><h5>Document title</h5></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for workshops_seminar_doc in workshops_seminar_docs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>   <!-- scope="row" -->
+                                    <td>{{ workshops_seminar_doc.data_category.category_name }}</td>  
+                                    <td>{{ workshops_seminar_doc.title }}</td>                                            
                                 </tr>
                                 {% endfor %}                            
                             </tbody>

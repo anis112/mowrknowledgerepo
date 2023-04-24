@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-multiselect.min.css' %}" />
 <link rel="stylesheet" href="{% static 'css/popup_modal_style.css' %}">  
 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">  
+
+
+
+
 <style>
     
     .multiselect-native-select .btn-group button.dropdown-toggle::after {
@@ -566,7 +571,23 @@
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                         </h5> -->
 
+
+                        <table id="example" class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th></th>                                    
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                
+
+                                    
+
                         {% for doc in documents %}
+
+                        <tr style="background-color: transparent; ">
+                            <td style="background-color: transparent; border-top: none; ">
 
                             {% ifchanged doc.data_category.category_name %}
                                 <div class="row wow fadeInUp">
@@ -639,7 +660,27 @@
                                 </div>
                             </div>
 
+                            </td>                                    
+                        </tr>
                         {% endfor %}
+
+
+
+                                    
+                            </tbody>
+                            <!-- <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </tfoot> -->
+                        </table>
+
+
 
                     </div>
 
@@ -656,7 +697,27 @@
 
 {% block script_content %}
 
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"> </script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"> </script>
+
 <script>
+
+
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "language": {
+            "lengthMenu": "Display _MENU_ records per page",
+            "zeroRecords": "Nothing found - sorry",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No records available",
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        }
+    } );
+});
+
+
 
 $("#select_more").click(function () {     
         
