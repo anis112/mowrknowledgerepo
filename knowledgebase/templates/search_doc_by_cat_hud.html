@@ -483,7 +483,14 @@
                                             {% ifchanged doc.organization.organization_name %}
                                                 <a class="nav-link scat-title" data-wow-delay="0.2s"
                                                     href="#{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category.data_common_category_id}}">
-                                                    {{doc.organization.organization_name}} ({{doc.organization.short_name}})
+                                                    {{doc.organization.organization_name}} ({{doc.organization.short_name}}) 
+                                                    {% for doc_count in doc_org_wise_count %} 
+                                                      {% if doc_count.data_category__data_common_category == doc.data_category.data_common_category.id %}
+                                                            {% if doc_count.organization == doc.organization.id %} 
+                                                                ({{doc_count.count}}) 
+                                                            {% endif %}
+                                                       {% endif %}
+                                                    {% endfor %}
                                                 </a>
                                             {% endifchanged %}
                                         {% endif %}
