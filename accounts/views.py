@@ -29,6 +29,7 @@ def login(request):
             upassword=form.cleaned_data['password']           
             user = authenticate(username=uname, password=upassword)
             if user.is_active:
+                print('hello')
                 if user.is_superuser:
                     auth_login(request,user)
                     return redirect('/admin')  # or your url name
@@ -39,16 +40,21 @@ def login(request):
                     auth_login(request,user)
                     return redirect('/')
             else:
-                raise ValidationError("This account is inactive.",code='inactive',)
+                # raise ValidationError("This account is inactive.",code='inactive',)
+                error_massage = 'Invalid username or password'
+                return render(request, 'login.html', {'error_message': error_massage})
             
                 # messages.add_message(request, constants.SUCCESS, 'Invalid username or password ')  
                 # form=AuthenticationForm()
                 # return render(request, 'login.html',{'form':form})     
     
         else:  
-            messages.add_message(request, constants.SUCCESS, 'Invalid username or password ') 
+            # messages.add_message(request, constants.SUCCESS, 'Invalid username or password ') 
             form=AuthenticationForm()
-            return render(request, 'login.html',{'form':form})     
+            # return render(request, 'login.html',{'form':form}) 
+            error_massage = 'Invalid username or password'
+            return render(request, 'login.html', {'error_message': error_massage, 'form':form})
+                
 
     else:
         if request.user.is_authenticated:

@@ -67,7 +67,7 @@ class CustomUserAdmin(UserAdmin):
     
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'is_staff',
-        'is_organization_admin','is_superuser','organization', 'last_login'
+        'is_organization_admin','is_superuser','organization', 'last_login', 'date_joined',
         )
     list_filter= (OrganizationWiseFilter,'is_organization_admin',)
     
@@ -98,9 +98,9 @@ class CustomUserAdmin(UserAdmin):
                 'groups', 'user_permissions'
                 )
         }),
-        ('Important dates', {
-            'fields': ('date_joined',)
-        }),
+        # ('Important dates', {
+        #     'fields': ('last_login','date_joined',)
+        # }),
         ('Additional info', {
             'fields': ('is_organization_admin', 'organization')
         })
@@ -119,9 +119,9 @@ class CustomUserAdmin(UserAdmin):
                 'groups', 'user_permissions'
                 )
         }),
-        ('Important dates', {
-            'fields': ('date_joined')
-        }),
+        # ('Important dates', {
+        #     'fields': ('last_login','date_joined')
+        # }),
         ('Additional info', {
             'fields': ('is_organization_admin', 'organization')
         })

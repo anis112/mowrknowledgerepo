@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
 #from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.db.models import OuterRef, Q, Subquery
+from django.db.models import OuterRef, Q, Subquery, Count
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 
@@ -810,6 +810,7 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
 
     #cond_org_fixed = Q(id__range=(1, 7))                                          # Added by MNH/ARH
 
+    document_cat_wise_count = documents.values('data_category').annotate(count=Count('data_category'))
     org_infos = Organization.objects.filter(organization_type=1).order_by('id')   # Added by MNH/ARH
     all_org_infos = Organization.objects.all().order_by('id')                     # Added by MNH/ARH
     # org_infos = Organization.objects.all().order_by('id')                       # Comment by MNH/ARH
@@ -817,7 +818,7 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
 
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
                 'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
-                'org_infos': org_infos, 'all_org_infos': all_org_infos, 'doc_cats': doc_cats}
+                'org_infos': org_infos, 'all_org_infos': all_org_infos, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count}
     
     # context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
         #            'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
@@ -859,11 +860,12 @@ def show_search_results_for_other_doc(documents, search_term='', src_org_types=N
             documents = documents.filter(cond_cat).order_by('organization_id', 'data_category_id')
             doc_count = len(documents)
 
+    document_cat_wise_count = documents.values('data_category').annotate(count=Count('data_category'))
     org_types = OrganizationType.objects.exclude(id=1).order_by('id')                   
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
-                'search_term': search_term, 'src_doc_cats': data_category_ids, "src_doc_type": src_org_types, 'org_types': org_types, 'doc_cats': doc_cats}
+                'search_term': search_term, 'src_doc_cats': data_category_ids, "src_doc_type": src_org_types, 'org_types': org_types, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count}
 
     return context
 

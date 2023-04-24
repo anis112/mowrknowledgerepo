@@ -158,7 +158,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 JAZZMIN_SETTINGS = {
-    "site_title": "MoW Knowledgebase",
+    "site_title": "MoW knowledgebase",
     "site_header": "MoW knowledgebase",
     "site_brand": "MoW knowledgebase",
     "site_icon": "img/favicon.ico",
