@@ -277,7 +277,7 @@
                     </li>
                   
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'help_info' %}">Help</a>
+                        <a class="nav-link" href="{% url 'help_info' %}">FAQ</a>
                     </li>
                 </ul>
 
@@ -350,8 +350,8 @@
                         <a href="{% url 'search-by-cat' %}">Search by Category</a> | 
                         <a href="{% url 'search-by-nat' %}">Other Document(s) Search</a> | 
                         <a href="#">Contact Us</a> | 
-                        <a href="#">Help</a> | 
-                        <a href="#">Sign in </a>
+                        <a href="{% url 'help_info' %}">Help</a> | 
+                        <a href="{% url 'accounts/login' %}">Sign in </a>
                     </div>
                 </div>
             </div>
@@ -362,9 +362,9 @@
                 <a href="{% url 'dashboard' %}">Dashboard</a> | 
                 <a href="{% url 'search-by-org' %}">Search by Organization</a> | 
                 <a href="{% url 'search-by-cat' %}">Search by Category</a> | 
-                <a href="#">Other Document(s) Search</a> | 
+                <a href="{% url 'search-by-nat' %}">Other Document(s) Search</a> | 
                 <a href="#">Contact Us</a> | 
-                <a href="#">Help</a> | 
+                <a href="{% url 'help_info' %}">FAQ</a> | 
                 <a href="{% url 'accounts/login' %}">Sign in </a>
             </div>
             <div class="container">
@@ -378,48 +378,48 @@
 
                     <div class="col-md-6 text-center pt-3 pb-3 pt-md-1 pb-md-0">
                         <div class="mb-1">
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://bwdb.gov.bd/"
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://bwdb.gov.bd/" target="_blank"
                                 role="button">
                                 <img src="{% static 'img/org_img/logo/BWDB.png' %}" alt="BWDB" title="BWDB" style="width: 50px;">
                                 <br>
                                 BWDB
                             </a>
 
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://rri.gov.bd/"
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://rri.gov.bd/" target="_blank"
                                 role="button">
                                 <img src="{% static 'img/org_img/logo/RRI.png' %}" alt="RRI" title="RRI" style="width: 40px;">
                                 <br>
                                 RRI
                             </a>
 
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="#!" role="button">
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://www.jrcb.gov.bd/"  target="_blank" role="button">
                                 <img src="{% static 'img/org_img/logo/JRC.png' %}" alt="JRC" title="JRC" style="width: 50px;">
                                 <br>
                                 JRC
                             </a>
 
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/"
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/" target="_blank"
                                 role="button">
                                 <img src="{% static 'img/org_img/logo/DBHWD.png' %}" alt="DBHWD" title="DBHWD" style="width: 50px;">
                                 <br>
                                 DBHWD
                             </a>
 
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://dbhwd.gov.bd/"
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="http://www.warpo.gov.bd/" target="_blank"
                                 role="button">
                                 <img src="{% static 'img/org_img/logo/WARPO.png' %}" alt="WARPO" title="WARPO" style="width: 70px; padding: 1px 0px;">
                                 <br>
                                 WARPO
                             </a>
 
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.iwmbd.org/"
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.iwmbd.org/" target="_blank"
                                 role="button">
                                 <img src="{% static 'img/org_img/logo/IWM.png' %}" alt="IWM" title="IWM" style="width: 50px; padding: 5px 0px;">
                                 <br>
                                 IWM
                             </a>
 
-                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.cegisbd.com/"
+                            <a class="btn footer-logo btn-floating m-1 p-0 text-white" href="https://www.cegisbd.com/" target="_blank"
                                 role="button">
                                 <img src="{% static 'img/org_img/logo/CEGIS.png' %}" alt="CEGIS" title="CEGIS" style="width: 70px; padding: 9px 0px;">
                                 <br>
