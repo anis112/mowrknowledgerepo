@@ -42,114 +42,6 @@
     }
 
     .community-content {
-        min-height: 160px;
-    }
-
-    .fact_navigation_info {
-        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
-        padding: 40px 30px 28px;
-        border: 1px Solid rgba(130, 148, 151, 0.2)
-    }
-
-    .org-content {
-        /* background-color: #dde3ee; */
-        /* background-image: linear-gradient(to left bottom, #eeeeee, #ecedee, #eaebee, #e7eaee, #e4e9ee); */
-        /* border: 1px solid #d9ddea; */
-        padding: 10px;
-        margin: 10px 0px;
-        min-height: 110px !important;
-        border-radius: 4px;
-    }
-    
-    .org-content:hover{
-        box-shadow: #6ea5ae 1px 2px 7px 0px !important;     /* #04859b 0px 1px 6px 0px !important; */        
-    }
-
-    .org-img {
-        width: 75px;
-        margin-bottom: 10px;
-        margin-right: 10px;
-    }
-    
-    .doc_border_btn {
-        font-size: 12px;        
-    }
-
-    .doc_border_btn i {
-        margin-left: 0px;        
-    }
-    
-    .sec_pad {
-        padding: 25px 0;
-    }
-    
-    .tip_content {
-        text-align: justify;
-    }
-    
-/*=========== SVG css (MNH) ============*/
-.water-wave {
-  display: block;
-  width: 100%;
-  height: 10rem;
-  max-height: 80vh;
-  margin: 0;
-}
-
-.parallax > use {
-  animation:move-forever 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-.parallax > use:nth-child(1){animation-delay:-5s;}
-.parallax > use:nth-child(2){animation-delay:-7s; animation-duration:5.25s}
-.parallax > use:nth-child(3){animation-delay:1s; animation-duration:8.25s}
-.parallax > use:nth-child(4){animation-delay:-3s; animation-duration:10.25s}
-
-/* .parallax > use:nth-child(1){animation-delay:-3s;}
-.parallax > use:nth-child(2){animation-delay:-3s; animation-duration:4.25s}
-.parallax > use:nth-child(3){animation-delay:-3s; animation-duration:5.25s}
-.parallax > use:nth-child(4){animation-delay:-5s; animation-duration:3.25s} */
-
-@keyframes move-forever{
-  0%{transform: translate(-90px , 0%)}
-  100%{transform: translate(85px , 0%)} 
-}
-
-
-</style>
-
-<style>
-    .categories_guide_item {
-        padding: 0px !important;
-        background: transparent !important;
-        box-shadow: none !important;
-    }
-
-    .categories_guide_item img {
-        margin-bottom: 0px !important;
-    }
-
-    .tab-pane {
-        margin-top: 75px;
-    }
-
-    .tab-content {
-        padding: 0 20px;
-        box-shadow: 5px 6px 5px 0 rgba(33, 39, 40, 0.2);
-        border: 1px Solid rgba(130, 148, 151, 0.2)
-    }
-
-    .com-title {
-        font-size: 0.8rem !important;
-        font-style: italic;
-        text-transform: uppercase;
-    }
-
-    .community-box {
-        padding: 20px 15px;
-        box-shadow: 1px 2px 3px 2px rgba(2, 47, 57, 0.14);
-    }
-
-    .community-content {
         min-height: 160px; 
     }
 
@@ -175,9 +67,7 @@
 
     /*=========== Start Slider css (MNH) ============*/
 
-
-
-    .slide_section{
+    .slide_section {
     position: inherit ;
     width: 100%;
     height: auto;
@@ -187,10 +77,10 @@
     z-index: 100;
     }
 
-    .slide{
+    .slide {
         position: relative;
         background: #F8F9FA;
-        height: 650px;
+        height: auto; /* height: 650px; */
         flex: 0.9;
         border-right: 1px solid rgba(0, 0, 0, 0.16);
         overflow: hidden;
@@ -212,12 +102,16 @@
     }
 
     .inner {
-        height: 650px; 
+        height: auto; /* height: 650px; */
         width: 100%;     
         display: block;
         background-repeat: no-repeat;
         transition: all 1s;
         background-size: auto 100%;
+    }
+
+    .slide img {  
+        transition: all 1s;
     }
 
     /* .slide:nth-child(1)
@@ -274,9 +168,9 @@
         width:100%;
     }
 
-    .slide:hover .inner {
-        transform: scale(1.2);      /* Zoom Level */
-        /* transition-delay: 0.1s;*/      /* Zoom Delay*/
+    .slide:hover img {       /* .slide:hover .inner { */ 
+        transform: scale(1.05);     /*   scale(1.2);  Zoom Level */
+        /* transition-delay: 0.1s; */     /* Zoom Delay*/
     }
 
     .slide:hover .content{
@@ -303,6 +197,128 @@
     /* https://www.youtube.com/watch?v=uDDGsq0Xf2Y */
     /*=========== End Slider css (MNH) ============*/
 
+    /* Starts Responsive Image Slider Image ---- MNH */
+    
+    @media (min-width: 2200px) {
+        /* .slide, .inner {
+            height:850px;
+        } */
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom: 50px;        /* 100px; */
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+    @media (max-width: 2199px) {
+        /* .slide, .inner {
+            height:750px;
+        } */
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom: 50px;        /* 100px; */
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+    /* @media (min-width: 1200px) { */
+    @media (max-width: 1999px) {
+        /* .slide, .inner {
+            height:650px;
+        } */
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom: 50px;        /* 100px; */
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+    @media (max-width: 1450px) {
+        /* .slide, .inner {
+            height:450px;
+        } */
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom: 50px;        /* 100px; */
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        /* .slide, .inner {
+            height:350px;
+        } */
+        .content {
+            display:block;
+        }
+        .slide a {
+            bottom: 50px;        /* 130px; */
+            font-size: 0.8rem;
+            padding:10px 5px;
+        }
+    }
+
+
+    @media (max-width: 776px) {
+        /* .slide, .inner {
+            height:250px;
+        } */
+        .content {
+            display:none;
+        }
+        .slide a {
+            bottom:30px;
+            font-size: 0.7rem;
+            padding:10px 5px;
+        }
+    }
+
+
+    @media (max-width: 567px) {
+        /* .slide, .inner {
+            height:190px;
+        } */
+        .content {
+            display:none;
+        }
+        .slide a {
+            bottom:30px;
+            padding:0;
+            /* font-size: 0.6rem; */
+        }
+    }
+
+
+    @media (max-width: 350px) {
+        /* .slide, .inner {
+            height:110px;
+        } */
+        .content {
+            display:none;
+        }
+        .slide a {
+            bottom:30px;
+            padding:0;
+            /* font-size: 0.5rem; */
+        }
+    }
+</style>
+
+
+
+<style>
 
     /*=========== SVG css (MNH) ============*/
     .water-wave {
@@ -329,126 +345,8 @@
 
     /*=========== SVG css (MNH) ============*/
 
-    /* Starts Responsive Image Slider Image */
-    
-    @media (min-width: 2200px) {
-        .slide, .inner {
-            height:850px;
-        }
-        .content {
-            display:block;
-        }
-        .slide a {
-            bottom:100px;
-            font-size: 0.8rem;
-            padding:10px 5px;
-        }
-    }
-
-    @media (max-width: 2199px) {
-        .slide, .inner {
-            height:750px;
-        }
-        .content {
-            display:block;
-        }
-        .slide a {
-            bottom:100px;
-            font-size: 0.8rem;
-            padding:10px 5px;
-        }
-    }
-
-    /* @media (min-width: 1200px) { */
-    @media (max-width: 1999px) {
-        .slide, .inner {
-            height:650px;
-        }
-        .content {
-            display:block;
-        }
-        .slide a {
-            bottom:100px;
-            font-size: 0.8rem;
-            padding:10px 5px;
-        }
-    }
-
-    @media (max-width: 1450px) {
-        .slide, .inner {
-            height:450px;
-        }
-        .content {
-            display:block;
-        }
-        .slide a {
-            bottom:100px;
-            font-size: 0.8rem;
-            padding:10px 5px;
-        }
-    }
-
-    @media (max-width: 1199px) {
-        .slide, .inner {
-            height:350px;
-        }
-        .content {
-            display:block;
-        }
-        .slide a {
-            bottom:130px;
-            font-size: 0.8rem;
-            padding:10px 5px;
-        }
-    }
 
 
-    @media (max-width: 776px) {
-        .slide, .inner {
-            height:250px;
-        }
-        .content {
-            display:none;
-        }
-        .slide a {
-            bottom:0;
-            font-size: 0.7rem;
-            padding:10px 5px;
-        }
-    }
-
-
-    @media (max-width: 567px) {
-        .slide, .inner {
-            height:190px;
-        }
-        .content {
-            display:none;
-        }
-        .slide a {
-            bottom:0;
-            padding:0;
-            font-size: 0.6rem;
-        }
-    }
-
-
-    @media (max-width: 350px) {
-        .slide, .inner {
-            height:110px;
-        }
-        .content {
-            display:none;
-        }
-        .slide a {
-            bottom:0;
-            padding:0;
-            font-size: 0.5rem;
-        }
-    }
-</style>
-
-<style>
     /* Center the modal on the page */
     /* .modal {
       display: none;
@@ -490,7 +388,7 @@
       padding: 10px;
       text-align: left;
     }
-  </style>
+</style>
 
 <!-- /* Slider */ -->
 <style>
@@ -551,7 +449,7 @@
          line-height: .2 !important;
  } */
 .profile{
-           margin-top: 16px;
+    margin-top: 16px;
     margin-left: 11px;
 }
 
@@ -596,7 +494,7 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 
-<section class="slide_section"> <!-- style="position: inherit; width: 100%; height: auto; display: flex; border:2px solid #000; z-index: 100;"  -->
+<section class="slide_section d-none"> <!-- style="position: inherit; width: 100%; height: auto; display: flex; border:2px solid #000; z-index: 100;"  -->
     <div class="slide" >
         <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide1.jpg);"></span> <!-- <img src="{% static 'img/slider-img/MWR_Slide1.jpg' %}" style="width:100%;"> -->        
         <a href="{% url 'search-by-org' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Organization<i class="arrow_right"></i></a>
@@ -622,6 +520,49 @@
         </div>
     </div>    
 </section>
+
+
+
+<section class="slide_section">
+    <div class="d-inline-flex bg-secondary text-white w-100">  
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-4 p-0">
+                    <div class="slide border" >
+                        <img src="{% static 'img/slider-img/MWR_Slide_1.jpg' %}" style="width:100%;">    <!-- <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide_1.jpg);"></span>  <img src="{% static 'img/slider-img/MWR_Slide1.jpg' %}" style="width:100%;"> -->        
+                        <a href="{% url 'search-by-org' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Organization<i class="arrow_right"></i></a>
+                        <!-- <div class="content">            
+                            <h4 style="color:#04aadd;">Search by Organization</h4>  #25a800
+                            <p>Searching provision is available here to get an informaion/document of any category by selecting one or more relevant organizations as well as one or more document types.</p>            
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4 p-0">
+                    <div class="slide border">
+                        <img src="{% static 'img/slider-img/MWR_Slide_2.jpg' %}" style="width:100%;">    <!-- <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide_2.jpg);"></span>  -->
+                        <a href="{% url 'search-by-cat' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Search by Category<i class="arrow_right"></i></a>
+                        <!-- <div class="content">
+                            <h4 style="color:#04aadd;">Search by Category</h4>
+                            <p>System has the facilities for getting information of any category by selecting one or more relevant documents as well as one or more document types.</p>            
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-4 p-0">
+                    <div class="slide border">
+                        <img src="{% static 'img/slider-img/MWR_Slide_3.jpg' %}" style="width:100%;">    <!-- <span class="inner" style="background-image:url(../static/img/slider-img/MWR_Slide_3.jpg);"></span> -->
+                        <a href="{% url 'search-by-nat' %}" class="doc_border_btn glow-on-hover" style="opacity: 0.9; margin-left: -2px; border:2px solid #00abd0; border-radius: 0px 4px 4px 0px;">Other Document(s) Search<i class="arrow_right"></i></a>
+                        <!-- <div class="content">
+                            <h4 style="color:#04aadd;">Other Document(s) Search</h4>
+                            <p>In order to search any informaion/document of any category by selecting one or more relevant documents of other national/international organizations, there is another search panel.</p>            
+                        </div> -->
+                    </div>
+                </div>
+            </div>                           
+        </div>           
+    </div>
+</section>
+
+
 
 <!-- Counting -->
 <section class="doc_fun_fact_area" style="padding: 15px 0px 0px 0px; border-top: 2px solid #618c8e; border-bottom:2px solid #618c8e; margin-top: 3px; background: #cfe5f9; margin-top: 2px; background-image: linear-gradient(180deg, rgb(244, 248, 251) 0%, rgb(176, 211, 227) 90%);">     <!-- linear-gradient(180deg, rgb(244, 248, 251) 0%, rgb(176, 211, 227) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 70, 102) 90%);  linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(4, 75, 79) 90%); linear-gradient(180deg, rgb(207, 241, 249) 0%, rgb(10, 138, 145) 90%)    #e3f6fd;  #6db3c8;  #eff0f9 #e9f0ff  #95a5b3;  -->
@@ -698,8 +639,8 @@
             <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2.4s">
                 <a data-toggle="modal" href="#Modal_Modeling_tools_Countings">                    
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
-                        <div class="counter" style="color: #0092aa; text-shadow: 0px 0px 1px black;">{{no_of_modeling_tools}}</div>
-                        <p style="color: #0092aa; text-shadow: 0px 0px 0px black; font-size: 20px;">Modeling Tools</p>
+                        <div class="counter" style="color: #00879d; text-shadow: 0px 0px 1px black;">{{no_of_modeling_tools}}</div>
+                        <p style="color: #00879d; text-shadow: 0px 0px 0px black; font-size: 20px;">Modeling Tools</p>
                     </div>
                 </a>
             </div>
@@ -707,8 +648,8 @@
             <div class="col-lg-3 col-md-3 col-sm-6 wow fadeInUp tooltip_content" data-wow-delay="2.8s">
                 <a data-toggle="modal" href="#Modal_Workshops_Seminars_Countings">                    
                     <div class="doc_fact_item tooltips" data-tooltip-content="#tooltipReports">
-                        <div class="counter" style="color: #ff699a; text-shadow: 0px 0px 1px black;">{{no_of_workshops_seminar}}</div>
-                        <p style="color: #ff699a; text-shadow: 0px 0px 0px black; font-size: 20px;">Workshops and Seminars</p>
+                        <div class="counter" style="color: #dd5e87; text-shadow: 0px 0px 1px black;">{{no_of_workshops_seminar}}</div>
+                        <p style="color: #dd5e87; text-shadow: 0px 0px 0px black; font-size: 20px;">Workshops and Seminars</p>
                     </div>
                 </a>
             </div>

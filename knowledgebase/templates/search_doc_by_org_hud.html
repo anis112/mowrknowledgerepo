@@ -557,7 +557,7 @@
                 </div>
                 <div class="col-12 col-md-8 col-xl-9 col-xxl-10 wow fadeInUp">         <!--  style="background: #f5fafc;" -->        
                     <div class="pt-2" style="top: 75px;">
-                        <div class="col-12">
+                        <!-- <div class="col-12">
                             <div class="row">
                                 <div class="col-6 pl-0 border-bottom">
                                     <h5 class="mb-1 pt-1 pb-1" style="color: #05a;">
@@ -565,120 +565,127 @@
                                     </h5>
                                 </div>                                
                             </div>                           
-                        </div>
+                        </div> -->
+
                         <!-- <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
                             <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
                         </h5> -->
 
+                        <h5 class="border-bottom mb-1 pt-1 pb-1" style="color: #05a;">
+                            <i class="fa-solid fa-file-magnifying-glass"></i> Search Result (<strong style="color:#047; font-size:105%;">{{doc_count}}</strong>)
+                        </h5>
 
-                        <table id="example" class="display" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th></th>                                    
-                                </tr>
-                            </thead>
+                        <div class="col-12 mt-4">
+                            <div class="row">
+                                <table id="example" class="display border mt-4" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th></th>                                    
+                                        </tr>
+                                    </thead>
 
-                            <tbody>
-                                
+                                    <tbody>
+                                        
 
+                                            
+
+                                {% for doc in documents %}
+
+                                <tr style="background-color: transparent; ">
+                                    <td style="background-color: transparent; border-top: none; ">
+
+                                    {% ifchanged doc.data_category.category_name %}
+                                        <div class="row wow fadeInUp">
+                                            <div class="col-md-12">
+                                                <span
+                                                    id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
+                                                    class="data-cat-title" data-wow-delay="0.2s">
+                                                    <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
+                                                    ({{doc.data_category.category_name}})
+                                                </span>
+                                            </div>
+                                        </div>
+                                    {% endifchanged %}
                                     
+                                    <div class="row community-box wow fadeInUp text-left">
+                                        <div class="col-md-2">
+                                            <div class="icon-container">
+                                                {% if doc.thumbnail == null or doc.thumbnail == "" %}
+                                                <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                        
+                                                {% else %}
+                                                <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
+                                                {% endif %}
+                                            <!-- <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <table class="table table-striped table-hover w-100 border mb-2">
+                                                {% if doc.access_category.id != 1 %}
+                                                <tr>
+                                                    <td class="text-left font-weight-bold">Access: </td>
+                                                    <td class="text-left font-weight-bold text-danger">{{doc.access_category.category_name|truncatewords:"200"}}</td>
+                                                </tr>
+                                                {% endif %}
+                                                <tr>
+                                                    <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
+                                                    <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left font-weight-bold">Subject:</td>
+                                                    <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> 
+                                                    {% comment %} <td class="text-left">{{doc.organization.organization_name}}
+                                                        ({{doc.data_category.category_name}})</td> {% endcomment %}
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-left font-weight-bold">Decription:</td>
+                                                    <td class="text-left">
+                                                        <div class="post">
+                                                            <span class="content_p">{{doc.decription|truncatewords:"1000"}}</span>
+                                                            <button class="btn-rm" onclick="read_more(this)">Read More</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
 
-                        {% for doc in documents %}
+                                            <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
+                                                <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
 
-                        <tr style="background-color: transparent; ">
-                            <td style="background-color: transparent; border-top: none; ">
+                                            <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
+                                                <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
 
-                            {% ifchanged doc.data_category.category_name %}
-                                <div class="row wow fadeInUp">
-                                    <div class="col-md-12">
-                                        <span
-                                            id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
-                                            class="data-cat-title" data-wow-delay="0.2s">
-                                            <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
-                                            ({{doc.data_category.category_name}})
-                                        </span>
+                                            <!-- <a id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
+                                            <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button> -->
+            
+                                            <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}">Download</a>
+
+                                            {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
+                                                <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
+                                                    <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span class="ml-2">Edit</span></a>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                </div>
-                            {% endifchanged %}
-                            
-                            <div class="row community-box wow fadeInUp text-left">
-                                <div class="col-md-2">
-                                    <div class="icon-container">
-                                        {% if doc.thumbnail == null or doc.thumbnail == "" %}
-                                        <img src="{% static 'img/doc-img/pdf_thum.jpg' %}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">                                        
-                                        {% else %}
-                                        <img src="/{{doc.thumbnail}}" alt="{{doc.title|truncatewords:'250'}}" style="max-width: 100%; border: 1px solid #ddd;">
-                                        {% endif %}
-                                    <!-- <img src="{% static 'img/doc-img/' %}{{doc.thumbnail}}" alt="{{doc.title}}" width="100%" style="max-width: 250px;" /> -->
-                                    </div>
-                                </div>
-                                <div class="col-md-10">
-                                    <table class="table table-striped table-hover w-100 border mb-2">
-                                        {% if doc.access_category.id != 1 %}
-                                        <tr>
-                                            <td class="text-left font-weight-bold">Access: </td>
-                                            <td class="text-left font-weight-bold text-danger">{{doc.access_category.category_name|truncatewords:"200"}}</td>
-                                        </tr>
-                                        {% endif %}
-                                        <tr>
-                                            <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
-                                            <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-left font-weight-bold">Subject:</td>
-                                             <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> 
-                                             {% comment %} <td class="text-left">{{doc.organization.organization_name}}
-                                                ({{doc.data_category.category_name}})</td> {% endcomment %}
-                                        </tr>
-                                        <tr>
-                                            <td class="text-left font-weight-bold">Decription:</td>
-                                            <td class="text-left">
-                                                <div class="post">
-                                                    <span class="content_p">{{doc.decription|truncatewords:"1000"}}</span>
-                                                    <button class="btn-rm" onclick="read_more(this)">Read More</button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
 
-                                    <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
-                                        <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
-
-                                    <!-- <a class="doc_border_btn smbtn ml-2" href="" onclick="checkFileAvailability('{{doc.organization.short_name}}', '{{doc.access_category}}', '{{doc.file_name}}')">
-                                        <i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></a> -->
-
-                                    <!-- <a id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}" style="display:none;"></a>
-                                    <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button> -->
-    
-                                    <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="/{{doc.file_name}}" download="{{doc.file_name}}">Download</a>
-
-                                    {% if user.is_authenticated and user.is_superuser or user.is_organizational_admin %}
-                                        <a target="_blank" href="/admin/knowledgebase/document/{{doc.id}}/change/" class="doc_border_btn smbtn float-right">
-                                            <i class="fa-solid fa-pen-to-square fa-fw ml-0"></i><span class="ml-2">Edit</span></a>
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                            </td>                                    
-                        </tr>
-                        {% endfor %}
-
-
-
-                                    
-                            </tbody>
-                            <!-- <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    </td>                                    
                                 </tr>
-                            </tfoot> -->
-                        </table>
+                                {% endfor %}
 
+
+
+                                            
+                                    </tbody>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </tfoot> -->
+                                </table>
+                            </div>                           
+                        </div>
 
 
                     </div>
