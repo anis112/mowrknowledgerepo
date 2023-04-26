@@ -34,6 +34,8 @@ class CustomUserForm(UserCreationForm):
             'email',
             'first_name',
             'last_name',
+            # 'phone_number',
+            # 'designation',
             # 'is_organization_admin',
             'organization'
            

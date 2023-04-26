@@ -103,6 +103,7 @@ WSGI_APPLICATION = 'mowrknowledgerepo.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 # live_db
 
+# Main DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',

@@ -1,7 +1,11 @@
-from django.db import models
-from django.core.validators import MinValueValidator
-from django.utils.text import slugify
 import os
+from django.db import models
+from django.utils.text import slugify
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
+from django.utils.deconstruct import deconstructible
+from django.template.defaultfilters import filesizeformat
+from django.core.validators import MinValueValidator
 from django.db.models import Max
 
 #from accounts.models import CustomUser
@@ -9,6 +13,23 @@ from django.db.models import Max
 # Create your models here.
 
 # new tables
+
+# Clss to Validate Maximum File Upload Size
+@deconstructible
+class MaxSizeValidator:
+    message = 'File size exceeds maximum allowed size of %(max_size)s.'
+    code = 'max_size'
+
+    def __init__(self, max_size):
+        self.max_size = max_size
+        super().__init__()
+
+    def __call__(self, value):
+        if value.size > self.max_size:
+            raise ValidationError(
+                self.message, code=self.code, params={'max_size': filesizeformat(self.max_size)}
+            )
+
 
 
 
@@ -126,6 +147,23 @@ def get_upload_path_thumb(instance, filename):
     new_name = f'thumb_{doc_id}{ext}'
     return os.path.join(base_path, new_name)
 
+def get_document_file_upload_path(instance, filename):
+    """Function to generate a new filename for uploaded files"""
+    name, ext = os.path.splitext(filename)
+    file_id = DocumentFile.objects.aggregate(Max('id'))['id__max']
+    if file_id == None:
+          file_id = 1
+    else:
+          file_id = file_id + 1 
+    
+    org_name = instance.document.organization.short_name
+    doc_access_cat = instance.document.access_category.category_name
+    
+    base_path = os.path.join('static','document', org_name, doc_access_cat)    # path_example ="static/documents/JRC/Public/document.pdf"
+    new_name = f'{file_id}{ext}'
+
+    return os.path.join(base_path, new_name)
+
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
@@ -147,7 +185,8 @@ class Document(models.Model):
     author = models.CharField(max_length=100, blank=True)
     access_category = models.ForeignKey(
         DataAccessCategory, on_delete=models.PROTECT, null=True)
-    publication_date = models.CharField(max_length=50, null=True, blank=True)
+    # publication_date = models.CharField(max_length=50, null=True, blank=True)
+    publication_date = models.DateField(null=True, blank=True)
 
     # file_name = models.FileField(
     #     upload_to='static/document', max_length=500, null=True, blank=True)
@@ -174,6 +213,19 @@ class Document(models.Model):
         db_table = 'tbl_documents'
         ordering = ['id']
 
+class DocumentFile(models.Model):
+     id = models.AutoField(primary_key=True)
+     file = models.FileField(upload_to=get_document_file_upload_path, max_length=500, null=False, verbose_name= 'Upload file (Maximum 10MB)', 
+                                  validators=[FileExtensionValidator(allowed_extensions= ['pdf']), MaxSizeValidator(10 * 1024 * 1024),])
+     uploaded_at = models.DateTimeField(auto_now_add=True)
+     document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='doc_files')
+
+     def __str__(self) -> str:
+          return self.file.name
+     
+     class Meta:
+          db_table = 'tbl_document_files'
+          ordering = ['id']
 
 class ArticleDetail(models.Model):
     id = models.AutoField(primary_key=True)

@@ -1,8 +1,10 @@
 from django.contrib import admin
-
+from django import forms
+from django.core.exceptions import ValidationError
+from django.db import transaction
 from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataAccessCategory, DataCategory,
-                     Document, Organization,OrganizationType)
+                     Document, Organization,OrganizationType, DocumentFile)
 
 
 from .forms import DocumentForm
@@ -134,12 +136,16 @@ class CategoryWiseFilter(admin.SimpleListFilter):
         elif request.user.is_organization_admin:
             return queryset.filter(organization_id=request.user.organization_id)
         
-
+class DocumentFileInline(admin.StackedInline):
+    model = DocumentFile
+    extra = 1
+    fields = ('file',)
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
     #form=DocumentForm
     #autocomplete_fields = ['article_category']
+    inlines = [DocumentFileInline,]
     list_display = ['title','organization','data_category', 'access_category', 'modified_date', 'modified_by']
     exclude = ('is_parent_available',)
     list_editable = ['data_category', 'access_category']
@@ -160,8 +166,20 @@ class DocumentAdmin(admin.ModelAdmin):
         form = super().get_form(request, obj, **kwargs)
         if not request.user.is_superuser:
             form.base_fields['organization'].initial = request.user.organization
-            # form.base_fields['organization'].widget.attrs['disabled'] = True
-        return form     
+            form.base_fields['entry_by'].initial = request.user.username
+            form.base_fields['modified_by'].initial = request.user.username
+            form.base_fields['entry_by'].widget = forms.HiddenInput()
+            form.base_fields['modified_by'].widget = forms.HiddenInput()
+            # form.base_fields['entry_by'].widget.attrs['disabled'] = True
+        return form
+    
+    @transaction.atomic
+    def save_model(self, request, obj, form, change):        
+        obj.save()  # Save Document instance
+        
+        # Get the uploaded files from the request.FILES
+        if request.FILES == {}:
+             raise ValidationError("Please Upload file.")     
 
 # admin.site.register(Document)
 

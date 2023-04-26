@@ -80,21 +80,27 @@ class CustomUserAdmin(UserAdmin):
         if db_field.name == "organization": #courier is the foreignkey name
             if request.user.is_organization_admin:
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
-        return super().formfield_for_foreignkey(db_field, request, **kwargs)      
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['first_name'].required = True
+        form.base_fields['last_name'].required = True
+        form.base_fields['email'].required = True
+        return form      
     
     
     #readonly_fields = ('is_organization_admin', )
 
     fieldsets = (
-        (None, {
-            'fields': ('username', 'password')
-        }),
+        # (None, {
+        #     'fields': ('username', 'password')
+        # }),
         ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
+            'fields': ('organization', 'username', 'first_name', 'last_name', 'designation', 'email', 'phone_number')
         }),
         ('Permissions', {
             'fields': (
-                'is_active', 'is_staff', 'is_superuser',
                 'groups', 'user_permissions'
                 )
         }),
@@ -102,17 +108,18 @@ class CustomUserAdmin(UserAdmin):
         #     'fields': ('last_login','date_joined',)
         # }),
         ('Additional info', {
-            'fields': ('is_organization_admin', 'organization')
+            'fields': ('is_active', 'is_staff', 'is_superuser', 'is_organization_admin',)
         })
     )
 
     add_fieldsets = (
         (None, {
-            'fields': ('username', 'password1', 'password2')
+            'fields': ('username', 'password1', 'password2', 'organization', 
+                       'first_name', 'last_name', 'designation', 'email', 'phone_number')
         }),
-        ('Personal info', {
-            'fields': ('first_name', 'last_name', 'email')
-        }),
+        # ('Personal info', {
+        #     'fields': ('first_name', 'last_name', 'email')
+        # }),
         ('Permissions', {
             'fields': (
                 'is_active', 'is_staff', 'is_superuser',
@@ -123,7 +130,7 @@ class CustomUserAdmin(UserAdmin):
         #     'fields': ('last_login','date_joined')
         # }),
         ('Additional info', {
-            'fields': ('is_organization_admin', 'organization')
+            'fields': ('is_organization_admin',)
         })
     )
 

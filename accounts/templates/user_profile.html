@@ -28,10 +28,15 @@
                                 <div class="mt-5">
                                     <div class="mb-2">
                                         <h4>{{user.first_name}} {{user.last_name}}</h4>   
+                                    </div><div class="mb-2">
+                                        <h6>{{user.designation}}</h6>
+                                    </div>
+                      {% comment %} <div class="mb-2">
+                                        <h6>{{user.email}}</h6>
                                     </div>
                                     <div class="mb-2">
-                                        <h6>{{user.email}}</h6>
-                                    </div>                                        
+                                        <h6>{{user.phone_number}}</h6>
+                                    </div> {% endcomment %}                                    
                                 </div>
                             </div>
                         </div>
@@ -62,15 +67,15 @@
                                 <h6>Phone Number</h6>
                             </div>
                             <div class="col-md-8"> 
-                                <label>{{user.phone}}</label>     
+                                <label>{{user.phone_number}}</label>     
                             </div>
                         </div>
                         <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
                             <div class="col-md-4"> 
-                                <h6>Is Staff?</h6>
+                                <h6>Email</h6>
                             </div>
-                            <div class="col-md-8">                                 
-                                <label>{{user.is_staff}}</label>     
+                            <div class="col-md-8"> 
+                                <label>{{user.email}}</label>     
                             </div>
                         </div>
                         <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
@@ -83,13 +88,30 @@
                         </div>
                         <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
                             <div class="col-md-4"> 
+                                <h6>Is Organization Admin?</h6>
+                            </div>
+                            <div class="col-md-8">                                 
+                                <label>{{user.is_organization_admin}}</label>     
+                            </div>
+                        </div>
+                        <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
+                            <div class="col-md-4"> 
+                                <h6>Is Staff?</h6>
+                            </div>
+                            <div class="col-md-8">                                 
+                                <label>{{user.is_staff}}</label>     
+                            </div>
+                        </div>
+                        <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
+                            <div class="col-md-4"> 
                                 <h6>Is Active?</h6>
                             </div>
                             <div class="col-md-8"> 
                                 <label>{{user.is_active}}</label>     
                             </div>
                         </div>
-                        <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
+                       
+                      <!-- <div class="row mb-4" style="border-bottom: 1px solid #e4e4e4;">
                             <div class="col-md-4"> 
                                 <h6>User Groups</h6>
                             </div>
@@ -105,9 +127,8 @@
                                     {% endif %}
 
                                     {% endfor %}
-                                </label>     
-                            </div>
-                        </div>
+                            </div> 
+                        </div>  -->
                         
                     </div>
                 </div>
