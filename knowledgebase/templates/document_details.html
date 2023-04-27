@@ -155,8 +155,9 @@
                         
                         <!-- <a id="docFileDownload" href="/{{document.file_name}}" download="{{document.file_name}}" style="display:none;"></a>
                         <button class="doc_border_btn smbtn ml-2" onClick="download_file()"><i class="fa-solid fa-download fa-fw ml-0"></i><span class="ml-2">Download</span></button> -->
-
-                        <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="{% static '/'  %}{{document.file_name}}" download="{{document.file_name}}">Download</a>
+                        
+                        <!-- <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="{% static '/'  %}{{document.file_name}}" download="{{document.file_name}}">Download</a> -->
+                        <a class="doc_border_btn smbtn ml-2" id="docFileDownload" href="/{{document.file_name}}" download="{{document.file_name}}">Download</a>
                     </div>
                    
                     <br />

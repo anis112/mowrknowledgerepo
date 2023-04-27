@@ -4,9 +4,8 @@
 
 {% block style_content %}
 
-
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">   -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css"/>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">  
 <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-multiselect.min.css' %}" />
 
 
@@ -377,6 +376,45 @@
 
 </style>
 
+<!-- ********* Table Pagination Styles ********* -->
+<style>
+    table th , table td{
+    text-align: center;
+    }
+
+    table tr:nth-child(even){
+        background-color: #BEF2F5
+    }
+
+    .pagination li:hover{
+        cursor: pointer;
+    }
+    
+    /* table tbody tr {
+        display: none;
+    } */
+
+    .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    }
+
+    .pagination > li > a, .pagination > li > span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;        
+    }
+</style>
+
 {% endblock %}
 
 
@@ -643,7 +681,18 @@
 
                         <div class="col-12 mt-4 p-4 border">
                             <div class="row">
-                                <table id="example" class="display mt-4" style="width:100%">
+                                <div class="col-12">
+                                    <label style="font-weight: bold; float: left;">Display</label>
+                                    <select name="state" id="maxRows" style="font-size: 0.8rem; font-weight: bold; float: left; margin: 0px 5px;">
+                                        <option value="5000">Show all rows</option>                                                                                
+                                        <option value="10">10</option>                                       
+                                        <option value="20">25</option>
+                                        <option value="50">50</option>                                      
+                                        <option value="100">100</option>                                        
+                                    </select> 
+                                    <label style="font-weight: bold; float: left;"> records per page</label>                                                                     
+                                </div>
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th></th>                                    
@@ -680,7 +729,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-10">
-                                                        <table class="table table-striped table-hover w-100 border mb-2">
+                                                        <!-- <table class="table table-striped table-hover w-100 border mb-2">
                                                             {% if doc.access_category.id != 1 %}
                                                             <tr>
                                                                 <td class="text-left font-weight-bold">Access: </td>
@@ -705,7 +754,24 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
-                                                        </table>
+                                                        </table> -->
+
+                                                        {% if doc.access_category.id != 1 %}
+                                                        <p>
+                                                            <strong>Access:</strong> {{doc.access_category.category_name|truncatewords:"200"}}
+                                                        </p>                                                        
+                                                        {% endif %}
+                                                        <h6 class="h6">Title: {{doc.title|truncatewords:"200"}}</h6>
+                                                        <p>
+                                                            <strong>Subject:</strong> {{doc.subject|truncatewords:"250"}}
+                                                        </p>
+                                                        <p style="margin-bottom: 0px;">
+                                                            <strong>Decription:</strong> 
+                                                            <div class="post">
+                                                                <span class="content_p">{{doc.decription|truncatewords:"1000"}}</span>
+                                                                <button class="btn-rm" onclick="read_more(this)">Read More</button>
+                                                            </div>
+                                                        </p>
 
                                                         <a target="_blank" href="{% url 'document-details' %}{{doc.id}}" class="doc_border_btn smbtn">
                                                             <i class="fa-solid fa-circle-info fa-fw ml-0"></i><span class="ml-2">Details</span></a>
@@ -742,6 +808,15 @@
                                         </tr>
                                     </tfoot> -->
                                 </table>
+                                <div class='pagination-container' >
+                                    <nav>
+                                        <ul class="pagination">                                
+                                            <li data-page="prev"><span><span class="sr-only">(current)</span> < </span></li>
+                                                <!--	Here the JS Function Will Add the Rows -->
+                                            <li data-page="next" id="prev"><span><span class="sr-only">(current)</span> > </span></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>                           
                         </div>
 
@@ -761,8 +836,8 @@
 {% block script_content %}
 
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"> </script> -->
+<!-- <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"> </script> -->
 <script type="text/javascript" src="{% static 'assets/bootstrap/js/bootstrap-multiselect.min.js' %}"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"> </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 
 <script type="text/javascript">
@@ -817,19 +892,182 @@
     
 </script>
 
+<!-- *****  Starts Table Pagination  ***** -->
 <script type="text/javascript">
 
-    $(document).ready(function() {
-        $('#example').DataTable( {
-            "language": {
-                "lengthMenu": "Display _MENU_ records per page",
-                "zeroRecords": "Nothing found - sorry",
-                "info": "Showing page _PAGE_ of _PAGES_",
-                "infoEmpty": "No records available",
-                "infoFiltered": "(filtered from _MAX_ total records)"
+    getPagination('#example');
+                        //getPagination('.table-class');
+                        //getPagination('table');
+
+            /*					PAGINATION 
+            - on change max rows select options fade out all rows gt option value mx = 5
+            - append pagination list as per numbers of rows / max rows option (20row/5= 4pages )
+            - each pagination li on click -> fade out all tr gt max rows * li num and (5*pagenum 2 = 10 rows)
+            - fade out all tr lt max rows * li num - max rows ((5*pagenum 2 = 10) - 5)
+            - fade in all tr between (maxRows*PageNum) and (maxRows*pageNum)- MaxRows 
+            */
+            
+
+    function getPagination(table) {
+    var lastPage = 1;
+
+    $('#maxRows')
+        .on('change', function(evt) {
+        //$('.paginationprev').html('');						// reset pagination
+
+        lastPage = 1;
+        $('.pagination')
+            .find('li')
+            .slice(1, -1)
+            .remove();
+        var trnum = 0; // reset tr counter
+        var maxRows = parseInt($(this).val()); // get Max Rows from select option
+
+        if (maxRows == 5000) {
+            $('.pagination').hide();
+        } else {
+            $('.pagination').show();
+        }
+
+        var totalRows = $(table + ' tbody tr').length; // numbers of rows
+
+        if (totalRows < 10) {
+            $('.pagination').hide();
+        } else {
+            $('.pagination').show();
+        }
+
+        $(table + ' tr:gt(0)').each(function() {
+            // each TR in  table and not the header
+            trnum++; // Start Counter
+            if (trnum > maxRows) {
+            // if tr number gt maxRows
+
+            $(this).hide(); // fade it out
             }
-        } );
-    });
+            if (trnum <= maxRows) {
+            $(this).show();
+            } // else fade in Important in case if it ..
+        }); //  was fade out to fade it in
+        if (totalRows > maxRows) {
+            // if tr total rows gt max rows option
+            var pagenum = Math.ceil(totalRows / maxRows); // ceil total(rows/maxrows) to get ..
+            //	numbers of pages
+            for (var i = 1; i <= pagenum; ) {
+            // for each page append pagination li
+            $('.pagination #prev')
+                .before(
+                '<li data-page="' +
+                    i +
+                    '">\
+                                    <span>' +
+                    i++ +
+                    '<span class="sr-only">(current)</span></span>\
+                                    </li>'
+                )
+                .show();
+            } // end for i
+        } // end if row count > max rows
+        $('.pagination [data-page="1"]').addClass('active'); // add active class to the first li
+        $('.pagination li').on('click', function(evt) {
+            // on click each page
+            evt.stopImmediatePropagation();
+            evt.preventDefault();
+            var pageNum = $(this).attr('data-page'); // get it's number
+
+            var maxRows = parseInt($('#maxRows').val()); // get Max Rows from select option
+
+            if (pageNum == 'prev') {
+            if (lastPage == 1) {
+                return;
+            }
+            pageNum = --lastPage;
+            }
+            if (pageNum == 'next') {
+            if (lastPage == $('.pagination li').length - 2) {
+                return;
+            }
+            pageNum = ++lastPage;
+            }
+
+            lastPage = pageNum;
+            var trIndex = 0; // reset tr counter
+            $('.pagination li').removeClass('active'); // remove active class from all li
+            $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
+            // $(this).addClass('active');					// add active class to the clicked
+            limitPagging();
+            $(table + ' tr:gt(0)').each(function() {
+            // each tr in table not the header
+            trIndex++; // tr index counter
+            // if tr index gt maxRows*pageNum or lt maxRows*pageNum-maxRows fade if out
+            if (
+                trIndex > maxRows * pageNum ||
+                trIndex <= maxRows * pageNum - maxRows
+            ) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            } //else fade in
+            }); // end of for each tr in table
+        }); // end of on click pagination list
+        limitPagging();
+        })
+        .val(10)
+        .change();
+
+    // end of on select change
+
+    // END OF PAGINATION
+    }
+
+    function limitPagging(){
+        // alert($('.pagination li').length)
+
+        if($('.pagination li').length > 7 ){
+                if( $('.pagination li.active').attr('data-page') <= 3 ){
+                $('.pagination li:gt(5)').hide();
+                $('.pagination li:lt(5)').show();
+                $('.pagination [data-page="next"]').show();
+            }if ($('.pagination li.active').attr('data-page') > 3){
+                $('.pagination li:gt(0)').hide();
+                $('.pagination [data-page="next"]').show();
+                for( let i = ( parseInt($('.pagination li.active').attr('data-page'))  -2 )  ; i <= ( parseInt($('.pagination li.active').attr('data-page'))  + 2 ) ; i++ ){
+                    $('.pagination [data-page="'+i+'"]').show();
+
+                }
+
+            }
+        }
+    }
+
+    // $(function() {
+    // // Just to append id number for each row
+    // $('table tr:eq(0)').prepend('<th> ID </th>');
+
+    // var id = 0;
+
+    // $('table tr:gt(0)').each(function() {
+    //     id++;
+    //     $(this).prepend('<td>' + id + '</td>');
+    // });
+    // });
+
+</script>
+<!-- *****  Ends Table Pagination  ***** -->
+
+<script type="text/javascript">
+
+    // $(document).ready(function() {
+    //     $('#example').DataTable( {
+    //         "language": {
+    //             "lengthMenu": "Display _MENU_ records per page",
+    //             "zeroRecords": "Nothing found - sorry",
+    //             "info": "Showing page _PAGE_ of _PAGES_",
+    //             "infoEmpty": "No records available",
+    //             "infoFiltered": "(filtered from _MAX_ total records)"
+    //         }
+    //     } );
+    // });
 
 
     function download_file() {
@@ -895,7 +1133,6 @@
     });
 </script>
 
-
 <!-- *****  Starts Read More and Less Style  ***** -->
 <script type="text/javascript">
     let noOfCharac = 250;
@@ -921,7 +1158,5 @@
     }
 </script>
 <!-- *****  Ends Read More and Less Style  ***** -->
-
-
 
 {% endblock %}
