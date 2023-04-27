@@ -671,7 +671,7 @@ def search_doc_by_nat(request, search_term='', org_ids=None, data_category_ids=N
 
     return render(request, 'search_doc_by_nat.html', context)
 
-def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None):
+def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None, month=None, year=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -679,19 +679,20 @@ def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_i
         if req_query and req_query.get("search_term"):
             search_term = req_query.get("search_term", None)
             data_category_ids = req_query.get("src_doc_cats", None)
-            s_doc_type = req_query.get("src_doc_type", None)                  
-            # print(s_doc_type)
+            s_doc_type = req_query.get("src_doc_type", None)
+            month = req_query.get("selected_month", None)
+            year = req_query.get("selected_year", None)                  
 
         if not isinstance(search_term, str):
             search_term = search_term[0]
         
         if not request.user.is_authenticated:
             public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
-            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids)
+            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids, month, year)
         else:
             if request.user.is_superuser:
                 all_documents = Document.objects.exclude(organization__organization_type=1)
-                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids)
+                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids, month, year)
             else:
                 user_id = request.user
                 user_organization_id = user_id.organization_id
@@ -699,7 +700,7 @@ def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_i
                 public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
                 user_org_documents = Document.objects.filter(organization = user_organization_id)
                 documents = user_org_documents | public_documents
-                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids), {'s_doc_type': s_doc_type}
+                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids, month, year), {'s_doc_type': s_doc_type}
 
     return render(request, 'search_doc_by_nat.html', context)
 
@@ -804,12 +805,19 @@ def document_count_organization_wise(data):
             org_wise_count_lst.append(temp_dict)
     return org_wise_count_lst
 
-def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None):
+def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None, month=None, year=None):
+    error_massage = ''
     doc_count = len(documents)
     if len(documents) < 1:
         documents = Document.objects.none()
     
-    if (search_term == '' and org_ids == None and data_category_ids == None):
+    if month != None and year != None:
+        if year[0] == '' and month[0] != '':
+            month = None
+            year  = None
+            error_massage = 'Must select year'
+
+    if (search_term == '' and org_ids == None and data_category_ids == None and year == None and month == None ):
          documents = documents.all()[:100]
 
     else:
@@ -833,6 +841,15 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
 
             documents = documents.filter(cond_cat).order_by('organization_id', 'data_category_id')
             doc_count = len(documents)
+        
+        if year and year[0] != '':
+            cond_year = Q(publication_date__year__in=year)
+            documents = documents.filter(cond_year)
+            doc_count = len(documents)
+            if month and month[0] != '':
+                cond_month = Q(publication_date__month__in=month)
+                documents = documents.filter(cond_month)
+                doc_count = len(documents)
     
 
     #cond_org_fixed = Q(id__range=(1, 7))                                          # Added by MNH/ARH
@@ -848,7 +865,7 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
                 'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
                 'org_infos': org_infos, 'all_org_infos': all_org_infos, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count, 
-                'doc_org_wise_count': document_org_wise_count}
+                'doc_org_wise_count': document_org_wise_count, 'error_message': error_massage}
     
     # context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
         #            'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
@@ -857,14 +874,20 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     return context
 
 
-def show_search_results_for_other_doc(documents, search_term='', src_org_types=None, data_category_ids=None):
+def show_search_results_for_other_doc(documents, search_term='', src_org_types=None, data_category_ids=None, month=None, year=None):
+    error_massage = ''
     doc_count = len(documents)
     if len(documents) < 1:
         documents = Document.objects.none()
     
-    if (search_term == '' and data_category_ids == None and src_org_types == None):
+    if month != None and year != None:
+        if year[0] == '' and month[0] != '':
+            month = None
+            year  = None
+            error_massage = 'Must select year'
+    
+    if (search_term == '' and data_category_ids == None and src_org_types == None and month == None and year == None):
          documents = documents.all()[:100]
-
 
     else:
         if search_term is not None and search_term != '':
@@ -890,19 +913,30 @@ def show_search_results_for_other_doc(documents, search_term='', src_org_types=N
             documents = documents.filter(cond_cat).order_by('organization_id', 'data_category_id')
             doc_count = len(documents)
 
+        if year and year[0] != '':
+            print(year)
+            cond_year = Q(publication_date__year__in=year)
+            documents = documents.filter(cond_year)
+            doc_count = len(documents)
+            if month and month[0] != '':
+                cond_month = Q(publication_date__month__in=month)
+                documents = documents.filter(cond_month)
+                doc_count = len(documents)
+
     document_cat_wise_count = documents.values('data_category').annotate(count=Count('data_category'))
     org_types = OrganizationType.objects.exclude(id=1).order_by('id')                   
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
-                'search_term': search_term, 'src_doc_cats': data_category_ids, "src_doc_type": src_org_types, 'org_types': org_types, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count}
+                'search_term': search_term, 'src_doc_cats': data_category_ids, "src_doc_type": src_org_types, 'org_types': org_types, 
+                'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count, 'error_message': error_massage}
 
     return context
 
 
 #============================ END Data Search Code Common ================================================================
 
-def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_ids=None):
+def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_ids=None, month=None, year=None):
      if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
 
@@ -911,7 +945,10 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
             data_category_ids = req_query.get("src_doc_cats", None)
             #org_ids = req_query.get("src_org_list", None)
             org_ids = req_query.get("src_orgs", None)
-            org_list_ids = req_query.get("src_org_list", None)           
+            org_list_ids = req_query.get("src_org_list", None) 
+            month = req_query.get("selected_month", None)
+            year = req_query.get("selected_year", None)
+            # print(month, year)          
 
             # # # #if  not null or empty
             # # # #if org_list_ids and org_list_ids.strip :
@@ -931,11 +968,11 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
      if not request.user.is_authenticated:
          public_documents = Document.objects.filter(access_category=1)
         #  print(type(public_documents))
-         context = show_search_results(public_documents, search_term, org_ids, data_category_ids)
+         context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year)
      else:
           if request.user.is_superuser:
             all_documents = Document.objects.all()
-            context = show_search_results(all_documents, search_term, org_ids, data_category_ids)
+            context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year)
           else:
             user_id = request.user
             user_organization_id = user_id.organization_id
@@ -943,11 +980,11 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
             public_documents = Document.objects.filter(access_category=1)
             user_org_documents = Document.objects.filter(organization = user_organization_id)
             documents = user_org_documents | public_documents
-            context = show_search_results(documents, search_term, org_ids, data_category_ids)
+            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year)
       
      return render(request, 'search_doc_by_org_hud.html', context)
 
-def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_ids=None, access_category_ids=None):
+def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_ids=None, month=None, year=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -956,6 +993,8 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
+            month = req_query.get("selected_month", None)
+            year = req_query.get("selected_year", None)
 
     if not isinstance(search_term, str):
         search_term = search_term[0]
@@ -963,11 +1002,11 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
     if not request.user.is_authenticated:
         public_documents = Document.objects.filter(access_category=1)
         # print(len(public_documents))
-        context = show_search_results(public_documents, search_term, org_ids, data_category_ids)  
+        context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year)  
     else:
         if request.user.is_superuser:
             all_documents = Document.objects.all()
-            context = show_search_results(all_documents, search_term, org_ids, data_category_ids)
+            context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year)
         else:      
             # Currently logged in username and id Start
             user_id = request.user
@@ -985,7 +1024,7 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
 
             # print(documents)
             # print(len(documents))
-            context = show_search_results(documents, search_term, org_ids, data_category_ids)
+            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year)
     return render(request, 'search_doc_by_cat_hud.html', context)
 
 #====================================== END HUD ==========================================================================
