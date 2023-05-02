@@ -1,21 +1,24 @@
+import io
+import os
+import zipfile
 import traceback
+from datetime import datetime
 from distutils.log import debug
-
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as logout_view
 #from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.db.models import OuterRef, Q, Subquery, Count
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from accounts.models import CustomUser
 
 from .forms import ArticleDetailForm, DocumentForm, OrganizationForm
 from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataCategory, DataCommonCategory,
-                     Document, Organization, OrganizationType)
-from django.http import HttpResponse
+                     Document, DocumentFile, Organization, OrganizationType)
+from django.http import HttpResponse, HttpResponseNotFound
 
 
 def home(request):
@@ -671,28 +674,34 @@ def search_doc_by_nat(request, search_term='', org_ids=None, data_category_ids=N
 
     return render(request, 'search_doc_by_nat.html', context)
 
-def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None, month=None, year=None):
+def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
+
 
         if req_query and req_query.get("search_term"):
             search_term = req_query.get("search_term", None)
             data_category_ids = req_query.get("src_doc_cats", None)
             s_doc_type = req_query.get("src_doc_type", None)
-            month = req_query.get("selected_month", None)
-            year = req_query.get("selected_year", None)                  
+            date_filter_option = req_query.get("rbOptions")
+            if date_filter_option[0] == 'MonthYear':
+                month = req_query.get("selected_month", None)
+                year = req_query.get("selected_year", None)
+            elif date_filter_option[0] == 'DateRange':
+                filter_from_date = req_query.get("txtFromDate")  
+                filter_to_date = req_query.get("txtToDate")                
 
         if not isinstance(search_term, str):
             search_term = search_term[0]
         
         if not request.user.is_authenticated:
             public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
-            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids, month, year)
+            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
         else:
             if request.user.is_superuser:
                 all_documents = Document.objects.exclude(organization__organization_type=1)
-                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids, month, year)
+                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
             else:
                 user_id = request.user
                 user_organization_id = user_id.organization_id
@@ -700,7 +709,7 @@ def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_i
                 public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
                 user_org_documents = Document.objects.filter(organization = user_organization_id)
                 documents = user_org_documents | public_documents
-                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids, month, year), {'s_doc_type': s_doc_type}
+                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date), {'s_doc_type': s_doc_type}
 
     return render(request, 'search_doc_by_nat.html', context)
 
@@ -805,11 +814,18 @@ def document_count_organization_wise(data):
             org_wise_count_lst.append(temp_dict)
     return org_wise_count_lst
 
-def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None, month=None, year=None):
+def show_search_results(documents, search_term='', org_ids=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
     error_massage = ''
+    error_massage_date_range = ''
     doc_count = len(documents)
     if len(documents) < 1:
         documents = Document.objects.none()
+    
+    if filter_from_date != None and filter_to_date != None:
+        if filter_from_date[0] == '' or filter_to_date[0] == '':
+            error_massage_date_range = 'please select the range correctly'
+            filter_from_date = None
+            filter_to_date = None
     
     if month != None and year != None:
         if year[0] == '' and month[0] != '':
@@ -817,7 +833,7 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
             year  = None
             error_massage = 'Must select year'
 
-    if (search_term == '' and org_ids == None and data_category_ids == None and year == None and month == None ):
+    if (search_term == '' and org_ids == None and data_category_ids == None and year == None and month == None and filter_from_date==None and filter_to_date==None):
          documents = documents.all()[:100]
 
     else:
@@ -850,6 +866,20 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
                 cond_month = Q(publication_date__month__in=month)
                 documents = documents.filter(cond_month)
                 doc_count = len(documents)
+        
+        if filter_from_date and filter_to_date:
+            start_date = datetime.strptime(filter_from_date[0], '%d/%m/%Y').date()
+            end_date = datetime.strptime(filter_to_date[0], '%d/%m/%Y').date()
+            print(start_date, end_date)
+            if start_date > end_date:
+                error_massage_date_range = 'Incorrect Date Range'
+            else:
+                cond_date_range = Q(publication_date__year__range=[start_date.year, end_date.year]) | Q(
+                    publication_date__month__range=[start_date.month, end_date.month]) | Q(
+                    publication_date__day__range=[start_date.day, end_date.day])
+    
+                documents = documents.filter(cond_date_range)
+                doc_count = len(documents)
     
 
     #cond_org_fixed = Q(id__range=(1, 7))                                          # Added by MNH/ARH
@@ -865,7 +895,8 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
                 'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
                 'org_infos': org_infos, 'all_org_infos': all_org_infos, 'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count, 
-                'doc_org_wise_count': document_org_wise_count, 'error_message': error_massage}
+                'doc_org_wise_count': document_org_wise_count, 'error_message': error_massage, 
+                'error_massage_date_range': error_massage_date_range}
     
     # context = {'doc_count': doc_count, 'documents': documents.order_by('data_category__data_common_category_id', 'organization_id'),
         #            'search_term': search_term, 'src_orgs': org_ids, 'src_doc_cats': data_category_ids,
@@ -874,11 +905,18 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     return context
 
 
-def show_search_results_for_other_doc(documents, search_term='', src_org_types=None, data_category_ids=None, month=None, year=None):
+def show_search_results_for_other_doc(documents, search_term='', src_org_types=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
     error_massage = ''
+    error_massage_date_range = ''
     doc_count = len(documents)
     if len(documents) < 1:
         documents = Document.objects.none()
+    
+    if filter_from_date != None and filter_to_date != None:
+        if filter_from_date[0] == '' or filter_to_date[0] == '':
+            error_massage_date_range = 'please select the range correctly'
+            filter_from_date = None
+            filter_to_date = None
     
     if month != None and year != None:
         if year[0] == '' and month[0] != '':
@@ -886,7 +924,7 @@ def show_search_results_for_other_doc(documents, search_term='', src_org_types=N
             year  = None
             error_massage = 'Must select year'
     
-    if (search_term == '' and data_category_ids == None and src_org_types == None and month == None and year == None):
+    if (search_term == '' and data_category_ids == None and src_org_types == None and month == None and year == None and filter_from_date == None and filter_to_date == None):
          documents = documents.all()[:100]
 
     else:
@@ -914,7 +952,6 @@ def show_search_results_for_other_doc(documents, search_term='', src_org_types=N
             doc_count = len(documents)
 
         if year and year[0] != '':
-            print(year)
             cond_year = Q(publication_date__year__in=year)
             documents = documents.filter(cond_year)
             doc_count = len(documents)
@@ -923,20 +960,34 @@ def show_search_results_for_other_doc(documents, search_term='', src_org_types=N
                 documents = documents.filter(cond_month)
                 doc_count = len(documents)
 
+        if filter_from_date and filter_to_date:
+            start_date = datetime.strptime(filter_from_date[0], '%d/%m/%Y').date()
+            end_date = datetime.strptime(filter_to_date[0], '%d/%m/%Y').date()
+            if start_date > end_date:
+                error_massage_date_range = 'Incorrect Date Range'
+            else:
+                cond_date_range = Q(publication_date__year__range=[start_date.year, end_date.year]) | Q(
+                    publication_date__month__range=[start_date.month, end_date.month]) | Q(
+                    publication_date__day__range=[start_date.day, end_date.day])
+    
+                documents = documents.filter(cond_date_range)
+                doc_count = len(documents)
+
     document_cat_wise_count = documents.values('data_category').annotate(count=Count('data_category'))
     org_types = OrganizationType.objects.exclude(id=1).order_by('id')                   
     doc_cats = DataCommonCategory.objects.all().order_by('id')
 
     context = {'doc_count': (len(documents)==100 and ("100 out of "+str(doc_count)) or len(documents)), 'documents': documents,
                 'search_term': search_term, 'src_doc_cats': data_category_ids, "src_doc_type": src_org_types, 'org_types': org_types, 
-                'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count, 'error_message': error_massage}
+                'doc_cats': doc_cats, 'doc_cat_wise_count':document_cat_wise_count, 'error_message': error_massage, 
+                'error_massage_date_range': error_massage_date_range}
 
     return context
 
 
 #============================ END Data Search Code Common ================================================================
 
-def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_ids=None, month=None, year=None):
+def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
      if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
 
@@ -946,9 +997,13 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
             #org_ids = req_query.get("src_org_list", None)
             org_ids = req_query.get("src_orgs", None)
             org_list_ids = req_query.get("src_org_list", None) 
-            month = req_query.get("selected_month", None)
-            year = req_query.get("selected_year", None)
-            # print(month, year)          
+            date_filter_option = req_query.get("rbOptions")
+            if date_filter_option[0] == 'MonthYear':
+                month = req_query.get("selected_month", None)
+                year = req_query.get("selected_year", None)
+            elif date_filter_option[0] == 'DateRange':
+                filter_from_date = req_query.get("txtFromDate")  
+                filter_to_date = req_query.get("txtToDate")           
 
             # # # #if  not null or empty
             # # # #if org_list_ids and org_list_ids.strip :
@@ -968,11 +1023,11 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
      if not request.user.is_authenticated:
          public_documents = Document.objects.filter(access_category=1)
         #  print(type(public_documents))
-         context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year)
+         context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
      else:
           if request.user.is_superuser:
             all_documents = Document.objects.all()
-            context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year)
+            context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
           else:
             user_id = request.user
             user_organization_id = user_id.organization_id
@@ -980,11 +1035,11 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
             public_documents = Document.objects.filter(access_category=1)
             user_org_documents = Document.objects.filter(organization = user_organization_id)
             documents = user_org_documents | public_documents
-            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year)
+            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
       
      return render(request, 'search_doc_by_org_hud.html', context)
 
-def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_ids=None, month=None, year=None):
+def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
 
     if request.method == "POST" or request.method == "GET":
         req_query = request.GET | request.POST
@@ -993,8 +1048,13 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
             search_term = req_query.get("search_term", None)
             org_ids = req_query.get("src_orgs", None)
             data_category_ids = req_query.get("src_doc_cats", None)
-            month = req_query.get("selected_month", None)
-            year = req_query.get("selected_year", None)
+            date_filter_option = req_query.get("rbOptions")
+            if date_filter_option[0] == 'MonthYear':
+                month = req_query.get("selected_month", None)
+                year = req_query.get("selected_year", None)
+            elif date_filter_option[0] == 'DateRange':
+                filter_from_date = req_query.get("txtFromDate")  
+                filter_to_date = req_query.get("txtToDate")
 
     if not isinstance(search_term, str):
         search_term = search_term[0]
@@ -1002,11 +1062,11 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
     if not request.user.is_authenticated:
         public_documents = Document.objects.filter(access_category=1)
         # print(len(public_documents))
-        context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year)  
+        context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)  
     else:
         if request.user.is_superuser:
             all_documents = Document.objects.all()
-            context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year)
+            context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
         else:      
             # Currently logged in username and id Start
             user_id = request.user
@@ -1024,7 +1084,31 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
 
             # print(documents)
             # print(len(documents))
-            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year)
+            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
     return render(request, 'search_doc_by_cat_hud.html', context)
+
+def download_files(request, document_id):
+    doc_files = DocumentFile.objects.filter(document__id=document_id)
+    print(doc_files)
+    if doc_files:
+    # for doc_file in doc_files:
+    #     file_path = doc_file.file.path
+    #     print(file_path)
+
+        buffer = io.BytesIO()
+
+        with zipfile.ZipFile(buffer, 'w') as zip_file:
+            for doc_file in doc_files:
+                file_path = str(doc_file)
+                print(file_path)
+                zip_file.write(file_path, os.path.basename(file_path))
+
+        buffer.seek(0)
+
+        response = HttpResponse(buffer, content_type='application/zip')
+        response['Content-Disposition'] = f'attachment; filename=KBR_Document_{document_id}.zip'
+        return response
+    else:
+      return  HttpResponseNotFound('<h1>404 File Not Found</h1>')
 
 #====================================== END HUD ==========================================================================

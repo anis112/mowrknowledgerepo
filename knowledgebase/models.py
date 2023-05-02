@@ -160,7 +160,9 @@ def get_document_file_upload_path(instance, filename):
     doc_access_cat = instance.document.access_category.category_name
     
     base_path = os.path.join('static','document', org_name, doc_access_cat)    # path_example ="static/documents/JRC/Public/document.pdf"
-    new_name = f'{file_id}{ext}'
+    
+    existing_files = DocumentFile.objects.filter(document__id=instance.document.id).count()
+    new_name = f'{name}_part_{existing_files +1}_file_{file_id}{ext}'
 
     return os.path.join(base_path, new_name)
 

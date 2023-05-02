@@ -147,7 +147,7 @@ class DocumentAdmin(admin.ModelAdmin):
     #autocomplete_fields = ['article_category']
     inlines = [DocumentFileInline,]
     list_display = ['title','organization','data_category', 'access_category', 'modified_date', 'modified_by']
-    exclude = ('is_parent_available',)
+    exclude = ('is_parent_available', 'file_name')
     list_editable = ['data_category', 'access_category']
     list_per_page = 20
     list_filter = [OrganizationWiseFilter, CategoryWiseFilter , 'access_category',]

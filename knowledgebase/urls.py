@@ -68,6 +68,7 @@ urlpatterns = [
     path('document-details/', views.document_details, name="document-details"),
     path('document-details/<int:id>', views.document_details, name="document-details"),
    
+    path('download/<int:document_id>/', views.download_files, name='download_files'),
     
 
 ]
