@@ -1089,7 +1089,6 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
 
 def download_files(request, document_id):
     doc_files = DocumentFile.objects.filter(document__id=document_id)
-    print(doc_files)
     if doc_files:
     # for doc_file in doc_files:
     #     file_path = doc_file.file.path

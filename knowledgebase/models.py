@@ -173,7 +173,7 @@ class Document(models.Model):
 
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
 
-    data_category = models.ForeignKey(DataCategory, on_delete=models.PROTECT, null=True)
+    data_category = models.ForeignKey(DataCategory, on_delete=models.PROTECT, null=True, verbose_name='Data Category')
 
     # sub_category_id = models.ForeignKey("SubCategory", on_delete=models.PROTECT, null=True)
     # sub_sub_category_id = models.ForeignKey("SubSubCategory", on_delete=models.PROTECT, null=True)
@@ -186,9 +186,9 @@ class Document(models.Model):
     description = models.TextField(null=True, blank=True)
     author = models.CharField(max_length=100, blank=True)
     access_category = models.ForeignKey(
-        DataAccessCategory, on_delete=models.PROTECT, null=True)
+        DataAccessCategory, on_delete=models.PROTECT, null=True, verbose_name='Access Category')
     # publication_date = models.CharField(max_length=50, null=True, blank=True)
-    publication_date = models.DateField(null=True, blank=True)
+    publication_date = models.DateField(null=True, blank=True, verbose_name='Publication Date')
 
     # file_name = models.FileField(
     #     upload_to='static/document', max_length=500, null=True, blank=True)
@@ -196,14 +196,14 @@ class Document(models.Model):
     #     upload_to='static/img', null=True, blank=True)
     
     file_name = models.FileField(upload_to=get_upload_path, max_length=500, null=True, blank=True)
-    thumbnail = models.ImageField(upload_to=get_upload_path_thumb, null=True, blank=True)
+    thumbnail = models.ImageField(upload_to=get_upload_path_thumb, null=True, blank=True, verbose_name='Upload Thumbnail')
 
     keywords = models.CharField(max_length=1000, null=True, blank=True)
     entry_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    entry_by = models.CharField(max_length=100, null=True, blank=True)
+    entry_by = models.CharField(max_length=100, null=True, blank=True, verbose_name='Entry By')
     #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
-    modified_by = models.CharField(max_length=100, null=True, blank=True)
+    modified_by = models.CharField(max_length=100, null=True, blank=True, verbose_name='Modify By')
 
     is_parent_available = models.BooleanField(null=True, blank=True)
     parent_id = models.PositiveBigIntegerField(null=True, blank=True)
@@ -217,7 +217,7 @@ class Document(models.Model):
 
 class DocumentFile(models.Model):
      id = models.AutoField(primary_key=True)
-     file = models.FileField(upload_to=get_document_file_upload_path, max_length=500, null=False, verbose_name= 'Upload file (Maximum 10MB)', 
+     file = models.FileField(upload_to=get_document_file_upload_path, max_length=500, null=False, verbose_name= 'Select File (Maximum 10MB)', 
                                   validators=[FileExtensionValidator(allowed_extensions= ['pdf']), MaxSizeValidator(10 * 1024 * 1024),])
      uploaded_at = models.DateTimeField(auto_now_add=True)
      document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='doc_files')
@@ -228,6 +228,7 @@ class DocumentFile(models.Model):
      class Meta:
           db_table = 'tbl_document_files'
           ordering = ['id']
+          verbose_name = 'Upload Document'
 
 class ArticleDetail(models.Model):
     id = models.AutoField(primary_key=True)
