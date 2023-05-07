@@ -674,44 +674,6 @@ def search_doc_by_nat(request, search_term='', org_ids=None, data_category_ids=N
 
     return render(request, 'search_doc_by_nat.html', context)
 
-def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
-
-    if request.method == "POST" or request.method == "GET":
-        req_query = request.GET | request.POST
-
-
-        if req_query and req_query.get("search_term"):
-            search_term = req_query.get("search_term", None)
-            data_category_ids = req_query.get("src_doc_cats", None)
-            s_doc_type = req_query.get("src_doc_type", None)
-            date_filter_option = req_query.get("rbOptions")
-            if date_filter_option[0] == 'MonthYear':
-                month = req_query.get("selected_month", None)
-                year = req_query.get("selected_year", None)
-            elif date_filter_option[0] == 'DateRange':
-                filter_from_date = req_query.get("txtFromDate")  
-                filter_to_date = req_query.get("txtToDate")                
-
-        if not isinstance(search_term, str):
-            search_term = search_term[0]
-        
-        if not request.user.is_authenticated:
-            public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
-            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
-        else:
-            if request.user.is_superuser:
-                all_documents = Document.objects.exclude(organization__organization_type=1)
-                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
-            else:
-                user_id = request.user
-                user_organization_id = user_id.organization_id
-
-                public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
-                user_org_documents = Document.objects.filter(organization = user_organization_id)
-                documents = user_org_documents | public_documents
-                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date), {'s_doc_type': s_doc_type}
-
-    return render(request, 'search_doc_by_nat.html', context)
 
 def document_list(request, organization_id=None):
     # if request.method == "POST":
@@ -1021,19 +983,29 @@ def search_doc_by_org_test(request, search_term='', org_ids=None, data_category_
         search_term = search_term[0]
     
      if not request.user.is_authenticated:
-         public_documents = Document.objects.filter(access_category=1)
+         public_documents = Document.objects.filter(access_category=1, document_approval_status=2)
         #  print(type(public_documents))
          context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
      else:
           if request.user.is_superuser:
             all_documents = Document.objects.all()
             context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
-          else:
+
+          elif request.user.is_organization_admin:
             user_id = request.user
             user_organization_id = user_id.organization_id
 
             public_documents = Document.objects.filter(access_category=1)
             user_org_documents = Document.objects.filter(organization = user_organization_id)
+            documents = user_org_documents | public_documents
+            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
+
+          else:
+            user_id = request.user
+            user_organization_id = user_id.organization_id
+
+            public_documents = Document.objects.filter(access_category=1, document_approval_status=2)
+            user_org_documents = Document.objects.filter(organization = user_organization_id, document_approval_status=2)
             documents = user_org_documents | public_documents
             context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
       
@@ -1060,14 +1032,14 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
         search_term = search_term[0]
 
     if not request.user.is_authenticated:
-        public_documents = Document.objects.filter(access_category=1)
+        public_documents = Document.objects.filter(access_category=1, document_approval_status=2)
         # print(len(public_documents))
         context = show_search_results(public_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)  
     else:
         if request.user.is_superuser:
             all_documents = Document.objects.all()
             context = show_search_results(all_documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
-        else:      
+        elif request.user.is_organization_admin:      
             # Currently logged in username and id Start
             user_id = request.user
             user_organization_id = user_id.organization_id
@@ -1085,7 +1057,63 @@ def search_doc_by_cat_test(request, search_term='', org_ids=None, data_category_
             # print(documents)
             # print(len(documents))
             context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
+        
+        else:
+            user_id = request.user
+            user_organization_id = user_id.organization_id
+
+            public_documents = Document.objects.filter(access_category=1, document_approval_status=2)
+            user_org_documents = Document.objects.filter(organization = user_organization_id, document_approval_status=2)
+            documents = (user_org_documents | public_documents)
+            context = show_search_results(documents, search_term, org_ids, data_category_ids, month, year, filter_from_date, filter_to_date)
     return render(request, 'search_doc_by_cat_hud.html', context)
+
+
+def search_doc_by_other(request, search_term='',s_doc_type=None, data_category_ids=None, month=None, year=None, filter_from_date=None, filter_to_date=None):
+
+    if request.method == "POST" or request.method == "GET":
+        req_query = request.GET | request.POST
+
+
+        if req_query and req_query.get("search_term"):
+            search_term = req_query.get("search_term", None)
+            data_category_ids = req_query.get("src_doc_cats", None)
+            s_doc_type = req_query.get("src_doc_type", None)
+            date_filter_option = req_query.get("rbOptions")
+            if date_filter_option[0] == 'MonthYear':
+                month = req_query.get("selected_month", None)
+                year = req_query.get("selected_year", None)
+            elif date_filter_option[0] == 'DateRange':
+                filter_from_date = req_query.get("txtFromDate")  
+                filter_to_date = req_query.get("txtToDate")                
+
+        if not isinstance(search_term, str):
+            search_term = search_term[0]
+        
+        if not request.user.is_authenticated:
+            public_documents = Document.objects.filter(access_category=1, document_approval_status=2).exclude(organization__organization_type=1)
+            context = show_search_results_for_other_doc(public_documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
+        else:
+            if request.user.is_superuser:
+                all_documents = Document.objects.exclude(organization__organization_type=1)
+                context = show_search_results_for_other_doc(all_documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
+            elif request.user.is_organization_admin:
+                user_id = request.user
+                user_organization_id = user_id.organization_id
+
+                public_documents = Document.objects.filter(access_category=1).exclude(organization__organization_type=1)
+                user_org_documents = Document.objects.filter(organization = user_organization_id).exclude(organization__organization_type=1)
+                documents = user_org_documents | public_documents
+                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
+            else:
+                user_id = request.user
+                user_organization_id = user_id.organization_id
+
+                public_documents = Document.objects.filter(access_category=1, document_approval_status=2).exclude(organization__organization_type=1)
+                user_org_documents = Document.objects.filter(organization = user_organization_id, document_approval_status=2).exclude(organization__organization_type=1)
+                documents = user_org_documents | public_documents
+                context = show_search_results_for_other_doc(documents, search_term, s_doc_type, data_category_ids, month, year, filter_from_date, filter_to_date)
+    return render(request, 'search_doc_by_nat.html', context)
 
 def download_files(request, document_id):
     doc_files = DocumentFile.objects.filter(document__id=document_id)

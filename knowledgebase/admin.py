@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.db import transaction
 from .models import (Article, ArticleCategory, ArticleDetail,
                      ArticlePublishCategory, DataAccessCategory, DataCategory,
-                     Document, Organization,OrganizationType, DocumentFile)
+                     Document, Organization,OrganizationType, DocumentFile, DocumentApprovalStatus)
 
 
 from .forms import DocumentForm
@@ -65,6 +65,8 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
             return Document.objects.values_list('organization_id','organization__organization_name').order_by('organization_id').distinct()
         elif request.user.is_organization_admin:
             return Document.objects.values_list('organization_id','organization__organization_name').filter(organization_id=request.user.organization_id).order_by('organization_id').distinct()
+        else:
+            return Document.objects.values_list('organization_id','organization__organization_name').filter(organization_id=request.user.organization_id).order_by('organization_id').distinct()
                
     def choices(self, cl):  # Overwrite this method to prevent the default "All"
             from django.utils.encoding import force_str
@@ -92,6 +94,8 @@ class OrganizationWiseFilter(admin.SimpleListFilter):
             else:    
                 return queryset.all()
         elif request.user.is_organization_admin:
+            return queryset.filter(organization_id=request.user.organization_id)
+        else:
             return queryset.filter(organization_id=request.user.organization_id)
         #return queryset.all()
 
@@ -146,12 +150,34 @@ class DocumentAdmin(admin.ModelAdmin):
     #form=DocumentForm
     #autocomplete_fields = ['article_category']
     inlines = [DocumentFileInline,]
-    list_display = ['title','organization','data_category', 'access_category', 'modified_date', 'modified_by']
+    list_display = ['title','organization','data_category', 'access_category', 'document_approval_status', 'modified_date', 'modified_by']
     exclude = ('is_parent_available', 'file_name')
-    list_editable = ['data_category', 'access_category']
     list_per_page = 20
-    list_filter = [OrganizationWiseFilter, CategoryWiseFilter , 'access_category',]
+    list_filter = [OrganizationWiseFilter, CategoryWiseFilter , 'access_category', 'document_approval_status']
     search_fields = ['title__istartswith']
+    #list_editable = ['data_category', 'access_category', 'document_approval_status']
+
+    # def get_list_display(self, request):
+    #     if request.user.is_superuser:
+    #         return ['title', 'organization','data_category', 'access_category', 'document_approval_status', 'modified_date', 'modified_by']
+    #     elif request.user.is_organization_admin:
+    #         return ['title', 'organization','data_category', 'access_category', 'document_approval_status', 'modified_date', 'modified_by']
+    #     else:
+    #         return ['title', 'organization', 'data_category', 'access_category', 'modified_date', 'modified_by']
+
+    def get_changelist_instance(self, request):
+        if request.user.is_superuser:
+            self.list_editable = ('data_category', 'access_category', 'document_approval_status',)
+        elif request.user.is_organization_admin:
+            self.list_editable = ('data_category', 'access_category', 'document_approval_status',)
+        else:
+            self.list_editable = ()
+        return super().get_changelist_instance(request)
+        
+    # def get_readonly_fields(self, request, obj=None, **kwargs):     
+    #     if not request.user.is_superuser and not request.user.is_organization_admin:          
+    #             return ("document_approval_status",)
+    #     return ()
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):     
         if db_field.name == "organization": #courier is the foreignkey name
@@ -162,24 +188,28 @@ class DocumentAdmin(admin.ModelAdmin):
                 kwargs["queryset"] = DataCategory.objects.filter(organization_id=request.user.organization_id)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
-    def get_form(self, request, obj=None, **kwargs):
+    def get_form(self, request, instance, obj=None, **kwargs,):
         form = super().get_form(request, obj, **kwargs)
         if not request.user.is_superuser:
             form.base_fields['organization'].initial = request.user.organization
             form.base_fields['entry_by'].initial = request.user.username
             form.base_fields['modified_by'].initial = request.user.username
+            form.base_fields['document_approval_status'].initial = 1
             form.base_fields['entry_by'].widget = forms.HiddenInput()
             form.base_fields['modified_by'].widget = forms.HiddenInput()
+            form.base_fields['document_approval_status'].widget = forms.HiddenInput()
             # form.base_fields['entry_by'].widget.attrs['disabled'] = True
         return form
     
     @transaction.atomic
     def save_model(self, request, obj, form, change):        
         obj.save()  # Save Document instance
-        
-        # Get the uploaded files from the request.FILES
-        if request.FILES == {}:
-             raise ValidationError("Please Upload file.")     
+
+        existing_files = DocumentFile.objects.filter(document__id=obj.id)
+        if not existing_files:
+            # Get the uploaded files from the request.FILES
+            if request.FILES == {}:
+                 raise ValidationError("Please Upload file.")     
 
 # admin.site.register(Document)
 
@@ -224,7 +254,11 @@ class OrganizationTypeAdmin(admin.ModelAdmin):
     list_editable = ['type_name']
     list_per_page = 50
 
-
+@admin.register(DocumentApprovalStatus)
+class DocumentApprovalStatusAdmin(admin.ModelAdmin):
+    list_display = ['id', 'approval_state_name']
+    list_editable = ['approval_state_name']
+    list_per_page = 20
 
 #admin.site.register(Article, ArticleAdmin)
 # admin.site.register(ArticleCategory)

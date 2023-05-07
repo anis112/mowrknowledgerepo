@@ -114,7 +114,21 @@ class DataAccessCategory(models.Model):
         db_table = 'lkp_data_access_categories'
         ordering = ['id']
         
-     
+
+class DocumentApprovalStatus(models.Model):
+    id = models.PositiveSmallIntegerField(primary_key=True)
+    approval_state = models.PositiveIntegerField(unique=True)
+    approval_state_name = models.CharField(max_length=100)
+
+    def __str__(self) -> str:
+        return self.approval_state_name
+
+    class Meta:
+        db_table = 'lkp_document_approval_status'
+        ordering = ['id']
+        verbose_name_plural = 'Document Approval Status'
+
+
 def get_upload_path(instance, filename):
     """Function to generate a new filename for uploaded files"""
     # Get the value of the property you want to use in the filename  
@@ -204,7 +218,8 @@ class Document(models.Model):
     #entry_by = models.ForeignKey(CustomUser, null=True, blank=True)
     modified_date = models.DateTimeField(auto_now=True, null=True, blank=True)
     modified_by = models.CharField(max_length=100, null=True, blank=True, verbose_name='Modify By')
-
+    document_approval_status = models.ForeignKey(DocumentApprovalStatus, on_delete=models.PROTECT, null=True, 
+                                                 verbose_name= 'Approval Status', to_field='approval_state', default=1)
     is_parent_available = models.BooleanField(null=True, blank=True)
     parent_id = models.PositiveBigIntegerField(null=True, blank=True)
 
