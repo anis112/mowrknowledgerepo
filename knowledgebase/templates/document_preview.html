@@ -1,0 +1,96 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify jazzmin %}
+{% get_jazzmin_settings request as jazzmin_settings %}
+{% get_jazzmin_ui_tweaks as jazzmin_ui %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap-data-tables/css/dataTables.bootstrap4.min.css' %}">
+    <div class="row w-100 pt-2 justify-content-center">
+        <h3>Document Information</h3>
+    </div>
+    
+    <div class="row w-100 pt-2">
+        <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+        </div>
+        <div class="col-md-8">
+            <table class="table  table-striped">               
+                {% comment %}<thead>
+                    <tr class="col-10">
+                        <th><h5><strong>Document Information</strong></h5></th>
+                    </tr>
+                </thead> {% endcomment%}
+                <tbody>
+        
+                   {% for doc in document %}
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Title</strong></td>   
+                        <td class="col-9">{{ doc.title }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Data Category</strong></td>   
+                        <td class="col-9">{{ doc.data_category }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Access Category</strong></td>   
+                        <td class="col-9">{{ doc.access_category }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Subject</strong></td>   
+                        <td class="col-9">{{ doc.subject }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Description</strong></td>   
+                        <td class="col-9">{{ doc.description }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Author</strong></td>   
+                        <td class="col-9">{{ doc.author }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Publication Date</strong></td>   
+                        <td class="col-9">{{ doc.publication_date }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Entry Date</strong> </td>   
+                        <td class="col-9">{{ doc.entry_date }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Entry By</strong> </td>   
+                        <td class="col-9">{{ doc.publication_date }}</td>                                             
+                    </tr>
+                    <tr class="d-flex justify-content-center">
+                        <td class="col-3"><strong>Approval Status</strong> </td>   
+                        <td class="col-9">{{ doc.document_approval_status }}</td>                                             
+                    </tr>
+                    {% endfor %}
+        
+                    <tr>
+                        <td class="col-3"><strong>Uploaded Files</strong> 
+                            {% for file in attached_files %}
+                            
+                        </br> {{ forloop.counter }}. <a target="_blank" href= "/{{file.file}}">Click To View</a>                                           
+                            
+                            {% endfor %}      
+                        </td>                               
+                    </tr>                                        
+                </tbody>
+                </table>
+                <div class="col-3">
+                    <a class="btn {{ jazzmin_ui.button_classes.info }}" href="/admin/knowledgebase/document/?organization_id={{organization_id}}&q="><i class="close"></i>Close</a>
+                </div>
+            </div> 
+        <div class="col-md-2">
+        </div>
+        </div>
+        </div>
+    </div>
+    
+
+  
+
+    
+        
+{% endblock %}

@@ -1139,3 +1139,5 @@ def download_files(request, document_id):
       return  HttpResponseNotFound('<h1>404 File Not Found</h1>')
 
 #====================================== END HUD ==========================================================================
+def contact_us(request):
+    return render(request, "contact_us.html")

@@ -8,7 +8,9 @@ from .models import (Article, ArticleCategory, ArticleDetail,
 
 
 from .forms import DocumentForm
-
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import HttpResponse, render
 # Register your models here.
 
 
@@ -119,7 +121,8 @@ class CategoryWiseFilter(admin.SimpleListFilter):
             return Document.objects.values_list('data_category_id','data_category__category_name').order_by('data_category_id').distinct()
         elif request.user.is_organization_admin:
             return Document.objects.values_list('data_category_id','data_category__category_name').filter(organization_id=request.user.organization_id).order_by('data_category_id').distinct()
-               
+        else:
+            return Document.objects.values_list('data_category_id','data_category__category_name').filter(organization_id=request.user.organization_id).order_by('data_category_id').distinct()     
     def choices(self, cl):  # Overwrite this method to prevent the default "All"
             from django.utils.encoding import force_str
             for lookup, title in self.lookup_choices:
@@ -139,6 +142,8 @@ class CategoryWiseFilter(admin.SimpleListFilter):
                 return queryset.all()
         elif request.user.is_organization_admin:
             return queryset.filter(organization_id=request.user.organization_id)
+        else:
+            return queryset.filter(organization_id=request.user.organization_id)
         
 class DocumentFileInline(admin.StackedInline):
     model = DocumentFile
@@ -150,6 +155,8 @@ class DocumentAdmin(admin.ModelAdmin):
     #form=DocumentForm
     #autocomplete_fields = ['article_category']
     inlines = [DocumentFileInline,]
+    actions = ['preview_document']
+    
     list_display = ['title','organization','data_category', 'access_category', 'document_approval_status', 'modified_date', 'modified_by']
     exclude = ('is_parent_available', 'file_name')
     list_per_page = 20
@@ -165,6 +172,39 @@ class DocumentAdmin(admin.ModelAdmin):
     #     else:
     #         return ['title', 'organization', 'data_category', 'access_category', 'modified_date', 'modified_by']
 
+    # def preview_document():
+    #     url = reverse('knowledgebase/preview/')
+    #     return HttpResponseRedirect(url)
+ 
+    def response_add(self, request, obj):
+        if "preview_document" in request.POST:
+            # do whatever you want the button to do
+            obj.save()
+            retirved_document = Document.objects.filter(id=obj.id)
+            attached_files = DocumentFile.objects.filter(document__id=obj.id)
+            organization_id = retirved_document.values_list('organization')[0][0]
+            print(organization_id)
+            # print(retirved_document)
+            # print(attached_files)
+            context = {'document':retirved_document, 'attached_files': attached_files, 'organization_id':organization_id}
+            # return HttpResponse("hello")
+            return render(request, 'document_preview.html', context)
+        return super().response_add(request, obj)
+
+    def response_change(self, request, obj):
+        if "preview_document" in request.POST:
+            # do whatever you want the button to do
+            obj.save()
+            retirved_document = Document.objects.filter(id=obj.id)
+            attached_files = DocumentFile.objects.filter(document__id=obj.id)
+            organization_id = retirved_document.values_list('organization')[0][0]
+            # print(retirved_document)
+            # print(attached_files)
+            context = {'document':retirved_document, 'attached_files': attached_files, 'organization_id':organization_id}
+            # return HttpResponse("hello")
+            return render(request, 'document_preview.html', context)
+        return super().response_change(request, obj)
+    
     def get_changelist_instance(self, request):
         if request.user.is_superuser:
             self.list_editable = ('data_category', 'access_category', 'document_approval_status',)
@@ -183,8 +223,12 @@ class DocumentAdmin(admin.ModelAdmin):
         if db_field.name == "organization": #courier is the foreignkey name
             if request.user.is_organization_admin:
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
+            elif request.user.is_staff:
+                kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id)
         elif db_field.name == "data_category":
             if request.user.is_organization_admin:
+                kwargs["queryset"] = DataCategory.objects.filter(organization_id=request.user.organization_id)
+            elif request.user.is_staff:
                 kwargs["queryset"] = DataCategory.objects.filter(organization_id=request.user.organization_id)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
@@ -202,15 +246,17 @@ class DocumentAdmin(admin.ModelAdmin):
         return form
     
     @transaction.atomic
-    def save_model(self, request, obj, form, change):        
+    def save_model(self, request, obj, form, change): 
         obj.save()  # Save Document instance
-
+        
         existing_files = DocumentFile.objects.filter(document__id=obj.id)
         if not existing_files:
             # Get the uploaded files from the request.FILES
             if request.FILES == {}:
-                 raise ValidationError("Please Upload file.")     
-
+                 raise ValidationError("Please Upload file.")
+        
+       
+            
 # admin.site.register(Document)
 
 @admin.register(ArticleDetail)

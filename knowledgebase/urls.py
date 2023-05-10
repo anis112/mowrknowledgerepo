@@ -69,6 +69,5 @@ urlpatterns = [
     path('document-details/<int:id>', views.document_details, name="document-details"),
    
     path('download/<int:document_id>/', views.download_files, name='download_files'),
-    
-
+    path('contact-us/', views.contact_us, name='contact-us'),
 ]
