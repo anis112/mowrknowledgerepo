@@ -183,7 +183,7 @@ class DocumentAdmin(admin.ModelAdmin):
             retirved_document = Document.objects.filter(id=obj.id)
             attached_files = DocumentFile.objects.filter(document__id=obj.id)
             organization_id = retirved_document.values_list('organization')[0][0]
-            print(organization_id)
+            # print(organization_id)
             # print(retirved_document)
             # print(attached_files)
             context = {'document':retirved_document, 'attached_files': attached_files, 'organization_id':organization_id}
@@ -221,15 +221,20 @@ class DocumentAdmin(admin.ModelAdmin):
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):     
         if db_field.name == "organization": #courier is the foreignkey name
-            if request.user.is_organization_admin:
+            if request.user.is_superuser:
+                kwargs["queryset"] = Organization.objects.all()
+            elif request.user.is_organization_admin:
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id) #role ='Courier' in choices
             elif request.user.is_staff:
                 kwargs["queryset"] = Organization.objects.filter(id=request.user.organization_id)
         elif db_field.name == "data_category":
-            if request.user.is_organization_admin:
+            if request.user.is_superuser:
+               kwargs["queryset"] = DataCategory.objects.all()
+            elif request.user.is_organization_admin:
                 kwargs["queryset"] = DataCategory.objects.filter(organization_id=request.user.organization_id)
             elif request.user.is_staff:
                 kwargs["queryset"] = DataCategory.objects.filter(organization_id=request.user.organization_id)
+                
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def get_form(self, request, instance, obj=None, **kwargs,):

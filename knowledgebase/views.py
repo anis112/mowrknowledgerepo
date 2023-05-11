@@ -702,7 +702,7 @@ def document_details(request, id):
     documents = Document.objects.all()
 
     related_keywords = get_related_keywords(document.title, document.keywords)
-
+    doc_id = id
     ####cond_cat = Q(data_category_id__in=data_category_ids)
     ##data_category_id = document.data_category.data_common_category_id
     ##cond_cat = Q(data_category__data_common_category_id=data_category_id)
@@ -717,7 +717,7 @@ def document_details(request, id):
                        ]
 
     context = {'document': document, 'documents': documents.order_by(
-        'organization_id', 'data_category_id')[:25], 'important_links': important_links}
+        'organization_id', 'data_category_id')[:25], 'important_links': important_links, 'doc_id': doc_id}
 
     return render(request, 'document_details.html', context)
 
@@ -1127,16 +1127,18 @@ def download_files(request, document_id):
         with zipfile.ZipFile(buffer, 'w') as zip_file:
             for doc_file in doc_files:
                 file_path = str(doc_file)
-                print(file_path)
-                zip_file.write(file_path, os.path.basename(file_path))
-
+                # print(file_path)
+                if os.path.isfile(file_path):
+                    zip_file.write(file_path, os.path.basename(file_path))
+                else:
+                    return  HttpResponseNotFound('<h1>File is Not Found</h1>')
         buffer.seek(0)
 
         response = HttpResponse(buffer, content_type='application/zip')
         response['Content-Disposition'] = f'attachment; filename=KBR_Document_{document_id}.zip'
         return response
     else:
-      return  HttpResponseNotFound('<h1>404 File Not Found</h1>')
+      return  HttpResponseNotFound('<h1>File Path is Not Found</h1>')
 
 #====================================== END HUD ==========================================================================
 def contact_us(request):
