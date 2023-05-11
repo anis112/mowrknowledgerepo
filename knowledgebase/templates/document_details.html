@@ -143,8 +143,11 @@
                 <div class="col-md-9">
                     <div class="pl-1">                        
                         <h2 style="text-align: justify; font-weight: 400; font-family: Georgia,Times New Roman,serif;">{{document.title}}</h2>                         
-                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0; margin-bottom: 0;">Organization: {{document.organization}}</p> 
-                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0;">Document Type: {{document.data_category}}</p> 
+                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0; margin-bottom: 0;">Organization: {{document.organization}}</p>
+                        {% if document.publication_date %}
+                            <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0; margin-bottom: 0;">Published Date: {{document.publication_date}}</p>
+                        {% endif %} 
+                        <p style="text-align: left; font-weight: 400; font-family: Georgia,Times New Roman,serif; color: #024ea0;">Category: {{document.data_category}}</p> 
                         <!-- <br /> -->
                         <p class="doc_details">{{document.description}}</p>
 
@@ -217,11 +220,16 @@
                                         <td class="text-left font-weight-bold" style="width: 100px;">Title:</td>
                                         <td class="text-left font-weight-bold">{{doc.title|truncatewords:"200"}}</td>
                                     </tr>
+                                    {% if doc.publication_date %}
                                     <tr>
-                                        <td class="text-left font-weight-bold">Subject:</td>
-                                        {% comment %} <td class="text-left">{{doc.subject|truncatewords:"250"}}</td> {% endcomment %}
-                                        <td class="text-left">{{doc.organization.organization_name}}
-                                            ({{doc.data_category.category_name}})</td>
+                                        <td class="text-left font-weight-bold" style="width: 100px;">Published Date:</td>
+                                        <td class="text-left font-weight-bold">{{doc.publication_date}}</td>
+                                    </tr>
+                                    {% endif %}
+                                    <tr>
+                                        <td class="text-left font-weight-bold">Category:</td>
+                                        <td class="text-left">{{doc.data_category}}</td>
+        
                                     </tr>
                                     <tr>
                                         <td class="text-left font-weight-bold">Description:</td>

@@ -157,7 +157,7 @@ class DocumentAdmin(admin.ModelAdmin):
     inlines = [DocumentFileInline,]
     actions = ['preview_document']
     
-    list_display = ['title','organization','data_category', 'access_category', 'document_approval_status', 'modified_date', 'modified_by']
+    list_display = ['title','organization','data_category', 'access_category', 'publication_date', 'document_approval_status', 'entry_date', 'entry_by', 'modified_date']
     exclude = ('is_parent_available', 'file_name')
     list_per_page = 20
     list_filter = [OrganizationWiseFilter, CategoryWiseFilter , 'access_category', 'document_approval_status']
