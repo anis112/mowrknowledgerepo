@@ -232,8 +232,8 @@ class Document(models.Model):
 
 class DocumentFile(models.Model):
      id = models.AutoField(primary_key=True)
-     file = models.FileField(upload_to=get_document_file_upload_path, max_length=500, null=False, verbose_name= 'Select File (Maximum 10MB)', 
-                                  validators=[FileExtensionValidator(allowed_extensions= ['pdf']), MaxSizeValidator(10 * 1024 * 1024),])
+     file = models.FileField(upload_to=get_document_file_upload_path, max_length=500, null=False, verbose_name= 'Select File (Maximum 25MB)', 
+                                  validators=[FileExtensionValidator(allowed_extensions= ['pdf']), MaxSizeValidator(25 * 1024 * 1024),])
      uploaded_at = models.DateTimeField(auto_now_add=True)
      document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='doc_files')
 

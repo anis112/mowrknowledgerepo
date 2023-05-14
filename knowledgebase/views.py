@@ -832,15 +832,19 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
         if filter_from_date and filter_to_date:
             start_date = datetime.strptime(filter_from_date[0], '%d/%m/%Y').date()
             end_date = datetime.strptime(filter_to_date[0], '%d/%m/%Y').date()
-            print(start_date, end_date)
+            # print(start_date, end_date)
             if start_date > end_date:
                 error_massage_date_range = 'Incorrect Date Range'
             else:
-                cond_date_range = Q(publication_date__year__range=[start_date.year, end_date.year]) | Q(
-                    publication_date__month__range=[start_date.month, end_date.month]) | Q(
-                    publication_date__day__range=[start_date.day, end_date.day])
-    
-                documents = documents.filter(cond_date_range)
+                print(start_date.year)
+                print(end_date.year)
+                cond_date_range_year = Q(publication_date__year__range=[start_date.year, end_date.year])
+                documents = documents.filter(cond_date_range_year) 
+                cond_date_range_month = Q(publication_date__month__range=[start_date.month, end_date.month])
+                documents = documents.filter(cond_date_range_month) 
+                cond_date_range_day = Q(publication_date__day__range=[start_date.day, end_date.day])
+                documents = documents.filter(cond_date_range_day)
+               
                 doc_count = len(documents)
     
 
@@ -928,7 +932,7 @@ def show_search_results_for_other_doc(documents, search_term='', src_org_types=N
             if start_date > end_date:
                 error_massage_date_range = 'Incorrect Date Range'
             else:
-                cond_date_range = Q(publication_date__year__range=[start_date.year, end_date.year]) | Q(
+                cond_date_range = Q(publication_date__year__in__range=[start_date.year, end_date.year]) | Q(
                     publication_date__month__range=[start_date.month, end_date.month]) | Q(
                     publication_date__day__range=[start_date.day, end_date.day])
     
