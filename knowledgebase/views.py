@@ -836,8 +836,6 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
             if start_date > end_date:
                 error_massage_date_range = 'Incorrect Date Range'
             else:
-                print(start_date.year)
-                print(end_date.year)
                 cond_date_range_year = Q(publication_date__year__range=[start_date.year, end_date.year])
                 documents = documents.filter(cond_date_range_year) 
                 cond_date_range_month = Q(publication_date__month__range=[start_date.month, end_date.month])
