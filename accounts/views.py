@@ -29,7 +29,6 @@ def login(request):
             upassword=form.cleaned_data['password']           
             user = authenticate(username=uname, password=upassword)
             if user.is_active:
-                print('hello')
                 if user.is_superuser:
                     auth_login(request,user)
                     return redirect('/admin')  # or your url name

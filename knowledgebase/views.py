@@ -209,15 +209,15 @@ def addDocument(request):
 #     if request.user.is_authenticated:
 #         user = CustomUser.objects.get(pk=request.user.id)
 
-    form = DocumentForm()
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+    # form = DocumentForm()
+    # if request.method == 'POST':
+    #     form = DocumentForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('/')
 
-    context = {'form': form}
-    return render(request, 'document/add.html', context)
+    # context = {'form': form}
+    # return render(request, 'document/add.html', context)
 
 
 def editDocument(request, id):
@@ -801,7 +801,7 @@ def show_search_results(documents, search_term='', org_ids=None, data_category_i
     else:
         if search_term is not None and search_term != '':
             cond = Q(title__icontains=search_term) | Q(
-                subject__icontains=search_term) | Q(keywords__icontains=search_term)
+                subject__icontains=search_term) | Q(keywords__icontains=search_term) | Q(data_category__category_name__iexact=search_term)
 
             documents = documents.filter(cond)
             doc_count = len(documents)

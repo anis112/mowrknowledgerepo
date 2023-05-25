@@ -144,7 +144,7 @@ def get_upload_path(instance, filename):
     doc_id = Document.objects.aggregate(Max('id'))['id__max']+1
     
     base_path = os.path.join('static', 'document', org_name, doc_access_cat)
-    # path="static/documents/JRC/Public/document.pdf"
+    # path="static/documents/JRC/Public/doc_id.pdf"
     new_name = f'{doc_id}{ext}'
     return os.path.join(base_path, new_name)
 
@@ -173,11 +173,13 @@ def get_document_file_upload_path(instance, filename):
     org_name = instance.document.organization.short_name
     doc_access_cat = instance.document.access_category.category_name
     
-    base_path = os.path.join('static','document', org_name, doc_access_cat)    # path_example ="static/documents/JRC/Public/document.pdf"
+    base_path = os.path.join('static','document', org_name, doc_access_cat)    
+    
     
     existing_files = DocumentFile.objects.filter(document__id=instance.document.id).count()
     new_name = f'{name}_part_{existing_files +1}_file_{file_id}{ext}'
 
+    # path_example ="static/document/JRC/Public/filename_part_1_file_id.pdf"
     return os.path.join(base_path, new_name)
 
 

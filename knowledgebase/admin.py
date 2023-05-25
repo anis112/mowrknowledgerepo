@@ -120,6 +120,7 @@ class CategoryWiseFilter(admin.SimpleListFilter):
         if request.user.is_superuser:
             return Document.objects.values_list('data_category_id','data_category__category_name').order_by('data_category_id').distinct()
         elif request.user.is_organization_admin:
+           # print(Document.objects.values_list('data_category_id','data_category__category_name').filter(organization_id=request.user.organization_id).order_by('data_category_id').distinct())
             return Document.objects.values_list('data_category_id','data_category__category_name').filter(organization_id=request.user.organization_id).order_by('data_category_id').distinct()
         else:
             return Document.objects.values_list('data_category_id','data_category__category_name').filter(organization_id=request.user.organization_id).order_by('data_category_id').distinct()     
@@ -141,7 +142,11 @@ class CategoryWiseFilter(admin.SimpleListFilter):
             else:    
                 return queryset.all()
         elif request.user.is_organization_admin:
-            return queryset.filter(organization_id=request.user.organization_id)
+            #print(queryset.filter(organization_id=request.user.organization_id))
+            if self.value() is not None:
+                return queryset.filter(data_category_id=self.value())
+            else:
+                return queryset.filter(organization_id=request.user.organization_id)
         else:
             return queryset.filter(organization_id=request.user.organization_id)
         
