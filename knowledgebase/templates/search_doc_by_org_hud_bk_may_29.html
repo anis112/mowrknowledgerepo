@@ -770,14 +770,14 @@
                                         
                                         {% for doc in documents %}
 
-                                            <tr style="background-color: transparent; " id="{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}_{{forloop.counter}}">
+                                            <tr style="background-color: transparent; ">
                                                 <td style="background-color: transparent; border-top: none; ">
 
                                                     {% ifchanged doc.data_category.category_name %}
                                                         <div class="row wow fadeInUp">
                                                             <div class="col-md-12">
                                                                 <span
-                                                                    id='s_{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
+                                                                    id='{{doc.organization.short_name}}_{{doc.organization_id}}_{{doc.data_category_id}}'
                                                                     class="data-cat-title">
                                                                     <i class="fa-solid fa-table-list"></i> {{doc.organization.organization_name}}
                                                                     ({{doc.data_category.category_name}})
@@ -1223,7 +1223,7 @@ function getSelectedValuesFromList(OrgList) {
 
 <!-- *****  Starts Table Pagination  ***** -->
 <script type="text/javascript">
-    
+
     getPagination('#example');
                         //getPagination('.table-class');
                         //getPagination('table');
@@ -1381,123 +1381,6 @@ function getSelectedValuesFromList(OrgList) {
     // });
     // });
 
-    //==== added by zhn for adding pagination in the existing table
-    
-    function RenderDesiredContentBasedOnPageNum(pageNum,maxRows){
-        //console.log("the page num is ====>",pageNum)
-        return new Promise((resolve,reject)=>{
-            if (pageNum == 'prev') {
-        if (lastPage == 1) {
-            return;
-        }
-            pageNum = --lastPage;
-        }
-
-        if (pageNum == 'next') {
-            if (lastPage == $('.pagination li').length - 2) {
-                return;
-            }
-            pageNum = ++lastPage;
-        }
-
-        lastPage = pageNum;
-        let tr_Idnx = 0,title_span_count=0; // reset tr counter
-        //console.log(lastPage)
-        $('.pagination li').removeClass('active'); // remove active class from all li
-        $('.pagination [data-page="' + lastPage + '"]').addClass('active'); // add active class to the clicked
-        // $(this).addClass('active');					// add active class to the clicked
-        limitPagging();
-        let elmntsdisplayed=0
-        $("#example" + ' tr:gt(0)').each(function() {
-        
-            tr_Idnx++; // tr index counter
-            //console.log($(this))
-            elmntsdisplayed=tr_Idnx -(maxRows*pageNum)
-            //console.log(elmntsdisplayed,tr_Idnx,maxRows,pageNum)
-            if (
-                tr_Idnx > maxRows * pageNum ||
-                tr_Idnx <= maxRows * pageNum - maxRows
-            )
-            $(this).hide()
-            else {
-                if($(this).find('span').hasClass('data-cat-title'))
-                    title_span_count+=1
-                $(this).show()
-            }
-        });
-        limitPagging();
-        resolve(title_span_count)
-        })
-        
-    }
-
-    //==== Implementation of Organization specific category based search on click event of left panel
-    //==== ZHN
-    function searchInRenderedTable(elementId){
-        return new Promise((resolve,reject)=>{
-            let maxRowToShow = parseInt($("#maxRows").val());
-        //elementId=elementId.substring(1)
-        let idx=0,temp_id="",temp_tr_id="",temp_tr_id_list=[],starting_indx=9999999
-        let shouldShowRow=false,allowed_row=0,posOfElement=0;
-        $("table > tbody > tr").each(function () {
-            
-            temp_id=$(this).attr("id")
-            temp_tr_id_list=temp_id.split("_")
-            temp_tr_id=temp_tr_id_list.slice(0,temp_tr_id_list.length-1).join('_')
-            //console.log(elementId,temp_tr_id)  
-            if(elementId==temp_tr_id){   
-                idx=parseInt(temp_tr_id_list[temp_tr_id_list.length-1])
-                //console.log(elementId,temp_tr_id,idx)                 
-                if(idx<starting_indx){
-                    starting_indx=idx
-                }
-            }
-            $(this).find('td').css({'width':'100vw'})
-        });        
-        //console.log(starting_indx)
-        temp_idx=0
-        let pageNum=Math.ceil(starting_indx/maxRowToShow)
-        RenderDesiredContentBasedOnPageNum(pageNum,maxRowToShow).then(title_elms_count=>{
-            //console.log("title elements count",title_elms_count)
-            if(starting_indx%maxRowToShow==0)
-                posOfElement=maxRowToShow
-            else posOfElement=starting_indx%maxRowToShow        
-            resolve([posOfElement,title_elms_count])
-        })   
-        
-        })
-        
-    }
-    
-    $(document).on('click', 'a[href^="#"]', function(e) {
-        // target element id
-        e.preventDefault();
-        var id = $(this).attr('href');
-        id=id.substring(1)
-        //console.log(id)
-        // target element
-        
-        //console.log($id)
-        var $id = $("#s_"+id);
-        if ($id.length === 0) {
-            return;
-        }
-        // prevent standard hash navigation (avoid blinking in IE)
-       
-        //
-        
-        
-        // top position relative to the document
-        
-        //var pos = $id.offset().top;
-        //pos-=50
-        searchInRenderedTable(id).then(returnedItem=>{
-            let posElm=returnedItem[0],titleElms=returnedItem[1]
-            //console.log(posElm,titleElms)
-            let topPos = 360+posElm*190+40*titleElms
-            $('body, html').animate({scrollTop: topPos});
-        })
-    });
 </script>
 <!-- *****  Ends Table Pagination  ***** -->
 
