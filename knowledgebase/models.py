@@ -164,22 +164,22 @@ def get_upload_path_thumb(instance, filename):
 def get_document_file_upload_path(instance, filename):
     """Function to generate a new filename for uploaded files"""
     name, ext = os.path.splitext(filename)
-    file_id = DocumentFile.objects.aggregate(Max('id'))['id__max']
-    if file_id == None:
-          file_id = 1
-    else:
-          file_id = file_id + 1 
+    # file_id = DocumentFile.objects.aggregate(Max('id'))['id__max']
+    # if file_id == None:
+    #       file_id = 1
+    # else:
+    #       file_id = file_id + 1 
     
     org_name = instance.document.organization.short_name
     doc_access_cat = instance.document.access_category.category_name
-    
+    doc_id = instance.document.id
+
     base_path = os.path.join('static','document', org_name, doc_access_cat)    
     
-    
     existing_files = DocumentFile.objects.filter(document__id=instance.document.id).count()
-    new_name = f'{name}_part_{existing_files +1}_file_{file_id}{ext}'
+    new_name = f'{name}_{existing_files +1}_{doc_id}{ext}'
 
-    # path_example ="static/document/JRC/Public/filename_part_1_file_id.pdf"
+    # path_example ="static/document/JRC/Public/filename_no_of_doc_doc_id.pdf"
     return os.path.join(base_path, new_name)
 
 
