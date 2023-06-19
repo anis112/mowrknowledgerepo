@@ -11,6 +11,7 @@ from .forms import DocumentForm
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import HttpResponse, render
+from django.db.models import Max
 # Register your models here.
 
 
@@ -150,10 +151,31 @@ class CategoryWiseFilter(admin.SimpleListFilter):
         else:
             return queryset.filter(organization_id=request.user.organization_id)
         
+
+class DocumentFileInlineForm(forms.ModelForm):
+    class Meta:
+        model = DocumentFile
+        fields = ('id', 'file')
+        widgets = {
+            'id': forms.HiddenInput(),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        last_doc_id = DocumentFile.objects.aggregate(Max('id'))['id__max']
+
+        if last_doc_id == None:
+            next_doc_id = 1
+        else:
+            next_doc_id = last_doc_id + 1
+
+        self.fields['id'].initial = next_doc_id
+        
 class DocumentFileInline(admin.StackedInline):
     model = DocumentFile
     extra = 1
-    fields = ('file',)
+    form = DocumentFileInlineForm
+    fields = ('id', 'file')
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
@@ -244,6 +266,15 @@ class DocumentAdmin(admin.ModelAdmin):
 
     def get_form(self, request, instance, obj=None, **kwargs,):
         form = super().get_form(request, obj, **kwargs)
+        last_doc_id = Document.objects.aggregate(Max('id'))['id__max']
+
+        if last_doc_id == None:
+            next_doc_id = 1
+        else:
+            next_doc_id = last_doc_id + 1
+
+        form.base_fields['id'].initial = next_doc_id
+        form.base_fields['id'].widget = forms.HiddenInput()
         if not request.user.is_superuser:
             form.base_fields['organization'].initial = request.user.organization
             form.base_fields['entry_by'].initial = request.user.username

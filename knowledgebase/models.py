@@ -177,15 +177,16 @@ def get_document_file_upload_path(instance, filename):
     base_path = os.path.join('static','document', org_name, doc_access_cat)    
     
     existing_files = DocumentFile.objects.filter(document__id=instance.document.id).count()
-    new_name = f'{name}_{existing_files +1}_{doc_id}{ext}'
+    new_name = f'{doc_id}_{existing_files+1}{ext}'
 
     # path_example ="static/document/JRC/Public/filename_no_of_doc_doc_id.pdf"
     return os.path.join(base_path, new_name)
 
 
 class Document(models.Model):
-    id = models.AutoField(primary_key=True)
-    #id = models.PositiveSmallIntegerField(primary_key=True)
+    # id = models.AutoField(primary_key=True)
+    id = models.PositiveIntegerField(primary_key=True)
+    
 
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, null=True)
 
@@ -232,12 +233,16 @@ class Document(models.Model):
         db_table = 'tbl_documents'
         ordering = ['id']
 
+
 class DocumentFile(models.Model):
-     id = models.AutoField(primary_key=True)
+    #  id = models.AutoField(primary_key=True)
+     id = models.PositiveIntegerField(primary_key=True)
      file = models.FileField(upload_to=get_document_file_upload_path, max_length=500, null=False, verbose_name= 'Select File (Maximum 25MB)', 
                                   validators=[FileExtensionValidator(allowed_extensions= ['pdf']), MaxSizeValidator(25 * 1024 * 1024),])
      uploaded_at = models.DateTimeField(auto_now_add=True)
      document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='doc_files')
+    
+
 
      def __str__(self) -> str:
           return self.file.name
